@@ -96,7 +96,8 @@ div.prose,ol.prose{display:flex;flex-direction:column;gap:12px}
 .nav a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;text-decoration:none;color:var(--fg);font-weight:600;white-space:nowrap}
 .nav a:hover{background:var(--surface-2)}
 .nav a[aria-current="page"]{background:var(--green-soft);color:var(--green)}
-.nav .badge{margin-left:auto;font-size:.72rem;font-weight:700;background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-variant-numeric:tabular-nums}
+.badge{font-size:.72rem;font-weight:700;background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-variant-numeric:tabular-nums;line-height:1.4}
+.nav .badge{margin-left:auto}
 .sync{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);background:none;border:0;padding:6px 4px;cursor:pointer;text-align:left}
 .sync i{width:8px;height:8px;border-radius:50%;background:var(--line-strong);flex:none}
 .sync[data-s="synced"] i{background:var(--green)}
@@ -104,20 +105,36 @@ div.prose,ol.prose{display:flex;flex-direction:column;gap:12px}
 .sync[data-s="error"] i{background:var(--red)}
 .view{width:100%;max-width:940px;padding-block:32px 72px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));outline:none}
 
+/* Barre d'onglets du téléphone */
+.tabbar{display:none;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--surface);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.tabbar a,.tabbar button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:60px;padding:6px 2px;
+  font-size:.72rem;font-weight:700;color:var(--muted);text-decoration:none;background:none;border:0;cursor:pointer}
+.tabbar svg{width:24px;height:24px}
+.tabbar [aria-current="page"],.tabbar button.on,.tabbar button[aria-expanded="true"]{color:var(--green)}
+.tabbar .tab-main .ic{display:grid;place-items:center;width:38px;height:38px;margin-top:-14px;border-radius:50%;background:var(--green);color:var(--on-green);box-shadow:var(--shadow)}
+.tabbar .tab-main .ic svg{width:22px;height:22px}
+.tabbar .badge{position:absolute;top:5px;left:calc(50% + 4px)}
+.sheet{position:fixed;inset:0;z-index:35}
+.sheet-backdrop{position:absolute;inset:0;background:rgba(5,12,8,.45);border:0;width:100%;cursor:pointer}
+.sheet-panel{position:absolute;left:0;right:0;bottom:calc(61px + env(safe-area-inset-bottom,0px));background:var(--surface);border-radius:20px 20px 0 0;border-top:1px solid var(--line);
+  padding-block:18px 14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.sheet-panel a{display:flex;align-items:center;padding:13px 14px;border-radius:12px;background:var(--surface-2);color:var(--fg);font-weight:700;text-decoration:none}
+.sheet-panel a[aria-current="page"]{background:var(--green-soft);color:var(--green)}
+
 @media (max-width:860px){
-  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
   .shell{display:block}
-  .rail{height:auto;z-index:20;gap:8px;border-right:0;border-bottom:1px solid var(--line);
-    padding-block:10px 0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow:visible}
+  .rail{position:static;height:auto;gap:0;border-right:0;border-bottom:1px solid var(--line);
+    padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow:visible}
+  .rail .nav{display:none}
   .brand-mark{width:28px;height:28px;border-radius:7px}
-  .nav{flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:8px;scrollbar-width:none;margin-inline:-4px}
-  .nav::-webkit-scrollbar{display:none}
-  .nav a{padding:7px 12px;font-size:.95rem}
   .sync{margin-top:0;padding:4px 0}
   .sync span{display:none}
   .sync.rail-sync{display:none}
-  .view{padding-block:22px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .view{padding-block:22px calc(100px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .tabbar{display:grid}
 }
+@media (min-width:861px){ .sheet{display:none} }
 @media (min-width:861px){ .sync.top-sync{display:none} }
 
 /* Pangi cloth */
@@ -248,14 +265,16 @@ a.lrow:hover{background:var(--surface-2)}
 
 /* Dialogues */
 .dlg{display:flex;flex-direction:column;gap:12px}
-.line{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;align-items:start}
+.line{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:start}
+.line .say{margin-top:8px}
+.line.speaking .bubble{box-shadow:0 0 0 2.5px var(--gold)}
 .line .who{font-weight:700;font-size:.85rem;color:var(--muted);padding-top:12px;text-align:right}
 .bubble{background:var(--surface);border:1px solid var(--line);border-radius:4px 16px 16px 16px;padding:11px 15px;display:flex;flex-direction:column;gap:3px;cursor:pointer;text-align:left;width:100%}
 .line.b .bubble{background:var(--green-soft);border-color:transparent}
 .bubble .sr{font-size:1.08rem}
 .bubble .fr{color:var(--muted)}
 .bubble .hid{color:var(--muted);font-style:italic;font-size:.9rem}
-@media (max-width:600px){.line{grid-template-columns:minmax(0,1fr)}.line .who{text-align:left;padding-top:0}}
+@media (max-width:600px){.line{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}.line .who{grid-column:1 / -1;text-align:left;padding-top:0}}
 
 /* Talk */
 .talk-log{display:flex;flex-direction:column;gap:14px}
@@ -281,6 +300,31 @@ a.lrow:hover{background:var(--surface-2)}
 .anthem{padding:22px;border-radius:16px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
 .anthem .sr{font-size:1.3rem;line-height:1.3}
 
+/* Son */
+.say{display:none;align-items:center;justify-content:center;width:34px;height:34px;flex:none;padding:0;border-radius:50%;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--green);cursor:pointer;vertical-align:middle}
+.has-sound .say{display:inline-flex}
+.say:hover{border-color:var(--green)}
+.say.playing{background:var(--green);border-color:var(--green);color:var(--on-green)}
+.say-all{display:none}
+.has-sound .say-all{display:inline-flex}
+.say-all.playing{background:var(--gold);color:#1a1405}
+.srw{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.ex .say,.word .say{width:30px;height:30px}
+
+/* Séance du jour */
+.steps{list-style:none;margin:0;padding:0;display:flex;gap:8px;flex-wrap:wrap}
+.steps li{display:flex;align-items:center;gap:7px;font-size:.85rem;font-weight:700;color:var(--muted);padding:4px 12px 4px 4px;border-radius:99px;background:var(--surface-2)}
+.steps li span{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--line);color:var(--fg);font-size:.75rem}
+.steps li.cur{background:var(--green-soft);color:var(--green)}
+.steps li.cur span,.steps li.done span{background:var(--green);color:var(--on-green)}
+.plan{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.plan li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:2px}
+.plan li b{font-family:var(--font-display);font-size:1.6rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.plan li .lnum{margin-bottom:4px}
+@media (max-width:600px){.plan{grid-template-columns:minmax(0,1fr)}}
+.example{display:flex;flex-direction:column;gap:3px;padding:10px 14px;border-radius:12px;background:var(--surface-2);text-align:left;width:100%;max-width:460px}
+.example .lbl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .fade{animation:fade .25s ease}
 @keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -302,6 +346,11 @@ a.lrow:hover{background:var(--surface-2)}
     <noscript><p>Leri Sranantongo a besoin de JavaScript pour fonctionner.</p></noscript>
   </main>
 </div>
+<div class="sheet" id="sheet" hidden>
+  <button class="sheet-backdrop" type="button" data-act="sheet-close" aria-label="Fermer le menu"></button>
+  <nav class="sheet-panel" id="sheet-panel" aria-label="Autres sections"></nav>
+</div>
+<nav class="tabbar" id="tabbar" aria-label="Navigation principale"></nav>
 
 <script>
 /* =========================================================================
@@ -746,6 +795,74 @@ const THEMES = [
   ["Mi e go na oso.","Je rentre à la maison."],
   ["Mi de na oso.","Je suis à la maison."],
   ["Mi no abi moni.","Je n'ai pas d'argent."]
+ ]},
+ { id:"sante", name:"Santé & émotions", lead:"Dire comment on va, vraiment.", words:[
+  ["Fa yu e firi?","Comment te sens-tu ?"],
+  ["Mi e firi bun.","Je me sens bien."],
+  ["Mi e firi moro bun.","Je me sens mieux."],
+  ["Mi breiti.","Je suis content(e)."],
+  ["Mi sari.","Je suis triste."],
+  ["Mi ati bron.","Je suis en colère.","litt. « mon cœur brûle »"],
+  ["Mi siki.","Je suis malade."],
+  ["hati","faire mal ; douleur","à ne pas confondre avec « ati », le cœur"],
+  ["Mi ede e hati mi.","J'ai mal à la tête.","litt. « ma tête me fait mal »"],
+  ["Mi bere e hati mi.","J'ai mal au ventre."],
+  ["korsu","fièvre"],
+  ["dresi","médicament"],
+  ["Mi musu go na datra.","Je dois aller chez le médecin."],
+  ["Sribi bun!","Dors bien !"],
+  ["Sorgu yu srefi.","Prends soin de toi."],
+  ["Hori tranga!","Tiens bon ! Courage !","litt. « tiens fort »"],
+  ["No frede.","N'aie pas peur."],
+  ["No krei.","Ne pleure pas."]
+ ]},
+ { id:"deplacer", name:"Se déplacer", lead:"Bus, bateau, à pied : trouver son chemin.", words:[
+  ["oto","voiture"],
+  ["bus","bus"],
+  ["boto","bateau"],
+  ["opolani","avion"],
+  ["baisigri","vélo"],
+  ["go stret","aller tout droit"],
+  ["kruktu anu","à gauche","litt. « main tordue »"],
+  ["leti anu","à droite","litt. « main juste »"],
+  ["doro","arriver","c'est aussi « la porte » : « Wi doro! » = nous sommes arrivés"],
+  ["komoto","sortir ; venir de","« Mi komoto fu Sranan » : je viens du Suriname"],
+  ["Pe a bus e go?","Où va le bus ?"],
+  ["Mi e go na foto.","Je vais en ville."],
+  ["Mi o teki a bus.","Je prendrai le bus."],
+  ["A no farawe.","Ce n'est pas loin."],
+  ["Wakti mi!","Attends-moi !"],
+  ["Tanapu dyaso.","Arrête-toi ici."],
+  ["Wi doro!","Nous sommes arrivés !"]
+ ]},
+ { id:"courses", name:"Faire ses courses", lead:"Au marché, à la boutique, au moment de payer.", words:[
+  ["Mi wani bai…","Je voudrais acheter…"],
+  ["Yu abi manya?","Tu as des mangues ?"],
+  ["Gi mi tu, mi e begi yu.","Donne-m'en deux, s'il te plaît."],
+  ["A diri.","C'est cher."],
+  ["A bunkopu.","C'est bon marché."],
+  ["Mi o teki dri.","J'en prends trois."],
+  ["Mi o pai.","Je vais payer."],
+  ["Wan tra sani?","Autre chose ?"],
+  ["No, a bun so.","Non, c'est bon comme ça."],
+  ["sensi","centime","veut aussi dire « depuis »"]
+ ]},
+ { id:"coeur", name:"Expressions du cœur", lead:"Les mots qu'on entend en famille et entre amis.", words:[
+  ["mi gudu","mon trésor, mon chéri, ma chérie","mot tendre très courant"],
+  ["Switi Sranan","Suriname chéri","litt. « doux Suriname »"],
+  ["Mi lobi mi kondre.","J'aime mon pays."],
+  ["Kon wi go!","Allons-y !"],
+  ["Meki wi go!","Allons-y !","litt. « faisons que nous allions »"],
+  ["Kon nyan!","Viens manger !"],
+  ["Mi musu go.","Je dois y aller."],
+  ["Mi o kari yu.","Je t'appellerai."],
+  ["Seni wan boskopu gi mi.","Envoie-moi un message."],
+  ["Wan bigi odi gi yu famiri.","Un grand bonjour à ta famille."],
+  ["Bun wroko!","Bon travail ! Bravo !"],
+  ["Na so!","C'est ça ! Exactement !"],
+  ["mi srefi","moi-même"],
+  ["angisa","angisa (foulard noué traditionnel)","sa façon d'être plié porte un message"],
+  ["kotomisi","kotomisi (robe traditionnelle créole)"]
  ]}
 ];
 
@@ -784,7 +901,14 @@ const SENTENCES = [
  ["Mi e wroko ala dei.","Je travaille tous les jours."],
  ["Oten yu o kon na Sranan?","Quand viendras-tu au Suriname ?"],
  ["Mi no kon, bika mi ben siki.","Je ne suis pas venu(e), parce que j'étais malade."],
- ["Di mi kon, a ben e sribi.","Quand je suis arrivé(e), il/elle dormait."]
+ ["Di mi kon, a ben e sribi.","Quand je suis arrivé(e), il/elle dormait."],
+ ["Mi ede e hati mi.","J'ai mal à la tête."],
+ ["Mi o teki a bus.","Je prendrai le bus."],
+ ["Mi musu go na datra.","Je dois aller chez le médecin."],
+ ["Sorgu yu srefi.","Prends soin de toi."],
+ ["Mi brada moro langa leki mi.","Mon frère est plus grand que moi."],
+ ["Wan bigi odi gi yu famiri.","Un grand bonjour à ta famille."],
+ ["No krei, mi gudu.","Ne pleure pas, mon trésor."]
 ];
 
 /* Choisir la bonne marque de temps */
@@ -827,7 +951,7 @@ const LESSONS = [
     ]}},
     { h:"Les anciennes graphies", p:"Dans les vieux livres, les chansons ou sur les réseaux sociaux, vous verrez souvent une orthographe à la néerlandaise : <i>oe</i> pour <b>u</b>, <i>j</i> pour <b>y</b>, <i>tj</i> pour <b>ty</b>, <i>dj</i> pour <b>dy</b>. Ainsi « joe » = <b>yu</b>, « tjari » = <b>tyari</b>, « Sranang » = <b>Sranan</b>." }
    ],
-   tip:"Dans cette appli, chaque mot est suivi d'une <b>prononciation approchée</b> écrite à la française (par exemple <span class=\"sr\">fa waka</span> ≈ <i>fa ouaka</i>). C'est une béquille : rien ne remplace l'oreille. Faites-vous lire les mots par vos proches.",
+   tip:"Dans cette appli, chaque mot est suivi d'une <b>prononciation approchée</b> écrite à la française (par exemple <span class=\"sr\">fa waka</span> ≈ <i>fa ouaka</i>). Le bouton haut-parleur la fait lire par une voix française. C'est une béquille : rien ne remplace l'oreille. Faites-vous lire les mots par vos proches.",
    quiz:[
     {q:"Comment se prononce le « u » de « futu » (pied) ?",o:["« ou », comme dans « fou »","« u », comme dans « tu »","« eu », comme dans « feu »"],x:"En sranan, u = « ou » : futu ≈ « foutou »."},
     {q:"« tyari » (porter) se prononce :",o:["« tchari »","« tiari »","« chari »"],x:"ty = « tch »."},
@@ -1146,6 +1270,81 @@ const LESSONS = [
     {q:"« Quand je suis arrivé(e) » (au passé) :",o:["Di mi kon","Te mi kon","Efu mi kon"]},
     {q:"« Si tu veux » :",o:["Efu yu wani","Bika yu wani","Di yu wani"]},
     {q:"Dans « te tamara », « te » veut dire :",o:["jusqu'à","quand","si"]}
+   ]},
+ { id:"l15", title:"Donner un ordre, demander poliment", key:"Kon nyan!",
+   intro:"Pour donner un ordre, on emploie le verbe seul, sans pronom : <span class=\"sr\">Kon!</span> (Viens !). Pour l'adoucir, on ajoute <b>mi e begi yu</b> (s'il te plaît).",
+   sections:[
+    { h:"L'impératif : le verbe seul", ex:[
+      ["Kon dyaso.","Viens ici."],
+      ["Sidon.","Assieds-toi."],
+      ["Tapu a doro.","Ferme la porte."],
+      ["Tyari a watra kon.","Apporte l'eau."],
+      ["Wakti mi!","Attends-moi !"]
+    ]},
+    { h:"Défendre : no + verbe", ex:[
+      ["No krei.","Ne pleure pas."],
+      ["No frede.","N'aie pas peur."],
+      ["No go!","N'y va pas !"]
+    ]},
+    { h:"Proposer : kon wi, meki wi", ex:[
+      ["Kon wi go!","Allons-y !"],
+      ["Meki wi nyan.","Mangeons."]
+    ]},
+    { h:"La politesse surinamaise", p:"On appelle les personnes plus âgées <b>tanta</b> (tante) ou <b>omu</b> (oncle), même sans lien de famille, et on met <b>misi</b> (madame) ou <b>masra</b> (monsieur) devant un nom.", ex:[
+      ["Gi mi wan glasi watra, mi e begi yu.","Donne-moi un verre d'eau, s'il te plaît."],
+      ["Odi tanta! Fa yu tan?","Bonjour, tata ! Comment vas-tu ?"],
+      ["Grantangi, masra.","Merci beaucoup, monsieur."]
+    ]}
+   ],
+   tip:"Saluer en premier quand on arrive quelque part est une marque de respect : un simple <span class=\"sr\">Odi!</span> ou <span class=\"sr\">Fa waka?</span> suffit.",
+   quiz:[
+    {q:"« Assieds-toi » :",o:["Sidon.","Mi sidon.","Sidon no."]},
+    {q:"« Ne pleure pas » :",o:["No krei.","Krei no.","Yu krei."]},
+    {q:"« Allons-y ! » :",o:["Kon wi go!","Wi go kaba.","Go wi kon!"]},
+    {q:"Comment appelle-t-on poliment une femme plus âgée qu'on connaît peu ?",o:["tanta","sisa","umapikin"],x:"Tanta (tante) se dit aussi aux aînées hors de la famille."}
+   ]},
+ { id:"l16", title:"Comparer : moro … leki", key:"moro langa leki mi",
+   intro:"Pour dire « plus … que », on met <b>moro</b> (plus) devant l'adjectif et <b>leki</b> (comme, que) devant ce qu'on compare.",
+   sections:[
+    { h:"Plus … que", ex:[
+      ["Mi brada moro langa leki mi.","Mon frère est plus grand que moi."],
+      ["Paramaribo moro waran leki Amsterdam.","Paramaribo est plus chaude qu'Amsterdam."],
+      ["A oso disi moro bigi leki mi oso.","Cette maison est plus grande que la mienne."]
+    ]},
+    { h:"Le plus … de tous", ex:[
+      ["A moro bigi fu ala.","C'est le plus grand de tous."],
+      ["Mi granmama e bori a moro switi pindabrafu.","Ma grand-mère fait la meilleure soupe d'arachide."]
+    ]},
+    { h:"Comme : leki", ex:[
+      ["A e taki leki en mama.","Il/Elle parle comme sa mère."]
+    ]}
+   ],
+   tip:"<b>moro</b> tout seul veut dire « plus, davantage » : <span class=\"sr\">Gi mi moro.</span> (Donne-m'en plus.)",
+   quiz:[
+    {q:"« plus grand que moi » :",o:["moro langa leki mi","langa leki moro mi","leki langa moro mi"]},
+    {q:"Dans une comparaison, « leki » veut dire :",o:["que, comme","plus","moins"]},
+    {q:"« C'est le plus grand de tous » :",o:["A moro bigi fu ala.","A bigi ala moro.","Ala bigi moro a."]}
+   ]},
+ { id:"l17", title:"Soi-même : srefi", key:"Sorgu yu srefi.",
+   intro:"<b>srefi</b> veut dire « même ». Après un pronom, il donne « moi-même, toi-même… », et il sert aux verbes du type « se laver, se regarder ».",
+   sections:[
+    { h:"Moi-même, toi-même", table:{ head:["Français","Sranan"], src:[1], rows:[
+      ["moi-même","mi srefi"],["toi-même","yu srefi"],["lui-même, elle-même","en srefi"],["nous-mêmes","wi srefi"]
+    ]}},
+    { h:"Les verbes « se … »", ex:[
+      ["A e wasi en srefi.","Il/Elle se lave."],
+      ["Sorgu yu srefi.","Prends soin de toi."],
+      ["A e luku en srefi na ini a spikri.","Il/Elle se regarde dans le miroir."]
+    ]},
+    { h:"Pour insister", ex:[
+      ["Mi srefi du en.","Je l'ai fait moi-même."],
+      ["Mi srefi no sabi.","Moi-même, je ne sais pas."]
+    ]}
+   ],
+   quiz:[
+    {q:"« Prends soin de toi » :",o:["Sorgu yu srefi.","Sorgu mi srefi.","Yu srefi sorgu."]},
+    {q:"« Il se lave » :",o:["A e wasi en srefi.","A e wasi srefi.","En e wasi a."]},
+    {q:"« moi-même » :",o:["mi srefi","srefi mi","mi tu"]}
    ]}
 ];
 
@@ -1199,6 +1398,33 @@ const DIALOGUES = [
   ["Tanta","Kon! Wi o wakti yu.","Viens ! Nous t'attendrons."],
   ["Daisy","Mi lobi yu, tanta!","Je t'aime, tata !"],
   ["Tanta","Mi lobi yu tu.","Moi aussi, je t'aime."]
+ ]},
+ { id:"d6", title:"Chez le médecin", sr:"Na datra", lead:"Daisy ne se sent pas bien.", lines:[
+  ["Datra","Odi. San e pasa?","Bonjour. Qu'est-ce qui se passe ?"],
+  ["Daisy","Mi siki, datra. Mi ede e hati mi.","Je suis malade, docteur. J'ai mal à la tête."],
+  ["Datra","Yu abi korsu?","Tu as de la fièvre ?"],
+  ["Daisy","Ai, sensi esde.","Oui, depuis hier."],
+  ["Datra","Mi o gi yu wan dresi. Sribi furu, dringi furu watra.","Je vais te donner un médicament. Dors beaucoup, bois beaucoup d'eau."],
+  ["Daisy","Grantangi, datra.","Merci beaucoup, docteur."],
+  ["Datra","Sorgu yu srefi!","Prends soin de toi !"]
+ ]},
+ { id:"d7", title:"Dans le bus", sr:"Na ini a bus", lead:"Daisy prend le bus pour aller au marché.", lines:[
+  ["Daisy","Pardon, masra. A bus disi e go na a wowoyo?","Excusez-moi, monsieur. Ce bus va au marché ?"],
+  ["Masra","Ai, kon na ini.","Oui, montez."],
+  ["Daisy","Yu kan taki gi mi te wi doro?","Vous pouvez me dire quand nous arriverons ?"],
+  ["Masra","No span. A no farawe.","Pas de souci. Ce n'est pas loin."],
+  ["Masra","Wi doro! Disi na a wowoyo.","Nous sommes arrivés ! Voici le marché."],
+  ["Daisy","Grantangi, masra. Waka bun!","Merci beaucoup, monsieur. Bonne route !"]
+ ]},
+ { id:"d8", title:"Keti Koti chez tata", sr:"Keti Koti", lead:"Le 1er juillet, Daisy rend visite à sa tante.", lines:[
+  ["Tanta","Daisy! Kon, kon! Kon nyan.","Daisy ! Viens, viens ! Viens manger."],
+  ["Daisy","Odi tanta! Yu moi tide!","Bonjour, tata ! Tu es belle aujourd'hui !"],
+  ["Tanta","Tangi, mi gudu. Tide na Keti Koti. Wi e membre den afo.","Merci, ma chérie. Aujourd'hui, c'est Keti Koti. Nous nous souvenons des ancêtres."],
+  ["Daisy","Mi lobi yu angisa!","J'adore ton angisa !"],
+  ["Tanta","Tamara mi o sori yu fa fu meki wan.","Demain, je te montrerai comment en faire un."],
+  ["Daisy","Ai! Mi breiti.","Oui ! Je suis contente."],
+  ["Tanta","Now kon nyan. Mi bori pom!","Maintenant, viens manger. J'ai fait du pom !"],
+  ["Daisy","Switi! Grantangi, tanta.","Miam ! Merci beaucoup, tata."]
  ]}
 ];
 
@@ -1249,7 +1475,11 @@ function lev(a, b) {
 }
 
 /* Prononciation approchée, écrite pour un lecteur francophone */
+const KEEP = new Set(["daisy","rayan","wilma","anna","ronald","amsterdam"]); // prénoms et noms étrangers : lus tels quels
 function pron(s) {
+  return String(s).replace(/[A-Za-zÀ-ÿ]+/g, w => KEEP.has(w.toLowerCase()) ? w.toLowerCase() : pronWord(w)).replace(/[?!.]+$/,"").trim();
+}
+function pronWord(s) {
   const t = String(s).toLowerCase(), isV = ch => ch !== "" && "aeiou".includes(ch);
   let out = "";
   for (let i = 0; i < t.length; i++) {
@@ -1264,7 +1494,12 @@ function pron(s) {
     if (c === "n" && p === "i" && !(isV(n) || n === "y")) { out += "nn"; continue; }
     out += c;
   }
-  return out.replace(/[?!.]+$/,"").trim();
+  return out;
+}
+/* Texte lu à voix haute : la prononciation approchée, avec la ponctuation finale pour l'intonation */
+function pronSpeak(s) {
+  const t = String(s).trim();
+  return pron(t) + (/\?$/.test(t) ? " ?" : /!$/.test(t) ? " !" : ".");
 }
 
 /* ---------- Vocabulaire ---------- */
@@ -1278,13 +1513,29 @@ const THEME = Object.fromEntries(THEMES.map(t => [t.id, t]));
 const LESSON = Object.fromEntries(LESSONS.map(l => [l.id, l]));
 const DIALOGUE = Object.fromEntries(DIALOGUES.map(d => [d.id, d]));
 
+/* Phrases d'exemple, pour montrer un mot en contexte */
+const EXAMPLES = [];
+SENTENCES.forEach(([s, f]) => EXAMPLES.push([s, f]));
+LESSONS.forEach(l => l.sections.forEach(sec => (sec.ex || []).forEach(([s, f]) => { if (/\s/.test(s.trim()) && /[.!?]$/.test(s.trim())) EXAMPLES.push([s, f]); })));
+DIALOGUES.forEach(d => d.lines.forEach(([, s, f]) => EXAMPLES.push([s, f])));
+READING.lines.forEach(([s, f]) => EXAMPLES.push([s, f]));
+function exampleFor(v) {
+  const k = norm(v.sr);
+  if (!k || k.split(" ").length > 3 || /[.!?]$/.test(v.sr.trim())) return null;
+  const key = " " + k + " ";
+  const hits = EXAMPLES.filter(([s]) => (" " + norm(s) + " ").includes(key) && norm(s) !== k);
+  if (!hits.length) return null;
+  hits.sort((a, b) => a[0].length - b[0].length);
+  return hits[0];
+}
+
 /* ---------- Progression (navigateur + compte Claude si disponible) ---------- */
 const LS_KEY = "leri-sranantongo:v1";
-function fresh() { return {v:1, epoch:0, updatedAt:0, xp:0, goal:50, newPer:10, dir:"sr", cards:{}, lessons:{}, dialogues:{}, days:{}}; }
+function fresh() { return {v:1, epoch:0, updatedAt:0, xp:0, goal:50, newPer:10, dir:"sr", slow:false, autoplay:false, cards:{}, lessons:{}, dialogues:{}, days:{}, seances:{}}; }
 function normalizeState(x) {
   const f = fresh();
   if (!x || typeof x !== "object") return f;
-  return Object.assign(f, x, {cards: x.cards || {}, lessons: x.lessons || {}, dialogues: x.dialogues || {}, days: x.days || {}});
+  return Object.assign(f, x, {cards: x.cards || {}, lessons: x.lessons || {}, dialogues: x.dialogues || {}, days: x.days || {}, seances: x.seances || {}});
 }
 function loadLocal() { try { const s = localStorage.getItem(LS_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
 function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) {} }
@@ -1298,7 +1549,7 @@ function merge(a, b) {
   m.epoch = a.epoch || 0;
   m.updatedAt = Math.max(a.updatedAt || 0, b.updatedAt || 0);
   m.xp = Math.max(a.xp || 0, b.xp || 0);
-  m.goal = newer.goal; m.newPer = newer.newPer; m.dir = newer.dir;
+  m.goal = newer.goal; m.newPer = newer.newPer; m.dir = newer.dir; m.slow = !!newer.slow; m.autoplay = !!newer.autoplay;
   for (const k of new Set([...Object.keys(a.cards), ...Object.keys(b.cards)])) {
     const x = a.cards[k], y = b.cards[k];
     m.cards[k] = !x ? y : !y ? x : ((y.l || 0) > (x.l || 0) ? y : x);
@@ -1309,6 +1560,7 @@ function merge(a, b) {
   }
   for (const k of new Set([...Object.keys(a.dialogues), ...Object.keys(b.dialogues)])) m.dialogues[k] = true;
   for (const k of new Set([...Object.keys(a.days), ...Object.keys(b.days)])) m.days[k] = Math.max(a.days[k] || 0, b.days[k] || 0);
+  for (const k of new Set([...Object.keys(a.seances), ...Object.keys(b.seances)])) m.seances[k] = Math.max(a.seances[k] || 0, b.seances[k] || 0);
   return m;
 }
 
@@ -1322,6 +1574,7 @@ function save() {
   S.updatedAt = Date.now();
   const cutoff = ymd(new Date(Date.now() - 400 * DAY));
   for (const k of Object.keys(S.days)) if (k < cutoff) delete S.days[k];
+  for (const k of Object.keys(S.seances)) if (k < cutoff) delete S.seances[k];
   saveLocal();
   clearTimeout(sync.timer); sync.timer = setTimeout(pushRemote, 1200);
 }
@@ -1332,7 +1585,6 @@ async function pushRemote() {
   try { await sync.ref.set({json: JSON.stringify(S), updatedAt: S.updatedAt}); setSync("synced"); }
   catch (e) {
     if (e && e.code === "invalid_argument") { sync.disabled = true; setSync("local"); }
-    else if (e && e.code === "unavailable") setSync("error");
     else setSync("error");
   }
   sync.writing = false;
@@ -1362,6 +1614,91 @@ async function initRemote() {
       if (!snap.metadata.fromCache) setSync("synced");
     }, () => { loaded = true; clearTimeout(slow); setSync("error"); sync.ref = null; });
   } catch (e) {}
+}
+
+/* ---------- Son ----------
+   Il n'existe pas de voix de synthèse pour le sranan : on fait lire la prononciation
+   approchée par une voix française — voix Claude si la page y a accès, sinon la voix
+   française du navigateur. */
+const SOUND = {tts: null, voice: null, off: false, reading: false, token: 0};
+const VOICES = ["buttery", "airy", "glassy", "rounded"];
+const PITCHES = [1, 1.25, 0.85, 1.12];
+const ICON_SPEAK = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9.5v5h3.6l4.6 3.9V5.6L7.6 9.5z" fill="currentColor"/><path d="M15.6 9.2a4 4 0 0 1 0 5.6M18.2 6.6a7.6 7.6 0 0 1 0 10.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+const soundOn = () => !SOUND.off && !!(SOUND.tts || SOUND.voice);
+function refreshSoundFlag() { document.documentElement.classList.toggle("has-sound", soundOn()); }
+function pickVoice() {
+  try { const vs = window.speechSynthesis.getVoices(); SOUND.voice = vs.find(v => /^fr[-_]FR/i.test(v.lang)) || vs.find(v => /^fr/i.test(v.lang)) || null; }
+  catch (e) { SOUND.voice = null; }
+  refreshSoundFlag();
+}
+if ("speechSynthesis" in window) { pickVoice(); try { window.speechSynthesis.addEventListener("voiceschanged", pickVoice); } catch (e) {} }
+function updateSayAll() {
+  const b = $("#say-all"); if (!b) return;
+  b.classList.toggle("playing", SOUND.reading);
+  b.innerHTML = ICON_SPEAK + (SOUND.reading ? " Arrêter la lecture" : " Écouter tout");
+}
+function markPlaying(btn) {
+  document.querySelectorAll(".say.playing").forEach(b => { b.classList.remove("playing"); b.setAttribute("aria-pressed", "false"); });
+  if (btn && btn.classList.contains("say")) { btn.classList.add("playing"); btn.setAttribute("aria-pressed", "true"); }
+}
+function highlightLine(id) {
+  document.querySelectorAll(".line.speaking").forEach(l => l.classList.remove("speaking"));
+  if (id) { const el = document.getElementById(id); if (el) el.classList.add("speaking"); }
+}
+function soundIdle() { SOUND.reading = false; markPlaying(null); highlightLine(null); updateSayAll(); }
+function stopSound() {
+  SOUND.token++;
+  if (SOUND.tts) SOUND.tts.stop().catch(() => {});
+  else { try { window.speechSynthesis.cancel(); } catch (e) {} }
+  soundIdle();
+}
+/* lines : [{text, voice?, pitch?, id?}] — à appeler directement depuis un clic ou une touche */
+function speak(lines, btn, reading = false) {
+  if (!soundOn() || !lines.length) return;
+  const tok = ++SOUND.token;
+  markPlaying(btn); SOUND.reading = reading; updateSayAll();
+  if (SOUND.tts) {
+    const payload = lines.map(l => { const o = {text: l.text, language: "fr"}; if (l.voice) o.voice = l.voice; if (l.id) o.id = l.id; return o; });
+    SOUND.tts.speak(payload, {rate: S.slow ? 0.75 : 0.95, language: "fr"}).catch(e => {
+      if (e && (e.code === "not_granted" || e.code === "unavailable")) { SOUND.off = true; refreshSoundFlag(); }
+      if (e && e.code === "stopped" && e.reason === "replaced") return;
+      if (tok === SOUND.token) soundIdle();
+    });
+    return;
+  }
+  try {
+    const synth = window.speechSynthesis; synth.cancel();
+    lines.forEach((l, i) => {
+      const u = new SpeechSynthesisUtterance(l.text);
+      u.voice = SOUND.voice; u.lang = SOUND.voice.lang; u.rate = S.slow ? 0.7 : 0.9; u.pitch = l.pitch || 1;
+      u.onstart = () => { if (tok === SOUND.token) highlightLine(l.id || null); };
+      if (i === lines.length - 1) u.onend = u.onerror = () => { if (tok === SOUND.token) soundIdle(); };
+      synth.speak(u);
+    });
+  } catch (e) { soundIdle(); }
+}
+async function initTTS() {
+  if (!window.claude || typeof window.claude.use !== "function") return;
+  try {
+    const t = await window.claude.use("tts");
+    if (!t) return;
+    SOUND.tts = t;
+    try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) {}
+    t.onState(({state, reason}) => {
+      if (state !== "idle" || reason === "replaced") return;
+      if (reason === "not_granted" || reason === "unavailable") { SOUND.off = true; refreshSoundFlag(); }
+      soundIdle();
+    });
+    t.onLine(({id}) => highlightLine(id || null));
+  } catch (e) {}
+  refreshSoundFlag();
+  if (currentRoute() === "reglages") render();
+}
+const sayBtn = (text, auto = false) => `<button class="say" type="button" data-act="say" data-t="${esc(text)}"${auto ? " data-auto" : ""} aria-pressed="false" aria-label="Écouter « ${esc(text)} » (voix approximative)" title="Écouter · voix approximative">${ICON_SPEAK}</button>`;
+function autoSay() {
+  if (!S.autoplay || !soundOn()) return;
+  const b = document.querySelector(".flash [data-auto]");
+  if (b) speak([{text: pronSpeak(b.dataset.t)}], b);
 }
 
 /* ---------- Cartes & révision espacée (boîtes de Leitner) ---------- */
@@ -1401,8 +1738,9 @@ function dots(id) {
 /* ---------- Petits composants ---------- */
 const srSpan = s => '<span class="sr">' + esc(s) + "</span>";
 const pronSpan = s => '<span class="pron">≈ ' + esc(pron(s)) + "</span>";
+const srSay = s => '<span class="srw">' + srSpan(s) + sayBtn(s) + "</span>";
 function exList(rows) {
-  return '<ul class="ex">' + rows.map(([s, f]) => '<li><span class="s">' + srSpan(s) + pronSpan(s) + '</span><span class="fr">' + esc(f) + "</span></li>").join("") + "</ul>";
+  return '<ul class="ex">' + rows.map(([s, f]) => '<li><span class="s">' + srSay(s) + pronSpan(s) + '</span><span class="fr">' + esc(f) + "</span></li>").join("") + "</ul>";
 }
 function table(t) {
   return '<div class="tbl"><table><thead><tr>' + t.head.map(h => "<th>" + esc(h) + "</th>").join("") + "</tr></thead><tbody>" +
@@ -1410,29 +1748,46 @@ function table(t) {
     "</tbody></table></div>";
 }
 const bar = (pct, cls = "") => '<div class="bar ' + cls + '"><i style="width:' + Math.max(0, Math.min(100, pct)).toFixed(1) + '%"></i></div>';
+function exampleHTML(v) {
+  const ex = exampleFor(v); if (!ex) return "";
+  return `<div class="example"><span class="lbl">Exemple</span><span class="srw">${srSpan(ex[0])}${sayBtn(ex[0])}</span><span class="muted small">${esc(ex[1])}</span></div>`;
+}
 
 /* ---------- Navigation ---------- */
+const ICON = {
+  home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 10.5 12 4l8.5 6.5V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></svg>',
+  book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>',
+  play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>',
+  cards: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="13" height="14" rx="2"/><path d="M7.5 4H19a2 2 0 0 1 2 2v11.5"/></svg>',
+  more: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.9" fill="currentColor"/><circle cx="12" cy="12" r="1.9" fill="currentColor"/><circle cx="19" cy="12" r="1.9" fill="currentColor"/></svg>'
+};
 const NAV = [
-  ["accueil","Accueil"],["lecons","Leçons"],["vocab","Vocabulaire"],["reviser","Réviser"],["exercices","Exercices"],
-  ["dialogues","Dialogues"],["dico","Dictionnaire"],["parler","Parler"],["culture","Culture"]
+  ["accueil","Accueil"],["seance","Séance du jour"],["lecons","Leçons"],["vocab","Vocabulaire"],["reviser","Réviser"],["exercices","Exercices"],
+  ["dialogues","Dialogues"],["dico","Dictionnaire"],["parler","Parler"],["culture","Culture"],["reglages","Réglages"]
 ];
+const TABS = [["accueil","Accueil","home"],["lecons","Leçons","book"],["seance","Séance","play"],["reviser","Réviser","cards"]];
+const MORE = [["vocab","Vocabulaire"],["exercices","Exercices"],["dialogues","Dialogues"],["dico","Dictionnaire"],["parler","Parler"],["culture","Culture"],["reglages","Réglages"]];
+let SHEET = false;
 function navSection(h) {
   if (h.startsWith("lecon-")) return "lecons";
   if (h.startsWith("theme-")) return "vocab";
   if (h.startsWith("dialogue-")) return "dialogues";
-  if (h === "reglages") return "accueil";
   return h;
 }
 function renderNav(h) {
   const cur = navSection(h), due = dueList().length;
+  const cur$ = id => id === cur ? ' aria-current="page"' : "";
   $("#nav").innerHTML = NAV.map(([id, label]) =>
-    '<a href="#' + id + '"' + (id === cur ? ' aria-current="page"' : "") + ">" + esc(label) +
-    (id === "reviser" && due ? '<span class="badge" aria-label="' + due + ' à réviser">' + due + "</span>" : "") + "</a>").join("");
-  const active = $("#nav [aria-current]");
-  if (active && window.matchMedia("(max-width:860px)").matches) active.scrollIntoView({block: "nearest", inline: "nearest"});
+    `<a href="#${id}"${cur$(id)}>${esc(label)}${id === "reviser" && due ? `<span class="badge" aria-label="${due} à réviser">${due}</span>` : ""}</a>`).join("");
+  $("#tabbar").innerHTML = TABS.map(([id, label, ic]) =>
+    `<a href="#${id}"${cur$(id)}${id === "seance" ? ' class="tab-main"' : ""}>${id === "seance" ? `<span class="ic">${ICON[ic]}</span>` : ICON[ic]}<span>${esc(label)}</span>${id === "reviser" && due ? `<b class="badge" aria-label="${due} à réviser">${due > 99 ? "99+" : due}</b>` : ""}</a>`).join("") +
+    `<button type="button" data-act="sheet" aria-expanded="${SHEET}" aria-controls="sheet"${MORE.some(m => m[0] === cur) ? ' class="on"' : ""}>${ICON.more}<span>Plus</span></button>`;
+  $("#sheet-panel").innerHTML = MORE.map(([id, label]) => `<a href="#${id}"${cur$(id)}>${esc(label)}</a>`).join("");
+  $("#sheet").hidden = !SHEET;
 }
+function setSheet(open) { SHEET = open; $("#sheet").hidden = !open; const b = $('#tabbar [data-act="sheet"]'); if (b) b.setAttribute("aria-expanded", String(open)); if (open) { const a = $("#sheet-panel a"); if (a) a.focus({preventScroll: true}); } }
 
-/* ---------- Vues ---------- */
+/* ---------- Accueil ---------- */
 function greeting() {
   const h = new Date().getHours();
   return h < 12 ? ["Gudu mamanten!","Bonjour !"] : h < 18 ? ["Gudu bakadina!","Bon après-midi !"] : ["Gudu neti!","Bonsoir !"];
@@ -1458,22 +1813,26 @@ function wordOfDay() {
   const n = Math.floor(new Date(ymd() + "T12:00:00").getTime() / DAY);
   return pool[((n * 7919) % pool.length + pool.length) % pool.length];
 }
+function seancePlan() {
+  const due = Math.min(15, dueList().length);
+  const unseen = VOCAB.filter(v => !card(v.id)).length;
+  const nNew = S.newPer === 0 ? 0 : Math.min(S.newPer, 8, unseen);
+  return {due, nNew};
+}
 
 function vHome() {
   const [gs, gf] = greeting();
-  const st = themeStats(), due = st.due, todayXP = S.days[ymd()] || 0, nl = nextLesson();
-  const w = wordOfDay(), cel = celebration();
-  const reviewLabel = due ? "Réviser " + plural(due, "carte", "cartes") : (st.seen < st.total ? "Apprendre de nouveaux mots" : "Tout est révisé");
-  const themesStarted = THEMES.map(t => [t, themeStats(t.id)]);
+  const st = themeStats(), todayXP = S.days[ymd()] || 0, nl = nextLesson();
+  const w = wordOfDay(), cel = celebration(), plan = seancePlan(), doneToday = S.seances[ymd()] || 0;
   return `
   <div class="stack-lg fade">
     <section class="hero">
       <div class="hero-text">
         <p class="eyebrow">${esc(gf)}</p>
         <h1><span class="sr">${esc(gs)}</span></h1>
-        <p class="lead">Réapprenez le sranan à votre rythme, un peu chaque jour : <span class="sr">pikinso pikinso</span>.</p>
+        <p class="lead">${doneToday ? "Séance du jour terminée. Revenez demain, ou continuez si le cœur vous en dit." : `Votre séance du jour vous attend : ${plan.due ? plural(plan.due, "carte à revoir", "cartes à revoir") + ", " : ""}${plan.nNew ? plural(plan.nNew, "nouveau mot", "nouveaux mots") + " et " : ""}un court exercice. <span class="sr">Pikinso pikinso.</span>`}</p>
         <div class="row">
-          <a class="btn" href="#reviser">${esc(reviewLabel)}</a>
+          <a class="btn" href="#seance">${doneToday ? "Encore une séance" : "Commencer la séance du jour"}</a>
           ${nl ? `<a class="btn ghost" href="#lecon-${nl.id}">Leçon ${LESSONS.indexOf(nl) + 1} : ${esc(nl.title)}</a>` : `<a class="btn ghost" href="#exercices">Faire des exercices</a>`}
         </div>
       </div>
@@ -1490,9 +1849,10 @@ function vHome() {
     <section class="grid2">
       <article class="panel stack wotd">
         <p class="eyebrow">Mot du jour</p>
-        <div class="stack" style="gap:4px">${srSpan(w.sr)}${pronSpan(w.sr)}</div>
+        <div class="stack" style="gap:4px"><span class="srw">${srSpan(w.sr)}${sayBtn(w.sr)}</span>${pronSpan(w.sr)}</div>
         <p style="font-size:1.15rem;font-weight:600">${esc(w.fr)}</p>
         ${w.note ? `<p class="muted small">${esc(w.note)}</p>` : ""}
+        ${exampleHTML(w)}
         <p class="small muted">Thème : <a href="#theme-${w.theme}">${esc(THEME[w.theme].name)}</a></p>
       </article>
       <article class="panel stack">
@@ -1509,9 +1869,9 @@ function vHome() {
     </section>` : ""}
 
     <section class="stack">
-      <div class="spread"><h2>Votre vocabulaire</h2><a href="#vocab" class="small">Tous les thèmes</a></div>
+      <div class="spread"><h2>Votre vocabulaire</h2><a href="#vocab" class="small">Les ${THEMES.length} thèmes</a></div>
       <div class="grid3">
-        ${themesStarted.slice(0, 6).map(([t, s]) => themeCard(t, s)).join("")}
+        ${THEMES.slice(0, 6).map(t => themeCard(t, themeStats(t.id))).join("")}
       </div>
     </section>
   </div>`;
@@ -1525,10 +1885,11 @@ function themeCard(t, s) {
   </a>`;
 }
 
+/* ---------- Leçons ---------- */
 function vLessons() {
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow">Grammaire</p><h1>Leçons</h1>
-      <p class="muted prose">Quatorze leçons courtes, à suivre dans l'ordre. Chacune se termine par un petit test. La grammaire du sranan est bien plus simple que celle du français : pas de conjugaison, pas de genre, pas d'accord.</p></header>
+      <p class="muted prose">${LESSONS.length} leçons courtes, à suivre dans l'ordre. Chacune se termine par un petit test. La grammaire du sranan est bien plus simple que celle du français : pas de conjugaison, pas de genre, pas d'accord.</p></header>
     <div class="list">
       ${LESSONS.map((l, i) => {
         const r = S.lessons[l.id];
@@ -1570,16 +1931,16 @@ function vLesson(id) {
 function lessonQuizHTML(l) {
   const q = LQ;
   if (q.done) {
-    const prev = S.lessons[l.id];
+    const nxt = LESSONS[LESSONS.indexOf(l) + 1];
     return `<p class="eyebrow">Testez-vous</p>
       <h2>${q.correct === l.quiz.length ? "Parfait ! " + srSpan("Bun wroko!") : q.correct + " bonne" + (q.correct > 1 ? "s" : "") + " réponse" + (q.correct > 1 ? "s" : "") + " sur " + l.quiz.length}</h2>
-      <p class="muted">${prev ? "Leçon enregistrée comme terminée." : ""} Vous pouvez refaire le test quand vous voulez.</p>
+      <p class="muted">${S.lessons[l.id] ? "Leçon enregistrée comme terminée." : ""} Vous pouvez refaire le test quand vous voulez.</p>
       <div class="row"><button class="btn ghost" type="button" data-act="ls-retry">Refaire le test</button>
-      ${LESSONS[LESSONS.indexOf(l) + 1] ? `<a class="btn" href="#lecon-${LESSONS[LESSONS.indexOf(l) + 1].id}">Leçon suivante</a>` : `<a class="btn" href="#exercices">Exercices</a>`}</div>`;
+      ${nxt ? `<a class="btn" href="#lecon-${nxt.id}">Leçon suivante</a>` : `<a class="btn" href="#exercices">Exercices</a>`}</div>`;
   }
   const item = l.quiz[q.i], order = q.orders[q.i];
   const answered = q.picked !== null;
-  return `<div class="spread"><p class="eyebrow">Testez-vous · question ${q.i + 1} sur ${l.quiz.length}</p></div>
+  return `<p class="eyebrow">Testez-vous · question ${q.i + 1} sur ${l.quiz.length}</p>
     <h3 style="font-size:1.2rem">${esc(item.q)}</h3>
     <div class="opts">
       ${order.map((k, n) => {
@@ -1591,17 +1952,21 @@ function lessonQuizHTML(l) {
       <div><button class="btn" type="button" data-act="ls-next">${q.i + 1 < l.quiz.length ? "Question suivante" : "Voir le résultat"}</button></div>` : ""}`;
 }
 
+/* ---------- Vocabulaire ---------- */
 function vVocab() {
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow">Wortu</p><h1>Vocabulaire</h1>
-      <p class="muted prose">${VOCAB.length} mots et expressions, rangés par thème. Ouvrez un thème pour voir la liste, puis révisez-le en cartes ou en exercices.</p></header>
+      <p class="muted prose">${VOCAB.length} mots et expressions, rangés en ${THEMES.length} thèmes. Ouvrez un thème pour voir et écouter la liste, puis révisez-le en cartes ou en exercices.</p></header>
     <div class="grid3">${THEMES.map(t => themeCard(t, themeStats(t.id))).join("")}</div>
   </div>`;
+}
+function wordRow(v, extra = "") {
+  return `<div class="word">${srSay(v.sr)}<span class="fr">${esc(v.fr)}</span>${dots(v.id)}
+    <span class="nt">${pronSpan(v.sr)}${extra}${v.note ? " · " + esc(v.note) : ""}</span></div>`;
 }
 function vTheme(id) {
   const t = THEME[id]; if (!t) return vVocab();
   const s = themeStats(id);
-  const words = VOCAB.filter(v => v.theme === id);
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow"><a href="#vocab">Vocabulaire</a></p><h1>${esc(t.name)}</h1>
       <p class="muted">${esc(t.lead)}</p>
@@ -1610,74 +1975,45 @@ function vTheme(id) {
       <div class="row"><button class="btn" type="button" data-act="rv-start" data-theme="${id}">Réviser ce thème en cartes</button>
         <button class="btn ghost" type="button" data-act="qz-theme-start" data-theme="${id}">Exercices sur ce thème</button></div>
     </header>
-    <div class="list">
-      ${words.map(v => `<div class="word">${srSpan(v.sr)}<span class="fr">${esc(v.fr)}</span>${dots(v.id)}
-        <span class="nt">${pronSpan(v.sr)}${v.note ? " · " + esc(v.note) : ""}</span></div>`).join("")}
-    </div>
+    <div class="list">${VOCAB.filter(v => v.theme === id).map(v => wordRow(v)).join("")}</div>
   </div>`;
 }
 
-/* ----- Révision en cartes ----- */
+/* ---------- Révision en cartes ---------- */
 let RV = null;
+function makeRV(ids, newIds = new Set()) { return {ids: ids.slice(), i: 0, revealed: false, newIds, stats: {good: 0, hard: 0, again: 0}, requeued: new Set(), dirs: {}}; }
 function startReview(theme) {
-  const now = Date.now();
   const pool = VOCAB.filter(v => !theme || v.theme === theme);
-  const due = shuffle(pool.filter(v => isDue(card(v.id)))).slice(0, 40);
-  const fresh = pool.filter(v => !card(v.id)).sort((a, b) => a.order - b.order).slice(0, S.newPer);
-  const ids = [], newIds = new Set(fresh.map(v => v.id));
-  const d = due.map(v => v.id), f = fresh.map(v => v.id);
+  const due = shuffle(pool.filter(v => isDue(card(v.id)))).slice(0, 40).map(v => v.id);
+  const fresh = pool.filter(v => !card(v.id)).sort((a, b) => a.order - b.order).slice(0, S.newPer).map(v => v.id);
+  const ids = [], newIds = new Set(fresh), d = due.slice(), f = fresh.slice();
   while (d.length || f.length) { if (d.length) ids.push(d.shift()); if (d.length) ids.push(d.shift()); if (f.length) ids.push(f.shift()); }
-  RV = {theme: theme || null, ids, i: 0, revealed: false, newIds, stats: {good: 0, hard: 0, again: 0}, requeued: new Set(), started: now, dirs: {}};
+  RV = makeRV(ids, newIds);
 }
-function cardDir(id) {
-  if (!RV.dirs[id]) RV.dirs[id] = S.dir === "mix" ? pick(["sr", "fr"]) : S.dir;
-  return RV.dirs[id];
+function cardDir(rv, id) {
+  if (!rv.dirs[id]) rv.dirs[id] = S.dir === "mix" ? pick(["sr", "fr"]) : S.dir;
+  return rv.dirs[id];
 }
-function vReview() {
-  const s = themeStats();
-  if (!RV || RV.i >= RV.ids.length) {
-    const finished = RV && RV.ids.length && RV.i >= RV.ids.length;
-    const res = finished ? RV.stats : null;
-    return `<div class="stack-lg fade">
-      <header class="stack" style="gap:8px"><p class="eyebrow">Révision espacée</p><h1>Réviser</h1>
-        <p class="muted prose">Chaque mot revient juste avant que vous ne l'oubliiez : le lendemain, puis après 3 jours, une semaine, deux semaines, un mois. Un mot oublié repart au début.</p></header>
-      ${res ? `<section class="panel stack"><h2>Séance terminée. ${srSpan("Bun wroko!")}</h2>
-        <p>${res.good} « je savais » · ${res.hard} « difficile » · ${res.again} « à revoir »</p></section>` : ""}
-      <section class="stats">
-        <div class="stat"><b>${s.due}</b><span>cartes à revoir</span></div>
-        <div class="stat"><b>${s.total - s.seen}</b><span>mots jamais vus</span></div>
-        <div class="stat"><b>${s.seen - s.mastered}</b><span>en cours</span></div>
-        <div class="stat"><b>${s.mastered}</b><span>maîtrisés</span></div>
-      </section>
-      <section class="panel stack">
-        <div class="stack" style="gap:8px"><p class="eyebrow">Sens des cartes</p>
-          <div class="seg" role="group" aria-label="Sens des cartes">
-            ${[["sr","Sranan → français"],["fr","Français → sranan"],["mix","Mélangé"]].map(([k, l]) => `<button type="button" data-act="set-dir" data-v="${k}" aria-pressed="${S.dir === k}">${l}</button>`).join("")}
-          </div></div>
-        <div class="stack" style="gap:8px"><p class="eyebrow">Nouveaux mots par séance</p>
-          <div class="seg" role="group" aria-label="Nouveaux mots par séance">
-            ${[0,5,10,20].map(n => `<button type="button" data-act="set-new" data-v="${n}" aria-pressed="${S.newPer === n}">${n}</button>`).join("")}
-          </div></div>
-        <div class="row"><button class="btn" type="button" data-act="rv-start" ${!s.due && (s.seen >= s.total || !S.newPer) ? "disabled" : ""}>
-          ${s.due ? "Commencer : " + plural(Math.min(40, s.due), "carte", "cartes") + (S.newPer && s.seen < s.total ? " + " + Math.min(S.newPer, s.total - s.seen) + " nouvelles" : "") : (S.newPer && s.seen < s.total ? "Apprendre " + Math.min(S.newPer, s.total - s.seen) + " nouveaux mots" : "Rien à réviser pour l'instant")}</button>
-          <a class="btn ghost" href="#vocab">Choisir un thème</a></div>
-        <p class="small muted">Raccourcis clavier : <b>Espace</b> pour retourner la carte, <b>1</b> <b>2</b> <b>3</b> pour répondre.</p>
-      </section>
-    </div>`;
-  }
-  const id = RV.ids[RV.i], v = BYID[id], dir = cardDir(id), isNew = !card(id) && RV.newIds.has(id);
-  const front = dir === "sr" ? `<div class="big sr">${esc(v.sr)}</div>${pronSpan(v.sr)}` : `<div class="big">${esc(v.fr)}</div>`;
+function goodLabel(id) {
+  const c = card(id), nb = Math.min(5, (c ? c.b : 0) + 1), d = INTERVALS[nb];
+  return d === 1 ? "demain" : "dans " + d + " jours";
+}
+function reviewCardHTML(rv, head) {
+  const id = rv.ids[rv.i], v = BYID[id], dir = cardDir(rv, id), isNew = !card(id) && rv.newIds.has(id);
+  const front = dir === "sr"
+    ? `<div class="big sr">${esc(v.sr)}</div><div class="row" style="justify-content:center">${pronSpan(v.sr)}${sayBtn(v.sr, !rv.revealed)}</div>`
+    : `<div class="big">${esc(v.fr)}</div>`;
   const back = dir === "sr"
-    ? `<div class="main">${esc(v.fr)}</div>${v.note ? `<p class="muted small">${esc(v.note)}</p>` : ""}`
-    : `<div class="main sr" style="font-size:1.7rem">${esc(v.sr)}</div>${pronSpan(v.sr)}${v.note ? `<p class="muted small">${esc(v.note)}</p>` : ""}`;
+    ? `<div class="main">${esc(v.fr)}</div>${v.note ? `<p class="muted small">${esc(v.note)}</p>` : ""}${exampleHTML(v)}`
+    : `<div class="main sr" style="font-size:1.7rem">${esc(v.sr)}</div><div class="row" style="justify-content:center">${pronSpan(v.sr)}${sayBtn(v.sr, true)}</div>${v.note ? `<p class="muted small">${esc(v.note)}</p>` : ""}${exampleHTML(v)}`;
   return `<div class="qwrap fade">
-    <div class="qhead"><span class="lnum">${RV.i + 1} / ${RV.ids.length}</span>${bar(RV.i / RV.ids.length * 100)}<button class="btn ghost sm" type="button" data-act="rv-end">Arrêter</button></div>
+    ${head}
     <div class="flash">
       <div class="row" style="justify-content:center">${isNew ? '<span class="pill new">Nouveau mot</span>' : ""}<span class="pill">${esc(THEME[v.theme].name)}</span></div>
       ${front}
-      ${RV.revealed ? `<div class="ans">${back}</div>` : ""}
+      ${rv.revealed ? `<div class="ans">${back}</div>` : ""}
     </div>
-    ${RV.revealed
+    ${rv.revealed
       ? `<div class="grades">
           <button class="btn g-again" type="button" data-act="rv-grade" data-g="again">À revoir<small>1 · je ne savais pas</small></button>
           <button class="btn g-hard" type="button" data-act="rv-grade" data-g="hard">Difficile<small>2 · demain</small></button>
@@ -1686,14 +2022,41 @@ function vReview() {
       : `<button class="btn" type="button" data-act="rv-reveal" style="width:100%">Voir la réponse</button>`}
   </div>`;
 }
-function goodLabel(id) {
-  const c = card(id), nb = Math.min(5, (c ? c.b : 0) + 1), d = INTERVALS[nb];
-  return d === 1 ? "demain" : "dans " + d + " jours";
+const progressHead = (i, n, stopAct, stopLabel) => `<div class="qhead"><span class="lnum">${i + 1} / ${n}</span>${bar(i / n * 100)}<button class="btn ghost sm" type="button" data-act="${stopAct}">${stopLabel}</button></div>`;
+function vReview() {
+  const s = themeStats();
+  if (RV && RV.i < RV.ids.length) return reviewCardHTML(RV, progressHead(RV.i, RV.ids.length, "rv-end", "Arrêter"));
+  const res = RV && RV.ids.length ? RV.stats : null;
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow">Révision espacée</p><h1>Réviser</h1>
+      <p class="muted prose">Chaque mot revient juste avant que vous ne l'oubliiez : le lendemain, puis après 3 jours, une semaine, deux semaines, un mois. Un mot oublié repart au début.</p></header>
+    ${res ? `<section class="panel stack"><h2>Séance terminée. ${srSpan("Bun wroko!")}</h2>
+      <p>${res.good} « je savais » · ${res.hard} « difficile » · ${res.again} « à revoir »</p></section>` : ""}
+    <section class="stats">
+      <div class="stat"><b>${s.due}</b><span>cartes à revoir</span></div>
+      <div class="stat"><b>${s.total - s.seen}</b><span>mots jamais vus</span></div>
+      <div class="stat"><b>${s.seen - s.mastered}</b><span>en cours</span></div>
+      <div class="stat"><b>${s.mastered}</b><span>maîtrisés</span></div>
+    </section>
+    <section class="panel stack">
+      <div class="stack" style="gap:8px"><p class="eyebrow">Sens des cartes</p>
+        <div class="seg" role="group" aria-label="Sens des cartes">
+          ${[["sr","Sranan → français"],["fr","Français → sranan"],["mix","Mélangé"]].map(([k, l]) => `<button type="button" data-act="set-dir" data-v="${k}" aria-pressed="${S.dir === k}">${l}</button>`).join("")}
+        </div></div>
+      <div class="stack" style="gap:8px"><p class="eyebrow">Nouveaux mots par séance</p>
+        <div class="seg" role="group" aria-label="Nouveaux mots par séance">
+          ${[0,5,10,20].map(n => `<button type="button" data-act="set-new" data-v="${n}" aria-pressed="${S.newPer === n}">${n}</button>`).join("")}
+        </div></div>
+      <div class="row"><button class="btn" type="button" data-act="rv-start" ${!s.due && (s.seen >= s.total || !S.newPer) ? "disabled" : ""}>
+        ${s.due ? "Commencer : " + plural(Math.min(40, s.due), "carte", "cartes") + (S.newPer && s.seen < s.total ? " + " + Math.min(S.newPer, s.total - s.seen) + " nouvelles" : "") : (S.newPer && s.seen < s.total ? "Apprendre " + Math.min(S.newPer, s.total - s.seen) + " nouveaux mots" : "Rien à réviser pour l'instant")}</button>
+        <a class="btn ghost" href="#vocab">Choisir un thème</a></div>
+      <p class="small muted">Raccourcis clavier : <b>Espace</b> pour retourner la carte, <b>1</b> <b>2</b> <b>3</b> pour répondre.</p>
+    </section>
+  </div>`;
 }
 
-/* ----- Exercices ----- */
-let QZ = null;
-let QSEL = null;
+/* ---------- Exercices ---------- */
+let QZ = null, QSEL = null;
 function defaultSel() {
   const started = THEMES.filter(t => themeStats(t.id).seen > 0).map(t => t.id);
   return new Set(started.length ? started : ["salut", "mots", "famille"]);
@@ -1706,39 +2069,79 @@ function distractors(v, field, n) {
   for (const x of pool) { const k = norm(x[field]); if (!seen.has(k)) { seen.add(k); out.push(x[field]); } if (out.length >= n) break; }
   return out;
 }
-function buildQuiz(themes, n = 10) {
-  const pool = VOCAB.filter(v => themes.has(v.theme));
-  const weighted = shuffle(pool).sort((a, b) => {
+/* words : liste de mots (objets VOCAB) ; focus : séance du jour (surtout des questions sur ces mots) */
+function buildQuiz(words, n = 10, focus = false) {
+  const weighted = shuffle(words).sort((a, b) => {
     const ca = card(a.id), cb = card(b.id);
     const sa = ca ? (isDue(ca) ? 0 : 1 + ca.b) : 3, sb = cb ? (isDue(cb) ? 0 : 1 + cb.b) : 3;
     return sa - sb;
   });
-  const words = weighted.slice(0, Math.min(n, weighted.length));
+  const list = weighted.slice(0, Math.min(n, weighted.length));
   const qs = [];
   let wi = 0;
   for (let i = 0; i < n; i++) {
     const r = Math.random();
-    let type = r < .3 ? "mc-sr" : r < .55 ? "mc-fr" : r < .72 ? "type" : r < .87 ? "order" : "marker";
-    if ((type === "mc-sr" || type === "mc-fr" || type === "type") && wi >= words.length) type = Math.random() < .5 ? "order" : "marker";
+    let type = focus
+      ? (r < .35 ? "mc-sr" : r < .68 ? "mc-fr" : r < .88 ? "type" : r < .95 ? "order" : "marker")
+      : (r < .3 ? "mc-sr" : r < .55 ? "mc-fr" : r < .72 ? "type" : r < .87 ? "order" : "marker");
+    if ((type === "mc-sr" || type === "mc-fr" || type === "type") && wi >= list.length) type = Math.random() < .5 ? "order" : "marker";
     if (type === "order") {
       const [sr, fr] = pick(SENTENCES);
-      const end = (sr.match(/[?!.]$/) || [""])[0];
       const toks = sr.replace(/[?!.]$/, "").replace(/,/g, "").split(" ");
       const extra = shuffle(["e","ben","o","no","kaba","fu","na","den"].filter(x => !toks.map(t => t.toLowerCase()).includes(x)))[0];
-      let pool = shuffle(toks.concat(extra));
-      qs.push({type, sr, fr, end, pool, answer: norm(toks.join(" "))});
+      qs.push({type, sr, fr, pool: shuffle(toks.concat(extra)), answer: norm(toks.join(" "))});
     } else if (type === "marker") {
       const [sr, fr, ans, opts] = pick(MARKERS);
       qs.push({type, sr, fr, answer: ans, options: shuffle(opts)});
     } else {
-      const v = words[wi++];
+      const v = list[wi++];
       if (type === "type" && v.sr.includes("…")) type = "mc-fr";
       if (type === "mc-sr") qs.push({type, v, options: shuffle([v.fr].concat(distractors(v, "fr", 3))), answer: v.fr});
       else if (type === "mc-fr") qs.push({type, v, options: shuffle([v.sr].concat(distractors(v, "sr", 3))), answer: v.sr});
       else qs.push({type, v});
     }
   }
-  return {qs, i: 0, picked: null, correct: 0, built: [], typed: "", result: null, themes: [...themes]};
+  return {qs, i: 0, picked: null, correct: 0, built: [], typed: "", result: null, src: words, n, focus};
+}
+function quizQuestionHTML(qz, head) {
+  const q = qz.qs[qz.i], answered = qz.result !== null;
+  let body = "";
+  if (q.type === "mc-sr" || q.type === "mc-fr" || q.type === "marker") {
+    let top;
+    if (q.type === "mc-sr") top = `<p class="eyebrow">Que veut dire…</p><div class="qprompt sr">${esc(q.v.sr)}</div><div class="row">${pronSpan(q.v.sr)}${sayBtn(q.v.sr)}</div>`;
+    else if (q.type === "mc-fr") top = `<p class="eyebrow">Comment dit-on en sranan…</p><div class="qprompt">${esc(q.v.fr)}</div>`;
+    else top = `<p class="eyebrow">Choisissez la bonne marque de temps</p><div class="qprompt sr">${esc(q.sr).replace("___", '<span style="color:var(--gold)">___</span>')}</div><p class="muted">${esc(q.fr)}</p>`;
+    const srOpts = q.type !== "mc-sr";
+    body = top + `<div class="opts">${q.options.map((o, n) => {
+      const cls = answered ? (o === q.answer ? "ok" : n === qz.picked ? "bad" : "") : "";
+      return `<button class="opt ${srOpts ? "sr-opt" : ""} ${cls}" type="button" data-act="qz-opt" data-n="${n}" ${answered ? "disabled" : ""}><kbd>${n + 1}</kbd><span>${esc(o)}</span></button>`;
+    }).join("")}</div>`;
+  } else if (q.type === "type") {
+    body = `<p class="eyebrow">Écrivez en sranan</p><div class="qprompt">${esc(q.v.fr)}</div>
+      <label class="small muted" for="qz-input">Votre réponse (les accents et majuscules ne comptent pas)</label>
+      <input class="tin" id="qz-input" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(qz.typed)}" ${answered ? "disabled" : ""} placeholder="…">
+      ${answered ? "" : `<div class="row"><button class="btn" type="button" data-act="qz-check">Vérifier</button><button class="btn ghost" type="button" data-act="qz-skip">Je ne sais pas</button></div>`}`;
+  } else if (q.type === "order") {
+    const used = new Set(qz.built);
+    body = `<p class="eyebrow">Remettez la phrase dans l'ordre</p><div class="qprompt" style="font-size:1.4rem">${esc(q.fr)}</div>
+      <p class="small muted">Attention : un mot en trop s'est glissé dans la liste.</p>
+      <div class="tokens" aria-label="Votre phrase">${qz.built.map((k, n) => `<button class="tok" type="button" data-act="qz-untok" data-n="${n}" ${answered ? "disabled" : ""}>${esc(q.pool[k])}</button>`).join("") || '<span class="muted small" style="padding:8px">Touchez les mots ci-dessous…</span>'}</div>
+      <div class="tokens pool" aria-label="Mots disponibles">${q.pool.map((w, k) => `<button class="tok" type="button" data-act="qz-tok" data-k="${k}" ${used.has(k) || answered ? "disabled" : ""}>${esc(w)}</button>`).join("")}</div>
+      ${answered ? "" : `<div class="row"><button class="btn" type="button" data-act="qz-check" ${qz.built.length ? "" : "disabled"}>Vérifier</button><button class="btn ghost" type="button" data-act="qz-skip">Je ne sais pas</button></div>`}`;
+  }
+  let fb = "";
+  if (answered) {
+    const r = qz.result;
+    let right = "";
+    if (q.type === "mc-sr") right = `<span class="srw">${srSpan(q.v.sr)}${sayBtn(q.v.sr)}</span> = ${esc(q.v.fr)}`;
+    else if (q.type === "mc-fr" || q.type === "type") right = `${esc(q.v.fr)} = <span class="srw">${srSpan(q.v.sr)}${sayBtn(q.v.sr)}</span> ${pronSpan(q.v.sr)}`;
+    else if (q.type === "order") right = `<span class="srw">${srSpan(q.sr)}${sayBtn(q.sr)}</span>`;
+    else { const full = q.sr.replace("___", q.answer); right = `<span class="srw">${srSpan(full)}${sayBtn(full)}</span>`; }
+    fb = `<div class="feedback ${r.ok ? "ok" : "bad"}" role="status"><b>${r.ok ? (r.almost ? "Presque ! Petite faute d'orthographe." : pick(["Bravo !", "Bun!", "Exact !", "Yu koni!"])) : "Pas tout à fait."}</b>
+      <span>${right}</span>${q.v && q.v.note ? `<span class="muted small">${esc(q.v.note)}</span>` : ""}</div>
+      <div><button class="btn" type="button" data-act="qz-next" id="qz-next">${qz.i + 1 < qz.qs.length ? "Continuer" : "Voir le résultat"}</button></div>`;
+  }
+  return `<div class="qwrap fade">${head}${body}<div aria-live="polite">${fb}</div></div>`;
 }
 function vQuiz() {
   if (!QSEL) QSEL = defaultSel();
@@ -1760,53 +2163,14 @@ function vQuiz() {
       <p class="eyebrow">Résultat</p>
       <h1>${QZ.correct} / ${QZ.qs.length}</h1>
       ${bar(pct)}
-      <p style="font-size:1.1rem">${pct === 100 ? "Sans faute ! " + srSpan("Yu koni!") : pct >= 70 ? "Très bien. Continuez comme ça." : pct >= 40 ? "C'est un bon début. Les mots ratés reviendront dans vos révisions." : "Pas de panique : revoyez les cartes du thème, puis réessayez."}</p>
+      <p style="font-size:1.1rem">${quizVerdict(pct)}</p>
       <div class="row"><button class="btn" type="button" data-act="qz-again">Nouvelle série</button><button class="btn ghost" type="button" data-act="qz-setup">Changer de thèmes</button><a class="btn ghost" href="#reviser">Réviser</a></div>
     </div>`;
   }
-  const q = QZ.qs[QZ.i], answered = QZ.result !== null;
-  let body = "";
-  const kb = (n) => `<kbd>${n}</kbd>`;
-  if (q.type === "mc-sr" || q.type === "mc-fr" || q.type === "marker") {
-    let head;
-    if (q.type === "mc-sr") head = `<p class="eyebrow">Que veut dire…</p><div class="qprompt sr">${esc(q.v.sr)}</div>${pronSpan(q.v.sr)}`;
-    else if (q.type === "mc-fr") head = `<p class="eyebrow">Comment dit-on en sranan…</p><div class="qprompt">${esc(q.v.fr)}</div>`;
-    else head = `<p class="eyebrow">Choisissez la bonne marque de temps</p><div class="qprompt sr">${esc(q.sr).replace("___", '<span style="color:var(--gold)">___</span>')}</div><p class="muted">${esc(q.fr)}</p>`;
-    const srOpts = q.type !== "mc-sr";
-    body = head + `<div class="opts">${q.options.map((o, n) => {
-      const cls = answered ? (o === q.answer ? "ok" : n === QZ.picked ? "bad" : "") : "";
-      return `<button class="opt ${srOpts ? "sr-opt" : ""} ${cls}" type="button" data-act="qz-opt" data-n="${n}" ${answered ? "disabled" : ""}>${kb(n + 1)}<span>${esc(o)}</span></button>`;
-    }).join("")}</div>`;
-  } else if (q.type === "type") {
-    body = `<p class="eyebrow">Écrivez en sranan</p><div class="qprompt">${esc(q.v.fr)}</div>
-      <label class="small muted" for="qz-input">Votre réponse (les accents et majuscules ne comptent pas)</label>
-      <input class="tin" id="qz-input" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(QZ.typed)}" ${answered ? "disabled" : ""} placeholder="…">
-      ${answered ? "" : `<div class="row"><button class="btn" type="button" data-act="qz-check">Vérifier</button><button class="btn ghost" type="button" data-act="qz-skip">Je ne sais pas</button></div>`}`;
-  } else if (q.type === "order") {
-    const used = new Set(QZ.built);
-    body = `<p class="eyebrow">Remettez la phrase dans l'ordre</p><div class="qprompt" style="font-size:1.4rem">${esc(q.fr)}</div>
-      <p class="small muted">Attention : un mot en trop s'est glissé dans la liste.</p>
-      <div class="tokens" aria-label="Votre phrase">${QZ.built.map((k, n) => `<button class="tok" type="button" data-act="qz-untok" data-n="${n}" ${answered ? "disabled" : ""}>${esc(q.pool[k])}</button>`).join("") || '<span class="muted small" style="padding:8px">Touchez les mots ci-dessous…</span>'}</div>
-      <div class="tokens pool" aria-label="Mots disponibles">${q.pool.map((w, k) => `<button class="tok" type="button" data-act="qz-tok" data-k="${k}" ${used.has(k) || answered ? "disabled" : ""}>${esc(w)}</button>`).join("")}</div>
-      ${answered ? "" : `<div class="row"><button class="btn" type="button" data-act="qz-check" ${QZ.built.length ? "" : "disabled"}>Vérifier</button><button class="btn ghost" type="button" data-act="qz-skip">Je ne sais pas</button></div>`}`;
-  }
-  let fb = "";
-  if (answered) {
-    const r = QZ.result;
-    let right = "";
-    if (q.type === "mc-sr") right = `${srSpan(q.v.sr)} = ${esc(q.v.fr)}`;
-    else if (q.type === "mc-fr" || q.type === "type") right = `${esc(q.v.fr)} = ${srSpan(q.v.sr)} ${pronSpan(q.v.sr)}`;
-    else if (q.type === "order") right = srSpan(q.sr);
-    else right = srSpan(q.sr.replace("___", q.answer));
-    fb = `<div class="feedback ${r.ok ? "ok" : "bad"}" role="status"><b>${r.ok ? (r.almost ? "Presque ! Petite faute d'orthographe." : pick(["Bravo !", "Bun!", "Exact !", "Yu koni!"])) : "Pas tout à fait."}</b>
-      <span>${right}</span>${q.v && q.v.note ? `<span class="muted small">${esc(q.v.note)}</span>` : ""}</div>
-      <div><button class="btn" type="button" data-act="qz-next" id="qz-next">${QZ.i + 1 < QZ.qs.length ? "Continuer" : "Voir le résultat"}</button></div>`;
-  }
-  return `<div class="qwrap fade">
-    <div class="qhead"><span class="lnum">${QZ.i + 1} / ${QZ.qs.length}</span>${bar(QZ.i / QZ.qs.length * 100)}<button class="btn ghost sm" type="button" data-act="qz-setup">Arrêter</button></div>
-    ${body}
-    <div aria-live="polite">${fb}</div>
-  </div>`;
+  return quizQuestionHTML(QZ, progressHead(QZ.i, QZ.qs.length, "qz-setup", "Arrêter"));
+}
+function quizVerdict(pct) {
+  return pct === 100 ? "Sans faute ! " + srSpan("Yu koni!") : pct >= 70 ? "Très bien. Continuez comme ça." : pct >= 40 ? "C'est un bon début. Les mots ratés reviendront dans vos révisions." : "Pas de panique : revoyez les cartes du thème, puis réessayez.";
 }
 function checkTyped(v, input) {
   const a = norm(input); if (!a) return {ok: false};
@@ -1815,26 +2179,110 @@ function checkTyped(v, input) {
   for (const s of accepted) { const t = norm(s); if (t.length >= 4 && lev(t, a) <= 1) return {ok: true, almost: true}; }
   return {ok: false};
 }
-function quizAnswer(ok, almost) {
-  const q = QZ.qs[QZ.i];
-  QZ.result = {ok, almost: !!almost};
-  if (ok) { QZ.correct++; addXP(10); }
+function quizAnswer(qz, ok, almost) {
+  const q = qz.qs[qz.i];
+  qz.result = {ok, almost: !!almost};
+  if (ok) { qz.correct++; addXP(10); }
   if (q.v) {
     const c = card(q.v.id);
     if (!ok) grade(q.v.id, "again", false);
-    else if (!c) { S.cards[q.v.id] = {b: 1, d: Date.now() + DAY, l: Date.now(), r: 1, w: 0}; }
+    else if (!c) S.cards[q.v.id] = {b: 1, d: Date.now() + DAY, l: Date.now(), r: 1, w: 0};
     else if (isDue(c)) grade(q.v.id, "good", false);
     else { c.r++; c.l = Date.now(); }
   }
   save();
 }
 
-/* ----- Dialogues ----- */
+/* ---------- Séance du jour ---------- */
+let SE = null;
+function startSeance() {
+  const plan = seancePlan();
+  const due = shuffle(VOCAB.filter(v => isDue(card(v.id)))).slice(0, plan.due).map(v => v.id);
+  const fresh = VOCAB.filter(v => !card(v.id)).sort((a, b) => a.order - b.order).slice(0, plan.nNew).map(v => v.id);
+  SE = {xp0: S.xp, rv: makeRV(due), learn: {ids: fresh, i: 0}, qz: null, steps: [], phase: ""};
+  SE.steps = [due.length ? "review" : "", fresh.length ? "learn" : "", "quiz"].filter(Boolean);
+  SE.phase = SE.steps[0];
+  if (SE.phase === "quiz") SE.qz = seanceQuiz();
+}
+function seanceQuiz() {
+  let ids = [...new Set([...SE.learn.ids, ...SE.rv.ids])];
+  if (ids.length < 6) ids = [...new Set(ids.concat(shuffle(VOCAB.filter(v => card(v.id))).slice(0, 8).map(v => v.id)))];
+  if (ids.length < 6) ids = [...new Set(ids.concat(VOCAB.slice(0, 10).map(v => v.id)))];
+  return buildQuiz(ids.map(id => BYID[id]), 8, true);
+}
+function seanceAdvance() {
+  const i = SE.steps.indexOf(SE.phase);
+  SE.phase = SE.steps[i + 1] || "done";
+  if (SE.phase === "quiz") SE.qz = seanceQuiz();
+  if (SE.phase === "done") { const k = ymd(); S.seances[k] = (S.seances[k] || 0) + 1; save(); }
+}
+function seanceSteps() {
+  const labels = {review: "Révision", learn: "Nouveaux mots", quiz: "Exercice"};
+  const cur = SE.steps.indexOf(SE.phase);
+  return `<ol class="steps" aria-label="Étapes de la séance">${SE.steps.map((s, i) =>
+    `<li class="${i === cur ? "cur" : (SE.phase === "done" || i < cur) ? "done" : ""}"${i === cur ? ' aria-current="step"' : ""}><span>${(SE.phase === "done" || i < cur) ? "✓" : i + 1}</span>${labels[s]}</li>`).join("")}</ol>`;
+}
+function vSeance() {
+  if (!SE) {
+    const plan = seancePlan(), doneToday = S.seances[ymd()] || 0;
+    return `<div class="stack-lg fade">
+      <header class="stack" style="gap:8px"><p class="eyebrow">Environ 10 minutes</p><h1>Séance du jour</h1>
+        <p class="muted prose">Trois étapes enchaînées : vous révisez les mots qui en ont besoin, vous découvrez quelques mots nouveaux, puis un court exercice les fixe dans votre mémoire.</p></header>
+      <ol class="plan">
+        <li><span class="lnum">Étape 1</span><b>${plan.due}</b><span class="muted">${plan.due > 1 ? "cartes à revoir" : plan.due ? "carte à revoir" : "rien à revoir aujourd'hui"}</span></li>
+        <li><span class="lnum">Étape 2</span><b>${plan.nNew}</b><span class="muted">${plan.nNew > 1 ? "nouveaux mots" : plan.nNew ? "nouveau mot" : "pas de nouveaux mots"}</span></li>
+        <li><span class="lnum">Étape 3</span><b>8</b><span class="muted">questions d'exercice</span></li>
+      </ol>
+      ${doneToday ? `<p><span class="pill ok">${plural(doneToday, "séance terminée", "séances terminées")} aujourd'hui</span></p>` : ""}
+      <div class="row"><button class="btn" type="button" data-act="se-start">${doneToday ? "Encore une séance" : "Commencer"}</button></div>
+      <p class="small muted">Le nombre de nouveaux mots se règle dans <a href="#reviser">Réviser</a> (8 au maximum par séance).</p>
+    </div>`;
+  }
+  const head = (i, n) => `<div class="stack" style="gap:12px">${seanceSteps()}${progressHead(i, n, "se-quit", "Quitter")}</div>`;
+  if (SE.phase === "review") return reviewCardHTML(SE.rv, head(SE.rv.i, SE.rv.ids.length));
+  if (SE.phase === "learn") {
+    const L = SE.learn, v = BYID[L.ids[L.i]];
+    return `<div class="qwrap fade">
+      ${head(L.i, L.ids.length)}
+      <div class="flash">
+        <div class="row" style="justify-content:center"><span class="pill new">Nouveau mot</span><span class="pill">${esc(THEME[v.theme].name)}</span></div>
+        <div class="big sr">${esc(v.sr)}</div>
+        <div class="row" style="justify-content:center">${pronSpan(v.sr)}${sayBtn(v.sr, true)}</div>
+        <div class="ans"><div class="main">${esc(v.fr)}</div>${v.note ? `<p class="muted small">${esc(v.note)}</p>` : ""}${exampleHTML(v)}</div>
+      </div>
+      <button class="btn" type="button" data-act="se-learn-next" style="width:100%">${L.i + 1 < L.ids.length ? "Je retiens · mot suivant" : "Je retiens · passer à l'exercice"}</button>
+      <p class="small muted" style="text-align:center">Lisez le mot à voix haute, puis répétez-le une fois sans regarder.</p>
+    </div>`;
+  }
+  if (SE.phase === "quiz") return quizQuestionHTML(SE.qz, head(SE.qz.i, SE.qz.qs.length));
+  const gained = S.xp - SE.xp0, nl = nextLesson(), r = SE.rv.stats, pct = Math.round(SE.qz.correct / SE.qz.qs.length * 100);
+  return `<div class="qwrap fade">
+    ${seanceSteps()}
+    <p class="eyebrow">Séance terminée</p>
+    <h1>${srSpan("Bun wroko!")}</h1>
+    <section class="stats" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+      <div class="stat"><b>+${gained}</b><span>points</span></div>
+      <div class="stat"><b>${streak()}</b><span>${streak() > 1 ? "jours de suite" : "jour de suite"}</span></div>
+      <div class="stat"><b>${SE.qz.correct}/${SE.qz.qs.length}</b><span>à l'exercice</span></div>
+    </section>
+    <p>${SE.rv.ids.length ? `Révision : ${r.good} « je savais », ${r.hard} « difficile », ${r.again} « à revoir ». ` : ""}${SE.learn.ids.length ? plural(SE.learn.ids.length, "nouveau mot découvert", "nouveaux mots découverts") + ". " : ""}${quizVerdict(pct)}</p>
+    <div class="row">
+      ${nl ? `<a class="btn" href="#lecon-${nl.id}">Leçon ${LESSONS.indexOf(nl) + 1} : ${esc(nl.title)}</a>` : `<a class="btn" href="#dialogues">Lire un dialogue</a>`}
+      <a class="btn ghost" href="#accueil">Retour à l'accueil</a>
+    </div>
+  </div>`;
+}
+
+/* ---------- Dialogues ---------- */
 let DLG = {tr: false, hide: false, shown: new Set()};
+function dialogueData(id) {
+  if (id === "lecture") return {id, title: READING.fr, sr: READING.title, lead: "Lisez chaque phrase à voix haute avant de regarder la traduction.", lines: READING.lines.map(([s, f]) => ["", s, f]), reading: true};
+  return DIALOGUE[id] || null;
+}
 function vDialogues() {
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow">Tori</p><h1>Dialogues</h1>
-      <p class="muted prose">Des scènes de la vie de tous les jours, du marché au téléphone avec la famille. Lisez à voix haute, puis cachez le sranan pour vous tester.</p></header>
+      <p class="muted prose">Des scènes de la vie de tous les jours, du marché à Keti Koti. Écoutez, lisez à voix haute, puis cachez le sranan pour vous tester.</p></header>
     <div class="list">
       ${DIALOGUES.map(d => `<a class="lrow" href="#dialogue-${d.id}"><div class="stack" style="gap:2px"><b style="font-size:1.08rem">${esc(d.title)}</b><span class="sr small">${esc(d.sr)}</span><span class="small muted">${esc(d.lead)}</span></div>
         ${S.dialogues[d.id] ? '<span class="pill ok">Lu</span>' : '<span class="pill">À lire</span>'}</a>`).join("")}
@@ -1844,23 +2292,23 @@ function vDialogues() {
   </div>`;
 }
 function vDialogue(id) {
-  const isReading = id === "lecture";
-  const d = isReading ? {id, title: READING.fr, sr: READING.title, lead: "Lisez chaque phrase à voix haute avant de regarder la traduction.", lines: READING.lines.map(([s, f]) => ["", s, f])} : DIALOGUE[id];
+  const d = dialogueData(id);
   if (!d) return vDialogues();
   const speakers = [...new Set(d.lines.map(l => l[0]))];
   const lines = d.lines.map((l, i) => {
     const showFr = DLG.tr || DLG.shown.has(i);
     const showSr = !DLG.hide || DLG.shown.has(i);
     const side = speakers.indexOf(l[0]) % 2 ? "b" : "a";
-    return `<div class="line ${isReading ? "a" : side}">${isReading ? '<span class="who">' + (i + 1) + "</span>" : '<span class="who">' + esc(l[0]) + "</span>"}
-      <button class="bubble" type="button" data-act="dl-line" data-i="${i}" aria-label="Afficher la traduction">
+    return `<div class="line ${d.reading ? "a" : side}" id="dl-${i}">${d.reading ? '<span class="who">' + (i + 1) + "</span>" : '<span class="who">' + esc(l[0]) + "</span>"}
+      <button class="bubble" type="button" data-act="dl-line" data-i="${i}" aria-label="${showSr ? "Afficher ou masquer la traduction" : "Afficher le sranan"}">
         ${showSr ? srSpan(l[1]) + pronSpan(l[1]) : `<span class="fr" style="color:var(--fg);font-weight:600">${esc(l[2])}</span><span class="hid">Touchez pour voir le sranan</span>`}
         ${showSr && showFr ? `<span class="fr">${esc(l[2])}</span>` : ""}
-      </button></div>`;
+      </button>${showSr ? sayBtn(l[1]) : "<span></span>"}</div>`;
   }).join("");
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow"><a href="#dialogues">Dialogues</a></p><h1>${esc(d.title)}</h1><p class="sr" style="font-size:1.2rem">${esc(d.sr)}</p><p class="muted">${esc(d.lead)}</p>
       <div class="row">
+        <button class="btn sm say-all" type="button" id="say-all" data-act="say-all">${ICON_SPEAK} Écouter tout</button>
         <button class="chip" type="button" data-act="dl-tr" aria-pressed="${DLG.tr}">Afficher toutes les traductions</button>
         <button class="chip" type="button" data-act="dl-hide" aria-pressed="${DLG.hide}">Cacher le sranan (mode test)</button>
       </div></header>
@@ -1870,7 +2318,7 @@ function vDialogue(id) {
   </div>`;
 }
 
-/* ----- Dictionnaire ----- */
+/* ---------- Dictionnaire ---------- */
 let DQ = "";
 function dicoResults(q) {
   const k = norm(q);
@@ -1890,7 +2338,7 @@ function dicoResults(q) {
   let html = '<div class="list">', letter = "";
   for (const v of list) {
     if (!k) { const L = norm(v.sr)[0].toUpperCase(); if (L !== letter) { letter = L; html += `<div class="letter">${esc(L)}</div>`; } }
-    html += `<div class="word">${srSpan(v.sr)}<span class="fr">${esc(v.fr)}</span>${dots(v.id)}<span class="nt">${pronSpan(v.sr)} · <a href="#theme-${v.theme}">${esc(THEME[v.theme].name)}</a>${v.note ? " · " + esc(v.note) : ""}</span></div>`;
+    html += wordRow(v, ` · <a href="#theme-${v.theme}">${esc(THEME[v.theme].name)}</a>`);
   }
   return html + "</div>";
 }
@@ -1903,12 +2351,13 @@ function vDico() {
   </div>`;
 }
 
-/* ----- Parler avec Claude ----- */
+/* ---------- Parler avec Claude ---------- */
 const SCENARIOS = [
   ["libre","Conversation libre","Conversation libre et bienveillante sur la vie quotidienne de l'apprenant : sa famille, sa journée, ce qu'il aime."],
   ["wowoyo","Au marché","Tu joues une vendeuse du marché central de Paramaribo. L'apprenant vient acheter des fruits et des légumes : propose, donne les prix, négocie un peu."],
   ["famiri","Appel de la famille","Tu joues une tante qui vit au Suriname et qui appelle l'apprenant pour prendre des nouvelles de toute la famille."],
   ["kennis","Faire connaissance","Tu rencontres l'apprenant pour la première fois à une fête de Keti Koti. Vous vous présentez et faites connaissance."],
+  ["datra","Chez le médecin","Tu joues un médecin de Paramaribo. L'apprenant vient te voir parce qu'il ne se sent pas bien : pose des questions simples sur ce qu'il ressent."],
   ["dei","Raconter sa journée","Tu demandes à l'apprenant de raconter sa journée d'hier et ses projets de demain, pour lui faire pratiquer le passé (verbe seul, ben) et le futur (o)."]
 ];
 let SAMPLE; // undefined = en attente, null = indisponible
@@ -1935,16 +2384,15 @@ function parseReply(t) {
   const sr = get("SRANAN", "FRAN[ÇC]AIS|CONSEIL"), fr = get("FRAN[ÇC]AIS", "CONSEIL|SRANAN"), tip = get("CONSEIL", "SRANAN|FRAN[ÇC]AIS");
   return (sr || fr || tip) ? {sr, fr, tip} : null;
 }
-function msgHTML(role, text) {
+function msgHTML(role, text, done = true) {
   if (role === "user") return `<div class="msg me">${esc(text)}</div>`;
   const p = parseReply(text);
   if (!p) return `<div class="msg ai"><span>${esc(text)}</span></div>`;
-  return `<div class="msg ai">${p.sr ? srSpan(p.sr) : ""}${p.fr ? `<span class="muted">${esc(p.fr)}</span>` : ""}${p.tip ? `<div class="tip"><span class="lbl">Conseil</span><br>${esc(p.tip)}</div>` : ""}</div>`;
+  return `<div class="msg ai">${p.sr ? (done ? `<span class="srw">${srSpan(p.sr)}${sayBtn(p.sr)}</span>` : srSpan(p.sr)) : ""}${p.fr ? `<span class="muted">${esc(p.fr)}</span>` : ""}${p.tip ? `<div class="tip"><span class="lbl">Conseil</span><br>${esc(p.tip)}</div>` : ""}</div>`;
 }
 function talkLogHTML() {
-  const shown = TALK.turns.filter(t => !t.hidden);
-  let h = shown.map(t => msgHTML(t.role, t.content)).join("");
-  if (TALK.busy) h += TALK.partial ? msgHTML("assistant", TALK.partial) : `<div class="msg ai"><span class="typing">Leriman réfléchit…</span></div>`;
+  let h = TALK.turns.filter(t => !t.hidden).map(t => msgHTML(t.role, t.content)).join("");
+  if (TALK.busy) h += TALK.partial ? msgHTML("assistant", TALK.partial, false) : `<div class="msg ai"><span class="typing">Leriman réfléchit…</span></div>`;
   if (TALK.err) h += `<p class="feedback bad" role="status">${esc(TALK.err)}</p>`;
   if (!h) h = `<div class="empty stack" style="align-items:center">
     <p>Choisissez une situation, puis écrivez votre premier message — en sranan si vous osez, en français sinon. Leriman répond en sranan, traduit, et corrige vos phrases.</p>
@@ -2026,7 +2474,7 @@ async function initSample() {
   if (currentRoute() === "parler") render();
 }
 
-/* ----- Culture ----- */
+/* ---------- Culture ---------- */
 function vCulture() {
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow">Kulturu</p><h1>Culture & proverbes</h1>
@@ -2041,7 +2489,7 @@ function vCulture() {
         <p>Au XXᵉ siècle, le poète <b>Trefossa</b> (Henri de Ziel) a montré que le sranan était une langue de poésie. On lui doit le couplet en sranan de l'hymne national :</p>
       </div>
       <div class="anthem">
-        <span class="sr">Opo kondreman un opo,</span>
+        <span class="srw"><span class="sr">Opo kondreman un opo,</span>${sayBtn("Opo kondreman un opo, Sranangron e kari un.")}</span>
         <span class="sr">Sranangron e kari un.</span>
         <span class="muted">Debout, compatriotes, debout ! La terre du Suriname vous appelle.</span>
         <span class="small muted">« un » est la forme courte de « unu » (vous).</span>
@@ -2052,7 +2500,7 @@ function vCulture() {
       <h2>Deux dates à connaître</h2>
       <div class="grid2">
         <article class="panel stack"><p class="eyebrow">1er juillet</p><h3>Keti Koti</h3>
-          <p class="muted">« Chaînes coupées ». Le 1er juillet 1863, l'esclavage est aboli au Suriname — même si les personnes libérées ont encore dû travailler dix ans sur les plantations, sous contrôle de l'État. On commémore, on porte la <i>kotomisi</i> et l'<i>angisa</i>, on partage repas et musique.</p></article>
+          <p class="muted">« Chaînes coupées ». Le 1er juillet 1863, l'esclavage est aboli au Suriname — même si les personnes libérées ont encore dû travailler dix ans sur les plantations, sous contrôle de l'État. On commémore, on porte la <i>kotomisi</i> et l'<i>angisa</i>, on partage repas et musique. <a href="#dialogue-d8">Lire le dialogue</a></p></article>
         <article class="panel stack"><p class="eyebrow">25 novembre</p><h3>Srefidensi</h3>
           <p class="muted">L'indépendance du Suriname, proclamée le 25 novembre 1975. <span class="sr">Srefidensi</span> vient de « self » (soi-même) : se tenir debout par soi-même.</p></article>
       </div>
@@ -2061,14 +2509,14 @@ function vCulture() {
 
     <section class="stack">
       <h2>Odo — les proverbes</h2>
-      <div class="stack">${PROVERBS.map(([s, f, x]) => `<div class="proverb">${srSpan(s)}${pronSpan(s)}<b>${esc(f)}</b><span class="muted">${esc(x)}</span></div>`).join("")}</div>
+      <div class="stack">${PROVERBS.map(([s, f, x]) => `<div class="proverb">${srSay(s)}${pronSpan(s)}<b>${esc(f)}</b><span class="muted">${esc(x)}</span></div>`).join("")}</div>
       <p class="note prose">Les proverbes circulent sous plusieurs formes selon les familles et les quartiers. Demandez à vos aînés leur version — et l'histoire qui va avec.</p>
     </section>
 
     <section class="stack">
       <h2>Conseils pour progresser</h2>
-      <ol class="prose" style="padding-left:1.2em;margin:0;display:flex;flex-direction:column;gap:8px">
-        <li><b>Dix minutes par jour</b> valent mieux qu'une heure le dimanche. Revenez chaque jour pour garder votre série.</li>
+      <ol class="prose" style="padding-left:1.2em;margin:0">
+        <li><b>Dix minutes par jour</b> valent mieux qu'une heure le dimanche : la séance du jour est faite pour ça.</li>
         <li><b>Parlez avec vos proches.</b> Demandez-leur de vous répondre en sranan, même si vous répondez en français au début.</li>
         <li><b>Écoutez de la musique surinamaise</b> (kaseko, kawina) et repérez les mots que vous connaissez.</li>
         <li><b>Étiquetez votre maison</b> : <span class="sr">doro</span>, <span class="sr">fensre</span>, <span class="sr">tafra</span>, <span class="sr">sturu</span>…</li>
@@ -2078,7 +2526,7 @@ function vCulture() {
   </div>`;
 }
 
-/* ----- Réglages ----- */
+/* ---------- Réglages ---------- */
 let RESET_ASK = false;
 function vSettings() {
   const where = sync.state === "synced" || sync.state === "connecting" || sync.state === "slow"
@@ -2087,6 +2535,18 @@ function vSettings() {
     : "Votre progression est enregistrée dans ce navigateur, sur cet appareil. Pour la retrouver sur tous vos appareils, ouvrez Leri Sranantongo depuis claude.ai.";
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow"><a href="#accueil">Accueil</a></p><h1>Réglages</h1></header>
+    <section class="panel stack"><h3>Le son</h3>
+      <p class="muted prose">Il n'existe pas encore de voix de synthèse pour le sranan. Le bouton haut-parleur fait lire la <b>prononciation approchée</b> (≈ …) par une voix française : c'est proche, mais l'accent et la mélodie des phrases restent à apprendre auprès de vos proches.</p>
+      ${soundOn() ? `
+        <div class="stack" style="gap:8px"><p class="eyebrow">Vitesse</p>
+          <div class="seg" role="group" aria-label="Vitesse de lecture">
+            <button type="button" data-act="set-slow" data-v="0" aria-pressed="${!S.slow}">Normale</button>
+            <button type="button" data-act="set-slow" data-v="1" aria-pressed="${!!S.slow}">Lente</button>
+          </div></div>
+        <div class="row"><button class="chip" type="button" data-act="set-auto" aria-pressed="${!!S.autoplay}">Lire les cartes automatiquement</button></div>
+        <div class="row"><span class="srw">${srSpan("Fa waka? Mi de, tangi.")}${sayBtn("Fa waka? Mi de, tangi.")}</span><span class="small muted">Touchez pour essayer.</span></div>`
+      : `<p class="note prose">Le son n'est pas disponible sur cet appareil ou dans ce navigateur (aucune voix française n'est installée, ou la lecture à voix haute a été désactivée pour cette page dans le menu Permissions).</p>`}
+    </section>
     <section class="panel stack"><h3>Où est enregistrée ma progression ?</h3><p class="muted prose">${esc(where)}</p></section>
     <section class="panel stack"><h3>Objectif quotidien</h3>
       <div class="seg" role="group" aria-label="Objectif quotidien">${[[20,"Tranquille · 20"],[50,"Régulier · 50"],[100,"Motivé · 100"],[200,"Intensif · 200"]].map(([n, l]) => `<button type="button" data-act="set-goal" data-v="${n}" aria-pressed="${S.goal === n}">${l}</button>`).join("")}</div>
@@ -2102,10 +2562,13 @@ function vSettings() {
 
 /* ---------- Rendu & routage ---------- */
 const currentRoute = () => (location.hash || "").slice(1) || "accueil";
+const curRV = () => currentRoute() === "seance" && SE ? SE.rv : RV;
+const curQZ = () => currentRoute() === "seance" && SE ? SE.qz : QZ;
 function render() {
   const h = currentRoute();
   let html;
   if (h === "accueil") html = vHome();
+  else if (h === "seance") html = vSeance();
   else if (h === "lecons") html = vLessons();
   else if (h.startsWith("lecon-")) html = vLesson(h.slice(6));
   else if (h === "vocab") html = vVocab();
@@ -2121,58 +2584,92 @@ function render() {
   else html = vHome();
   $("#view").innerHTML = html;
   renderNav(h);
+  updateSayAll();
   const ti = $("#qz-input"); if (ti && !ti.disabled) ti.focus({preventScroll: true});
   const nx = $("#qz-next"); if (nx) nx.focus({preventScroll: true});
 }
-function softRender() {
+function inSession() {
   const h = currentRoute();
-  if (h === "accueil" || h === "vocab" || h === "lecons" || h === "reglages" || h.startsWith("theme-") || (h === "reviser" && !(RV && RV.i < RV.ids.length))) render();
-  else renderNav(h);
+  return (h === "reviser" && RV && RV.i < RV.ids.length) || (h === "seance" && SE) || (h === "exercices" && QZ) || h.startsWith("lecon-") || h === "parler" || h === "dico" || h.startsWith("dialogue-");
 }
+function softRender() { if (inSession()) renderNav(currentRoute()); else render(); }
 window.addEventListener("hashchange", () => {
   DLG.shown = new Set(); RESET_ASK = false;
+  if (SE && SE.phase === "done") SE = null; // une séance terminée laisse place à la suivante
+  if (SHEET) setSheet(false);
+  stopSound();
   render();
   window.scrollTo(0, 0);
   $("#view").focus({preventScroll: true});
 });
 
 /* ---------- Actions ---------- */
+function afterReview(rv) {
+  if (currentRoute() === "seance" && SE && rv.i >= rv.ids.length) seanceAdvance();
+  render(); autoSay();
+}
 const ACT = {
   "go-settings": () => { location.hash = "reglages"; },
-  "rv-start": el => { startReview(el.dataset.theme); if (!RV.ids.length) { RV = null; } if (currentRoute() !== "reviser") location.hash = "reviser"; else render(); },
-  "rv-reveal": () => { RV.revealed = true; render(); },
+  "sheet": () => setSheet(!SHEET),
+  "sheet-close": () => setSheet(false),
+  "say": el => { if (el.classList.contains("playing")) { stopSound(); return; } speak([{text: pronSpeak(el.dataset.t)}], el); },
+  "say-all": el => {
+    if (SOUND.reading) { stopSound(); return; }
+    const d = dialogueData(currentRoute().slice(9)); if (!d) return;
+    const speakers = [...new Set(d.lines.map(l => l[0]))];
+    speak(d.lines.map((l, i) => { const k = speakers.indexOf(l[0]); return {text: pronSpeak(l[1]), voice: VOICES[k % VOICES.length], pitch: PITCHES[k % PITCHES.length], id: "dl-" + i}; }), el, true);
+  },
+  "rv-start": el => { startReview(el.dataset.theme); if (!RV.ids.length) RV = null; if (currentRoute() !== "reviser") location.hash = "reviser"; else { render(); autoSay(); } },
+  "rv-reveal": () => { const rv = curRV(); rv.revealed = true; render(); autoSay(); },
   "rv-grade": el => {
-    const id = RV.ids[RV.i], g = el.dataset.g;
-    grade(id, g); RV.stats[g]++;
-    if (g === "again" && !RV.requeued.has(id)) { RV.requeued.add(id); RV.ids.push(id); }
-    RV.i++; RV.revealed = false; save(); render();
+    const rv = curRV(), id = rv.ids[rv.i], g = el.dataset.g;
+    grade(id, g); rv.stats[g]++;
+    if (g === "again" && !rv.requeued.has(id)) { rv.requeued.add(id); rv.ids.push(id); }
+    rv.i++; rv.revealed = false; save(); afterReview(rv);
   },
   "rv-end": () => { RV = null; render(); },
+  "se-start": () => { startSeance(); render(); autoSay(); },
+  "se-quit": () => { SE = null; render(); },
+  "se-learn-next": () => {
+    const L = SE.learn, id = L.ids[L.i];
+    if (!card(id)) { S.cards[id] = {b: 0, d: Date.now(), l: Date.now(), r: 0, w: 0}; addXP(2); save(); }
+    L.i++;
+    if (L.i >= L.ids.length) seanceAdvance();
+    render(); autoSay();
+  },
   "set-dir": el => { S.dir = el.dataset.v; save(); render(); },
   "set-new": el => { S.newPer = +el.dataset.v; save(); render(); },
   "set-goal": el => { S.goal = +el.dataset.v; save(); render(); },
+  "set-slow": el => { S.slow = el.dataset.v === "1"; save(); render(); },
+  "set-auto": () => { S.autoplay = !S.autoplay; save(); render(); },
   "qz-chip": el => { const t = el.dataset.theme; QSEL.has(t) ? QSEL.delete(t) : QSEL.add(t); render(); },
   "qz-all": () => { QSEL = new Set(THEMES.map(t => t.id)); render(); },
   "qz-none": () => { QSEL = new Set(); render(); },
-  "qz-start": () => { QZ = buildQuiz(QSEL); render(); },
-  "qz-theme-start": el => { QSEL = new Set([el.dataset.theme]); QZ = buildQuiz(QSEL); location.hash = "exercices"; },
-  "qz-again": () => { QZ = buildQuiz(new Set(QZ.themes)); render(); },
+  "qz-start": () => { QZ = buildQuiz(VOCAB.filter(v => QSEL.has(v.theme))); render(); },
+  "qz-theme-start": el => { QSEL = new Set([el.dataset.theme]); QZ = buildQuiz(VOCAB.filter(v => QSEL.has(v.theme))); location.hash = "exercices"; },
+  "qz-again": () => { QZ = buildQuiz(QZ.src, QZ.n, QZ.focus); render(); },
   "qz-setup": () => { QZ = null; render(); },
   "qz-opt": el => {
-    if (QZ.result) return;
-    const q = QZ.qs[QZ.i], n = +el.dataset.n;
-    QZ.picked = n; quizAnswer(q.options[n] === q.answer); render();
+    const qz = curQZ(); if (!qz || qz.result) return;
+    const q = qz.qs[qz.i], n = +el.dataset.n;
+    qz.picked = n; quizAnswer(qz, q.options[n] === q.answer); render();
   },
-  "qz-tok": el => { QZ.built.push(+el.dataset.k); render(); },
-  "qz-untok": el => { QZ.built.splice(+el.dataset.n, 1); render(); },
+  "qz-tok": el => { const qz = curQZ(); qz.built.push(+el.dataset.k); render(); },
+  "qz-untok": el => { const qz = curQZ(); qz.built.splice(+el.dataset.n, 1); render(); },
   "qz-check": () => {
-    const q = QZ.qs[QZ.i];
-    if (q.type === "type") { const inp = $("#qz-input"); QZ.typed = inp ? inp.value : ""; if (!norm(QZ.typed)) { inp && inp.focus(); return; } const r = checkTyped(q.v, QZ.typed); quizAnswer(r.ok, r.almost); }
-    else if (q.type === "order") { const got = norm(QZ.built.map(k => q.pool[k]).join(" ")); quizAnswer(got === q.answer); }
+    const qz = curQZ(); if (!qz || qz.result) return;
+    const q = qz.qs[qz.i];
+    if (q.type === "type") { const inp = $("#qz-input"); qz.typed = inp ? inp.value : ""; if (!norm(qz.typed)) { if (inp) inp.focus(); return; } const r = checkTyped(q.v, qz.typed); quizAnswer(qz, r.ok, r.almost); }
+    else if (q.type === "order") { quizAnswer(qz, norm(qz.built.map(k => q.pool[k]).join(" ")) === q.answer); }
     render();
   },
-  "qz-skip": () => { const q = QZ.qs[QZ.i]; if (q.type === "type") { const inp = $("#qz-input"); QZ.typed = inp ? inp.value : ""; } quizAnswer(false); render(); },
-  "qz-next": () => { QZ.i++; QZ.picked = null; QZ.result = null; QZ.built = []; QZ.typed = ""; render(); window.scrollTo(0, 0); },
+  "qz-skip": () => { const qz = curQZ(); const q = qz.qs[qz.i]; if (q.type === "type") { const inp = $("#qz-input"); qz.typed = inp ? inp.value : ""; } quizAnswer(qz, false); render(); },
+  "qz-next": () => {
+    const qz = curQZ();
+    qz.i++; qz.picked = null; qz.result = null; qz.built = []; qz.typed = "";
+    if (currentRoute() === "seance" && SE && qz.i >= qz.qs.length) seanceAdvance();
+    render(); window.scrollTo(0, 0);
+  },
   "ls-opt": el => {
     if (LQ.picked !== null) return;
     LQ.picked = +el.dataset.k; if (LQ.picked === 0) LQ.correct++;
@@ -2192,10 +2689,10 @@ const ACT = {
     $("#lesson-quiz").innerHTML = lessonQuizHTML(l);
     const first = $("#lesson-quiz .opt, #lesson-quiz .btn"); if (first) first.focus({preventScroll: true});
   },
-  "ls-retry": () => { const id = LQ.id; LQ = null; LQ = {id, i: 0, picked: null, correct: 0, done: false, orders: LESSON[id].quiz.map(q => shuffle(q.o.map((_, k) => k)))}; $("#lesson-quiz").innerHTML = lessonQuizHTML(LESSON[id]); },
-  "dl-line": el => { const i = +el.dataset.i; DLG.shown.has(i) ? DLG.shown.delete(i) : DLG.shown.add(i); render(); },
-  "dl-tr": () => { DLG.tr = !DLG.tr; DLG.shown = new Set(); render(); },
-  "dl-hide": () => { DLG.hide = !DLG.hide; DLG.shown = new Set(); render(); },
+  "ls-retry": () => { const id = LQ.id; LQ = {id, i: 0, picked: null, correct: 0, done: false, orders: LESSON[id].quiz.map(q => shuffle(q.o.map((_, k) => k)))}; $("#lesson-quiz").innerHTML = lessonQuizHTML(LESSON[id]); },
+  "dl-line": el => { const i = +el.dataset.i; DLG.shown.has(i) ? DLG.shown.delete(i) : DLG.shown.add(i); stopSound(); render(); },
+  "dl-tr": () => { DLG.tr = !DLG.tr; DLG.shown = new Set(); stopSound(); render(); },
+  "dl-hide": () => { DLG.hide = !DLG.hide; DLG.shown = new Set(); stopSound(); render(); },
   "dl-done": el => { const id = el.dataset.id; if (!S.dialogues[id]) { S.dialogues[id] = true; addXP(10); save(); } render(); },
   "talk-scn": el => { if (TALK.busy) return; if (TALK.scn !== el.dataset.v) { TALK.scn = el.dataset.v; TALK.turns = []; TALK.err = ""; } render(); },
   "talk-send": () => { const ta = $("#talk-in"); if (!ta) return; const v = ta.value; ta.value = ""; talkSend(v); },
@@ -2204,7 +2701,7 @@ const ACT = {
   "talk-new": () => { if (TALK.ctl) TALK.ctl.abort(); TALK.turns = []; TALK.err = ""; render(); },
   "reset-ask": () => { RESET_ASK = true; render(); },
   "reset-no": () => { RESET_ASK = false; render(); },
-  "reset-yes": () => { const keep = {goal: S.goal}; S = fresh(); S.epoch = Date.now(); S.goal = keep.goal; RESET_ASK = false; RV = null; QZ = null; LQ = null; save(); render(); }
+  "reset-yes": () => { const goal = S.goal; S = fresh(); S.epoch = Date.now(); S.goal = goal; RESET_ASK = false; RV = null; QZ = null; LQ = null; SE = null; save(); render(); }
 };
 document.addEventListener("click", e => {
   const el = e.target.closest("[data-act]");
@@ -2215,21 +2712,28 @@ document.addEventListener("input", e => {
   if (e.target.id === "dico-q") { DQ = e.target.value; const r = $("#dico-res"); if (r) r.innerHTML = dicoResults(DQ); }
 });
 document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && SHEET) { e.preventDefault(); setSheet(false); const b = $('#tabbar [data-act="sheet"]'); if (b) b.focus(); return; }
   if (e.target.id === "qz-input" && e.key === "Enter") { e.preventDefault(); ACT["qz-check"](); return; }
   if (e.target.id === "talk-in" && e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); ACT["talk-send"](); return; }
   if (e.metaKey || e.ctrlKey || e.altKey) return;
   const tag = (e.target.tagName || "").toLowerCase();
   if (tag === "input" || tag === "textarea" || tag === "select") return;
-  const h = currentRoute();
-  if (h === "reviser" && RV && RV.i < RV.ids.length) {
-    if (!RV.revealed && (e.key === " " || e.key === "Enter")) { e.preventDefault(); ACT["rv-reveal"](); }
-    else if (RV.revealed && ["1","2","3"].includes(e.key)) { e.preventDefault(); ACT["rv-grade"]({dataset: {g: ["again","hard","good"][+e.key - 1]}}); }
-  } else if (h === "exercices" && QZ && QZ.i < QZ.qs.length) {
-    const q = QZ.qs[QZ.i];
-    if (!QZ.result && q.options && /^[1-4]$/.test(e.key) && +e.key <= q.options.length) { e.preventDefault(); ACT["qz-opt"]({dataset: {n: +e.key - 1}}); }
+  if (tag === "button" && (e.key === "Enter" || e.key === " ")) return; // le bouton s'en charge
+  const h = currentRoute(), rv = curRV(), qz = curQZ();
+  const reviewing = rv && rv.i < rv.ids.length && (h === "reviser" || (h === "seance" && SE && SE.phase === "review"));
+  const quizzing = qz && qz.i < qz.qs.length && (h === "exercices" || (h === "seance" && SE && SE.phase === "quiz"));
+  if (reviewing) {
+    if (!rv.revealed && (e.key === " " || e.key === "Enter")) { e.preventDefault(); ACT["rv-reveal"](); }
+    else if (rv.revealed && ["1","2","3"].includes(e.key)) { e.preventDefault(); ACT["rv-grade"]({dataset: {g: ["again","hard","good"][+e.key - 1]}}); }
+  } else if (h === "seance" && SE && SE.phase === "learn" && (e.key === " " || e.key === "Enter")) {
+    e.preventDefault(); ACT["se-learn-next"]();
+  } else if (quizzing) {
+    const q = qz.qs[qz.i];
+    if (!qz.result && q.options && /^[1-4]$/.test(e.key) && +e.key <= q.options.length) { e.preventDefault(); ACT["qz-opt"]({dataset: {n: +e.key - 1}}); }
+    else if (qz.result && e.key === "Enter") { e.preventDefault(); ACT["qz-next"](); }
   } else if (h.startsWith("lecon-") && LQ && !LQ.done && LQ.picked === null && /^[1-3]$/.test(e.key)) {
-    const l = LESSON[LQ.id]; const k = LQ.orders[LQ.i][+e.key - 1];
-    if (k !== undefined && l) { e.preventDefault(); ACT["ls-opt"]({dataset: {k}}); }
+    const k = LQ.orders[LQ.i][+e.key - 1];
+    if (k !== undefined) { e.preventDefault(); ACT["ls-opt"]({dataset: {k}}); }
   }
 });
 
@@ -2237,6 +2741,7 @@ document.addEventListener("keydown", e => {
 render();
 initRemote();
 initSample();
+initTTS();
 })();
 </script>
 
