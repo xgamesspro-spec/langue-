@@ -1,0 +1,2233 @@
+<title>Leri Sranantongo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Apprendre et réviser le sranan tongo depuis le français : leçons, vocabulaire, révision espacée, exercices, dialogues et culture du Suriname.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: application shell — a rail on wide screens, a sticky tab strip on phones.
+   The one bold gesture is the pangi cloth (striped Maroon textile) on the brand mark and the home hero; everything else stays quiet. */
+:root{
+  --bg:#F2F5F0;
+  --surface:#FFFFFF;
+  --surface-2:#E6ECE4;
+  --line:#D2DCD0;
+  --line-strong:#AFBFAE;
+  --fg:#14231A;
+  --muted:#4D6255;
+  --green:#1F6B45;
+  --on-green:#FFFFFF;
+  --green-soft:#D9EEDF;
+  --red:#AE2436;
+  --red-soft:#F8DFE2;
+  --gold:#C99312;
+  --gold-soft:#FBEFC8;
+  --blue:#2B5797;
+  --cloth-ink:#17211B;
+  --cloth-paper:#F7F3E8;
+  --focus:#C99312;
+  --shadow:0 1px 2px rgba(20,35,26,.06),0 6px 20px rgba(20,35,26,.06);
+  --font-display:"Bricolage Grotesque","Segoe UI",system-ui,-apple-system,sans-serif;
+  --font-body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1611; --surface:#142019; --surface-2:#1B2A21; --line:#26372C; --line-strong:#3A5042;
+    --fg:#E5EEE7; --muted:#9BB1A3; --green:#5DBE86; --on-green:#07130C; --green-soft:#16301F;
+    --red:#EE6F7D; --red-soft:#3A1A20; --gold:#F0C446; --gold-soft:#372D12; --blue:#7EA3E0;
+    --cloth-ink:#0A0F0C; --cloth-paper:#E9E3D2; --focus:#F0C446;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1611; --surface:#142019; --surface-2:#1B2A21; --line:#26372C; --line-strong:#3A5042;
+  --fg:#E5EEE7; --muted:#9BB1A3; --green:#5DBE86; --on-green:#07130C; --green-soft:#16301F;
+  --red:#EE6F7D; --red-soft:#3A1A20; --gold:#F0C446; --gold-soft:#372D12; --blue:#7EA3E0;
+  --cloth-ink:#0A0F0C; --cloth-paper:#E9E3D2; --focus:#F0C446;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:17px;line-height:1.55;margin:0}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:800}
+h2{font-size:1.45rem;font-weight:700}
+h3{font-size:1.12rem;font-weight:700}
+p{margin:0}
+a{color:var(--green)}
+button{font:inherit;color:inherit}
+:is(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:8px}
+.muted{color:var(--muted)}
+.small{font-size:.9rem}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.sr{font-family:var(--font-display);font-weight:700;color:var(--green)}
+.pron{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);letter-spacing:.01em}
+.stack{display:flex;flex-direction:column;gap:16px}
+.stack-lg{display:flex;flex-direction:column;gap:32px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.spread{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.prose{max-width:66ch}
+div.prose,ol.prose{display:flex;flex-direction:column;gap:12px}
+.prose b{font-weight:700}
+
+/* Shell */
+.shell{display:grid;grid-template-columns:252px minmax(0,1fr);min-height:100vh}
+.rail{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;align-self:start;display:flex;flex-direction:column;gap:20px;
+  background:var(--surface);border-right:1px solid var(--line);
+  padding-block:22px 18px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:16px;overflow-y:auto}
+.brand-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg)}
+.brand-mark{width:34px;height:34px;border-radius:9px;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.brand-name{font-family:var(--font-display);font-weight:800;font-size:1.08rem;line-height:1.05}
+.brand-name small{display:block;font-family:var(--font-body);font-weight:600;font-size:.72rem;color:var(--muted);letter-spacing:.04em}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;text-decoration:none;color:var(--fg);font-weight:600;white-space:nowrap}
+.nav a:hover{background:var(--surface-2)}
+.nav a[aria-current="page"]{background:var(--green-soft);color:var(--green)}
+.nav .badge{margin-left:auto;font-size:.72rem;font-weight:700;background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-variant-numeric:tabular-nums}
+.sync{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);background:none;border:0;padding:6px 4px;cursor:pointer;text-align:left}
+.sync i{width:8px;height:8px;border-radius:50%;background:var(--line-strong);flex:none}
+.sync[data-s="synced"] i{background:var(--green)}
+.sync[data-s="connecting"] i,.sync[data-s="slow"] i{background:var(--gold)}
+.sync[data-s="error"] i{background:var(--red)}
+.view{width:100%;max-width:940px;padding-block:32px 72px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));outline:none}
+
+@media (max-width:860px){
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+  .shell{display:block}
+  .rail{height:auto;z-index:20;gap:8px;border-right:0;border-bottom:1px solid var(--line);
+    padding-block:10px 0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow:visible}
+  .brand-mark{width:28px;height:28px;border-radius:7px}
+  .nav{flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:8px;scrollbar-width:none;margin-inline:-4px}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{padding:7px 12px;font-size:.95rem}
+  .sync{margin-top:0;padding:4px 0}
+  .sync span{display:none}
+  .sync.rail-sync{display:none}
+  .view{padding-block:22px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}
+@media (min-width:861px){ .sync.top-sync{display:none} }
+
+/* Pangi cloth */
+.cloth{
+  background-color:var(--red);
+  background-image:
+    repeating-linear-gradient(0deg,transparent 0 22px,var(--cloth-ink) 22px 25px,transparent 25px 40px,var(--cloth-paper) 40px 43px,transparent 43px 58px),
+    repeating-linear-gradient(90deg,var(--red) 0 26px,var(--cloth-ink) 26px 29px,var(--gold) 29px 43px,var(--cloth-paper) 43px 46px,var(--green) 46px 76px,var(--cloth-ink) 76px 79px,var(--blue) 79px 93px,var(--cloth-paper) 93px 96px);
+}
+.brand-mark.cloth{background-size:auto;background-position:-8px -6px}
+
+/* Buttons & chips */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font-weight:700;font-size:1rem;line-height:1.1;
+  padding:.78em 1.15em;border-radius:11px;border:1.5px solid transparent;background:var(--green);color:var(--on-green);cursor:pointer;text-decoration:none}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line-strong)}
+.btn.ghost:hover{background:var(--surface-2);filter:none}
+.btn.danger{background:var(--red);color:#fff}
+.btn.sm{padding:.5em .85em;font-size:.92rem;border-radius:9px}
+.btn[disabled]{opacity:.45;cursor:not-allowed;filter:none}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:99px;border:1.5px solid var(--line-strong);background:var(--surface);cursor:pointer;font-weight:600;font-size:.92rem}
+.chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:var(--on-green)}
+.seg{display:inline-flex;border:1.5px solid var(--line-strong);border-radius:11px;overflow:hidden;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:8px 14px;font-weight:600;cursor:pointer;font-size:.92rem}
+.seg button[aria-pressed="true"]{background:var(--green);color:var(--on-green)}
+
+/* Surfaces */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:720px){.grid2,.grid3{grid-template-columns:minmax(0,1fr)}}
+.bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--green);border-radius:99px;transition:width .4s ease}
+.bar.gold>i{background:var(--gold)}
+.dots{display:inline-flex;gap:3px;vertical-align:middle}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--green)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--surface-2);color:var(--muted)}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.new{background:var(--gold-soft);color:var(--fg)}
+.pill.warn{background:var(--red-soft);color:var(--red)}
+.note{border-left:3px solid var(--gold);background:var(--gold-soft);padding:12px 14px;border-radius:0 12px 12px 0}
+.empty{padding:28px;text-align:center;border:1.5px dashed var(--line-strong);border-radius:16px;color:var(--muted)}
+
+/* Home */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 200px;border-radius:20px;overflow:hidden;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.hero-text{padding:30px 28px;display:flex;flex-direction:column;gap:14px}
+.hero-text .lead{font-size:1.1rem;color:var(--muted);max-width:52ch}
+.hero .cloth{min-height:100%}
+@media (max-width:720px){.hero{grid-template-columns:minmax(0,1fr)}.hero .cloth{min-height:64px;order:-1}.hero-text{padding:22px 18px}}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.stat b{font-family:var(--font-display);font-size:1.7rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{font-size:.85rem;color:var(--muted)}
+.wotd .sr{font-size:2rem;line-height:1.1}
+.celebr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center}
+.celebr .num{font-family:var(--font-display);font-weight:800;font-size:2.2rem;color:var(--red);font-variant-numeric:tabular-nums;line-height:1}
+.celebr .num small{display:block;font-size:.75rem;font-family:var(--font-body);color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+
+/* Lists */
+.list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}
+.list>*{padding:14px 18px;border-top:1px solid var(--line)}
+.list>*:first-child{border-top:0}
+.lrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;text-decoration:none;color:inherit}
+a.lrow:hover{background:var(--surface-2)}
+.lnum{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.word{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:6px 16px;align-items:baseline}
+.word .sr{font-size:1.08rem}
+.word .fr{min-width:0}
+.word .nt{grid-column:1 / -1;font-size:.88rem;color:var(--muted)}
+@media (max-width:600px){.word{grid-template-columns:minmax(0,1fr) auto}.word .dots{grid-column:2;grid-row:1}.word .fr{grid-column:1 / -1}}
+.theme-card{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.theme-card:hover{border-color:var(--line-strong)}
+.theme-card h3{font-size:1.05rem}
+.letter{font-family:var(--font-display);font-weight:800;color:var(--muted);font-size:.95rem;background:var(--surface-2)!important;padding-block:6px!important}
+
+/* Lessons */
+.lesson-body h3{margin-top:10px}
+.ex{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.ex li{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:4px 18px;padding:11px 16px;border-top:1px solid var(--line);align-items:baseline}
+.ex li:first-child{border-top:0}
+.ex .s{display:flex;flex-direction:column;gap:1px;min-width:0}
+.ex .sr{font-size:1.05rem}
+@media (max-width:600px){.ex li{grid-template-columns:minmax(0,1fr)}}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.tbl table{border-collapse:collapse;width:100%}
+.tbl th,.tbl td{padding:9px 12px;text-align:left;border-top:1px solid var(--line);vertical-align:top}
+.tbl thead th{border-top:0;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--surface-2)}
+.tbl td.sr{font-size:1.02rem}
+
+/* Exercises */
+.qwrap{max-width:640px;display:flex;flex-direction:column;gap:18px}
+.qhead{display:flex;align-items:center;gap:12px}
+.qhead .bar{flex:1}
+.qprompt{font-family:var(--font-display);font-weight:800;font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.15;text-wrap:balance}
+.qprompt.sr{color:var(--green)}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:14px 16px;border-radius:13px;border:1.5px solid var(--line-strong);background:var(--surface);cursor:pointer;font-size:1.05rem;font-weight:600}
+.opt:hover:not([disabled]){border-color:var(--green)}
+.opt kbd{font-family:var(--font-mono);font-size:.75rem;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px;flex:none}
+.opt.sr-opt{font-family:var(--font-display);color:var(--green)}
+.opt.ok{background:var(--green-soft);border-color:var(--green)}
+.opt.bad{background:var(--red-soft);border-color:var(--red)}
+.opt[disabled]{cursor:default}
+.feedback{padding:14px 16px;border-radius:13px;display:flex;flex-direction:column;gap:4px}
+.feedback.ok{background:var(--green-soft)}
+.feedback.bad{background:var(--red-soft)}
+.feedback b{font-family:var(--font-display)}
+.tin{width:100%;font:600 1.2rem var(--font-body);padding:14px 16px;border-radius:13px;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--fg)}
+.tin:focus{border-color:var(--green);outline:none}
+.tokens{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;padding:10px;border-radius:13px;border:1.5px dashed var(--line-strong);background:var(--surface)}
+.tokens.pool{border-style:solid;background:var(--surface-2);border-color:transparent}
+.tok{font-family:var(--font-display);font-weight:700;font-size:1.05rem;padding:8px 13px;border-radius:10px;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--green);cursor:pointer}
+.tok[disabled]{opacity:.25;cursor:default}
+
+/* Flashcards */
+.flash{min-height:260px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:34px 22px;box-shadow:var(--shadow)}
+.flash .big{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,7vw,3.2rem);line-height:1.1;text-wrap:balance}
+.flash .big.sr{color:var(--green)}
+.flash .ans{display:flex;flex-direction:column;gap:6px;align-items:center;padding-top:14px;border-top:1px solid var(--line);width:100%;max-width:440px}
+.flash .ans .main{font-size:1.35rem;font-weight:700}
+.grades{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.grades .btn{flex-direction:column;gap:2px;padding:.8em .5em}
+.grades .btn small{font-weight:600;font-size:.75rem;opacity:.85}
+.g-again{background:var(--red)!important;color:#fff!important}
+.g-hard{background:var(--gold)!important;color:#1a1405!important}
+
+/* Dialogues */
+.dlg{display:flex;flex-direction:column;gap:12px}
+.line{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;align-items:start}
+.line .who{font-weight:700;font-size:.85rem;color:var(--muted);padding-top:12px;text-align:right}
+.bubble{background:var(--surface);border:1px solid var(--line);border-radius:4px 16px 16px 16px;padding:11px 15px;display:flex;flex-direction:column;gap:3px;cursor:pointer;text-align:left;width:100%}
+.line.b .bubble{background:var(--green-soft);border-color:transparent}
+.bubble .sr{font-size:1.08rem}
+.bubble .fr{color:var(--muted)}
+.bubble .hid{color:var(--muted);font-style:italic;font-size:.9rem}
+@media (max-width:600px){.line{grid-template-columns:minmax(0,1fr)}.line .who{text-align:left;padding-top:0}}
+
+/* Talk */
+.talk-log{display:flex;flex-direction:column;gap:14px}
+.msg{max-width:88%;display:flex;flex-direction:column;gap:6px;padding:13px 16px;border-radius:16px}
+.msg.me{align-self:flex-end;background:var(--green);color:var(--on-green);border-radius:16px 4px 16px 16px}
+.msg.ai{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:4px 16px 16px 16px}
+.msg.ai .sr{font-size:1.1rem}
+.msg .lbl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.msg .tip{background:var(--gold-soft);border-radius:10px;padding:8px 11px;font-size:.95rem}
+.composer{display:flex;gap:10px;align-items:flex-end}
+.composer textarea{flex:1;min-width:0;resize:vertical;min-height:52px;max-height:200px;font:1.05rem/1.4 var(--font-body);padding:13px 15px;border-radius:13px;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--fg)}
+.composer textarea:focus{border-color:var(--green);outline:none}
+.typing{color:var(--muted);font-style:italic}
+
+/* Dico */
+.search{position:relative}
+.search input{width:100%;font:600 1.1rem var(--font-body);padding:14px 16px;border-radius:13px;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--fg)}
+.search input:focus{border-color:var(--green);outline:none}
+
+/* Culture */
+.proverb{display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.proverb .sr{font-size:1.25rem;line-height:1.25}
+.anthem{padding:22px;border-radius:16px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.anthem .sr{font-size:1.3rem;line-height:1.3}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.fade{animation:fade .25s ease}
+@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+</style>
+
+<div class="shell">
+  <aside class="rail">
+    <div class="brand-row">
+      <a class="brand" href="#accueil" aria-label="Leri Sranantongo, accueil">
+        <span class="brand-mark cloth" aria-hidden="true"></span>
+        <span class="brand-name">Leri Sranantongo<small>Apprendre le sranan</small></span>
+      </a>
+      <button class="sync top-sync" type="button" data-act="go-settings" data-s="local" title="Où est enregistrée ma progression ?"><i></i><span></span></button>
+    </div>
+    <nav class="nav" id="nav" aria-label="Sections"></nav>
+    <button class="sync rail-sync" type="button" data-act="go-settings" data-s="local"><i></i><span>Enregistré sur cet appareil</span></button>
+  </aside>
+  <main id="view" class="view" tabindex="-1">
+    <noscript><p>Leri Sranantongo a besoin de JavaScript pour fonctionner.</p></noscript>
+  </main>
+</div>
+
+<script>
+/* =========================================================================
+   CONTENU — orthographe officielle du sranan (1986).
+   Format d'un mot : [sranan, français, note facultative]
+   ========================================================================= */
+const THEMES = [
+ { id:"salut", name:"Salutations & politesse", lead:"Saluer, remercier, prendre des nouvelles.", words:[
+  ["odi","bonjour, salut"],
+  ["fa waka?","comment ça va ?","litt. « comment ça marche ? »"],
+  ["fa yu tan?","comment vas-tu ?","litt. « comment restes-tu ? »"],
+  ["mi de","je vais bien","litt. « je suis là » : la réponse courante à « fa waka? »"],
+  ["a bun","ça va, c'est bien"],
+  ["gudu mamanten","bonjour (le matin)"],
+  ["gudu bakadina","bon après-midi"],
+  ["gudu neti","bonsoir, bonne nuit"],
+  ["tangi","merci"],
+  ["grantangi","merci beaucoup","litt. « grand merci »"],
+  ["danki","merci","emprunt au néerlandais"],
+  ["mi e begi yu","s'il te plaît","litt. « je te prie »"],
+  ["pardon","pardon, excusez-moi"],
+  ["ai","oui"],
+  ["no","non"],
+  ["kande","peut-être"],
+  ["adyosi","au revoir"],
+  ["te tamara","à demain"],
+  ["te bakaten","à plus tard"],
+  ["waka bun","bonne route, prends soin de toi","litt. « marche bien »"],
+  ["no span","pas de souci, pas de stress"],
+  ["misi","madame","titre de politesse : « misi Wilma »"],
+  ["masra","monsieur ; mari","titre de politesse : « masra Ronald »"],
+  ["san na yu nen?","comment t'appelles-tu ?","litt. « quel est ton nom ? »"],
+  ["pe yu komoto?","d'où viens-tu ?"],
+  ["pe yu e libi?","où habites-tu ?"],
+  ["mi breiti fu sabi yu","enchanté(e)","litt. « je suis content(e) de te connaître »"],
+  ["seni odi","passer le bonjour","« A e seni odi gi yu » : il/elle te passe le bonjour"]
+ ]},
+ { id:"mots", name:"Pronoms & petits mots", lead:"Les mots qui tiennent toutes les phrases ensemble.", words:[
+  ["mi","je, moi ; mon, ma"],
+  ["yu","tu, toi ; ton, ta"],
+  ["a","il, elle (sujet)","devant un nom, « a » veut aussi dire « le, la »"],
+  ["en","le, la, lui (complément) ; son, sa"],
+  ["wi","nous ; notre"],
+  ["unu","vous (pluriel) ; votre","forme courte : « un »"],
+  ["den","ils, elles, eux ; leur","devant un nom, « den » veut aussi dire « les »"],
+  ["disi","ceci ; ce…-ci"],
+  ["dati","cela ; ce…-là"],
+  ["dyaso","ici"],
+  ["drape","là-bas"],
+  ["ala","tout, tous"],
+  ["ibri","chaque"],
+  ["noti","rien"],
+  ["nowan","aucun"],
+  ["sma","personne, gens"],
+  ["sani","chose"],
+  ["nanga","avec ; et"],
+  ["ma","mais"],
+  ["efu","si (condition)"],
+  ["bika","parce que"],
+  ["di","quand (dans le passé)"],
+  ["te","quand (au futur) ; jusqu'à"],
+  ["dan","alors, ensuite"],
+  ["fu","de ; pour"],
+  ["gi","pour, à (au profit de)","c'est aussi le verbe « donner »"],
+  ["tu","aussi","c'est aussi le chiffre 2"],
+  ["moro","plus, davantage"],
+  ["pikinso","un peu"],
+  ["furu","beaucoup ; plein"],
+  ["tumsi","trop"],
+  ["nomo","seulement ; ne… plus"],
+  ["ete","encore ; pas encore (avec « no »)"]
+ ]},
+ { id:"famille", name:"Famille & gens", lead:"Ceux qu'on aime, ceux qu'on croise.", words:[
+  ["mama","mère, maman"],
+  ["papa","père, papa"],
+  ["brada","frère"],
+  ["sisa","sœur"],
+  ["pikin","enfant"],
+  ["manpikin","fils ; garçon"],
+  ["umapikin","fille"],
+  ["granmama","grand-mère"],
+  ["granpapa","grand-père"],
+  ["omu","oncle"],
+  ["tanta","tante"],
+  ["famiri","famille"],
+  ["wefi","épouse"],
+  ["man","homme ; mari"],
+  ["uma","femme"],
+  ["boi","garçon, jeune homme"],
+  ["mati","ami, amie"],
+  ["bigisma","adulte, aîné(e)","litt. « grande personne »"],
+  ["afo","arrière-grand-parent, ancêtre"],
+  ["bakapikin","descendant(s)","litt. « enfants d'après »"],
+  ["leriman","enseignant(e)","litt. « personne qui enseigne »"],
+  ["datra","médecin"],
+  ["wrokoman","travailleur, ouvrier"],
+  ["kweki","élever (un enfant)"],
+  ["trow","se marier"]
+ ]},
+ { id:"corps", name:"Le corps", lead:"De la tête aux pieds.", words:[
+  ["skin","corps","« skin » désigne le corps entier, pas seulement la peau"],
+  ["ede","tête"],
+  ["wiwiri","cheveux ; poils","veut aussi dire « feuilles, herbes »"],
+  ["fesi","visage"],
+  ["ai","œil, yeux"],
+  ["yesi","oreille"],
+  ["noso","nez"],
+  ["mofo","bouche"],
+  ["tifi","dent(s)"],
+  ["tongo","langue (organe et langage)","Sranantongo = « la langue du Suriname »"],
+  ["neki","cou ; gorge"],
+  ["anu","main ; bras"],
+  ["finga","doigt"],
+  ["bere","ventre"],
+  ["baka","dos"],
+  ["futu","pied ; jambe"],
+  ["kindi","genou"],
+  ["ati","cœur"],
+  ["brudu","sang"],
+  ["bonyo","os"]
+ ]},
+ { id:"repas", name:"Nourriture & cuisine", lead:"Du riz aux plats de fête.", words:[
+  ["nyan","nourriture ; manger","« nyan » est à la fois le nom et le verbe"],
+  ["dringi","boire ; boisson"],
+  ["watra","eau"],
+  ["brede","pain"],
+  ["aleisi","riz"],
+  ["fisi","poisson"],
+  ["meti","viande","veut aussi dire « animal »"],
+  ["fowru","poulet","veut aussi dire « oiseau »"],
+  ["eksi","œuf"],
+  ["merki","lait"],
+  ["kofi","café"],
+  ["sukru","sucre"],
+  ["sowtu","sel ; salé"],
+  ["pepre","piment"],
+  ["oli","huile"],
+  ["bana","banane plantain"],
+  ["bakba","banane (douce)"],
+  ["manya","mangue"],
+  ["kokronoto","noix de coco"],
+  ["pinda","cacahuète, arachide"],
+  ["kasaba","manioc"],
+  ["gruntu","légumes"],
+  ["froktu","fruit(s)"],
+  ["brafu","soupe, bouillon"],
+  ["pindabrafu","soupe d'arachide","la « pindasoep », souvent servie avec du tomtom"],
+  ["tomtom","tomtom (boulettes de banane plantain pilée)"],
+  ["pom","pom (plat au four de tayer et de poulet)","le grand plat des anniversaires"],
+  ["moksi aleisi","riz mélangé (avec viande et légumes)","litt. « riz mélangé »"],
+  ["roti","roti (galette garnie de curry)","apport hindoustani"],
+  ["bami","bami (nouilles sautées)","apport javanais"],
+  ["bori","cuisiner, faire cuire"],
+  ["switi","sucré ; délicieux, agréable"],
+  ["swa","aigre"],
+  ["bita","amer"],
+  ["angri","faim ; avoir faim"]
+ ]},
+ { id:"maison", name:"La maison & les objets", lead:"Tout ce qui nous entoure à la maison.", words:[
+  ["oso","maison"],
+  ["doro","porte ; dehors","« na doro » : dehors"],
+  ["fensre","fenêtre"],
+  ["kamra","chambre, pièce"],
+  ["kukru","cuisine"],
+  ["dyari","cour, jardin"],
+  ["tafra","table"],
+  ["sturu","chaise"],
+  ["bangi","banc"],
+  ["bedi","lit"],
+  ["lampu","lampe"],
+  ["buku","livre"],
+  ["papira","papier"],
+  ["glasi","verre"],
+  ["batra","bouteille"],
+  ["sopo","savon"],
+  ["spikri","miroir"],
+  ["sroto","clé ; serrure"],
+  ["krosi","vêtement(s)"],
+  ["susu","chaussure(s)"],
+  ["moni","argent"],
+  ["faya","feu"],
+  ["tiki","bâton"]
+ ]},
+ { id:"nature", name:"Lieux & nature", lead:"Du fleuve à la ville, le pays.", words:[
+  ["kondre","pays ; village"],
+  ["foto","ville ; Paramaribo","« go na foto » : aller en ville"],
+  ["Sranan","le Suriname"],
+  ["Bakrakondre","les Pays-Bas","litt. « le pays des Blancs »"],
+  ["busi","forêt, brousse"],
+  ["liba","rivière, fleuve"],
+  ["kriki","crique"],
+  ["se","mer"],
+  ["son","soleil"],
+  ["mun","lune","veut aussi dire « mois »"],
+  ["stari","étoile"],
+  ["alen","pluie"],
+  ["winti","vent","désigne aussi la religion afro-surinamaise"],
+  ["loktu","ciel, air"],
+  ["gron","terre, sol"],
+  ["ston","pierre"],
+  ["santi","sable"],
+  ["bon","arbre"],
+  ["pasi","chemin, route"],
+  ["strati","rue"],
+  ["wowoyo","marché"],
+  ["wenkri","boutique, magasin"],
+  ["skoro","école"],
+  ["kerki","église"],
+  ["farawe","loin"],
+  ["krosibei","près"]
+ ]},
+ { id:"animaux", name:"Les animaux", lead:"De la cour à la forêt amazonienne.", words:[
+  ["dagu","chien"],
+  ["puspusi","chat"],
+  ["fowru","oiseau ; volaille"],
+  ["kakafowru","coq"],
+  ["kaw","vache"],
+  ["agu","cochon"],
+  ["asi","cheval"],
+  ["kabritu","chèvre"],
+  ["skapu","mouton"],
+  ["pingo","pécari (cochon sauvage)"],
+  ["sneki","serpent"],
+  ["aboma","boa, anaconda"],
+  ["todo","crapaud"],
+  ["krabu","crabe"],
+  ["kaiman","caïman"],
+  ["sekrepatu","tortue"],
+  ["tigri","jaguar","litt. « tigre »"],
+  ["keskesi","singe-écureuil"],
+  ["mira","fourmi"],
+  ["maskita","moustique"],
+  ["kakalaka","cafard"],
+  ["alata","rat"],
+  ["anansi","araignée","et Anansi, le héros rusé des contes (anansitori)"],
+  ["kapasi","tatou"]
+ ]},
+ { id:"verbes", name:"Verbes essentiels", lead:"Les verbes ne se conjuguent jamais : apprenez-les une fois pour toutes.", words:[
+  ["de","être (quelque part), exister"],
+  ["na","être (quelqu'un, quelque chose)","aussi la préposition « à, dans »"],
+  ["abi","avoir"],
+  ["du","faire"],
+  ["meki","fabriquer, faire"],
+  ["go","aller"],
+  ["kon","venir"],
+  ["waka","marcher"],
+  ["lon","courir"],
+  ["sidon","s'asseoir"],
+  ["tanapu","se tenir debout"],
+  ["opo","se lever ; ouvrir ; soulever"],
+  ["tapu","fermer","« na tapu » : sur"],
+  ["sribi","dormir"],
+  ["taki","parler, dire"],
+  ["arki","écouter"],
+  ["yere","entendre"],
+  ["luku","regarder"],
+  ["si","voir"],
+  ["sabi","savoir, connaître"],
+  ["ferstan","comprendre"],
+  ["denki","penser"],
+  ["wani","vouloir"],
+  ["lobi","aimer ; amour"],
+  ["kan","pouvoir"],
+  ["musu","devoir"],
+  ["gi","donner"],
+  ["teki","prendre"],
+  ["tyari","porter, apporter"],
+  ["bai","acheter"],
+  ["seri","vendre"],
+  ["pai","payer"],
+  ["kosti","coûter"],
+  ["wroko","travailler ; travail"],
+  ["leri","apprendre ; enseigner"],
+  ["leisi","lire"],
+  ["skrifi","écrire"],
+  ["singi","chanter"],
+  ["dansi","danser"],
+  ["prei","jouer"],
+  ["wasi","laver"],
+  ["suku","chercher"],
+  ["feni","trouver"],
+  ["lasi","perdre"],
+  ["kari","appeler"],
+  ["aksi","demander"],
+  ["piki","répondre"],
+  ["yepi","aider"],
+  ["wakti","attendre"],
+  ["libi","vivre, habiter ; quitter"],
+  ["gwe","partir, s'en aller"],
+  ["kisi","attraper ; recevoir"],
+  ["bigin","commencer"],
+  ["kaba","finir","en fin de phrase : « déjà »"],
+  ["tan","rester"],
+  ["drai","tourner"],
+  ["fadon","tomber"],
+  ["broko","casser"],
+  ["bribi","croire"],
+  ["membre","se souvenir"],
+  ["frigiti","oublier"],
+  ["firi","sentir, ressentir"],
+  ["sori","montrer"],
+  ["koti","couper","Keti Koti = « chaînes coupées »"],
+  ["krei","pleurer"],
+  ["lafu","rire"],
+  ["pasa","passer ; se passer"],
+  ["dede","mourir ; mort"]
+ ]},
+ { id:"adjectifs", name:"Décrire & ressentir", lead:"Adjectifs et émotions — qui se comportent comme des verbes.", words:[
+  ["bigi","grand, gros"],
+  ["pikin","petit"],
+  ["bun","bon, bien"],
+  ["ogri","mauvais, méchant"],
+  ["moi","beau, belle, joli"],
+  ["langa","long ; grand (de taille)"],
+  ["syatu","court"],
+  ["fatu","gros, gras"],
+  ["mangri","maigre"],
+  ["owru","vieux, vieille"],
+  ["nyun","nouveau, neuf"],
+  ["yongu","jeune"],
+  ["waran","chaud"],
+  ["kowru","froid"],
+  ["tranga","fort ; dur"],
+  ["swaki","faible"],
+  ["esi","vite, rapide"],
+  ["safri","lentement, doucement"],
+  ["krin","propre ; clair"],
+  ["doti","sale","veut aussi dire « terre, saleté »"],
+  ["ebi","lourd"],
+  ["leigi","vide"],
+  ["diri","cher"],
+  ["bunkopu","bon marché"],
+  ["siki","malade ; maladie"],
+  ["weri","fatigué(e)"],
+  ["breiti","content(e), heureux"],
+  ["sari","triste"],
+  ["koni","malin, rusé"],
+  ["hei","haut"],
+  ["dipi","profond"],
+  ["bradi","large"],
+  ["kruktu","tordu","« kruktu anu » : main gauche"],
+  ["leti","juste, droit","« leti anu » : main droite"],
+  ["lati","en retard, tard"],
+  ["fruku","tôt"],
+  ["atibron","colère ; être en colère","litt. « cœur qui brûle »"],
+  ["frede","peur ; avoir peur"],
+  ["syen","honte"],
+  ["prisiri","joie, plaisir"]
+ ]},
+ { id:"couleurs", name:"Les couleurs", lead:"Les couleurs de base.", words:[
+  ["weti","blanc"],
+  ["blaka","noir"],
+  ["redi","rouge"],
+  ["geri","jaune"],
+  ["blaw","bleu"],
+  ["grun","vert"]
+ ]},
+ { id:"nombres", name:"Les nombres", lead:"Compter, payer, dire son âge.", words:[
+  ["wan","un (1)"],
+  ["tu","deux (2)"],
+  ["dri","trois (3)"],
+  ["fo","quatre (4)"],
+  ["feifi","cinq (5)"],
+  ["siksi","six (6)"],
+  ["seibi","sept (7)"],
+  ["aiti","huit (8)"],
+  ["neigi","neuf (9)"],
+  ["tin","dix (10)"],
+  ["erfu","onze (11)","emprunt au néerlandais « elf »"],
+  ["twarfu","douze (12)","emprunt au néerlandais « twaalf »"],
+  ["tin na dri","treize (13)","litt. « dix et trois »"],
+  ["tin na feifi","quinze (15)"],
+  ["tutenti","vingt (20)"],
+  ["tutenti na wan","vingt et un (21)"],
+  ["dritenti","trente (30)"],
+  ["fotenti","quarante (40)"],
+  ["feifitenti","cinquante (50)"],
+  ["hondro","cent (100)"],
+  ["tu hondro","deux cents (200)"],
+  ["dusun","mille (1000)"]
+ ]},
+ { id:"temps", name:"Le temps & les jours", lead:"Hier, aujourd'hui, demain — et la semaine.", words:[
+  ["tide","aujourd'hui"],
+  ["tamara","demain"],
+  ["esde","hier"],
+  ["now","maintenant"],
+  ["dyonsro","tout de suite, bientôt"],
+  ["baka","après, ensuite"],
+  ["fosi","d'abord, avant ; premier"],
+  ["mamanten","matin"],
+  ["bakadina","après-midi","litt. « après le dîner »"],
+  ["neti","nuit, soir"],
+  ["dei","jour"],
+  ["wiki","semaine"],
+  ["mun","mois"],
+  ["yari","année, an"],
+  ["yuru","heure"],
+  ["ten","temps, moment"],
+  ["alaten","toujours"],
+  ["sonten","parfois"],
+  ["noiti","jamais"],
+  ["ala dei","tous les jours"],
+  ["Munde","lundi"],
+  ["Tudewroko","mardi","litt. « deuxième jour de travail »"],
+  ["Dridewroko","mercredi","litt. « troisième jour de travail »"],
+  ["Fodewroko","jeudi","litt. « quatrième jour de travail »"],
+  ["Freyda","vendredi"],
+  ["Satra","samedi"],
+  ["Sonde","dimanche"]
+ ]},
+ { id:"questions", name:"Poser des questions", lead:"Les mots interrogatifs, toujours en tête de phrase.", words:[
+  ["san?","quoi ? que ?"],
+  ["suma?","qui ?"],
+  ["pe?","où ?"],
+  ["oten?","quand ?"],
+  ["fa?","comment ?"],
+  ["fu san ede?","pourquoi ?","litt. « pour quelle tête (raison) »"],
+  ["omeni?","combien ?"],
+  ["sortu?","quel ? quelle sorte ?"],
+  ["sortu wan?","lequel ? laquelle ?"]
+ ]},
+ { id:"phrases", name:"Phrases utiles", lead:"Des phrases entières, prêtes à servir.", words:[
+  ["Mi no sabi.","Je ne sais pas."],
+  ["Mi no e ferstan.","Je ne comprends pas."],
+  ["Taki safri, mi e begi yu.","Parle lentement, s'il te plaît."],
+  ["Mi e leri Sranantongo.","J'apprends le sranan."],
+  ["Yu e taki Sranantongo?","Tu parles sranan ?"],
+  ["Mi lobi yu.","Je t'aime."],
+  ["Mi tu.","Moi aussi."],
+  ["Na mi!","C'est moi !"],
+  ["Omeni a e kosti?","Combien ça coûte ?"],
+  ["A diri tumsi!","C'est trop cher !"],
+  ["Mi angri.","J'ai faim."],
+  ["Mi weri.","Je suis fatigué(e)."],
+  ["A nyan switi!","C'est délicieux !"],
+  ["Kon dyaso.","Viens ici."],
+  ["Wakti pikinso.","Attends un peu."],
+  ["San e pasa?","Que se passe-t-il ?"],
+  ["Yu kan yepi mi?","Peux-tu m'aider ?"],
+  ["Mi e kon.","J'arrive."],
+  ["Mi breiti fu si yu.","Je suis content(e) de te voir."],
+  ["Mi e go na oso.","Je rentre à la maison."],
+  ["Mi de na oso.","Je suis à la maison."],
+  ["Mi no abi moni.","Je n'ai pas d'argent."]
+ ]}
+];
+
+/* Phrases à reconstruire */
+const SENTENCES = [
+ ["Mi e go na wowoyo.","Je vais au marché."],
+ ["Mi wani dringi watra.","Je veux boire de l'eau."],
+ ["Mi mama e bori nyan.","Ma mère prépare à manger."],
+ ["Den pikin e prei na doro.","Les enfants jouent dehors."],
+ ["Mi e leri Sranantongo.","J'apprends le sranan."],
+ ["Mi nyan kaba.","J'ai déjà mangé."],
+ ["Mi o kon tamara.","Je viendrai demain."],
+ ["Esde mi ben de na oso.","Hier, j'étais à la maison."],
+ ["A ben e sribi.","Il/Elle dormait."],
+ ["Pe yu e libi?","Où habites-tu ?"],
+ ["Mi e libi na Paramaribo.","J'habite à Paramaribo."],
+ ["Yu kan yepi mi?","Peux-tu m'aider ?"],
+ ["A oso bigi.","La maison est grande."],
+ ["Mi brada abi wan dagu.","Mon frère a un chien."],
+ ["Mi sisa na wan datra.","Ma sœur est médecin."],
+ ["Tyari a buku kon.","Apporte le livre."],
+ ["Mi bai wan krosi gi yu.","Je t'ai acheté un vêtement."],
+ ["Den no kon esde.","Ils ne sont pas venus hier."],
+ ["San yu e du?","Qu'est-ce que tu fais ?"],
+ ["Fu san ede yu e krei?","Pourquoi pleures-tu ?"],
+ ["A alen e kon.","La pluie arrive."],
+ ["Mi weri, mi e go sribi.","Je suis fatigué(e), je vais dormir."],
+ ["Mi granmama e taki Sranantongo nanga mi.","Ma grand-mère me parle en sranan."],
+ ["Wi o go na liba Satra.","Nous irons à la rivière samedi."],
+ ["Efu yu wani, wi kan go.","Si tu veux, nous pouvons y aller."],
+ ["Mi no o frigiti yu.","Je ne t'oublierai pas."],
+ ["Disi na mi oso.","C'est ma maison."],
+ ["Mi mati e wakti mi.","Mon ami(e) m'attend."],
+ ["A buku de na tapu a tafra.","Le livre est sur la table."],
+ ["A puspusi de na ondro a bedi.","Le chat est sous le lit."],
+ ["Mi e wroko ala dei.","Je travaille tous les jours."],
+ ["Oten yu o kon na Sranan?","Quand viendras-tu au Suriname ?"],
+ ["Mi no kon, bika mi ben siki.","Je ne suis pas venu(e), parce que j'étais malade."],
+ ["Di mi kon, a ben e sribi.","Quand je suis arrivé(e), il/elle dormait."]
+];
+
+/* Choisir la bonne marque de temps */
+const MARKERS = [
+ ["Mi ___ nyan now.","Je suis en train de manger.","e",["e","ben","o","kaba"]],
+ ["Esde mi ___ de na oso.","Hier, j'étais à la maison.","ben",["ben","o","e","no"]],
+ ["Tamara mi ___ go na skoro.","Demain, j'irai à l'école.","o",["o","ben","e","kaba"]],
+ ["Mi nyan ___.","J'ai déjà mangé.","kaba",["kaba","o","ben","e"]],
+ ["Di mi kon, a ___ e sribi.","Quand je suis arrivé(e), il/elle dormait.","ben",["ben","o","no","kaba"]],
+ ["Wi ___ go na liba Satra.","Nous irons à la rivière samedi.","o",["o","ben","kaba","e"]],
+ ["Mi ___ sabi.","Je ne sais pas.","no",["no","e","o","ben"]],
+ ["Den pikin ___ prei na doro.","Les enfants sont en train de jouer dehors.","e",["e","ben","kaba","o"]],
+ ["A kon ___.","Il/Elle est déjà venu(e).","kaba",["kaba","o","e","no"]],
+ ["Mi ___ frigiti yu.","Je ne t'oublierai pas.","no o",["no o","o no","no ben","e"]],
+ ["Mi ___ siki.","J'étais malade.","ben",["ben","e","o","kaba"]],
+ ["Efu mi ben abi moni, mi ___ bai wan oso.","Si j'avais de l'argent, j'achèterais une maison.","ben o",["ben o","e","kaba","no"]]
+];
+
+/* Leçons de grammaire */
+const LESSONS = [
+ { id:"l1", title:"Prononcer et écrire", key:"Fa waka?",
+   intro:"Le sranan s'écrit selon l'orthographe officielle de 1986. Elle est très régulière : chaque lettre se prononce, et toujours de la même façon. Lisez les mots « à l'espagnole », jamais « à la française » : le <b>e</b> final se prononce, le <b>s</b> ne devient jamais « z ».",
+   sections:[
+    { h:"Les sons, lettre par lettre", table:{ head:["Lettre","Se prononce","Exemple","Sens"], src:[2], rows:[
+      ["a","« a »","mama","mère"],
+      ["e","« é » ou « è »","bere","ventre"],
+      ["i","« i »","pikin","enfant"],
+      ["o","« o »","oso","maison"],
+      ["u","« ou »","futu","pied"],
+      ["y","« y » de « yeux »","yu","tu"],
+      ["w","« ou » de « oui »","waka","marcher"],
+      ["s","toujours « ss »","busi","forêt"],
+      ["g","toujours dur, « gu »","geri","jaune"],
+      ["sy","« ch »","syen","honte"],
+      ["ty","« tch »","tyari","porter"],
+      ["dy","« dj »","dyari","cour, jardin"],
+      ["ny","« gn » d'« agneau »","nyan","manger"],
+      ["ai, ei, oi","« aï », « éï », « oï »","feifi","cinq"],
+      ["n final","souvent proche du « ng » anglais","Sranan","Suriname"]
+    ]}},
+    { h:"Les anciennes graphies", p:"Dans les vieux livres, les chansons ou sur les réseaux sociaux, vous verrez souvent une orthographe à la néerlandaise : <i>oe</i> pour <b>u</b>, <i>j</i> pour <b>y</b>, <i>tj</i> pour <b>ty</b>, <i>dj</i> pour <b>dy</b>. Ainsi « joe » = <b>yu</b>, « tjari » = <b>tyari</b>, « Sranang » = <b>Sranan</b>." }
+   ],
+   tip:"Dans cette appli, chaque mot est suivi d'une <b>prononciation approchée</b> écrite à la française (par exemple <span class=\"sr\">fa waka</span> ≈ <i>fa ouaka</i>). C'est une béquille : rien ne remplace l'oreille. Faites-vous lire les mots par vos proches.",
+   quiz:[
+    {q:"Comment se prononce le « u » de « futu » (pied) ?",o:["« ou », comme dans « fou »","« u », comme dans « tu »","« eu », comme dans « feu »"],x:"En sranan, u = « ou » : futu ≈ « foutou »."},
+    {q:"« tyari » (porter) se prononce :",o:["« tchari »","« tiari »","« chari »"],x:"ty = « tch »."},
+    {q:"Dans « oso » (maison), le « s » se prononce :",o:["« ss »","« z »","« ch »"],x:"Le s est toujours sourd : « osso »."},
+    {q:"Dans un vieux texte, « joe » correspond à :",o:["yu (tu)","yo","dyu"],x:"L'ancienne graphie néerlandaise écrivait j pour y et oe pour u."},
+    {q:"Le « e » final de « bere » (ventre) :",o:["se prononce, comme « é »","est muet, comme en français","se prononce « eu »"],x:"Toutes les lettres se prononcent : « béré »."}
+   ]},
+ { id:"l2", title:"Les pronoms", key:"Mi lobi yu.",
+   intro:"Les pronoms sranan ne changent pas selon le genre : <b>a</b> veut dire « il » aussi bien qu'« elle ». La plupart servent à la fois de sujet, de complément et de possessif.",
+   sections:[
+    { h:"Le tableau à connaître", table:{ head:["","Sujet","Complément","Possessif"], src:[1,2,3], rows:[
+      ["je, moi","mi","mi","mi"],
+      ["tu, toi","yu","yu","yu"],
+      ["il, elle","a","en","en"],
+      ["nous","wi","wi","wi"],
+      ["vous","unu","unu","unu"],
+      ["ils, elles","den","den","den"]
+    ]}},
+    { h:"En phrases", ex:[
+      ["Mi lobi yu.","Je t'aime."],
+      ["Yu lobi mi.","Tu m'aimes."],
+      ["A e kon.","Il/Elle arrive."],
+      ["Mi si en.","Je l'ai vu(e)."],
+      ["En mama e bori.","Sa mère cuisine."],
+      ["Wi oso moi.","Notre maison est belle."],
+      ["Den e prei.","Ils/Elles jouent."]
+    ]}
+   ],
+   tip:"Seul le sujet « il/elle » a une forme à part : <b>a</b>. Partout ailleurs, on dit <b>en</b>. Pour insister : <span class=\"sr\">Na mi!</span> (C'est moi !), <span class=\"sr\">Mi tu.</span> (Moi aussi.)",
+   quiz:[
+    {q:"Comment dit-on « nous » ?",o:["wi","unu","den"]},
+    {q:"« Je l'aime » se dit :",o:["Mi lobi en.","Mi lobi a.","En lobi mi."],x:"Après le verbe, « le/la » se dit en."},
+    {q:"« a » (sujet) peut vouloir dire :",o:["il ou elle","seulement « il »","nous"]},
+    {q:"« unu » veut dire :",o:["vous (pluriel)","ils, elles","nous"]},
+    {q:"« Sa maison » se dit :",o:["en oso","a oso","mi oso"],x:"a oso = la maison ; en oso = sa maison."}
+   ]},
+ { id:"l3", title:"Être : de, na… ou rien", key:"Mi de na oso.",
+   intro:"Le français n'a qu'un verbe « être ». Le sranan en utilise deux, et parfois aucun.",
+   sections:[
+    { h:"1. de : être quelque part, exister", ex:[
+      ["Mi de na oso.","Je suis à la maison."],
+      ["Pe yu de?","Où es-tu ?"],
+      ["A buku de na tapu a tafra.","Le livre est sur la table."],
+      ["Mi de.","Je vais bien (litt. « je suis là »)."]
+    ]},
+    { h:"2. na : être quelqu'un ou quelque chose", ex:[
+      ["Mi na wan leriman.","Je suis enseignant(e)."],
+      ["Disi na mi oso.","C'est ma maison."],
+      ["Suma na dati?","Qui est-ce ?"],
+      ["Na mi!","C'est moi !"]
+    ]},
+    { h:"3. Rien du tout devant un adjectif", p:"Les adjectifs se comportent comme des verbes : on ne met ni <b>de</b> ni <b>na</b>.", ex:[
+      ["A oso bigi.","La maison est grande."],
+      ["Mi weri.","Je suis fatigué(e)."],
+      ["A nyan switi!","Le repas est délicieux !"],
+      ["Mi mama siki.","Ma mère est malade."]
+    ]}
+   ],
+   tip:"Comme ce sont des verbes, les adjectifs prennent aussi les marques de temps : <span class=\"sr\">Mi ben siki.</span> (J'étais malade.)",
+   quiz:[
+    {q:"« Je suis à la maison » :",o:["Mi de na oso.","Mi na oso.","Mi oso."],x:"Un lieu → de."},
+    {q:"« C'est mon frère » :",o:["Disi na mi brada.","Disi de mi brada.","Disi mi brada de."],x:"Une identité → na."},
+    {q:"« Je suis fatigué(e) » :",o:["Mi weri.","Mi na weri.","Weri mi."],x:"Pas de verbe « être » devant un adjectif."},
+    {q:"Quel mot pour « je suis enseignant(e) » ?",o:["na","de","e"]},
+    {q:"« La maison est grande » :",o:["A oso bigi.","A oso na bigi.","A bigi oso."],x:"A bigi oso = « la grande maison » : ce n'est pas une phrase."}
+   ]},
+ { id:"l4", title:"Le présent : la marque « e »", key:"Mi e nyan.",
+   intro:"Le verbe sranan ne se conjugue jamais : il ne change pas selon la personne. Le temps est indiqué par de petits mots placés <b>devant</b> le verbe. Le premier : <b>e</b>, pour une action en cours ou une habitude.",
+   sections:[
+    { h:"Action en cours ou habituelle", ex:[
+      ["Mi e nyan.","Je mange / je suis en train de manger."],
+      ["Yu e taki Sranantongo?","Tu parles sranan ?"],
+      ["Ala dei a e wroko.","Il/Elle travaille tous les jours."],
+      ["Den pikin e prei na doro.","Les enfants jouent dehors."]
+    ]},
+    { h:"Les verbes d'état s'en passent", p:"Avec les verbes qui décrivent un état (savoir, aimer, vouloir, avoir…), le verbe seul suffit au présent.", ex:[
+      ["Mi sabi.","Je sais."],
+      ["Mi lobi yu.","Je t'aime."],
+      ["Mi wani watra.","Je veux de l'eau."],
+      ["A abi tu pikin.","Il/Elle a deux enfants."]
+    ]}
+   ],
+   tip:"Attention : un verbe d'action <b>sans</b> « e » parle d'une action terminée. <span class=\"sr\">Mi nyan.</span> = j'ai mangé (voir la leçon suivante).",
+   quiz:[
+    {q:"« Je suis en train de manger » :",o:["Mi e nyan.","Mi nyan.","Mi ben nyan."]},
+    {q:"Où se place « e » ?",o:["juste devant le verbe","juste après le verbe","en fin de phrase"]},
+    {q:"« Je sais » :",o:["Mi sabi.","Mi sabi e.","E mi sabi."],x:"Verbe d'état : pas besoin de « e »."},
+    {q:"« Les enfants jouent dehors » :",o:["Den pikin e prei na doro.","Den pikin prei e na doro.","Pikin den e prei na doro."]},
+    {q:"Le verbe change-t-il avec la personne (je, tu, il…) ?",o:["Non, jamais","Oui, comme en français","Seulement au pluriel"]}
+   ]},
+ { id:"l5", title:"Le passé : verbe seul, « ben », « kaba »", key:"Mi nyan kaba.",
+   intro:"Trois outils suffisent pour parler du passé.",
+   sections:[
+    { h:"Verbe d'action seul = c'est fait", ex:[
+      ["Mi nyan.","J'ai mangé."],
+      ["A kon esde.","Il/Elle est venu(e) hier."],
+      ["Mi bai wan krosi.","J'ai acheté un vêtement."]
+    ]},
+    { h:"ben = c'était avant", p:"<b>ben</b> place la phrase dans le passé, surtout pour les états et pour ce qui précède un autre moment passé.", ex:[
+      ["Mi ben siki.","J'étais malade."],
+      ["Esde mi ben de na oso.","Hier, j'étais à la maison."],
+      ["Mi ben lobi en.","Je l'aimais."]
+    ]},
+    { h:"ben e = l'imparfait", ex:[
+      ["A ben e sribi.","Il/Elle dormait."],
+      ["Di mi kon, den ben e nyan.","Quand je suis arrivé(e), ils mangeaient."]
+    ]},
+    { h:"kaba = déjà", p:"<b>kaba</b> (« finir ») placé en fin de phrase veut dire « déjà ».", ex:[
+      ["Mi nyan kaba.","J'ai déjà mangé."],
+      ["A gwe kaba.","Il/Elle est déjà parti(e)."]
+    ]}
+   ],
+   tip:"Pour réviser cette leçon, l'exercice « Choisir la bonne marque de temps » dans <a href=\"#exercices\">Exercices</a> est fait pour vous.",
+   quiz:[
+    {q:"« J'étais malade » :",o:["Mi ben siki.","Mi e siki.","Mi o siki."]},
+    {q:"« Il dormait » :",o:["A ben e sribi.","A sribi.","A o sribi."]},
+    {q:"« J'ai déjà mangé » :",o:["Mi nyan kaba.","Mi e nyan.","Mi o nyan."]},
+    {q:"« Mi bai wan krosi » veut dire :",o:["J'ai acheté un vêtement.","J'achète un vêtement en ce moment.","J'achèterai un vêtement."],x:"Verbe d'action seul = action terminée."},
+    {q:"Que signifie « kaba » en fin de phrase ?",o:["déjà","demain","pas encore"]}
+   ]},
+ { id:"l6", title:"Le futur et le conditionnel", key:"Mi o kon tamara.",
+   intro:"<b>o</b> est le futur de tous les jours. <b>sa</b> est un futur plus soutenu, souvent une promesse. <b>ben o</b> donne le conditionnel.",
+   sections:[
+    { h:"o et sa : le futur", ex:[
+      ["Mi o kon tamara.","Je viendrai demain."],
+      ["Wi o go na liba.","Nous irons à la rivière."],
+      ["A sa kon.","Il/Elle viendra."]
+    ]},
+    { h:"ben o : « je ferais »", ex:[
+      ["Mi ben o kon, ma mi ben siki.","Je serais venu(e), mais j'étais malade."],
+      ["Efu mi ben abi moni, mi ben o bai wan oso.","Si j'avais de l'argent, j'achèterais une maison."]
+    ]}
+   ],
+   tip:"Récapitulons : <b>e</b> = en cours, <b>ben</b> = passé, <b>o</b> = futur, <b>ben o</b> = conditionnel, <b>kaba</b> = déjà. Avec ces cinq mots, vous pouvez tout dire.",
+   quiz:[
+    {q:"« Je viendrai demain » :",o:["Mi o kon tamara.","Mi ben kon tamara.","Mi kon kaba tamara."]},
+    {q:"« Nous irons à la rivière samedi » :",o:["Wi o go na liba Satra.","Wi ben go na liba Satra.","Wi go kaba na liba Satra."]},
+    {q:"« ben o » sert à exprimer :",o:["le conditionnel (je ferais)","le passé composé","l'impératif"]},
+    {q:"« Si j'avais de l'argent, j'achèterais une maison » :",o:["Efu mi ben abi moni, mi ben o bai wan oso.","Efu mi abi moni, mi bai wan oso kaba.","Efu mi o abi moni, mi e bai wan oso."]}
+   ]},
+ { id:"l7", title:"Dire non : « no »", key:"Mi no sabi.",
+   intro:"<b>no</b> se place juste devant le verbe, et devant les marques de temps s'il y en a.",
+   sections:[
+    { h:"La place de « no »", ex:[
+      ["Mi no sabi.","Je ne sais pas."],
+      ["Mi no e ferstan.","Je ne comprends pas."],
+      ["A no kon esde.","Il/Elle n'est pas venu(e) hier."],
+      ["Mi no ben si en.","Je ne l'avais pas vu(e)."],
+      ["Mi no o frigiti yu.","Je ne t'oublierai pas."]
+    ]},
+    { h:"La double négation", p:"Comme en français parlé, on cumule volontiers : <b>no … noti</b> (rien), <b>no … nowan</b> (aucun).", ex:[
+      ["Mi no si noti.","Je n'ai rien vu."],
+      ["Mi no abi nowan mati dyaso.","Je n'ai aucun ami ici."]
+    ]}
+   ],
+   tip:"« No » tout seul veut aussi dire « non ». Et pour « pas encore » : <span class=\"sr\">Mi no nyan ete.</span> (Je n'ai pas encore mangé.)",
+   quiz:[
+    {q:"« Je ne sais pas » :",o:["Mi no sabi.","Mi sabi no.","No mi sabi."]},
+    {q:"« Il n'est pas venu hier » :",o:["A no kon esde.","A kon no esde.","A kon esde no."]},
+    {q:"« Je ne t'oublierai pas » :",o:["Mi no o frigiti yu.","Mi o frigiti no yu.","Mi frigiti yu no."],x:"no vient avant la marque du futur o."},
+    {q:"« Mi no si noti » veut dire :",o:["Je n'ai rien vu.","J'ai tout vu.","Je ne vois pas la nuit."]}
+   ]},
+ { id:"l8", title:"Poser des questions", key:"San yu e du?",
+   intro:"Pour une question fermée (oui/non), il suffit de monter la voix en fin de phrase : <span class=\"sr\">Yu e kon?</span> (Tu viens ?). Pour les autres, le mot interrogatif se met en tête, puis la phrase suit dans l'ordre normal.",
+   sections:[
+    { h:"Les mots interrogatifs", table:{ head:["Sranan","Français"], src:[0], rows:[
+      ["san","quoi, que"],["suma","qui"],["pe","où"],["oten","quand"],["fa","comment"],
+      ["fu san ede","pourquoi"],["omeni","combien"],["sortu","quel, quelle sorte"]
+    ]}},
+    { h:"En phrases", ex:[
+      ["San yu e du?","Qu'est-ce que tu fais ?"],
+      ["Suma na dati?","Qui est-ce ?"],
+      ["Pe yu e go?","Où vas-tu ?"],
+      ["Oten yu o kon?","Quand viendras-tu ?"],
+      ["Fa yu tan?","Comment vas-tu ?"],
+      ["Fu san ede yu e krei?","Pourquoi pleures-tu ?"],
+      ["Omeni a e kosti?","Combien ça coûte ?"],
+      ["Sortu wan yu wani?","Lequel veux-tu ?"]
+    ]}
+   ],
+   quiz:[
+    {q:"« Où » :",o:["pe","san","suma"]},
+    {q:"« Pourquoi » :",o:["fu san ede","oten","omeni"]},
+    {q:"« Qu'est-ce que tu fais ? » :",o:["San yu e du?","Suma yu e du?","Pe yu e du?"]},
+    {q:"« Quand viendras-tu ? » :",o:["Oten yu o kon?","Fa yu o kon?","Omeni yu o kon?"]},
+    {q:"« omeni » veut dire :",o:["combien","comment","qui"]}
+   ]},
+ { id:"l9", title:"Articles et pluriel", key:"den oso",
+   intro:"<b>a</b> = le, la. <b>den</b> = les. <b>wan</b> = un, une. Le nom lui-même ne change jamais : pas de « s » au pluriel.",
+   sections:[
+    { h:"Le, les, un", ex:[
+      ["a oso","la maison"],
+      ["den oso","les maisons"],
+      ["wan oso","une maison"],
+      ["Den pikin e prei.","Les enfants jouent."]
+    ]},
+    { h:"Parler en général : pas d'article", ex:[
+      ["Mi lobi fisi.","J'aime le poisson."],
+      ["Watra bun gi yu.","L'eau, c'est bon pour toi."]
+    ]},
+    { h:"Ce…-ci, ce…-là", p:"On garde l'article et on ajoute <b>disi</b> ou <b>dati</b> après le nom.", ex:[
+      ["a buku disi","ce livre-ci"],
+      ["den oso dati","ces maisons-là"]
+    ]}
+   ],
+   tip:"<b>den</b> veut aussi dire « ils » et « leur » : seul le contexte tranche. <span class=\"sr\">den pikin</span> = « les enfants » ou « leurs enfants ».",
+   quiz:[
+    {q:"« les maisons » :",o:["den oso","a osos","wan oso"]},
+    {q:"« un chien » :",o:["wan dagu","a dagu","den dagu"]},
+    {q:"« J'aime le poisson » (en général) :",o:["Mi lobi fisi.","Mi lobi fisis.","Mi lobi den fisi disi."]},
+    {q:"« ce livre-ci » :",o:["a buku disi","a buku dati","den buku"]}
+   ]},
+ { id:"l10", title:"La possession", key:"mi oso",
+   intro:"Le possesseur se place <b>devant</b> ce qu'il possède : <span class=\"sr\">mi oso</span> (ma maison), <span class=\"sr\">yu mama</span> (ta mère), <span class=\"sr\">en buku</span> (son livre).",
+   sections:[
+    { h:"Avec « fu », après le nom", p:"On peut aussi utiliser <b>fu</b> (« de, à ») après le nom, ce qui permet d'insister.", ex:[
+      ["a oso fu mi","la maison à moi"],
+      ["a oso fu Anna","la maison d'Anna"],
+      ["Dati na fu mi.","C'est à moi."]
+    ]},
+    { h:"Avec un nom de personne", p:"On peut juxtaposer directement les deux noms.", ex:[
+      ["Anna oso","la maison d'Anna"],
+      ["Mi papa na wan datra.","Mon père est médecin."],
+      ["Disi na a buku fu mi granmama.","C'est le livre de ma grand-mère."]
+    ]}
+   ],
+   quiz:[
+    {q:"« mon frère » :",o:["mi brada","brada mi","fu brada mi"]},
+    {q:"« la maison d'Anna » :",o:["a oso fu Anna","Anna fu oso","a Anna oso fu"]},
+    {q:"« C'est à moi » :",o:["Dati na fu mi.","Dati mi na.","Mi fu dati."]},
+    {q:"« en buku » veut dire :",o:["son livre","un livre","le livre"]}
+   ]},
+ { id:"l11", title:"Où ? Les prépositions de lieu", key:"na tapu a tafra",
+   intro:"<b>na</b> est la préposition à tout faire : à, en, chez, dans, vers. Pour préciser, on ajoute un mot de position.",
+   sections:[
+    { h:"na, partout", ex:[
+      ["Mi e go na skoro.","Je vais à l'école."],
+      ["Mi de na oso.","Je suis à la maison."],
+      ["A e libi na Paramaribo.","Il/Elle habite à Paramaribo."]
+    ]},
+    { h:"Préciser la position", table:{ head:["Sranan","Français"], src:[0], rows:[
+      ["na ini","dans"],["na tapu","sur"],["na ondro","sous"],["na fesi","devant"],["na baka","derrière"],["na sei","à côté de"]
+    ]}},
+    { h:"En phrases", ex:[
+      ["A puspusi de na ondro a bedi.","Le chat est sous le lit."],
+      ["A buku de na tapu a tafra.","Le livre est sur la table."],
+      ["Mi e wakti yu na fesi a skoro.","Je t'attends devant l'école."],
+      ["A dyari de na baka a oso.","Le jardin est derrière la maison."]
+    ]},
+    { h:"Trois autres prépositions", ex:[
+      ["Mi komoto fu Sranan.","Je viens du Suriname. (fu = de)"],
+      ["Mi e go nanga mi sisa.","J'y vais avec ma sœur. (nanga = avec)"],
+      ["Mi bai wan sani gi yu.","Je t'ai acheté quelque chose. (gi = pour)"]
+    ]}
+   ],
+   tip:"On entend aussi l'ordre inverse, avec le mot de position après le nom : <span class=\"sr\">na a oso ini</span> (litt. « à la maison dedans »).",
+   quiz:[
+    {q:"« Je vais à l'école » :",o:["Mi e go na skoro.","Mi e go fu skoro.","Mi e go gi skoro."]},
+    {q:"« sur » :",o:["na tapu","na ondro","na baka"]},
+    {q:"« Le chat est sous le lit » :",o:["A puspusi de na ondro a bedi.","A puspusi de na tapu a bedi.","A puspusi de na fesi a bedi."]},
+    {q:"« Je viens du Suriname » :",o:["Mi komoto fu Sranan.","Mi komoto nanga Sranan.","Mi komoto gi Sranan."]}
+   ]},
+ { id:"l12", title:"Les verbes en série", key:"Tyari a buku kon.",
+   intro:"Le sranan aime enchaîner plusieurs verbes, sans rien entre eux, là où le français utilise un seul verbe ou une préposition.",
+   sections:[
+    { h:"Exemples", ex:[
+      ["Tyari a buku kon.","Apporte le livre. (litt. « porte le livre, viens »)"],
+      ["Teki a buku go.","Emporte le livre."],
+      ["A lon gwe.","Il/Elle s'est enfui(e) en courant."],
+      ["Mi e go nyan.","Je vais manger."],
+      ["Kon luku!","Viens voir !"],
+      ["Bai wan sani gi mi.","Achète-moi quelque chose."],
+      ["Taki gi mi.","Dis-moi."]
+    ]}
+   ],
+   tip:"<b>kon</b> marque un mouvement vers celui qui parle, <b>go</b> un mouvement qui s'en éloigne, <b>gi</b> désigne celui qui en profite.",
+   quiz:[
+    {q:"« Apporte le livre » :",o:["Tyari a buku kon.","Tyari a buku go.","Kon a buku tyari."]},
+    {q:"« Emporte le livre » :",o:["Teki a buku go.","Teki a buku kon.","Go a buku teki."]},
+    {q:"« Achète-moi quelque chose » :",o:["Bai wan sani gi mi.","Bai mi gi wan sani.","Gi bai wan sani mi."]},
+    {q:"Dans « tyari … kon », « kon » indique :",o:["un mouvement vers celui qui parle","le futur","une question"]}
+   ]},
+ { id:"l13", title:"Les nombres", key:"tutenti na feifi",
+   intro:"De 1 à 10 : <span class=\"sr\">wan, tu, dri, fo, feifi, siksi, seibi, aiti, neigi, tin</span>. Onze et douze viennent du néerlandais : <span class=\"sr\">erfu</span>, <span class=\"sr\">twarfu</span>. Ensuite, on additionne avec <b>na</b> (« et ») : <span class=\"sr\">tin na dri</span> = 13.",
+   sections:[
+    { h:"Les dizaines et au-delà", table:{ head:["Nombre","Sranan"], src:[1], rows:[
+      ["13","tin na dri"],["14","tin na fo"],["20","tutenti"],["21","tutenti na wan"],["30","dritenti"],["40","fotenti"],["50","feifitenti"],["100","hondro"],["200","tu hondro"],["1000","dusun"]
+    ]}},
+    { h:"En phrases", ex:[
+      ["Mi abi tu brada.","J'ai deux frères."],
+      ["Omeni yari yu abi?","Quel âge as-tu ?"],
+      ["Mi abi tutenti na feifi yari.","J'ai vingt-cinq ans."]
+    ]}
+   ],
+   tip:"Le nom ne prend jamais de pluriel après un nombre : <span class=\"sr\">dri pikin</span> = trois enfants.",
+   quiz:[
+    {q:"7 :",o:["seibi","siksi","neigi"]},
+    {q:"12 :",o:["twarfu","erfu","tutenti"]},
+    {q:"25 :",o:["tutenti na feifi","feifi na tutenti","feifitenti"]},
+    {q:"« trois enfants » :",o:["dri pikin","dri pikins","pikin dri"]}
+   ]},
+ { id:"l14", title:"Relier les idées", key:"Efu yu wani…",
+   intro:"Quelques petits mots permettent de construire des phrases longues : <b>di</b> = quand (au passé), <b>te</b> = quand (au futur, ou par habitude), <b>efu</b> = si, <b>bika</b> = parce que, <b>ma</b> = mais, <b>dan</b> = alors.",
+   sections:[
+    { h:"En phrases", ex:[
+      ["Di mi kon, a ben e sribi.","Quand je suis arrivé(e), il/elle dormait."],
+      ["Te mi kaba, mi o kari yu.","Quand j'aurai fini, je t'appellerai."],
+      ["Efu yu wani, wi kan go.","Si tu veux, nous pouvons y aller."],
+      ["Mi no kon, bika mi ben siki.","Je ne suis pas venu(e), parce que j'étais malade."],
+      ["Mi wani go, ma mi no abi ten.","Je veux y aller, mais je n'ai pas le temps."]
+    ]}
+   ],
+   tip:"<b>te</b> veut aussi dire « jusqu'à » : <span class=\"sr\">te tamara</span> = à demain (litt. « jusqu'à demain »).",
+   quiz:[
+    {q:"« parce que » :",o:["bika","efu","di"]},
+    {q:"« Quand je suis arrivé(e) » (au passé) :",o:["Di mi kon","Te mi kon","Efu mi kon"]},
+    {q:"« Si tu veux » :",o:["Efu yu wani","Bika yu wani","Di yu wani"]},
+    {q:"Dans « te tamara », « te » veut dire :",o:["jusqu'à","quand","si"]}
+   ]}
+];
+
+const DIALOGUES = [
+ { id:"d1", title:"Au marché", sr:"Na wowoyo", lead:"Daisy achète des mangues à misi Wilma.", lines:[
+  ["Daisy","Odi, misi Wilma! Fa waka?","Bonjour, madame Wilma ! Comment ça va ?"],
+  ["Wilma","Mi de, mi pikin. Fa yu tan?","Je vais bien, mon enfant. Et toi ?"],
+  ["Daisy","A bun, tangi. Omeni den manya e kosti?","Ça va, merci. Combien coûtent les mangues ?"],
+  ["Wilma","Feifi dala.","Cinq dollars."],
+  ["Daisy","A diri tumsi!","C'est trop cher !"],
+  ["Wilma","No span. Fo dala, gi yu nomo.","Pas de souci. Quatre dollars, rien que pour toi."],
+  ["Daisy","Grantangi! Mi o teki dri.","Merci beaucoup ! J'en prends trois."],
+  ["Wilma","Yu wani wan tra sani?","Tu veux autre chose ?"],
+  ["Daisy","No, tangi. Te tamara!","Non, merci. À demain !"],
+  ["Wilma","Waka bun, mi pikin!","Prends soin de toi, mon enfant !"]
+ ]},
+ { id:"d2", title:"Faire connaissance", sr:"San na yu nen?", lead:"Daisy rencontre Rayan à une fête de famille.", lines:[
+  ["Rayan","Odi! Mi nen Rayan. San na yu nen?","Salut ! Je m'appelle Rayan. Comment t'appelles-tu ?"],
+  ["Daisy","Mi nen Daisy. Mi breiti fu sabi yu.","Je m'appelle Daisy. Enchantée."],
+  ["Rayan","Pe yu komoto?","D'où viens-tu ?"],
+  ["Daisy","Mi e libi farawe, ma mi famiri komoto fu Sranan.","J'habite loin d'ici, mais ma famille vient du Suriname."],
+  ["Rayan","Yu e taki Sranantongo?","Tu parles sranan ?"],
+  ["Daisy","Pikinso. Mi e leri en now.","Un peu. Je l'apprends en ce moment."],
+  ["Rayan","A bun! Taki nanga mi ala dei, dan yu o leri esi.","Super ! Parle avec moi tous les jours, et tu apprendras vite."],
+  ["Daisy","Grantangi! Te bakaten.","Merci beaucoup ! À plus tard."]
+ ]},
+ { id:"d3", title:"À la maison", sr:"Na oso", lead:"La grand-mère de Daisy a préparé le repas.", lines:[
+  ["Granmama","Daisy, yu nyan kaba?","Daisy, tu as déjà mangé ?"],
+  ["Daisy","No, granmama. Mi angri!","Non, mamie. J'ai faim !"],
+  ["Granmama","Mi bori pindabrafu nanga tomtom.","J'ai fait de la soupe d'arachide avec du tomtom."],
+  ["Daisy","Switi! Mi lobi pindabrafu.","Miam ! J'adore la soupe d'arachide."],
+  ["Granmama","Fosi yu musu wasi yu anu.","D'abord, tu dois te laver les mains."],
+  ["Daisy","Ai, granmama. Mi e go now.","Oui, mamie. J'y vais tout de suite."],
+  ["Granmama","Tyari den glasi kon tu.","Apporte aussi les verres."],
+  ["Daisy","Granmama, a nyan switi! Grantangi.","Mamie, c'est délicieux ! Merci beaucoup."]
+ ]},
+ { id:"d4", title:"Demander son chemin", sr:"Pe a wowoyo de?", lead:"Daisy cherche le marché dans les rues de Paramaribo.", lines:[
+  ["Daisy","Pardon, masra. Pe a wowoyo de?","Excusez-moi, monsieur. Où est le marché ?"],
+  ["Masra","A no farawe. Waka go stret, dan drai na yu kruktu anu.","Ce n'est pas loin. Allez tout droit, puis tournez à gauche."],
+  ["Daisy","Mi musu waka langa?","Je dois marcher longtemps ?"],
+  ["Masra","No, feifi minut nomo.","Non, cinq minutes seulement."],
+  ["Daisy","Grantangi, masra!","Merci beaucoup, monsieur !"],
+  ["Masra","Waka bun!","Bonne route !"]
+ ]},
+ { id:"d5", title:"Au téléphone avec tata", sr:"Odi tanta!", lead:"Daisy appelle sa tante qui vit au Suriname.", lines:[
+  ["Daisy","Odi tanta! Fa yu tan?","Bonjour, tata ! Comment vas-tu ?"],
+  ["Tanta","Mi de, mi pikin. Fa yu mama e tan?","Je vais bien, mon enfant. Comment va ta mère ?"],
+  ["Daisy","A bun. A e seni odi gi yu.","Elle va bien. Elle te passe le bonjour."],
+  ["Tanta","Tangi. Oten yu o kon na Sranan?","Merci. Quand viendras-tu au Suriname ?"],
+  ["Daisy","Kande tra yari. Mi e wroko fu dati.","Peut-être l'année prochaine. Je travaille pour ça."],
+  ["Tanta","Kon! Wi o wakti yu.","Viens ! Nous t'attendrons."],
+  ["Daisy","Mi lobi yu, tanta!","Je t'aime, tata !"],
+  ["Tanta","Mi lobi yu tu.","Moi aussi, je t'aime."]
+ ]}
+];
+
+const READING = { title:"Mi famiri", fr:"Ma famille", lines:[
+ ["Mi nen Daisy.","Je m'appelle Daisy."],
+ ["Mi e libi farawe fu Sranan, ma mi mama komoto fu Paramaribo.","J'habite loin du Suriname, mais ma mère vient de Paramaribo."],
+ ["Ala Sonde mi granmama e bori pindabrafu nanga tomtom.","Tous les dimanches, ma grand-mère prépare de la soupe d'arachide avec du tomtom."],
+ ["A nyan switi!","C'est délicieux !"],
+ ["Mi granmama e taki Sranantongo nanga mi, ma mi no e ferstan ala sani ete.","Ma grand-mère me parle en sranan, mais je ne comprends pas encore tout."],
+ ["Now mi e leri Sranantongo ibri dei.","Maintenant, j'apprends le sranan chaque jour."],
+ ["Wan dei mi o go na Sranan nanga mi mama.","Un jour, j'irai au Suriname avec ma mère."],
+ ["Mi breiti!","Je suis heureuse !"]
+]};
+
+const PROVERBS = [
+ ["Pikinso pikinso, fowru e furu en bere.","Petit à petit, l'oiseau remplit son ventre.","La patience paie : c'est notre « petit à petit, l'oiseau fait son nid ». La devise idéale pour apprendre une langue."],
+ ["Suma no wani yere, musu firi.","Qui ne veut pas écouter devra sentir.","Celui qui n'écoute pas les conseils en subira les conséquences. Les grands-parents le disent aux enfants têtus."],
+ ["Tide fu yu, tamara fu mi.","Aujourd'hui c'est ton tour, demain le mien.","La roue tourne : aide les autres, ton tour viendra."],
+ ["Ala sani abi en ten.","Chaque chose a son temps.","Un dicton simple, qui se passe de commentaire."]
+];
+
+/* =========================================================================
+   APPLICATION
+   ========================================================================= */
+(() => {
+"use strict";
+
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm = s => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+  .replace(/[?!.,;:«»"“”'’…()\[\]\-–—/]/g, " ").replace(/\s+/g, " ").trim();
+const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const DAY = 86400000;
+const ymd = (d = new Date()) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+const plural = (n, one, many) => n + " " + (n > 1 ? many : one);
+
+function lev(a, b) {
+  if (a === b) return 0;
+  const m = a.length, n = b.length; if (!m) return n; if (!n) return m;
+  let prev = Array.from({length: n + 1}, (_, i) => i);
+  for (let i = 1; i <= m; i++) {
+    const cur = [i];
+    for (let j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    prev = cur;
+  }
+  return prev[n];
+}
+
+/* Prononciation approchée, écrite pour un lecteur francophone */
+function pron(s) {
+  const t = String(s).toLowerCase(), isV = ch => ch !== "" && "aeiou".includes(ch);
+  let out = "";
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i], n = t[i + 1] || "", p = t[i - 1] || "", two = c + n;
+    const MAP2 = {sy:"ch", ty:"tch", dy:"dj", ny:"gn", ai:"aï", ei:"éï", oi:"oï", ui:"ouï", au:"aou"};
+    if (MAP2[two]) { out += MAP2[two]; i++; continue; }
+    if (c === "u" || c === "w") { out += "ou"; continue; }
+    if (c === "e") { out += "é"; continue; }
+    if (c === "j") { out += "dj"; continue; }
+    if (c === "s" && isV(p) && isV(n)) { out += "ss"; continue; }
+    if (c === "g" && (n === "e" || n === "i")) { out += "gu"; continue; }
+    if (c === "n" && p === "i" && !(isV(n) || n === "y")) { out += "nn"; continue; }
+    out += c;
+  }
+  return out.replace(/[?!.]+$/,"").trim();
+}
+
+/* ---------- Vocabulaire ---------- */
+const VOCAB = [], BYID = {}, FR2SR = new Map();
+THEMES.forEach((t, ti) => t.words.forEach(([sr, fr, note], wi) => {
+  const v = {id: t.id + ":" + sr, sr, fr, note: note || "", theme: t.id, order: ti * 1000 + wi};
+  VOCAB.push(v); BYID[v.id] = v;
+  const k = norm(fr); if (!FR2SR.has(k)) FR2SR.set(k, []); FR2SR.get(k).push(sr);
+}));
+const THEME = Object.fromEntries(THEMES.map(t => [t.id, t]));
+const LESSON = Object.fromEntries(LESSONS.map(l => [l.id, l]));
+const DIALOGUE = Object.fromEntries(DIALOGUES.map(d => [d.id, d]));
+
+/* ---------- Progression (navigateur + compte Claude si disponible) ---------- */
+const LS_KEY = "leri-sranantongo:v1";
+function fresh() { return {v:1, epoch:0, updatedAt:0, xp:0, goal:50, newPer:10, dir:"sr", cards:{}, lessons:{}, dialogues:{}, days:{}}; }
+function normalizeState(x) {
+  const f = fresh();
+  if (!x || typeof x !== "object") return f;
+  return Object.assign(f, x, {cards: x.cards || {}, lessons: x.lessons || {}, dialogues: x.dialogues || {}, days: x.days || {}});
+}
+function loadLocal() { try { const s = localStorage.getItem(LS_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
+function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) {} }
+let S = normalizeState(loadLocal());
+
+function merge(a, b) {
+  a = normalizeState(a); b = normalizeState(b);
+  if ((a.epoch || 0) !== (b.epoch || 0)) return (a.epoch || 0) > (b.epoch || 0) ? a : b;
+  const newer = (b.updatedAt || 0) > (a.updatedAt || 0) ? b : a;
+  const m = fresh();
+  m.epoch = a.epoch || 0;
+  m.updatedAt = Math.max(a.updatedAt || 0, b.updatedAt || 0);
+  m.xp = Math.max(a.xp || 0, b.xp || 0);
+  m.goal = newer.goal; m.newPer = newer.newPer; m.dir = newer.dir;
+  for (const k of new Set([...Object.keys(a.cards), ...Object.keys(b.cards)])) {
+    const x = a.cards[k], y = b.cards[k];
+    m.cards[k] = !x ? y : !y ? x : ((y.l || 0) > (x.l || 0) ? y : x);
+  }
+  for (const k of new Set([...Object.keys(a.lessons), ...Object.keys(b.lessons)])) {
+    const x = a.lessons[k], y = b.lessons[k];
+    m.lessons[k] = !x ? y : !y ? x : ((y.score || 0) >= (x.score || 0) ? y : x);
+  }
+  for (const k of new Set([...Object.keys(a.dialogues), ...Object.keys(b.dialogues)])) m.dialogues[k] = true;
+  for (const k of new Set([...Object.keys(a.days), ...Object.keys(b.days)])) m.days[k] = Math.max(a.days[k] || 0, b.days[k] || 0);
+  return m;
+}
+
+const sync = {ref: null, state: "local", writing: false, again: false, disabled: false, timer: null};
+function setSync(st) {
+  sync.state = st;
+  const label = {local:"Enregistré sur cet appareil", connecting:"Synchronisation…", slow:"Synchronisation lente…", synced:"Synchronisé avec votre compte", error:"Hors ligne · enregistré ici"}[st];
+  document.querySelectorAll(".sync").forEach(b => { b.dataset.s = st; const sp = b.querySelector("span"); if (sp) sp.textContent = label; b.title = label; });
+}
+function save() {
+  S.updatedAt = Date.now();
+  const cutoff = ymd(new Date(Date.now() - 400 * DAY));
+  for (const k of Object.keys(S.days)) if (k < cutoff) delete S.days[k];
+  saveLocal();
+  clearTimeout(sync.timer); sync.timer = setTimeout(pushRemote, 1200);
+}
+async function pushRemote() {
+  if (!sync.ref || sync.disabled) return;
+  if (sync.writing) { sync.again = true; return; }
+  sync.writing = true;
+  try { await sync.ref.set({json: JSON.stringify(S), updatedAt: S.updatedAt}); setSync("synced"); }
+  catch (e) {
+    if (e && e.code === "invalid_argument") { sync.disabled = true; setSync("local"); }
+    else if (e && e.code === "unavailable") setSync("error");
+    else setSync("error");
+  }
+  sync.writing = false;
+  if (sync.again) { sync.again = false; pushRemote(); }
+}
+async function initRemote() {
+  if (!window.claude || typeof window.claude.use !== "function") return;
+  try {
+    const [user, db] = await Promise.all([window.claude.use("user"), window.claude.use("db")]);
+    if (!user || !db) return;
+    const id = await user.id();
+    if (!id) return;
+    sync.ref = db.doc("data/users/" + id + "/progress");
+    setSync("connecting");
+    let loaded = false;
+    const slow = setTimeout(() => { if (!loaded) setSync("slow"); }, 10000);
+    sync.ref.onSnapshot(snap => {
+      if (!snap.metadata.fromCache) { loaded = true; clearTimeout(slow); }
+      if (snap.exists) {
+        const d = snap.data();
+        try {
+          const remote = JSON.parse(d.json);
+          const merged = merge(S, remote);
+          if (JSON.stringify(merged) !== JSON.stringify(S)) { S = merged; saveLocal(); softRender(); }
+        } catch (e) {}
+      }
+      if (!snap.metadata.fromCache) setSync("synced");
+    }, () => { loaded = true; clearTimeout(slow); setSync("error"); sync.ref = null; });
+  } catch (e) {}
+}
+
+/* ---------- Cartes & révision espacée (boîtes de Leitner) ---------- */
+const INTERVALS = [0, 1, 3, 7, 16, 35]; // en jours, par boîte
+const card = id => S.cards[id] || null;
+const isDue = c => !!c && (c.b === 0 || c.d <= Date.now());
+const dueList = (theme) => VOCAB.filter(v => (!theme || v.theme === theme) && isDue(card(v.id)));
+function addXP(n) { S.xp += n; const k = ymd(); S.days[k] = (S.days[k] || 0) + n; }
+function grade(id, g, xp = true) {
+  const now = Date.now();
+  const c = Object.assign({b: 0, d: now, l: 0, r: 0, w: 0}, card(id));
+  if (g === "good") { c.b = Math.min(5, c.b + 1); c.d = now + INTERVALS[c.b] * DAY; c.r++; if (xp) addXP(5); }
+  else if (g === "hard") { c.b = Math.max(1, c.b); c.d = now + DAY; c.r++; if (xp) addXP(3); }
+  else { c.b = 0; c.d = now; c.w++; if (xp) addXP(1); }
+  c.l = now;
+  S.cards[id] = c;
+}
+function themeStats(tid) {
+  const words = VOCAB.filter(v => !tid || v.theme === tid);
+  let seen = 0, mastered = 0, due = 0;
+  for (const v of words) { const c = card(v.id); if (c) { seen++; if (c.b >= 4) mastered++; if (isDue(c)) due++; } }
+  return {total: words.length, seen, mastered, due};
+}
+function streak() {
+  let n = 0; const d = new Date();
+  if (!(S.days[ymd(d)] > 0)) d.setDate(d.getDate() - 1);
+  while (S.days[ymd(d)] > 0) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+}
+function dots(id) {
+  const c = card(id), b = c ? c.b : -1;
+  let h = '<span class="dots" title="' + (b < 0 ? "Pas encore vu" : "Niveau " + b + " sur 5") + '">';
+  for (let i = 1; i <= 5; i++) h += '<i class="' + (b >= i ? "on" : "") + '"></i>';
+  return h + "</span>";
+}
+
+/* ---------- Petits composants ---------- */
+const srSpan = s => '<span class="sr">' + esc(s) + "</span>";
+const pronSpan = s => '<span class="pron">≈ ' + esc(pron(s)) + "</span>";
+function exList(rows) {
+  return '<ul class="ex">' + rows.map(([s, f]) => '<li><span class="s">' + srSpan(s) + pronSpan(s) + '</span><span class="fr">' + esc(f) + "</span></li>").join("") + "</ul>";
+}
+function table(t) {
+  return '<div class="tbl"><table><thead><tr>' + t.head.map(h => "<th>" + esc(h) + "</th>").join("") + "</tr></thead><tbody>" +
+    t.rows.map(r => "<tr>" + r.map((c, i) => t.src.includes(i) ? '<td class="sr">' + esc(c) + "</td>" : "<td>" + esc(c) + "</td>").join("") + "</tr>").join("") +
+    "</tbody></table></div>";
+}
+const bar = (pct, cls = "") => '<div class="bar ' + cls + '"><i style="width:' + Math.max(0, Math.min(100, pct)).toFixed(1) + '%"></i></div>';
+
+/* ---------- Navigation ---------- */
+const NAV = [
+  ["accueil","Accueil"],["lecons","Leçons"],["vocab","Vocabulaire"],["reviser","Réviser"],["exercices","Exercices"],
+  ["dialogues","Dialogues"],["dico","Dictionnaire"],["parler","Parler"],["culture","Culture"]
+];
+function navSection(h) {
+  if (h.startsWith("lecon-")) return "lecons";
+  if (h.startsWith("theme-")) return "vocab";
+  if (h.startsWith("dialogue-")) return "dialogues";
+  if (h === "reglages") return "accueil";
+  return h;
+}
+function renderNav(h) {
+  const cur = navSection(h), due = dueList().length;
+  $("#nav").innerHTML = NAV.map(([id, label]) =>
+    '<a href="#' + id + '"' + (id === cur ? ' aria-current="page"' : "") + ">" + esc(label) +
+    (id === "reviser" && due ? '<span class="badge" aria-label="' + due + ' à réviser">' + due + "</span>" : "") + "</a>").join("");
+  const active = $("#nav [aria-current]");
+  if (active && window.matchMedia("(max-width:860px)").matches) active.scrollIntoView({block: "nearest", inline: "nearest"});
+}
+
+/* ---------- Vues ---------- */
+function greeting() {
+  const h = new Date().getHours();
+  return h < 12 ? ["Gudu mamanten!","Bonjour !"] : h < 18 ? ["Gudu bakadina!","Bon après-midi !"] : ["Gudu neti!","Bonsoir !"];
+}
+function nextLesson() { return LESSONS.find(l => !S.lessons[l.id]) || null; }
+function celebration() {
+  const now = new Date(); now.setHours(0, 0, 0, 0);
+  const evs = [
+    {name:"Keti Koti", m:6, d:1, txt:"Le 1er juillet, « chaînes coupées » : la commémoration de l'abolition de l'esclavage au Suriname (1863)."},
+    {name:"Srefidensi", m:10, d:25, txt:"Le 25 novembre, la fête de l'indépendance du Suriname (1975)."}
+  ];
+  let best = null;
+  for (const e of evs) {
+    let dt = new Date(now.getFullYear(), e.m, e.d);
+    if (dt < now) dt = new Date(now.getFullYear() + 1, e.m, e.d);
+    const days = Math.round((dt - now) / DAY);
+    if (days <= 30 && (!best || days < best.days)) best = Object.assign({days}, e);
+  }
+  return best;
+}
+function wordOfDay() {
+  const pool = VOCAB.filter(v => v.theme !== "nombres");
+  const n = Math.floor(new Date(ymd() + "T12:00:00").getTime() / DAY);
+  return pool[((n * 7919) % pool.length + pool.length) % pool.length];
+}
+
+function vHome() {
+  const [gs, gf] = greeting();
+  const st = themeStats(), due = st.due, todayXP = S.days[ymd()] || 0, nl = nextLesson();
+  const w = wordOfDay(), cel = celebration();
+  const reviewLabel = due ? "Réviser " + plural(due, "carte", "cartes") : (st.seen < st.total ? "Apprendre de nouveaux mots" : "Tout est révisé");
+  const themesStarted = THEMES.map(t => [t, themeStats(t.id)]);
+  return `
+  <div class="stack-lg fade">
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">${esc(gf)}</p>
+        <h1><span class="sr">${esc(gs)}</span></h1>
+        <p class="lead">Réapprenez le sranan à votre rythme, un peu chaque jour : <span class="sr">pikinso pikinso</span>.</p>
+        <div class="row">
+          <a class="btn" href="#reviser">${esc(reviewLabel)}</a>
+          ${nl ? `<a class="btn ghost" href="#lecon-${nl.id}">Leçon ${LESSONS.indexOf(nl) + 1} : ${esc(nl.title)}</a>` : `<a class="btn ghost" href="#exercices">Faire des exercices</a>`}
+        </div>
+      </div>
+      <div class="cloth" aria-hidden="true"></div>
+    </section>
+
+    <section class="stats" aria-label="Vos chiffres">
+      <div class="stat"><b>${streak()}</b><span>${streak() > 1 ? "jours de suite" : "jour de suite"}</span></div>
+      <div class="stat"><b>${todayXP}<small class="muted" style="font-size:1rem"> / ${S.goal}</small></b><span>points aujourd'hui</span></div>
+      <div class="stat"><b>${st.mastered}</b><span>mots maîtrisés sur ${st.total}</span></div>
+      <div class="stat"><b>${Object.keys(S.lessons).length}<small class="muted" style="font-size:1rem"> / ${LESSONS.length}</small></b><span>leçons terminées</span></div>
+    </section>
+
+    <section class="grid2">
+      <article class="panel stack wotd">
+        <p class="eyebrow">Mot du jour</p>
+        <div class="stack" style="gap:4px">${srSpan(w.sr)}${pronSpan(w.sr)}</div>
+        <p style="font-size:1.15rem;font-weight:600">${esc(w.fr)}</p>
+        ${w.note ? `<p class="muted small">${esc(w.note)}</p>` : ""}
+        <p class="small muted">Thème : <a href="#theme-${w.theme}">${esc(THEME[w.theme].name)}</a></p>
+      </article>
+      <article class="panel stack">
+        <p class="eyebrow">Objectif du jour</p>
+        <p style="font-size:1.15rem;font-weight:600">${todayXP >= S.goal ? "Objectif atteint. Bun wroko!" : "Encore " + (S.goal - todayXP) + " points pour aujourd'hui."}</p>
+        ${bar(todayXP / S.goal * 100, "gold")}
+        <p class="small muted">Une carte révisée rapporte jusqu'à 5 points, une bonne réponse en exercice 10, une leçon terminée 20 à 45. <a href="#reglages">Changer l'objectif</a></p>
+      </article>
+    </section>
+
+    ${cel ? `<section class="panel celebr">
+      <div class="num">${cel.days === 0 ? "Tide" : cel.days}<small>${cel.days === 0 ? "aujourd'hui" : cel.days > 1 ? "jours" : "jour"}</small></div>
+      <div class="stack" style="gap:4px"><h3>${esc(cel.name)}${cel.days === 0 ? " — c'est aujourd'hui !" : ""}</h3><p class="muted">${esc(cel.txt)} <a href="#culture">En savoir plus</a></p></div>
+    </section>` : ""}
+
+    <section class="stack">
+      <div class="spread"><h2>Votre vocabulaire</h2><a href="#vocab" class="small">Tous les thèmes</a></div>
+      <div class="grid3">
+        ${themesStarted.slice(0, 6).map(([t, s]) => themeCard(t, s)).join("")}
+      </div>
+    </section>
+  </div>`;
+}
+function themeCard(t, s) {
+  return `<a class="theme-card" href="#theme-${t.id}">
+    <div class="spread"><h3>${esc(t.name)}</h3>${s.due ? `<span class="pill warn">${s.due} à revoir</span>` : s.seen === 0 ? `<span class="pill new">Nouveau</span>` : ""}</div>
+    <p class="small muted">${esc(t.lead)}</p>
+    ${bar(s.mastered / s.total * 100)}
+    <p class="small muted">${s.mastered} maîtrisés · ${s.seen - s.mastered} en cours · ${s.total} mots</p>
+  </a>`;
+}
+
+function vLessons() {
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow">Grammaire</p><h1>Leçons</h1>
+      <p class="muted prose">Quatorze leçons courtes, à suivre dans l'ordre. Chacune se termine par un petit test. La grammaire du sranan est bien plus simple que celle du français : pas de conjugaison, pas de genre, pas d'accord.</p></header>
+    <div class="list">
+      ${LESSONS.map((l, i) => {
+        const r = S.lessons[l.id];
+        return `<a class="lrow" href="#lecon-${l.id}">
+          <div class="stack" style="gap:2px"><span class="lnum">Leçon ${i + 1}</span><b style="font-size:1.08rem">${esc(l.title)}</b><span class="sr small">${esc(l.key)}</span></div>
+          ${r ? `<span class="pill ok">${r.score}/${r.total}</span>` : `<span class="pill">À faire</span>`}
+        </a>`;
+      }).join("")}
+    </div>
+  </div>`;
+}
+
+let LQ = null; // test de leçon en cours
+function vLesson(id) {
+  const l = LESSON[id]; if (!l) return vLessons();
+  const i = LESSONS.indexOf(l), prev = LESSONS[i - 1], next = LESSONS[i + 1];
+  if (!LQ || LQ.id !== id) LQ = {id, i: 0, picked: null, correct: 0, done: false, orders: l.quiz.map(q => shuffle(q.o.map((_, k) => k)))};
+  const body = l.sections.map(s => `<section class="stack">
+      <h3>${esc(s.h)}</h3>
+      ${s.p ? `<p class="prose">${s.p}</p>` : ""}
+      ${s.table ? table(s.table) : ""}
+      ${s.ex ? exList(s.ex) : ""}
+    </section>`).join("");
+  return `<article class="stack-lg fade lesson-body">
+    <header class="stack" style="gap:8px">
+      <p class="eyebrow"><a href="#lecons">Leçons</a> · ${i + 1} sur ${LESSONS.length}</p>
+      <h1>${esc(l.title)}</h1>
+      <p class="prose" style="font-size:1.08rem">${l.intro}</p>
+    </header>
+    ${body}
+    ${l.tip ? `<p class="note prose">${l.tip}</p>` : ""}
+    <section class="panel stack" id="lesson-quiz" aria-live="polite">${lessonQuizHTML(l)}</section>
+    <nav class="spread" aria-label="Autres leçons">
+      ${prev ? `<a class="btn ghost sm" href="#lecon-${prev.id}">← ${esc(prev.title)}</a>` : "<span></span>"}
+      ${next ? `<a class="btn ghost sm" href="#lecon-${next.id}">${esc(next.title)} →</a>` : `<a class="btn ghost sm" href="#exercices">Passer aux exercices →</a>`}
+    </nav>
+  </article>`;
+}
+function lessonQuizHTML(l) {
+  const q = LQ;
+  if (q.done) {
+    const prev = S.lessons[l.id];
+    return `<p class="eyebrow">Testez-vous</p>
+      <h2>${q.correct === l.quiz.length ? "Parfait ! " + srSpan("Bun wroko!") : q.correct + " bonne" + (q.correct > 1 ? "s" : "") + " réponse" + (q.correct > 1 ? "s" : "") + " sur " + l.quiz.length}</h2>
+      <p class="muted">${prev ? "Leçon enregistrée comme terminée." : ""} Vous pouvez refaire le test quand vous voulez.</p>
+      <div class="row"><button class="btn ghost" type="button" data-act="ls-retry">Refaire le test</button>
+      ${LESSONS[LESSONS.indexOf(l) + 1] ? `<a class="btn" href="#lecon-${LESSONS[LESSONS.indexOf(l) + 1].id}">Leçon suivante</a>` : `<a class="btn" href="#exercices">Exercices</a>`}</div>`;
+  }
+  const item = l.quiz[q.i], order = q.orders[q.i];
+  const answered = q.picked !== null;
+  return `<div class="spread"><p class="eyebrow">Testez-vous · question ${q.i + 1} sur ${l.quiz.length}</p></div>
+    <h3 style="font-size:1.2rem">${esc(item.q)}</h3>
+    <div class="opts">
+      ${order.map((k, n) => {
+        const cls = answered ? (k === 0 ? "ok" : k === q.picked ? "bad" : "") : "";
+        return `<button class="opt ${cls}" type="button" data-act="ls-opt" data-k="${k}" ${answered ? "disabled" : ""}><kbd>${n + 1}</kbd><span>${esc(item.o[k])}</span></button>`;
+      }).join("")}
+    </div>
+    ${answered ? `<div class="feedback ${q.picked === 0 ? "ok" : "bad"}"><b>${q.picked === 0 ? "Bravo !" : "Pas tout à fait."}</b>${q.picked !== 0 ? `<span>La bonne réponse : ${esc(item.o[0])}</span>` : ""}${item.x ? `<span class="muted">${esc(item.x)}</span>` : ""}</div>
+      <div><button class="btn" type="button" data-act="ls-next">${q.i + 1 < l.quiz.length ? "Question suivante" : "Voir le résultat"}</button></div>` : ""}`;
+}
+
+function vVocab() {
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow">Wortu</p><h1>Vocabulaire</h1>
+      <p class="muted prose">${VOCAB.length} mots et expressions, rangés par thème. Ouvrez un thème pour voir la liste, puis révisez-le en cartes ou en exercices.</p></header>
+    <div class="grid3">${THEMES.map(t => themeCard(t, themeStats(t.id))).join("")}</div>
+  </div>`;
+}
+function vTheme(id) {
+  const t = THEME[id]; if (!t) return vVocab();
+  const s = themeStats(id);
+  const words = VOCAB.filter(v => v.theme === id);
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow"><a href="#vocab">Vocabulaire</a></p><h1>${esc(t.name)}</h1>
+      <p class="muted">${esc(t.lead)}</p>
+      <div style="max-width:420px">${bar(s.mastered / s.total * 100)}</div>
+      <p class="small muted">${s.mastered} maîtrisés · ${s.seen - s.mastered} en cours · ${s.total - s.seen} jamais vus</p>
+      <div class="row"><button class="btn" type="button" data-act="rv-start" data-theme="${id}">Réviser ce thème en cartes</button>
+        <button class="btn ghost" type="button" data-act="qz-theme-start" data-theme="${id}">Exercices sur ce thème</button></div>
+    </header>
+    <div class="list">
+      ${words.map(v => `<div class="word">${srSpan(v.sr)}<span class="fr">${esc(v.fr)}</span>${dots(v.id)}
+        <span class="nt">${pronSpan(v.sr)}${v.note ? " · " + esc(v.note) : ""}</span></div>`).join("")}
+    </div>
+  </div>`;
+}
+
+/* ----- Révision en cartes ----- */
+let RV = null;
+function startReview(theme) {
+  const now = Date.now();
+  const pool = VOCAB.filter(v => !theme || v.theme === theme);
+  const due = shuffle(pool.filter(v => isDue(card(v.id)))).slice(0, 40);
+  const fresh = pool.filter(v => !card(v.id)).sort((a, b) => a.order - b.order).slice(0, S.newPer);
+  const ids = [], newIds = new Set(fresh.map(v => v.id));
+  const d = due.map(v => v.id), f = fresh.map(v => v.id);
+  while (d.length || f.length) { if (d.length) ids.push(d.shift()); if (d.length) ids.push(d.shift()); if (f.length) ids.push(f.shift()); }
+  RV = {theme: theme || null, ids, i: 0, revealed: false, newIds, stats: {good: 0, hard: 0, again: 0}, requeued: new Set(), started: now, dirs: {}};
+}
+function cardDir(id) {
+  if (!RV.dirs[id]) RV.dirs[id] = S.dir === "mix" ? pick(["sr", "fr"]) : S.dir;
+  return RV.dirs[id];
+}
+function vReview() {
+  const s = themeStats();
+  if (!RV || RV.i >= RV.ids.length) {
+    const finished = RV && RV.ids.length && RV.i >= RV.ids.length;
+    const res = finished ? RV.stats : null;
+    return `<div class="stack-lg fade">
+      <header class="stack" style="gap:8px"><p class="eyebrow">Révision espacée</p><h1>Réviser</h1>
+        <p class="muted prose">Chaque mot revient juste avant que vous ne l'oubliiez : le lendemain, puis après 3 jours, une semaine, deux semaines, un mois. Un mot oublié repart au début.</p></header>
+      ${res ? `<section class="panel stack"><h2>Séance terminée. ${srSpan("Bun wroko!")}</h2>
+        <p>${res.good} « je savais » · ${res.hard} « difficile » · ${res.again} « à revoir »</p></section>` : ""}
+      <section class="stats">
+        <div class="stat"><b>${s.due}</b><span>cartes à revoir</span></div>
+        <div class="stat"><b>${s.total - s.seen}</b><span>mots jamais vus</span></div>
+        <div class="stat"><b>${s.seen - s.mastered}</b><span>en cours</span></div>
+        <div class="stat"><b>${s.mastered}</b><span>maîtrisés</span></div>
+      </section>
+      <section class="panel stack">
+        <div class="stack" style="gap:8px"><p class="eyebrow">Sens des cartes</p>
+          <div class="seg" role="group" aria-label="Sens des cartes">
+            ${[["sr","Sranan → français"],["fr","Français → sranan"],["mix","Mélangé"]].map(([k, l]) => `<button type="button" data-act="set-dir" data-v="${k}" aria-pressed="${S.dir === k}">${l}</button>`).join("")}
+          </div></div>
+        <div class="stack" style="gap:8px"><p class="eyebrow">Nouveaux mots par séance</p>
+          <div class="seg" role="group" aria-label="Nouveaux mots par séance">
+            ${[0,5,10,20].map(n => `<button type="button" data-act="set-new" data-v="${n}" aria-pressed="${S.newPer === n}">${n}</button>`).join("")}
+          </div></div>
+        <div class="row"><button class="btn" type="button" data-act="rv-start" ${!s.due && (s.seen >= s.total || !S.newPer) ? "disabled" : ""}>
+          ${s.due ? "Commencer : " + plural(Math.min(40, s.due), "carte", "cartes") + (S.newPer && s.seen < s.total ? " + " + Math.min(S.newPer, s.total - s.seen) + " nouvelles" : "") : (S.newPer && s.seen < s.total ? "Apprendre " + Math.min(S.newPer, s.total - s.seen) + " nouveaux mots" : "Rien à réviser pour l'instant")}</button>
+          <a class="btn ghost" href="#vocab">Choisir un thème</a></div>
+        <p class="small muted">Raccourcis clavier : <b>Espace</b> pour retourner la carte, <b>1</b> <b>2</b> <b>3</b> pour répondre.</p>
+      </section>
+    </div>`;
+  }
+  const id = RV.ids[RV.i], v = BYID[id], dir = cardDir(id), isNew = !card(id) && RV.newIds.has(id);
+  const front = dir === "sr" ? `<div class="big sr">${esc(v.sr)}</div>${pronSpan(v.sr)}` : `<div class="big">${esc(v.fr)}</div>`;
+  const back = dir === "sr"
+    ? `<div class="main">${esc(v.fr)}</div>${v.note ? `<p class="muted small">${esc(v.note)}</p>` : ""}`
+    : `<div class="main sr" style="font-size:1.7rem">${esc(v.sr)}</div>${pronSpan(v.sr)}${v.note ? `<p class="muted small">${esc(v.note)}</p>` : ""}`;
+  return `<div class="qwrap fade">
+    <div class="qhead"><span class="lnum">${RV.i + 1} / ${RV.ids.length}</span>${bar(RV.i / RV.ids.length * 100)}<button class="btn ghost sm" type="button" data-act="rv-end">Arrêter</button></div>
+    <div class="flash">
+      <div class="row" style="justify-content:center">${isNew ? '<span class="pill new">Nouveau mot</span>' : ""}<span class="pill">${esc(THEME[v.theme].name)}</span></div>
+      ${front}
+      ${RV.revealed ? `<div class="ans">${back}</div>` : ""}
+    </div>
+    ${RV.revealed
+      ? `<div class="grades">
+          <button class="btn g-again" type="button" data-act="rv-grade" data-g="again">À revoir<small>1 · je ne savais pas</small></button>
+          <button class="btn g-hard" type="button" data-act="rv-grade" data-g="hard">Difficile<small>2 · demain</small></button>
+          <button class="btn" type="button" data-act="rv-grade" data-g="good">Je savais<small>3 · ${goodLabel(id)}</small></button>
+        </div>`
+      : `<button class="btn" type="button" data-act="rv-reveal" style="width:100%">Voir la réponse</button>`}
+  </div>`;
+}
+function goodLabel(id) {
+  const c = card(id), nb = Math.min(5, (c ? c.b : 0) + 1), d = INTERVALS[nb];
+  return d === 1 ? "demain" : "dans " + d + " jours";
+}
+
+/* ----- Exercices ----- */
+let QZ = null;
+let QSEL = null;
+function defaultSel() {
+  const started = THEMES.filter(t => themeStats(t.id).seen > 0).map(t => t.id);
+  return new Set(started.length ? started : ["salut", "mots", "famille"]);
+}
+function distractors(v, field, n) {
+  const ok = x => x.id !== v.id && norm(x.fr) !== norm(v.fr) && norm(x.sr) !== norm(v.sr);
+  let pool = shuffle(VOCAB.filter(x => x.theme === v.theme && ok(x)));
+  if (pool.length < n) pool = pool.concat(shuffle(VOCAB.filter(x => x.theme !== v.theme && ok(x))));
+  const out = [], seen = new Set([norm(v[field])]);
+  for (const x of pool) { const k = norm(x[field]); if (!seen.has(k)) { seen.add(k); out.push(x[field]); } if (out.length >= n) break; }
+  return out;
+}
+function buildQuiz(themes, n = 10) {
+  const pool = VOCAB.filter(v => themes.has(v.theme));
+  const weighted = shuffle(pool).sort((a, b) => {
+    const ca = card(a.id), cb = card(b.id);
+    const sa = ca ? (isDue(ca) ? 0 : 1 + ca.b) : 3, sb = cb ? (isDue(cb) ? 0 : 1 + cb.b) : 3;
+    return sa - sb;
+  });
+  const words = weighted.slice(0, Math.min(n, weighted.length));
+  const qs = [];
+  let wi = 0;
+  for (let i = 0; i < n; i++) {
+    const r = Math.random();
+    let type = r < .3 ? "mc-sr" : r < .55 ? "mc-fr" : r < .72 ? "type" : r < .87 ? "order" : "marker";
+    if ((type === "mc-sr" || type === "mc-fr" || type === "type") && wi >= words.length) type = Math.random() < .5 ? "order" : "marker";
+    if (type === "order") {
+      const [sr, fr] = pick(SENTENCES);
+      const end = (sr.match(/[?!.]$/) || [""])[0];
+      const toks = sr.replace(/[?!.]$/, "").replace(/,/g, "").split(" ");
+      const extra = shuffle(["e","ben","o","no","kaba","fu","na","den"].filter(x => !toks.map(t => t.toLowerCase()).includes(x)))[0];
+      let pool = shuffle(toks.concat(extra));
+      qs.push({type, sr, fr, end, pool, answer: norm(toks.join(" "))});
+    } else if (type === "marker") {
+      const [sr, fr, ans, opts] = pick(MARKERS);
+      qs.push({type, sr, fr, answer: ans, options: shuffle(opts)});
+    } else {
+      const v = words[wi++];
+      if (type === "type" && v.sr.includes("…")) type = "mc-fr";
+      if (type === "mc-sr") qs.push({type, v, options: shuffle([v.fr].concat(distractors(v, "fr", 3))), answer: v.fr});
+      else if (type === "mc-fr") qs.push({type, v, options: shuffle([v.sr].concat(distractors(v, "sr", 3))), answer: v.sr});
+      else qs.push({type, v});
+    }
+  }
+  return {qs, i: 0, picked: null, correct: 0, built: [], typed: "", result: null, themes: [...themes]};
+}
+function vQuiz() {
+  if (!QSEL) QSEL = defaultSel();
+  if (!QZ) {
+    return `<div class="stack-lg fade">
+      <header class="stack" style="gap:8px"><p class="eyebrow">Entraînement</p><h1>Exercices</h1>
+        <p class="muted prose">Dix questions variées : choisir la traduction, écrire le mot en sranan, remettre une phrase dans l'ordre, choisir la bonne marque de temps. Les mots ratés reviennent en priorité dans vos révisions.</p></header>
+      <section class="panel stack">
+        <div class="spread"><p class="eyebrow">Thèmes à travailler</p>
+          <div class="row"><button class="btn ghost sm" type="button" data-act="qz-all">Tout</button><button class="btn ghost sm" type="button" data-act="qz-none">Aucun</button></div></div>
+        <div class="row">${THEMES.map(t => `<button class="chip" type="button" data-act="qz-chip" data-theme="${t.id}" aria-pressed="${QSEL.has(t.id)}">${esc(t.name)}</button>`).join("")}</div>
+        <div><button class="btn" type="button" data-act="qz-start" ${QSEL.size ? "" : "disabled"}>Commencer les exercices</button></div>
+      </section>
+    </div>`;
+  }
+  if (QZ.i >= QZ.qs.length) {
+    const pct = Math.round(QZ.correct / QZ.qs.length * 100);
+    return `<div class="qwrap fade">
+      <p class="eyebrow">Résultat</p>
+      <h1>${QZ.correct} / ${QZ.qs.length}</h1>
+      ${bar(pct)}
+      <p style="font-size:1.1rem">${pct === 100 ? "Sans faute ! " + srSpan("Yu koni!") : pct >= 70 ? "Très bien. Continuez comme ça." : pct >= 40 ? "C'est un bon début. Les mots ratés reviendront dans vos révisions." : "Pas de panique : revoyez les cartes du thème, puis réessayez."}</p>
+      <div class="row"><button class="btn" type="button" data-act="qz-again">Nouvelle série</button><button class="btn ghost" type="button" data-act="qz-setup">Changer de thèmes</button><a class="btn ghost" href="#reviser">Réviser</a></div>
+    </div>`;
+  }
+  const q = QZ.qs[QZ.i], answered = QZ.result !== null;
+  let body = "";
+  const kb = (n) => `<kbd>${n}</kbd>`;
+  if (q.type === "mc-sr" || q.type === "mc-fr" || q.type === "marker") {
+    let head;
+    if (q.type === "mc-sr") head = `<p class="eyebrow">Que veut dire…</p><div class="qprompt sr">${esc(q.v.sr)}</div>${pronSpan(q.v.sr)}`;
+    else if (q.type === "mc-fr") head = `<p class="eyebrow">Comment dit-on en sranan…</p><div class="qprompt">${esc(q.v.fr)}</div>`;
+    else head = `<p class="eyebrow">Choisissez la bonne marque de temps</p><div class="qprompt sr">${esc(q.sr).replace("___", '<span style="color:var(--gold)">___</span>')}</div><p class="muted">${esc(q.fr)}</p>`;
+    const srOpts = q.type !== "mc-sr";
+    body = head + `<div class="opts">${q.options.map((o, n) => {
+      const cls = answered ? (o === q.answer ? "ok" : n === QZ.picked ? "bad" : "") : "";
+      return `<button class="opt ${srOpts ? "sr-opt" : ""} ${cls}" type="button" data-act="qz-opt" data-n="${n}" ${answered ? "disabled" : ""}>${kb(n + 1)}<span>${esc(o)}</span></button>`;
+    }).join("")}</div>`;
+  } else if (q.type === "type") {
+    body = `<p class="eyebrow">Écrivez en sranan</p><div class="qprompt">${esc(q.v.fr)}</div>
+      <label class="small muted" for="qz-input">Votre réponse (les accents et majuscules ne comptent pas)</label>
+      <input class="tin" id="qz-input" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(QZ.typed)}" ${answered ? "disabled" : ""} placeholder="…">
+      ${answered ? "" : `<div class="row"><button class="btn" type="button" data-act="qz-check">Vérifier</button><button class="btn ghost" type="button" data-act="qz-skip">Je ne sais pas</button></div>`}`;
+  } else if (q.type === "order") {
+    const used = new Set(QZ.built);
+    body = `<p class="eyebrow">Remettez la phrase dans l'ordre</p><div class="qprompt" style="font-size:1.4rem">${esc(q.fr)}</div>
+      <p class="small muted">Attention : un mot en trop s'est glissé dans la liste.</p>
+      <div class="tokens" aria-label="Votre phrase">${QZ.built.map((k, n) => `<button class="tok" type="button" data-act="qz-untok" data-n="${n}" ${answered ? "disabled" : ""}>${esc(q.pool[k])}</button>`).join("") || '<span class="muted small" style="padding:8px">Touchez les mots ci-dessous…</span>'}</div>
+      <div class="tokens pool" aria-label="Mots disponibles">${q.pool.map((w, k) => `<button class="tok" type="button" data-act="qz-tok" data-k="${k}" ${used.has(k) || answered ? "disabled" : ""}>${esc(w)}</button>`).join("")}</div>
+      ${answered ? "" : `<div class="row"><button class="btn" type="button" data-act="qz-check" ${QZ.built.length ? "" : "disabled"}>Vérifier</button><button class="btn ghost" type="button" data-act="qz-skip">Je ne sais pas</button></div>`}`;
+  }
+  let fb = "";
+  if (answered) {
+    const r = QZ.result;
+    let right = "";
+    if (q.type === "mc-sr") right = `${srSpan(q.v.sr)} = ${esc(q.v.fr)}`;
+    else if (q.type === "mc-fr" || q.type === "type") right = `${esc(q.v.fr)} = ${srSpan(q.v.sr)} ${pronSpan(q.v.sr)}`;
+    else if (q.type === "order") right = srSpan(q.sr);
+    else right = srSpan(q.sr.replace("___", q.answer));
+    fb = `<div class="feedback ${r.ok ? "ok" : "bad"}" role="status"><b>${r.ok ? (r.almost ? "Presque ! Petite faute d'orthographe." : pick(["Bravo !", "Bun!", "Exact !", "Yu koni!"])) : "Pas tout à fait."}</b>
+      <span>${right}</span>${q.v && q.v.note ? `<span class="muted small">${esc(q.v.note)}</span>` : ""}</div>
+      <div><button class="btn" type="button" data-act="qz-next" id="qz-next">${QZ.i + 1 < QZ.qs.length ? "Continuer" : "Voir le résultat"}</button></div>`;
+  }
+  return `<div class="qwrap fade">
+    <div class="qhead"><span class="lnum">${QZ.i + 1} / ${QZ.qs.length}</span>${bar(QZ.i / QZ.qs.length * 100)}<button class="btn ghost sm" type="button" data-act="qz-setup">Arrêter</button></div>
+    ${body}
+    <div aria-live="polite">${fb}</div>
+  </div>`;
+}
+function checkTyped(v, input) {
+  const a = norm(input); if (!a) return {ok: false};
+  const accepted = FR2SR.get(norm(v.fr)) || [v.sr];
+  for (const s of accepted) if (norm(s) === a) return {ok: true};
+  for (const s of accepted) { const t = norm(s); if (t.length >= 4 && lev(t, a) <= 1) return {ok: true, almost: true}; }
+  return {ok: false};
+}
+function quizAnswer(ok, almost) {
+  const q = QZ.qs[QZ.i];
+  QZ.result = {ok, almost: !!almost};
+  if (ok) { QZ.correct++; addXP(10); }
+  if (q.v) {
+    const c = card(q.v.id);
+    if (!ok) grade(q.v.id, "again", false);
+    else if (!c) { S.cards[q.v.id] = {b: 1, d: Date.now() + DAY, l: Date.now(), r: 1, w: 0}; }
+    else if (isDue(c)) grade(q.v.id, "good", false);
+    else { c.r++; c.l = Date.now(); }
+  }
+  save();
+}
+
+/* ----- Dialogues ----- */
+let DLG = {tr: false, hide: false, shown: new Set()};
+function vDialogues() {
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow">Tori</p><h1>Dialogues</h1>
+      <p class="muted prose">Des scènes de la vie de tous les jours, du marché au téléphone avec la famille. Lisez à voix haute, puis cachez le sranan pour vous tester.</p></header>
+    <div class="list">
+      ${DIALOGUES.map(d => `<a class="lrow" href="#dialogue-${d.id}"><div class="stack" style="gap:2px"><b style="font-size:1.08rem">${esc(d.title)}</b><span class="sr small">${esc(d.sr)}</span><span class="small muted">${esc(d.lead)}</span></div>
+        ${S.dialogues[d.id] ? '<span class="pill ok">Lu</span>' : '<span class="pill">À lire</span>'}</a>`).join("")}
+      <a class="lrow" href="#dialogue-lecture"><div class="stack" style="gap:2px"><b style="font-size:1.08rem">Texte à lire : ${esc(READING.fr)}</b><span class="sr small">${esc(READING.title)}</span><span class="small muted">Un petit texte suivi, phrase par phrase.</span></div>
+        ${S.dialogues.lecture ? '<span class="pill ok">Lu</span>' : '<span class="pill">À lire</span>'}</a>
+    </div>
+  </div>`;
+}
+function vDialogue(id) {
+  const isReading = id === "lecture";
+  const d = isReading ? {id, title: READING.fr, sr: READING.title, lead: "Lisez chaque phrase à voix haute avant de regarder la traduction.", lines: READING.lines.map(([s, f]) => ["", s, f])} : DIALOGUE[id];
+  if (!d) return vDialogues();
+  const speakers = [...new Set(d.lines.map(l => l[0]))];
+  const lines = d.lines.map((l, i) => {
+    const showFr = DLG.tr || DLG.shown.has(i);
+    const showSr = !DLG.hide || DLG.shown.has(i);
+    const side = speakers.indexOf(l[0]) % 2 ? "b" : "a";
+    return `<div class="line ${isReading ? "a" : side}">${isReading ? '<span class="who">' + (i + 1) + "</span>" : '<span class="who">' + esc(l[0]) + "</span>"}
+      <button class="bubble" type="button" data-act="dl-line" data-i="${i}" aria-label="Afficher la traduction">
+        ${showSr ? srSpan(l[1]) + pronSpan(l[1]) : `<span class="fr" style="color:var(--fg);font-weight:600">${esc(l[2])}</span><span class="hid">Touchez pour voir le sranan</span>`}
+        ${showSr && showFr ? `<span class="fr">${esc(l[2])}</span>` : ""}
+      </button></div>`;
+  }).join("");
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow"><a href="#dialogues">Dialogues</a></p><h1>${esc(d.title)}</h1><p class="sr" style="font-size:1.2rem">${esc(d.sr)}</p><p class="muted">${esc(d.lead)}</p>
+      <div class="row">
+        <button class="chip" type="button" data-act="dl-tr" aria-pressed="${DLG.tr}">Afficher toutes les traductions</button>
+        <button class="chip" type="button" data-act="dl-hide" aria-pressed="${DLG.hide}">Cacher le sranan (mode test)</button>
+      </div></header>
+    <div class="dlg">${lines}</div>
+    <div class="row">${S.dialogues[id] ? '<span class="pill ok">Déjà lu · +10 points reçus</span>' : `<button class="btn" type="button" data-act="dl-done" data-id="${id}">J'ai lu ce texte (+10 points)</button>`}
+      <a class="btn ghost" href="#dialogues">Autres dialogues</a></div>
+  </div>`;
+}
+
+/* ----- Dictionnaire ----- */
+let DQ = "";
+function dicoResults(q) {
+  const k = norm(q);
+  let list = VOCAB.slice();
+  if (k) {
+    list = list.filter(v => norm(v.sr).includes(k) || norm(v.fr).includes(k));
+    const rank = v => {
+      const s = norm(v.sr), f = norm(v.fr), parts = v.fr.split(/[,;]/).map(norm);
+      if (s === k || parts.includes(k)) return 0;
+      if (s.startsWith(k) || parts.some(x => x.startsWith(k))) return 1;
+      if (s.split(" ").includes(k) || f.split(" ").includes(k)) return 2;
+      return 3;
+    };
+    list.sort((a, b) => rank(a) - rank(b) || a.sr.length - b.sr.length || a.sr.localeCompare(b.sr));
+  } else list.sort((a, b) => norm(a.sr).localeCompare(norm(b.sr)));
+  if (!list.length) return `<div class="empty">Aucun mot ne correspond à « ${esc(q)} ». Essayez un mot plus court, ou demandez dans <a href="#parler">Parler</a>.</div>`;
+  let html = '<div class="list">', letter = "";
+  for (const v of list) {
+    if (!k) { const L = norm(v.sr)[0].toUpperCase(); if (L !== letter) { letter = L; html += `<div class="letter">${esc(L)}</div>`; } }
+    html += `<div class="word">${srSpan(v.sr)}<span class="fr">${esc(v.fr)}</span>${dots(v.id)}<span class="nt">${pronSpan(v.sr)} · <a href="#theme-${v.theme}">${esc(THEME[v.theme].name)}</a>${v.note ? " · " + esc(v.note) : ""}</span></div>`;
+  }
+  return html + "</div>";
+}
+function vDico() {
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow">Sranan ⇄ français</p><h1>Dictionnaire</h1></header>
+    <div class="search"><label class="small muted" for="dico-q">Cherchez un mot en sranan ou en français</label>
+      <input id="dico-q" type="search" autocomplete="off" spellcheck="false" placeholder="ex. : maison, nyan, merci…" value="${esc(DQ)}"></div>
+    <div id="dico-res">${dicoResults(DQ)}</div>
+  </div>`;
+}
+
+/* ----- Parler avec Claude ----- */
+const SCENARIOS = [
+  ["libre","Conversation libre","Conversation libre et bienveillante sur la vie quotidienne de l'apprenant : sa famille, sa journée, ce qu'il aime."],
+  ["wowoyo","Au marché","Tu joues une vendeuse du marché central de Paramaribo. L'apprenant vient acheter des fruits et des légumes : propose, donne les prix, négocie un peu."],
+  ["famiri","Appel de la famille","Tu joues une tante qui vit au Suriname et qui appelle l'apprenant pour prendre des nouvelles de toute la famille."],
+  ["kennis","Faire connaissance","Tu rencontres l'apprenant pour la première fois à une fête de Keti Koti. Vous vous présentez et faites connaissance."],
+  ["dei","Raconter sa journée","Tu demandes à l'apprenant de raconter sa journée d'hier et ses projets de demain, pour lui faire pratiquer le passé (verbe seul, ben) et le futur (o)."]
+];
+let SAMPLE; // undefined = en attente, null = indisponible
+const TALK = {scn: "libre", turns: [], busy: false, ctl: null, err: "", partial: "", off: ""};
+function talkRules() {
+  const scn = SCENARIOS.find(s => s[0] === TALK.scn) || SCENARIOS[0];
+  const known = themeStats();
+  return `Tu es « Leriman », un tuteur de sranan tongo chaleureux et patient. L'apprenant est francophone, d'origine surinamienne, et réapprend la langue de sa famille. Niveau : débutant (${known.seen} mots vus sur ${known.total} dans son appli).
+Règles :
+- Écris le sranan avec l'orthographe officielle de 1986 (u, y, sy, ty, dy, ny ; pas de « oe » ni de « j »).
+- Phrases courtes, vocabulaire courant. Une à trois phrases en sranan par réponse, qui font avancer la conversation, souvent avec une question simple.
+- Réponds TOUJOURS dans ce format exact, chaque étiquette au début d'une ligne, sans Markdown :
+SRANAN: (ta réplique en sranan)
+FRANÇAIS: (sa traduction)
+CONSEIL: (si l'apprenant a écrit en sranan, corrige gentiment ses erreurs en montrant la phrase correcte, et explique en une ou deux phrases en français ; s'il a écrit en français, montre comment dire sa phrase en sranan ; si tout est juste, félicite-le en quelques mots et donne une petite astuce)
+- Si tu n'es pas sûr d'un mot ou d'une tournure, dis-le honnêtement dans CONSEIL.
+Scénario : ${scn[2]}`;
+}
+function parseReply(t) {
+  const get = (label, next) => {
+    const re = new RegExp(label + "\\s*:\\s*([\\s\\S]*?)(?=\\n\\s*(?:" + next + ")\\s*:|$)", "i");
+    const m = t.match(re); return m ? m[1].trim() : "";
+  };
+  const sr = get("SRANAN", "FRAN[ÇC]AIS|CONSEIL"), fr = get("FRAN[ÇC]AIS", "CONSEIL|SRANAN"), tip = get("CONSEIL", "SRANAN|FRAN[ÇC]AIS");
+  return (sr || fr || tip) ? {sr, fr, tip} : null;
+}
+function msgHTML(role, text) {
+  if (role === "user") return `<div class="msg me">${esc(text)}</div>`;
+  const p = parseReply(text);
+  if (!p) return `<div class="msg ai"><span>${esc(text)}</span></div>`;
+  return `<div class="msg ai">${p.sr ? srSpan(p.sr) : ""}${p.fr ? `<span class="muted">${esc(p.fr)}</span>` : ""}${p.tip ? `<div class="tip"><span class="lbl">Conseil</span><br>${esc(p.tip)}</div>` : ""}</div>`;
+}
+function talkLogHTML() {
+  const shown = TALK.turns.filter(t => !t.hidden);
+  let h = shown.map(t => msgHTML(t.role, t.content)).join("");
+  if (TALK.busy) h += TALK.partial ? msgHTML("assistant", TALK.partial) : `<div class="msg ai"><span class="typing">Leriman réfléchit…</span></div>`;
+  if (TALK.err) h += `<p class="feedback bad" role="status">${esc(TALK.err)}</p>`;
+  if (!h) h = `<div class="empty stack" style="align-items:center">
+    <p>Choisissez une situation, puis écrivez votre premier message — en sranan si vous osez, en français sinon. Leriman répond en sranan, traduit, et corrige vos phrases.</p>
+    ${SAMPLE ? '<button class="btn ghost sm" type="button" data-act="talk-start">Laisser Leriman commencer</button>' : ""}</div>`;
+  return h;
+}
+function vTalk() {
+  if (SAMPLE === null || TALK.off) {
+    return `<div class="stack-lg fade">
+      <header class="stack" style="gap:8px"><p class="eyebrow">Kon taki</p><h1>Parler</h1></header>
+      <div class="panel stack"><h3>La conversation n'est pas disponible ici</h3>
+        <p class="muted prose">${esc(TALK.off || "La conversation avec Claude fonctionne quand Leri Sranantongo est ouvert sur claude.ai, avec un compte connecté. Le reste de l'application marche partout.")}</p>
+        <p class="prose">En attendant, le meilleur partenaire de conversation reste votre famille : demandez à vos proches de vous parler en sranan, même si vous répondez en français au début.</p>
+        <div class="row"><a class="btn" href="#dialogues">Lire les dialogues</a></div></div>
+    </div>`;
+  }
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow">Kon taki</p><h1>Parler avec Leriman</h1>
+      <p class="muted prose">Un partenaire de conversation (Claude) qui vous répond en sranan simple, vous traduit et corrige vos phrases. Il connaît le sranan, mais moins bien que vos aînés : en cas de doute, vérifiez avec eux.</p></header>
+    <div class="row" role="group" aria-label="Situation">${SCENARIOS.map(s => `<button class="chip" type="button" data-act="talk-scn" data-v="${s[0]}" aria-pressed="${TALK.scn === s[0]}">${esc(s[1])}</button>`).join("")}</div>
+    <section class="talk-log" id="talk-log" aria-live="polite">${talkLogHTML()}</section>
+    <div class="stack" style="gap:8px">
+      <div class="composer">
+        <textarea id="talk-in" rows="2" aria-label="Votre message" placeholder="Odi! Mi nen…" ${SAMPLE === undefined ? "disabled" : ""}></textarea>
+        <button class="btn" type="button" data-act="talk-send" id="talk-send" ${TALK.busy || SAMPLE === undefined ? "hidden" : ""}>Envoyer</button>
+        <button class="btn ghost" type="button" data-act="talk-stop" id="talk-stop" ${TALK.busy ? "" : "hidden"}>Arrêter</button>
+      </div>
+      <div class="spread"><p class="small muted">${SAMPLE === undefined ? "Connexion à Claude…" : "Entrée pour envoyer · Maj+Entrée pour aller à la ligne. Chaque message utilise votre forfait Claude."}</p>
+        ${TALK.turns.length ? '<button class="btn ghost sm" type="button" data-act="talk-new">Nouvelle conversation</button>' : ""}</div>
+    </div>
+  </div>`;
+}
+function refreshTalk() {
+  const log = $("#talk-log"); if (!log) return;
+  log.innerHTML = talkLogHTML();
+  const send = $("#talk-send"), stop = $("#talk-stop");
+  if (send) send.hidden = TALK.busy;
+  if (stop) stop.hidden = !TALK.busy;
+}
+function talkErrCopy(code) {
+  return ({
+    rate_limited: "Trop de messages d'un coup, ou limite d'utilisation atteinte. Réessayez dans un moment.",
+    session_expired: "Votre session a expiré : reconnectez-vous à claude.ai, puis réessayez.",
+    refused: "Claude n'a pas répondu à ce message. Essayez de le formuler autrement.",
+    empty_completion: "Réponse vide. Essayez une phrase plus simple.",
+    prompt_too_large: "La conversation est devenue trop longue : commencez-en une nouvelle."
+  })[code] || "La réponse a été interrompue. Renvoyez votre message pour réessayer.";
+}
+async function talkSend(text, hidden = false) {
+  if (!SAMPLE || TALK.busy) return;
+  text = text.trim(); if (!text) return;
+  TALK.err = ""; TALK.partial = "";
+  TALK.turns.push({role: "user", content: text, hidden});
+  TALK.busy = true; TALK.ctl = new AbortController();
+  refreshTalk();
+  const recent = TALK.turns.slice(-16);
+  while (recent.length && recent[0].role !== "user") recent.shift();
+  const input = [{role: "user", content: talkRules()}].concat(recent.map(t => ({role: t.role, content: t.content})));
+  try {
+    const {text: out} = await SAMPLE(input, {cache: false, signal: TALK.ctl.signal, onText: ({text}) => { TALK.partial = text; refreshTalk(); }});
+    TALK.turns.push({role: "assistant", content: out});
+    addXP(2); save();
+  } catch (e) {
+    const code = e && e.code;
+    if (code === "cancelled") { if (e.text) TALK.turns.push({role: "assistant", content: e.text}); }
+    else if (["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"].includes(code)) {
+      TALK.off = code === "not_granted" ? "Vous n'avez pas autorisé cette page à utiliser Claude. Vous pouvez changer d'avis depuis le menu Permissions de la page, puis la recharger." : "Claude n'est pas disponible pour ce compte.";
+    } else { if (e && e.text) TALK.turns.push({role: "assistant", content: e.text}); TALK.err = talkErrCopy(code); }
+  }
+  TALK.busy = false; TALK.partial = ""; TALK.ctl = null;
+  if (TALK.off) { render(); return; }
+  refreshTalk();
+  const ta = $("#talk-in"); if (ta) ta.focus();
+}
+async function initSample() {
+  if (!window.claude || typeof window.claude.use !== "function") { SAMPLE = null; return; }
+  try { SAMPLE = await window.claude.use("sample"); } catch (e) { SAMPLE = null; }
+  if (!SAMPLE) SAMPLE = null;
+  if (currentRoute() === "parler") render();
+}
+
+/* ----- Culture ----- */
+function vCulture() {
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow">Kulturu</p><h1>Culture & proverbes</h1>
+      <p class="muted prose">Une langue, c'est aussi une histoire, des fêtes et des façons de dire le monde.</p></header>
+
+    <section class="stack">
+      <h2>La langue de tout un pays</h2>
+      <div class="prose">
+        <p>Le <b>sranan tongo</b> (« la langue du Suriname », écrit <span class="sr">Sranantongo</span> en sranan) est la langue que partagent presque tous les Surinamais, quelle que soit leur origine : créoles, hindoustanis, javanais, marrons, chinois, amérindiens… La langue officielle du pays reste le néerlandais.</p>
+        <p>Il est né au XVIIᵉ siècle dans les plantations, parmi les Africains réduits en esclavage. Sa base est l'anglais, car le Suriname a été une colonie anglaise jusqu'en 1667, avant de passer aux Pays-Bas. Il s'est enrichi de néerlandais, de portugais et de langues africaines.</p>
+        <p>On l'appelait autrefois « negerengels » ou « taki-taki » : ces noms sont aujourd'hui jugés péjoratifs. Dites <span class="sr">Sranantongo</span>, ou simplement <span class="sr">Sranan</span>.</p>
+        <p>Au XXᵉ siècle, le poète <b>Trefossa</b> (Henri de Ziel) a montré que le sranan était une langue de poésie. On lui doit le couplet en sranan de l'hymne national :</p>
+      </div>
+      <div class="anthem">
+        <span class="sr">Opo kondreman un opo,</span>
+        <span class="sr">Sranangron e kari un.</span>
+        <span class="muted">Debout, compatriotes, debout ! La terre du Suriname vous appelle.</span>
+        <span class="small muted">« un » est la forme courte de « unu » (vous).</span>
+      </div>
+    </section>
+
+    <section class="stack">
+      <h2>Deux dates à connaître</h2>
+      <div class="grid2">
+        <article class="panel stack"><p class="eyebrow">1er juillet</p><h3>Keti Koti</h3>
+          <p class="muted">« Chaînes coupées ». Le 1er juillet 1863, l'esclavage est aboli au Suriname — même si les personnes libérées ont encore dû travailler dix ans sur les plantations, sous contrôle de l'État. On commémore, on porte la <i>kotomisi</i> et l'<i>angisa</i>, on partage repas et musique.</p></article>
+        <article class="panel stack"><p class="eyebrow">25 novembre</p><h3>Srefidensi</h3>
+          <p class="muted">L'indépendance du Suriname, proclamée le 25 novembre 1975. <span class="sr">Srefidensi</span> vient de « self » (soi-même) : se tenir debout par soi-même.</p></article>
+      </div>
+      <p class="muted prose">Le pays fête aussi Phagwa, Divali, l'Aïd, le Nouvel An chinois… et c'est en sranan que tout le monde se souhaite une bonne fête.</p>
+    </section>
+
+    <section class="stack">
+      <h2>Odo — les proverbes</h2>
+      <div class="stack">${PROVERBS.map(([s, f, x]) => `<div class="proverb">${srSpan(s)}${pronSpan(s)}<b>${esc(f)}</b><span class="muted">${esc(x)}</span></div>`).join("")}</div>
+      <p class="note prose">Les proverbes circulent sous plusieurs formes selon les familles et les quartiers. Demandez à vos aînés leur version — et l'histoire qui va avec.</p>
+    </section>
+
+    <section class="stack">
+      <h2>Conseils pour progresser</h2>
+      <ol class="prose" style="padding-left:1.2em;margin:0;display:flex;flex-direction:column;gap:8px">
+        <li><b>Dix minutes par jour</b> valent mieux qu'une heure le dimanche. Revenez chaque jour pour garder votre série.</li>
+        <li><b>Parlez avec vos proches.</b> Demandez-leur de vous répondre en sranan, même si vous répondez en français au début.</li>
+        <li><b>Écoutez de la musique surinamaise</b> (kaseko, kawina) et repérez les mots que vous connaissez.</li>
+        <li><b>Étiquetez votre maison</b> : <span class="sr">doro</span>, <span class="sr">fensre</span>, <span class="sr">tafra</span>, <span class="sr">sturu</span>…</li>
+        <li><b>Notez les expressions de votre famille.</b> Chaque famille a ses mots : c'est votre héritage.</li>
+      </ol>
+    </section>
+  </div>`;
+}
+
+/* ----- Réglages ----- */
+let RESET_ASK = false;
+function vSettings() {
+  const where = sync.state === "synced" || sync.state === "connecting" || sync.state === "slow"
+    ? "Votre progression est enregistrée dans votre compte Claude — privée, personne d'autre ne la voit — et sur cet appareil. Vous la retrouvez sur votre téléphone comme sur votre ordinateur."
+    : sync.state === "error" ? "La synchronisation avec votre compte ne répond pas pour l'instant. Votre progression est enregistrée sur cet appareil et sera envoyée dès que possible."
+    : "Votre progression est enregistrée dans ce navigateur, sur cet appareil. Pour la retrouver sur tous vos appareils, ouvrez Leri Sranantongo depuis claude.ai.";
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow"><a href="#accueil">Accueil</a></p><h1>Réglages</h1></header>
+    <section class="panel stack"><h3>Où est enregistrée ma progression ?</h3><p class="muted prose">${esc(where)}</p></section>
+    <section class="panel stack"><h3>Objectif quotidien</h3>
+      <div class="seg" role="group" aria-label="Objectif quotidien">${[[20,"Tranquille · 20"],[50,"Régulier · 50"],[100,"Motivé · 100"],[200,"Intensif · 200"]].map(([n, l]) => `<button type="button" data-act="set-goal" data-v="${n}" aria-pressed="${S.goal === n}">${l}</button>`).join("")}</div>
+      <p class="small muted">En points par jour. 50 points, c'est environ 10 minutes.</p></section>
+    <section class="panel stack"><h3>Recommencer à zéro</h3>
+      <p class="muted prose">Efface tous vos mots appris, vos leçons et votre série, sur tous vos appareils.</p>
+      ${RESET_ASK
+        ? `<p><b>Vraiment tout effacer ?</b> Cette action ne peut pas être annulée.</p><div class="row"><button class="btn danger" type="button" data-act="reset-yes">Oui, tout effacer</button><button class="btn ghost" type="button" data-act="reset-no">Annuler</button></div>`
+        : `<div><button class="btn ghost" type="button" data-act="reset-ask">Effacer ma progression…</button></div>`}
+    </section>
+  </div>`;
+}
+
+/* ---------- Rendu & routage ---------- */
+const currentRoute = () => (location.hash || "").slice(1) || "accueil";
+function render() {
+  const h = currentRoute();
+  let html;
+  if (h === "accueil") html = vHome();
+  else if (h === "lecons") html = vLessons();
+  else if (h.startsWith("lecon-")) html = vLesson(h.slice(6));
+  else if (h === "vocab") html = vVocab();
+  else if (h.startsWith("theme-")) html = vTheme(h.slice(6));
+  else if (h === "reviser") html = vReview();
+  else if (h === "exercices") html = vQuiz();
+  else if (h === "dialogues") html = vDialogues();
+  else if (h.startsWith("dialogue-")) html = vDialogue(h.slice(9));
+  else if (h === "dico") html = vDico();
+  else if (h === "parler") html = vTalk();
+  else if (h === "culture") html = vCulture();
+  else if (h === "reglages") html = vSettings();
+  else html = vHome();
+  $("#view").innerHTML = html;
+  renderNav(h);
+  const ti = $("#qz-input"); if (ti && !ti.disabled) ti.focus({preventScroll: true});
+  const nx = $("#qz-next"); if (nx) nx.focus({preventScroll: true});
+}
+function softRender() {
+  const h = currentRoute();
+  if (h === "accueil" || h === "vocab" || h === "lecons" || h === "reglages" || h.startsWith("theme-") || (h === "reviser" && !(RV && RV.i < RV.ids.length))) render();
+  else renderNav(h);
+}
+window.addEventListener("hashchange", () => {
+  DLG.shown = new Set(); RESET_ASK = false;
+  render();
+  window.scrollTo(0, 0);
+  $("#view").focus({preventScroll: true});
+});
+
+/* ---------- Actions ---------- */
+const ACT = {
+  "go-settings": () => { location.hash = "reglages"; },
+  "rv-start": el => { startReview(el.dataset.theme); if (!RV.ids.length) { RV = null; } if (currentRoute() !== "reviser") location.hash = "reviser"; else render(); },
+  "rv-reveal": () => { RV.revealed = true; render(); },
+  "rv-grade": el => {
+    const id = RV.ids[RV.i], g = el.dataset.g;
+    grade(id, g); RV.stats[g]++;
+    if (g === "again" && !RV.requeued.has(id)) { RV.requeued.add(id); RV.ids.push(id); }
+    RV.i++; RV.revealed = false; save(); render();
+  },
+  "rv-end": () => { RV = null; render(); },
+  "set-dir": el => { S.dir = el.dataset.v; save(); render(); },
+  "set-new": el => { S.newPer = +el.dataset.v; save(); render(); },
+  "set-goal": el => { S.goal = +el.dataset.v; save(); render(); },
+  "qz-chip": el => { const t = el.dataset.theme; QSEL.has(t) ? QSEL.delete(t) : QSEL.add(t); render(); },
+  "qz-all": () => { QSEL = new Set(THEMES.map(t => t.id)); render(); },
+  "qz-none": () => { QSEL = new Set(); render(); },
+  "qz-start": () => { QZ = buildQuiz(QSEL); render(); },
+  "qz-theme-start": el => { QSEL = new Set([el.dataset.theme]); QZ = buildQuiz(QSEL); location.hash = "exercices"; },
+  "qz-again": () => { QZ = buildQuiz(new Set(QZ.themes)); render(); },
+  "qz-setup": () => { QZ = null; render(); },
+  "qz-opt": el => {
+    if (QZ.result) return;
+    const q = QZ.qs[QZ.i], n = +el.dataset.n;
+    QZ.picked = n; quizAnswer(q.options[n] === q.answer); render();
+  },
+  "qz-tok": el => { QZ.built.push(+el.dataset.k); render(); },
+  "qz-untok": el => { QZ.built.splice(+el.dataset.n, 1); render(); },
+  "qz-check": () => {
+    const q = QZ.qs[QZ.i];
+    if (q.type === "type") { const inp = $("#qz-input"); QZ.typed = inp ? inp.value : ""; if (!norm(QZ.typed)) { inp && inp.focus(); return; } const r = checkTyped(q.v, QZ.typed); quizAnswer(r.ok, r.almost); }
+    else if (q.type === "order") { const got = norm(QZ.built.map(k => q.pool[k]).join(" ")); quizAnswer(got === q.answer); }
+    render();
+  },
+  "qz-skip": () => { const q = QZ.qs[QZ.i]; if (q.type === "type") { const inp = $("#qz-input"); QZ.typed = inp ? inp.value : ""; } quizAnswer(false); render(); },
+  "qz-next": () => { QZ.i++; QZ.picked = null; QZ.result = null; QZ.built = []; QZ.typed = ""; render(); window.scrollTo(0, 0); },
+  "ls-opt": el => {
+    if (LQ.picked !== null) return;
+    LQ.picked = +el.dataset.k; if (LQ.picked === 0) LQ.correct++;
+    $("#lesson-quiz").innerHTML = lessonQuizHTML(LESSON[LQ.id]);
+    const b = $('#lesson-quiz [data-act="ls-next"]'); if (b) b.focus({preventScroll: true});
+  },
+  "ls-next": () => {
+    const l = LESSON[LQ.id];
+    LQ.i++; LQ.picked = null;
+    if (LQ.i >= l.quiz.length) {
+      LQ.done = true;
+      const prev = S.lessons[l.id];
+      if (!prev) addXP(20 + 5 * LQ.correct);
+      if (!prev || LQ.correct >= prev.score) S.lessons[l.id] = {score: LQ.correct, total: l.quiz.length, at: Date.now()};
+      save(); renderNav(currentRoute());
+    }
+    $("#lesson-quiz").innerHTML = lessonQuizHTML(l);
+    const first = $("#lesson-quiz .opt, #lesson-quiz .btn"); if (first) first.focus({preventScroll: true});
+  },
+  "ls-retry": () => { const id = LQ.id; LQ = null; LQ = {id, i: 0, picked: null, correct: 0, done: false, orders: LESSON[id].quiz.map(q => shuffle(q.o.map((_, k) => k)))}; $("#lesson-quiz").innerHTML = lessonQuizHTML(LESSON[id]); },
+  "dl-line": el => { const i = +el.dataset.i; DLG.shown.has(i) ? DLG.shown.delete(i) : DLG.shown.add(i); render(); },
+  "dl-tr": () => { DLG.tr = !DLG.tr; DLG.shown = new Set(); render(); },
+  "dl-hide": () => { DLG.hide = !DLG.hide; DLG.shown = new Set(); render(); },
+  "dl-done": el => { const id = el.dataset.id; if (!S.dialogues[id]) { S.dialogues[id] = true; addXP(10); save(); } render(); },
+  "talk-scn": el => { if (TALK.busy) return; if (TALK.scn !== el.dataset.v) { TALK.scn = el.dataset.v; TALK.turns = []; TALK.err = ""; } render(); },
+  "talk-send": () => { const ta = $("#talk-in"); if (!ta) return; const v = ta.value; ta.value = ""; talkSend(v); },
+  "talk-start": () => talkSend("Commence la conversation selon le scénario, avec une première réplique très simple.", true),
+  "talk-stop": () => { if (TALK.ctl) TALK.ctl.abort(); },
+  "talk-new": () => { if (TALK.ctl) TALK.ctl.abort(); TALK.turns = []; TALK.err = ""; render(); },
+  "reset-ask": () => { RESET_ASK = true; render(); },
+  "reset-no": () => { RESET_ASK = false; render(); },
+  "reset-yes": () => { const keep = {goal: S.goal}; S = fresh(); S.epoch = Date.now(); S.goal = keep.goal; RESET_ASK = false; RV = null; QZ = null; LQ = null; save(); render(); }
+};
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-act]");
+  if (!el || el.disabled) return;
+  const f = ACT[el.dataset.act]; if (f) { e.preventDefault(); f(el, e); }
+});
+document.addEventListener("input", e => {
+  if (e.target.id === "dico-q") { DQ = e.target.value; const r = $("#dico-res"); if (r) r.innerHTML = dicoResults(DQ); }
+});
+document.addEventListener("keydown", e => {
+  if (e.target.id === "qz-input" && e.key === "Enter") { e.preventDefault(); ACT["qz-check"](); return; }
+  if (e.target.id === "talk-in" && e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); ACT["talk-send"](); return; }
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const tag = (e.target.tagName || "").toLowerCase();
+  if (tag === "input" || tag === "textarea" || tag === "select") return;
+  const h = currentRoute();
+  if (h === "reviser" && RV && RV.i < RV.ids.length) {
+    if (!RV.revealed && (e.key === " " || e.key === "Enter")) { e.preventDefault(); ACT["rv-reveal"](); }
+    else if (RV.revealed && ["1","2","3"].includes(e.key)) { e.preventDefault(); ACT["rv-grade"]({dataset: {g: ["again","hard","good"][+e.key - 1]}}); }
+  } else if (h === "exercices" && QZ && QZ.i < QZ.qs.length) {
+    const q = QZ.qs[QZ.i];
+    if (!QZ.result && q.options && /^[1-4]$/.test(e.key) && +e.key <= q.options.length) { e.preventDefault(); ACT["qz-opt"]({dataset: {n: +e.key - 1}}); }
+  } else if (h.startsWith("lecon-") && LQ && !LQ.done && LQ.picked === null && /^[1-3]$/.test(e.key)) {
+    const l = LESSON[LQ.id]; const k = LQ.orders[LQ.i][+e.key - 1];
+    if (k !== undefined && l) { e.preventDefault(); ACT["ls-opt"]({dataset: {k}}); }
+  }
+});
+
+/* ---------- Démarrage ---------- */
+render();
+initRemote();
+initSample();
+})();
+</script>
