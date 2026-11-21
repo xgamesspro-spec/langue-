@@ -32,18 +32,19 @@ Ouvrez https://claude.ai/artifact/LEDTnTSRQGkrajqxBHj954 dans le navigateur du t
 
 Tout fonctionne : progression synchronisée entre vos appareils, conversation avec Claude, son. Il faut une connexion internet.
 
-### 2. Le dossier `site/` (hors ligne, sans claude.ai)
+### 2. La version hors ligne : https://xgamesspro-spec.github.io/langue-/
 
-Le dossier `site/` est une application web installable : une fois ouverte, elle marche **sans internet**. Il suffit de le mettre en ligne sur un hébergeur gratuit, par exemple Netlify :
+Le dossier `site/` est publié gratuitement par GitHub Pages à cette adresse. Ouvrez-la sur le téléphone et ajoutez-la à l'écran d'accueil (voir ci-dessus) : une fois ouverte, l'application marche **sans internet**, sans compte claude.ai.
 
-1. Sur un ordinateur, téléchargez ce dépôt (sur GitHub : bouton **Code** → **Download ZIP**) et décompressez-le.
-2. Créez un compte gratuit sur netlify.com, puis allez sur **app.netlify.com/drop**.
-3. Glissez-déposez le dossier `site` dans la page. Netlify vous donne une adresse du type `quelquechose.netlify.app`.
-4. Ouvrez cette adresse sur le téléphone et ajoutez-la à l'écran d'accueil (voir ci-dessus).
+Dans cette version, la progression reste sur le téléphone (pas de synchronisation), et la page « Parler » n'est pas disponible.
 
-Dans cette version, la progression reste sur le téléphone (pas de synchronisation), et la page « Parler » n'est pas disponible. Le code n'est pas publié comme projet open source : seule la page est en ligne, à une adresse que vous seul connaissez.
+Pour republier après une modification :
 
-Autre possibilité : GitHub Pages, gratuit seulement si le dépôt est public.
+```bash
+node scripts/build.mjs
+git add -A && git commit -m "Mise à jour" && git push
+git push origin "$(git subtree split --prefix site):refs/heads/gh-pages" --force
+```
 
 ## Où est enregistrée la progression ?
 
