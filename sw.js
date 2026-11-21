@@ -1,7 +1,7 @@
 // Service worker de Leri Sranantongo : garde l'application sur le téléphone pour qu'elle marche hors ligne.
 // La version et la liste des polices sont remplies à chaque construction (node scripts/build.mjs).
 // Il ne gère que les fichiers du site lui-même : aucune requête vers un autre site.
-const CACHE = "leri-sranantongo-b3f290b45acd";
+const CACHE = "leri-sranantongo-7f879bad6176";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./apple-touch-icon.png"].concat(["./fonts/bricolage-grotesque-latin-40c2cb34.woff2","./fonts/bricolage-grotesque-latin-ext-fdb6b064.woff2","./fonts/fonts.css","./fonts/ibm-plex-mono-latin-9c2bd7b0.woff2","./fonts/ibm-plex-mono-latin-e5509a1e.woff2","./fonts/ibm-plex-mono-latin-ext-3e9c5ad6.woff2","./fonts/ibm-plex-mono-latin-ext-876101ac.woff2","./fonts/source-sans-3-latin-48884e38.woff2","./fonts/source-sans-3-latin-6bf953ec.woff2","./fonts/source-sans-3-latin-ext-023468e5.woff2","./fonts/source-sans-3-latin-ext-52ee6432.woff2"]);
 
 self.addEventListener("install", event => {
