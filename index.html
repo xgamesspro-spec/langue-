@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-EX8RecM6//SSZzbppBwVlhcWC4B8OJP4muuwi52sjlQ=' 'sha256-wsOdt50FDDkHnEwkQATI1pCyt/hcGUEs00NN80HDhBY='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1F6B45">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,9 +18,7 @@
 <title>Leri Sranantongo</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Apprendre et réviser le sranan tongo depuis le français : leçons, vocabulaire, révision espacée, exercices, dialogues et culture du Suriname.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /* Layout: application shell — a rail on wide screens, a sticky tab strip on phones.
    The one bold gesture is the pangi cloth (striped Maroon textile) on the brand mark and the home hero; everything else stays quiet. */
@@ -295,6 +295,8 @@ a.lrow:hover{background:var(--surface-2)}
 .composer textarea{flex:1;min-width:0;resize:vertical;min-height:52px;max-height:200px;font:1.05rem/1.4 var(--font-body);padding:13px 15px;border-radius:13px;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--fg)}
 .composer textarea:focus{border-color:var(--green);outline:none}
 .typing{color:var(--muted);font-style:italic}
+.code-box{width:100%;min-width:0;resize:vertical;font:.8rem/1.4 var(--font-mono);padding:10px 12px;border-radius:11px;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--fg);word-break:break-all}
+.code-box:focus{border-color:var(--green);outline:none}
 
 /* Dico */
 .search{position:relative}
@@ -1539,10 +1541,44 @@ function exampleFor(v) {
 /* ---------- Progression (navigateur + compte Claude si disponible) ---------- */
 const LS_KEY = "leri-sranantongo:v1";
 function fresh() { return {v:1, epoch:0, updatedAt:0, xp:0, goal:50, newPer:10, dir:"sr", slow:false, autoplay:false, cards:{}, lessons:{}, dialogues:{}, days:{}, seances:{}}; }
+/* Toute progression chargée (navigateur, compte, code de sauvegarde) est vérifiée champ par champ :
+   seuls les champs connus, avec des nombres valides, sont gardés. */
+const own = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+const num = (x, d = 0) => (typeof x === "number" && isFinite(x)) ? x : d;
+const plainObj = o => (o && typeof o === "object" && !Array.isArray(o)) ? o : {};
+const DATE_KEY = /^\d{4}-\d{2}-\d{2}$/;
 function normalizeState(x) {
   const f = fresh();
-  if (!x || typeof x !== "object") return f;
-  return Object.assign(f, x, {cards: x.cards || {}, lessons: x.lessons || {}, dialogues: x.dialogues || {}, days: x.days || {}, seances: x.seances || {}});
+  if (!x || typeof x !== "object" || Array.isArray(x)) return f;
+  f.epoch = num(x.epoch); f.updatedAt = num(x.updatedAt); f.xp = Math.max(0, Math.round(num(x.xp)));
+  f.goal = [20, 50, 100, 200].includes(x.goal) ? x.goal : 50;
+  f.newPer = [0, 5, 10, 20].includes(x.newPer) ? x.newPer : 10;
+  f.dir = ["sr", "fr", "mix"].includes(x.dir) ? x.dir : "sr";
+  f.slow = x.slow === true; f.autoplay = x.autoplay === true;
+  for (const [k, c] of Object.entries(plainObj(x.cards))) {
+    if (!own(BYID, k) || !c || typeof c !== "object") continue;
+    f.cards[k] = {b: Math.min(5, Math.max(0, Math.round(num(c.b)))), d: num(c.d), l: num(c.l), r: Math.max(0, Math.round(num(c.r))), w: Math.max(0, Math.round(num(c.w)))};
+  }
+  for (const [k, l] of Object.entries(plainObj(x.lessons))) {
+    if (!own(LESSON, k) || !l || typeof l !== "object") continue;
+    f.lessons[k] = {score: Math.max(0, Math.round(num(l.score))), total: Math.max(0, Math.round(num(l.total))), at: num(l.at)};
+  }
+  for (const k of Object.keys(plainObj(x.dialogues))) if (own(DIALOGUE, k) || k === "lecture") f.dialogues[k] = true;
+  for (const [k, v] of Object.entries(plainObj(x.days))) if (DATE_KEY.test(k)) f.days[k] = Math.max(0, Math.round(num(v)));
+  for (const [k, v] of Object.entries(plainObj(x.seances))) if (DATE_KEY.test(k)) f.seances[k] = Math.max(0, Math.round(num(v)));
+  return f;
+}
+
+/* Code de sauvegarde : « LERI1: » + la progression en base64 */
+const BACKUP_PREFIX = "LERI1:";
+function toBase64(str) { const bytes = new TextEncoder().encode(str); let bin = ""; for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(bin); }
+function fromBase64(b64) { const bin = atob(b64); const bytes = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i); return new TextDecoder().decode(bytes); }
+function backupCode() { return BACKUP_PREFIX + toBase64(JSON.stringify(S)); }
+function readBackup(text) {
+  const t = String(text || "").replace(/\s+/g, "");
+  if (!t.startsWith(BACKUP_PREFIX)) return null;
+  if (t.length > 2000000) return null;
+  try { return JSON.parse(fromBase64(t.slice(BACKUP_PREFIX.length))); } catch (e) { return null; }
 }
 function loadLocal() { try { const s = localStorage.getItem(LS_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
 function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) {} }
@@ -2561,6 +2597,14 @@ function vSettings() {
         <li><b>Android :</b> ouvrez cette page dans Chrome, touchez ⋮ en haut à droite, puis « Ajouter à l'écran d'accueil » ou « Installer l'application ».</li>
       </ul>
     </section>
+    <section class="panel stack"><h3>Sauvegarder ma progression</h3>
+      <p class="muted prose">Copiez votre code de sauvegarde et gardez-le en lieu sûr, par exemple dans vos notes. Il sert aussi à passer votre progression d'une version de l'application à l'autre (claude.ai ⇄ version hors ligne).</p>
+      <div class="row"><button class="btn" type="button" data-act="backup-copy">Copier mon code de sauvegarde</button><span class="small muted" id="backup-msg" role="status"></span></div>
+      <textarea class="code-box" id="backup-out" rows="3" readonly hidden aria-label="Votre code de sauvegarde"></textarea>
+      <label class="small muted" for="restore-in">Restaurer : collez un code de sauvegarde. Votre progression actuelle est conservée, les deux sont réunies.</label>
+      <textarea class="code-box" id="restore-in" rows="3" spellcheck="false" autocomplete="off" placeholder="LERI1:…"></textarea>
+      <div class="row"><button class="btn ghost" type="button" data-act="restore">Restaurer</button><span class="small" id="restore-msg" role="status"></span></div>
+    </section>
     <section class="panel stack"><h3>Où est enregistrée ma progression ?</h3><p class="muted prose">${esc(where)}</p></section>
     <section class="panel stack"><h3>Objectif quotidien</h3>
       <div class="seg" role="group" aria-label="Objectif quotidien">${[[20,"Tranquille · 20"],[50,"Régulier · 50"],[100,"Motivé · 100"],[200,"Intensif · 200"]].map(([n, l]) => `<button type="button" data-act="set-goal" data-v="${n}" aria-pressed="${S.goal === n}">${l}</button>`).join("")}</div>
@@ -2713,6 +2757,25 @@ const ACT = {
   "talk-start": () => talkSend("Commence la conversation selon le scénario, avec une première réplique très simple.", true),
   "talk-stop": () => { if (TALK.ctl) TALK.ctl.abort(); },
   "talk-new": () => { if (TALK.ctl) TALK.ctl.abort(); TALK.turns = []; TALK.err = ""; render(); },
+  "backup-copy": () => {
+    const code = backupCode(), msg = $("#backup-msg"), out = $("#backup-out");
+    const showBox = () => { out.value = code; out.hidden = false; out.focus(); out.select(); msg.textContent = "Sélectionnez le code ci-dessous et copiez-le."; };
+    try {
+      navigator.clipboard.writeText(code).then(() => { msg.textContent = "Code copié. Collez-le dans vos notes pour le garder."; }, showBox);
+    } catch (e) { showBox(); }
+  },
+  "restore": () => {
+    const box = $("#restore-in"), msg = $("#restore-msg");
+    const data = readBackup(box.value);
+    if (!data) { msg.textContent = "Ce code n'est pas valide : il doit commencer par LERI1: et être copié en entier."; msg.style.color = "var(--red)"; return; }
+    const imported = normalizeState(data);
+    imported.epoch = S.epoch;
+    S = merge(S, imported); save();
+    box.value = "";
+    msg.style.color = "var(--green)";
+    msg.textContent = "Progression restaurée : " + Object.keys(imported.cards).length + " mots, " + Object.keys(imported.lessons).length + " leçons.";
+    renderNav(currentRoute());
+  },
   "reset-ask": () => { RESET_ASK = true; render(); },
   "reset-no": () => { RESET_ASK = false; render(); },
   "reset-yes": () => { const goal = S.goal; S = fresh(); S.epoch = Date.now(); S.goal = goal; RESET_ASK = false; RV = null; QZ = null; LQ = null; SE = null; save(); render(); }
