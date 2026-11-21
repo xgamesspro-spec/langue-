@@ -19,18 +19,45 @@ Une application web pour apprendre et réviser le **sranan tongo** depuis le fra
 - **Culture** : histoire de la langue, Keti Koti, Srefidensi, l'hymne de Trefossa, des proverbes (odo).
 - Série de jours, objectif quotidien, mot du jour. Sur téléphone, une barre de navigation en bas de l'écran.
 
+## Sur mon téléphone, gratuitement
+
+Pas besoin de l'App Store ni du Play Store. Deux façons, toutes les deux gratuites :
+
+### 1. Le lien claude.ai (tout de suite)
+
+Ouvrez https://claude.ai/artifact/LEDTnTSRQGkrajqxBHj954 dans le navigateur du téléphone, connectez-vous à claude.ai, puis :
+
+- **iPhone** : Safari → bouton Partager → « Sur l'écran d'accueil ».
+- **Android** : Chrome → ⋮ → « Ajouter à l'écran d'accueil ».
+
+Tout fonctionne : progression synchronisée entre vos appareils, conversation avec Claude, son. Il faut une connexion internet.
+
+### 2. Le dossier `site/` (hors ligne, sans claude.ai)
+
+Le dossier `site/` est une application web installable : une fois ouverte, elle marche **sans internet**. Il suffit de le mettre en ligne sur un hébergeur gratuit, par exemple Netlify :
+
+1. Sur un ordinateur, téléchargez ce dépôt (sur GitHub : bouton **Code** → **Download ZIP**) et décompressez-le.
+2. Créez un compte gratuit sur netlify.com, puis allez sur **app.netlify.com/drop**.
+3. Glissez-déposez le dossier `site` dans la page. Netlify vous donne une adresse du type `quelquechose.netlify.app`.
+4. Ouvrez cette adresse sur le téléphone et ajoutez-la à l'écran d'accueil (voir ci-dessus).
+
+Dans cette version, la progression reste sur le téléphone (pas de synchronisation), et la page « Parler » n'est pas disponible. Le code n'est pas publié comme projet open source : seule la page est en ligne, à une adresse que vous seul connaissez.
+
+Autre possibilité : GitHub Pages, gratuit seulement si le dépôt est public.
+
 ## Où est enregistrée la progression ?
 
 - Dans la **version claude.ai**, la progression est synchronisée avec votre compte, dans un espace privé que personne d'autre ne voit. Vous la retrouvez sur tous vos appareils.
-- En ouvrant `index.html` directement dans un navigateur, elle est enregistrée sur cet appareil seulement.
+- Dans la version `site/`, elle est enregistrée dans le navigateur du téléphone, sur cet appareil seulement.
 
 ## Organisation des fichiers
 
 | Fichier | Rôle |
 | --- | --- |
 | `app/leri-sranantongo.html` | Le code source de l'application (contenu, styles, logique). C'est ce fichier qui est publié sur claude.ai. |
-| `index.html` | Version autonome, à ouvrir dans n'importe quel navigateur. Générée à partir du fichier ci-dessus. |
-| `scripts/build.mjs` | Régénère `index.html` : `node scripts/build.mjs` |
+| `pwa/` | L'icône, le manifeste et le service worker qui rendent l'application installable et utilisable hors ligne. |
+| `site/` | L'application prête à mettre en ligne. Générée à partir des deux éléments ci-dessus. |
+| `scripts/build.mjs` | Régénère `site/` : `node scripts/build.mjs` |
 
 Pour ajouter des mots, modifiez le tableau `THEMES` en haut du script dans `app/leri-sranantongo.html` (format `["sranan", "français", "note facultative"]`), puis lancez `node scripts/build.mjs`.
 

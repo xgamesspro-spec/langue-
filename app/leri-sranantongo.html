@@ -71,7 +71,7 @@ button{font:inherit;color:inherit}
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .spread{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 .prose{max-width:66ch}
-div.prose,ol.prose{display:flex;flex-direction:column;gap:12px}
+div.prose,ol.prose,ul.prose{display:flex;flex-direction:column;gap:12px}
 .prose b{font-weight:700}
 
 /* Shell */
@@ -2538,6 +2538,13 @@ function vSettings() {
         <div class="row"><button class="chip" type="button" data-act="set-auto" aria-pressed="${!!S.autoplay}">Lire les cartes automatiquement</button></div>
         <div class="row"><span class="srw">${srSpan("Fa waka? Mi de, tangi.")}${sayBtn("Fa waka? Mi de, tangi.")}</span><span class="small muted">Touchez pour essayer.</span></div>`
       : `<p class="note prose">Le son n'est pas disponible sur cet appareil ou dans ce navigateur (aucune voix française n'est installée, ou la lecture à voix haute a été désactivée pour cette page dans le menu Permissions).</p>`}
+    </section>
+    <section class="panel stack"><h3>Sur mon téléphone</h3>
+      <p class="muted prose">Ajoutez Leri Sranantongo à l'écran d'accueil : une icône l'ouvre comme une application, gratuitement, sans passer par un magasin d'applications.</p>
+      <ul class="prose" style="padding-left:1.2em;margin:0">
+        <li><b>iPhone :</b> ouvrez cette page dans Safari, touchez le bouton Partager (le carré avec une flèche vers le haut), puis « Sur l'écran d'accueil ».</li>
+        <li><b>Android :</b> ouvrez cette page dans Chrome, touchez ⋮ en haut à droite, puis « Ajouter à l'écran d'accueil » ou « Installer l'application ».</li>
+      </ul>
     </section>
     <section class="panel stack"><h3>Où est enregistrée ma progression ?</h3><p class="muted prose">${esc(where)}</p></section>
     <section class="panel stack"><h3>Objectif quotidien</h3>
