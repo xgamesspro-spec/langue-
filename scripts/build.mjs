@@ -41,4 +41,5 @@ writeFileSync(at("site/sw.js"), readFileSync(at("pwa/sw.js"), "utf8").replace("_
 for (const f of ["manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"]) {
   copyFileSync(at("pwa/" + f), at("site/" + f));
 }
+writeFileSync(at("site/.nojekyll"), ""); // GitHub Pages : servir les fichiers tels quels
 console.log(`site/ généré (version ${version}).`);
