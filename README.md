@@ -36,6 +36,10 @@ Tout fonctionne : progression synchronisée entre vos appareils, conversation av
 
 Le dossier `site/` est publié gratuitement par GitHub Pages à cette adresse. Ouvrez-la sur le téléphone et ajoutez-la à l'écran d'accueil (voir ci-dessus) : une fois ouverte, l'application marche **sans internet**, sans compte claude.ai.
 
+À l'ouverture, l'accueil propose de l'installer : sur Android, un bouton « Installer » ouvre directement l'installation ; sur iPhone, où Apple ne permet pas à un site de s'installer tout seul, un bandeau explique quoi toucher dans Safari. « Plus tard » le masque pendant 7 jours.
+
+Sur iPhone, l'application installée ne partage pas la mémoire de Safari : avant d'installer, touchez « Copier ma progression » dans le bandeau. À la première ouverture, l'application installée propose de la récupérer.
+
 Dans cette version, la progression reste sur le téléphone (pas de synchronisation), et la page « Parler » n'est pas disponible.
 
 Pour republier après une modification :
