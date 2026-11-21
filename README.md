@@ -43,7 +43,7 @@ Pour republier après une modification :
 ```bash
 node scripts/build.mjs
 git add -A && git commit -m "Mise à jour" && git push
-git push origin "$(git subtree split --prefix site):refs/heads/gh-pages" --force
+git push origin "$(git subtree split --prefix site):refs/heads/gh-pages"
 ```
 
 ## Où est enregistrée la progression ?
@@ -61,6 +61,23 @@ git push origin "$(git subtree split --prefix site):refs/heads/gh-pages" --force
 | `scripts/build.mjs` | Régénère `site/` : `node scripts/build.mjs` |
 
 Pour ajouter des mots, modifiez le tableau `THEMES` en haut du script dans `app/leri-sranantongo.html` (format `["sranan", "français", "note facultative"]`), puis lancez `node scripts/build.mjs`.
+
+## Sécurité
+
+Ce qui est en place :
+
+- **Aucune donnée personnelle dans le dépôt** : pas d'adresse e-mail, pas de mot de passe, pas de clé. Les modifications sont signées « Claude ».
+- **Version en ligne (GitHub Pages)** : servie uniquement en HTTPS, sans aucune requête vers un autre site (les polices sont hébergées avec le site, Google ne voit pas vos visites). Une politique de sécurité stricte (CSP) n'autorise que les deux scripts de l'application, identifiés par leur empreinte : un script ajouté par quelqu'un d'autre ne s'exécuterait pas. Aucune information de provenance n'est envoyée quand on suit un lien.
+- **Progression** : elle reste sur le téléphone (version en ligne) ou dans un espace privé de votre compte claude.ai. Toute progression chargée, y compris un code de sauvegarde collé, est vérifiée champ par champ : un code abîmé ou piégé est ignoré.
+- **Sauvegarde** : Réglages → « Copier mon code de sauvegarde ». Gardez ce code dans vos notes ; « Restaurer » le recharge, sur n'importe quel appareil et dans les deux versions.
+
+Ce que vous seul pouvez faire, dans les réglages de GitHub :
+
+1. **Activer la double authentification** : github.com → photo de profil → Settings → Password and authentication → Two-factor authentication. C'est la protection la plus importante : personne d'autre ne pourra modifier le site, même avec votre mot de passe.
+2. **Protéger les branches** : dans le dépôt, Settings → Rules → Rulesets (ou Branches) → créez une règle pour `gh-pages` et `claude/vibrant-knuth-s8vuga` qui bloque la suppression et les « force push ».
+3. **Garder le lien claude.ai pour vous** : l'application claude.ai est privée, vous seul pouvez l'ouvrir.
+
+Le dépôt est public : tout le monde peut lire le code. Ce n'est pas un risque, puisqu'il ne contient aucun secret ; c'est aussi ce qui rend GitHub Pages gratuit.
 
 ## À propos du contenu
 
