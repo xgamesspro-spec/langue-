@@ -2,22 +2,22 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-0a7PZTS2Gu2GefQoT3LxaC/led+ymJM2Lc9R2Rh4i58=' 'sha256-wsOdt50FDDkHnEwkQATI1pCyt/hcGUEs00NN80HDhBY='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-88OL5N26FZdoMy5tE8asZYWP4CrdkkDUjrt/KWYtG9o=' 'sha256-wsOdt50FDDkHnEwkQATI1pCyt/hcGUEs00NN80HDhBY='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1F6B45">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Leri Sranan">
+<meta name="apple-mobile-web-app-title" content="Leri">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
-<title>Leri Sranantongo</title>
+<title>Leri Sranan & English</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Apprendre et réviser le sranan tongo depuis le français : leçons, vocabulaire, révision espacée, exercices, dialogues et culture du Suriname.">
+<meta name="description" content="Apprendre et réviser le sranan tongo et l'anglais depuis le français : leçons, vocabulaire, révision espacée, exercices, dialogues, test de niveau.">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /* Layout: application shell — a rail on wide screens, a sticky tab strip on phones.
@@ -103,6 +103,10 @@ div.prose,ol.prose,ul.prose{display:flex;flex-direction:column;gap:12px}
 .nav a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;text-decoration:none;color:var(--fg);font-weight:600;white-space:nowrap}
 .nav a:hover{background:var(--surface-2)}
 .nav a[aria-current="page"]{background:var(--green-soft);color:var(--green)}
+.course-switch{display:flex;gap:4px;padding:4px;border-radius:12px;background:var(--surface-2)}
+.course-switch button{flex:1;border:0;background:transparent;padding:8px 10px;border-radius:9px;font-weight:700;font-size:.92rem;cursor:pointer;color:var(--muted)}
+.course-switch button[aria-pressed="true"]{background:var(--surface);color:var(--green);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.pill.lvl{background:var(--green-soft);color:var(--green);font-family:var(--font-mono)}
 .badge{font-size:.72rem;font-weight:700;background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-variant-numeric:tabular-nums;line-height:1.4}
 .nav .badge{margin-left:auto}
 .sync{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);background:none;border:0;padding:6px 4px;cursor:pointer;text-align:left}
@@ -134,6 +138,7 @@ div.prose,ol.prose,ul.prose{display:flex;flex-direction:column;gap:12px}
   .rail{position:static;height:auto;gap:0;border-right:0;border-bottom:1px solid var(--line);
     padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow:visible}
   .rail .nav{display:none}
+  .course-switch{margin-top:10px}
   .brand-mark{width:28px;height:28px;border-radius:7px}
   .sync{margin-top:0;padding:4px 0}
   .sync span{display:none}
@@ -349,17 +354,18 @@ a.lrow:hover{background:var(--surface-2)}
 <div class="shell">
   <aside class="rail">
     <div class="brand-row">
-      <a class="brand" href="#accueil" aria-label="Leri Sranantongo, accueil">
+      <a class="brand" href="#accueil" aria-label="Leri, accueil">
         <span class="brand-mark cloth" aria-hidden="true"></span>
-        <span class="brand-name">Leri Sranantongo<small>Apprendre le sranan</small></span>
+        <span class="brand-name">Leri<small id="brand-sub">Sranan tongo</small></span>
       </a>
       <button class="sync top-sync" type="button" data-act="go-settings" data-s="local" title="Où est enregistrée ma progression ?"><i></i><span></span></button>
     </div>
+    <div class="course-switch" id="course-switch" role="group" aria-label="Langue étudiée"></div>
     <nav class="nav" id="nav" aria-label="Sections"></nav>
     <button class="sync rail-sync" type="button" data-act="go-settings" data-s="local"><i></i><span>Enregistré sur cet appareil</span></button>
   </aside>
   <main id="view" class="view" tabindex="-1">
-    <noscript><p>Leri Sranantongo a besoin de JavaScript pour fonctionner.</p></noscript>
+    <noscript><p>Leri a besoin de JavaScript pour fonctionner.</p></noscript>
   </main>
 </div>
 <div class="sheet" id="sheet" hidden>
@@ -1464,6 +1470,1131 @@ const PROVERBS = [
 ];
 
 /* =========================================================================
+   COURS D'ANGLAIS — du niveau A1 au C1, pour francophones.
+   Format d'un mot : [anglais, français, note facultative, variantes acceptées séparées par |]
+   ========================================================================= */
+const EN_THEMES = [
+ { id:"en-base", level:"A1", name:"Les essentiels", lead:"Saluer, remercier, se présenter.", words:[
+  ["hello","bonjour"],
+  ["hi","salut"],
+  ["good morning","bonjour (le matin)"],
+  ["good afternoon","bon après-midi"],
+  ["good evening","bonsoir"],
+  ["good night","bonne nuit","se dit en partant le soir ou avant d'aller dormir"],
+  ["goodbye","au revoir"],
+  ["see you later","à plus tard"],
+  ["please","s'il vous plaît, s'il te plaît"],
+  ["thank you","merci"],
+  ["thanks a lot","merci beaucoup"],
+  ["you're welcome","de rien","aussi : no problem, my pleasure"],
+  ["excuse me","excusez-moi (pour attirer l'attention)"],
+  ["sorry","pardon, désolé(e)"],
+  ["How are you?","Comment allez-vous ?"],
+  ["I'm fine, thanks.","Je vais bien, merci."],
+  ["Nice to meet you.","Enchanté(e)."],
+  ["What's your name?","Comment vous appelez-vous ?"],
+  ["My name is Daisy.","Je m'appelle Daisy."],
+  ["Where are you from?","D'où venez-vous ?"],
+  ["I'm from France.","Je viens de France."],
+  ["I live in Paris.","J'habite à Paris."],
+  ["Take care!","Prends soin de toi !"],
+  ["Never mind.","Ce n'est pas grave, laisse tomber."],
+  ["No worries.","Pas de souci."],
+  ["Cheers!","Santé ! ; merci (familier, britannique)"]
+ ]},
+ { id:"en-temps", level:"A1", name:"Jours, mois & heure", lead:"Dire la date et l'heure.", words:[
+  ["Monday","lundi","les jours et les mois prennent une majuscule"],
+  ["Tuesday","mardi"],
+  ["Wednesday","mercredi","se prononce « wenz-dé » : le premier d est muet"],
+  ["Thursday","jeudi"],
+  ["Friday","vendredi"],
+  ["Saturday","samedi"],
+  ["Sunday","dimanche"],
+  ["January","janvier"],
+  ["February","février"],
+  ["March","mars"],
+  ["April","avril"],
+  ["May","mai"],
+  ["June","juin"],
+  ["July","juillet"],
+  ["August","août"],
+  ["September","septembre"],
+  ["October","octobre"],
+  ["November","novembre"],
+  ["December","décembre"],
+  ["It's three o'clock.","Il est trois heures."],
+  ["a quarter past three","trois heures et quart"],
+  ["half past three","trois heures et demie"],
+  ["a quarter to four","quatre heures moins le quart"],
+  ["the first of July","le premier juillet","s'écrit 1 July (britannique) ou July 1 (américain)"],
+  ["yesterday","hier"],
+  ["tomorrow","demain"],
+  ["the day after tomorrow","après-demain"],
+  ["last week","la semaine dernière"],
+  ["next month","le mois prochain"]
+ ]},
+ { id:"en-quotidien", level:"A2", name:"Vie quotidienne", lead:"La maison, les courses, la ville.", words:[
+  ["home","maison, chez soi"],
+  ["flat","appartement (britannique)","américain : apartment"],
+  ["bedroom","chambre"],
+  ["kitchen","cuisine"],
+  ["bathroom","salle de bains"],
+  ["neighbour","voisin(e)","américain : neighbor","neighbor"],
+  ["rent","loyer ; louer"],
+  ["bill","facture ; addition (au restaurant)"],
+  ["groceries","courses (alimentaires)"],
+  ["to do the shopping","faire les courses"],
+  ["to cook","cuisiner"],
+  ["to do the dishes","faire la vaisselle"],
+  ["to do the laundry","faire la lessive"],
+  ["to tidy up","ranger"],
+  ["to wake up","se réveiller"],
+  ["to get up","se lever"],
+  ["to have breakfast","prendre le petit-déjeuner"],
+  ["to commute","faire le trajet domicile-travail"],
+  ["appointment","rendez-vous (médecin, administration)","un rendez-vous amoureux : a date"],
+  ["town hall","mairie"],
+  ["post office","bureau de poste"],
+  ["chemist's","pharmacie (britannique)","américain : drugstore, pharmacy"],
+  ["bakery","boulangerie"],
+  ["receipt","ticket de caisse, reçu","le p est muet : « ri-sîte »"],
+  ["change","monnaie (rendue) ; changement"],
+  ["cash","espèces, liquide"],
+  ["to borrow","emprunter"],
+  ["to lend","prêter"],
+  ["weather","temps (météo)"],
+  ["It's raining.","Il pleut."]
+ ]},
+ { id:"en-voyage", level:"A2", name:"Voyager", lead:"Aéroport, hôtel, déplacements.", words:[
+  ["flight","vol (en avion)"],
+  ["luggage","bagages","indénombrable : a piece of luggage = un bagage"],
+  ["suitcase","valise"],
+  ["boarding pass","carte d'embarquement"],
+  ["gate","porte d'embarquement"],
+  ["to check in","enregistrer ses bagages ; s'enregistrer (hôtel)"],
+  ["departure","départ"],
+  ["arrival","arrivée"],
+  ["delay","retard"],
+  ["delayed","retardé"],
+  ["one-way ticket","aller simple","britannique aussi : a single"],
+  ["return ticket","aller-retour","américain : round-trip ticket"],
+  ["to book","réserver"],
+  ["booking","réservation"],
+  ["to miss a flight","rater un vol"],
+  ["customs","douane"],
+  ["passport","passeport"],
+  ["to rent a car","louer une voiture"],
+  ["sightseeing","tourisme, visites"],
+  ["Is breakfast included?","Le petit-déjeuner est-il compris ?"],
+  ["How do I get to the station?","Comment aller à la gare ?"],
+  ["Could you call me a taxi?","Pourriez-vous m'appeler un taxi ?"],
+  ["I'd like a window seat.","Je voudrais une place côté hublot."],
+  ["My luggage hasn't arrived.","Mes bagages ne sont pas arrivés."]
+ ]},
+ { id:"en-irreguliers", level:"A2", name:"Verbes irréguliers", lead:"Base verbale – prétérit – participe passé : les 76 indispensables.", words:[
+  ["be – was/were – been","être"],
+  ["become – became – become","devenir"],
+  ["begin – began – begun","commencer"],
+  ["break – broke – broken","casser"],
+  ["bring – brought – brought","apporter"],
+  ["build – built – built","construire"],
+  ["buy – bought – bought","acheter","ne pas confondre avec brought (bring)"],
+  ["catch – caught – caught","attraper"],
+  ["choose – chose – chosen","choisir"],
+  ["come – came – come","venir"],
+  ["cost – cost – cost","coûter"],
+  ["cut – cut – cut","couper"],
+  ["do – did – done","faire"],
+  ["drink – drank – drunk","boire"],
+  ["drive – drove – driven","conduire"],
+  ["eat – ate – eaten","manger"],
+  ["fall – fell – fallen","tomber"],
+  ["feel – felt – felt","(se) sentir, ressentir"],
+  ["fight – fought – fought","se battre"],
+  ["find – found – found","trouver"],
+  ["fly – flew – flown","voler (en avion, oiseau)"],
+  ["forget – forgot – forgotten","oublier"],
+  ["forgive – forgave – forgiven","pardonner"],
+  ["get – got – got","obtenir ; devenir","américain : participe gotten"],
+  ["give – gave – given","donner"],
+  ["go – went – gone","aller"],
+  ["grow – grew – grown","grandir, pousser"],
+  ["have – had – had","avoir"],
+  ["hear – heard – heard","entendre"],
+  ["hide – hid – hidden","cacher"],
+  ["hold – held – held","tenir"],
+  ["keep – kept – kept","garder"],
+  ["know – knew – known","savoir, connaître","le k est muet"],
+  ["lead – led – led","mener"],
+  ["learn – learnt – learnt","apprendre","aussi learned, surtout en américain"],
+  ["leave – left – left","partir, quitter"],
+  ["lend – lent – lent","prêter"],
+  ["let – let – let","laisser"],
+  ["lie – lay – lain","être allongé","« mentir » est régulier : lie – lied – lied"],
+  ["lose – lost – lost","perdre"],
+  ["make – made – made","fabriquer, faire"],
+  ["mean – meant – meant","signifier, vouloir dire"],
+  ["meet – met – met","rencontrer"],
+  ["pay – paid – paid","payer"],
+  ["put – put – put","mettre"],
+  ["read – read – read","lire","prétérit et participe se prononcent « red »"],
+  ["ride – rode – ridden","aller (à vélo, à cheval)"],
+  ["ring – rang – rung","sonner"],
+  ["rise – rose – risen","se lever, augmenter"],
+  ["run – ran – run","courir"],
+  ["say – said – said","dire","said se prononce « sèd »"],
+  ["see – saw – seen","voir"],
+  ["sell – sold – sold","vendre"],
+  ["send – sent – sent","envoyer"],
+  ["shine – shone – shone","briller"],
+  ["shoot – shot – shot","tirer"],
+  ["show – showed – shown","montrer"],
+  ["shut – shut – shut","fermer"],
+  ["sing – sang – sung","chanter"],
+  ["sit – sat – sat","s'asseoir"],
+  ["sleep – slept – slept","dormir"],
+  ["speak – spoke – spoken","parler"],
+  ["spend – spent – spent","dépenser ; passer (du temps)"],
+  ["stand – stood – stood","être debout"],
+  ["steal – stole – stolen","voler (dérober)"],
+  ["swim – swam – swum","nager"],
+  ["take – took – taken","prendre"],
+  ["teach – taught – taught","enseigner"],
+  ["tell – told – told","dire, raconter"],
+  ["think – thought – thought","penser"],
+  ["throw – threw – thrown","lancer, jeter"],
+  ["understand – understood – understood","comprendre"],
+  ["wake – woke – woken","(se) réveiller"],
+  ["wear – wore – worn","porter (un vêtement)"],
+  ["win – won – won","gagner","won se prononce comme one"],
+  ["write – wrote – written","écrire"]
+ ]},
+ { id:"en-sentiments", level:"B1", name:"Émotions & caractère", lead:"Dire ce qu'on ressent, décrire quelqu'un.", words:[
+  ["upset","contrarié, bouleversé"],
+  ["annoyed","agacé"],
+  ["worried","inquiet"],
+  ["anxious","anxieux"],
+  ["relieved","soulagé"],
+  ["proud","fier"],
+  ["ashamed","honteux"],
+  ["embarrassed","gêné, mal à l'aise"],
+  ["excited","enthousiaste, impatient","I'm excited = j'ai hâte, je suis enthousiaste"],
+  ["bored","qui s'ennuie","I'm bored = je m'ennuie ; I'm boring = je suis ennuyeux !"],
+  ["boring","ennuyeux"],
+  ["exhausted","épuisé"],
+  ["grateful","reconnaissant"],
+  ["jealous","jaloux"],
+  ["lonely","seul (qui souffre de solitude)","alone = seul, sans personne"],
+  ["confident","sûr de soi","faux ami : un confident = a confidant"],
+  ["shy","timide"],
+  ["stubborn","têtu"],
+  ["generous","généreux"],
+  ["selfish","égoïste"],
+  ["moody","lunatique"],
+  ["outgoing","sociable, extraverti"],
+  ["thoughtful","attentionné ; réfléchi"],
+  ["easy-going","facile à vivre"],
+  ["hard-working","travailleur"],
+  ["I'm fed up.","J'en ai marre."],
+  ["I can't stand it.","Je ne le supporte pas."],
+  ["It's up to you.","C'est toi qui vois."]
+ ]},
+ { id:"en-travail", level:"B1", name:"Travail & e-mails", lead:"Le vocabulaire du bureau et les formules d'e-mail.", words:[
+  ["job","emploi, travail"],
+  ["career","carrière"],
+  ["salary","salaire (annuel)","wages = paie à l'heure ou à la semaine"],
+  ["colleague","collègue"],
+  ["manager","responsable, chef"],
+  ["meeting","réunion"],
+  ["deadline","date limite, échéance"],
+  ["to apply for a job","postuler à un emploi"],
+  ["job interview","entretien d'embauche"],
+  ["skills","compétences"],
+  ["to hire","embaucher"],
+  ["to fire","renvoyer (pour faute)"],
+  ["to be laid off","être licencié (économique)"],
+  ["promotion","promotion"],
+  ["full-time","à plein temps"],
+  ["part-time","à temps partiel"],
+  ["overtime","heures supplémentaires"],
+  ["to retire","prendre sa retraite"],
+  ["workload","charge de travail"],
+  ["to be in charge of","être responsable de"],
+  ["schedule","planning, emploi du temps"],
+  ["to work from home","télétravailler"],
+  ["out of office","absent du bureau"],
+  ["to reach an agreement","parvenir à un accord"],
+  ["I'll get back to you.","Je reviens vers vous."],
+  ["Please find attached…","Veuillez trouver ci-joint…"],
+  ["Could we schedule a call?","Pourrions-nous prévoir un appel ?"],
+  ["I look forward to hearing from you.","Dans l'attente de votre réponse."],
+  ["Kind regards","Cordialement"]
+ ]},
+ { id:"en-collocations", level:"B1", name:"Make, do, take… (collocations)", lead:"Les mots qui vont ensemble : on dit make a mistake, pas do a mistake.", words:[
+  ["make a decision","prendre une décision"],
+  ["make a mistake","faire une erreur"],
+  ["make progress","faire des progrès"],
+  ["make an effort","faire un effort"],
+  ["make money","gagner de l'argent"],
+  ["make a phone call","passer un coup de fil"],
+  ["do your homework","faire ses devoirs"],
+  ["do business","faire des affaires"],
+  ["do someone a favour","rendre service à quelqu'un","américain : favor"],
+  ["do your best","faire de son mieux"],
+  ["take a photo","prendre une photo"],
+  ["take a break","faire une pause"],
+  ["take a risk","prendre un risque"],
+  ["take place","avoir lieu"],
+  ["take part in","participer à"],
+  ["have a shower","prendre une douche"],
+  ["have a look","jeter un œil"],
+  ["pay attention","faire attention"],
+  ["keep in touch","rester en contact"],
+  ["break a promise","ne pas tenir une promesse"],
+  ["catch a cold","attraper un rhume"],
+  ["save time","gagner du temps"],
+  ["waste time","perdre du temps"],
+  ["tell the truth","dire la vérité"],
+  ["tell a lie","mentir"],
+  ["give a speech","faire un discours"],
+  ["run a business","diriger une entreprise"],
+  ["meet a deadline","respecter un délai"],
+  ["raise a question","soulever une question"],
+  ["draw a conclusion","tirer une conclusion"]
+ ]},
+ { id:"en-fauxamis", level:"B1", name:"Faux amis", lead:"Les mots qui ressemblent au français… mais ne veulent pas dire la même chose.", words:[
+  ["actually","en fait, en réalité","faux ami : « actuellement » se dit currently"],
+  ["currently","actuellement"],
+  ["eventually","finalement, à la longue","faux ami : « éventuellement » se dit possibly"],
+  ["possibly","éventuellement, peut-être"],
+  ["library","bibliothèque","faux ami : une librairie = a bookshop"],
+  ["bookshop","librairie","américain : bookstore","bookstore"],
+  ["sensible","raisonnable, sensé","faux ami : « sensible » se dit sensitive"],
+  ["sensitive","sensible"],
+  ["to attend","assister à (une réunion, un cours)","faux ami : « attendre » se dit to wait"],
+  ["to assist","aider"],
+  ["to pretend","faire semblant","faux ami : « prétendre » se dit to claim"],
+  ["to claim","prétendre, affirmer ; réclamer"],
+  ["deception","tromperie","faux ami : « déception » se dit disappointment"],
+  ["disappointment","déception"],
+  ["lecture","conférence, cours magistral","faux ami : « une lecture » se dit reading"],
+  ["issue","problème, question ; numéro (de magazine)","faux ami : « une issue » se dit an outcome ou an exit"],
+  ["journey","voyage, trajet","faux ami : « une journée » se dit a day"],
+  ["to realise","se rendre compte","américain : realize. « Réaliser » (un projet) se dit to achieve","to realize"],
+  ["to achieve","réaliser, accomplir"],
+  ["to rest","se reposer","faux ami : « rester » se dit to stay"],
+  ["to stay","rester"],
+  ["gentle","doux, délicat","faux ami : « gentil » se dit kind ou nice"],
+  ["kind","gentil"],
+  ["fabric","tissu","faux ami : une fabrique = a factory"],
+  ["factory","usine"],
+  ["sympathetic","compatissant","faux ami : « sympathique » se dit nice ou friendly"],
+  ["rude","impoli, grossier","« rude » (dur) se dit harsh ou rough"],
+  ["large","grand (de taille)","faux ami : « large » se dit wide"],
+  ["wide","large"],
+  ["chips","frites (britannique)","américain : fries. Les chips = crisps (britannique)"],
+  ["crisps","chips (britannique)"],
+  ["petrol","essence (britannique)","américain : gas. Le pétrole = oil"],
+  ["coin","pièce de monnaie","faux ami : un coin = a corner"],
+  ["preservative","conservateur (alimentaire)","faux ami : un préservatif = a condom"],
+  ["résumé","CV (américain)","britannique : CV. Un résumé = a summary"],
+  ["summary","résumé"],
+  ["to check","vérifier, contrôler"],
+  ["mean","radin ; méchant","to mean = vouloir dire"]
+ ]},
+ { id:"en-phrasal", level:"B1", name:"Verbes à particule", lead:"Phrasal verbs : un verbe + une particule = un nouveau sens.", words:[
+  ["give up","abandonner ; arrêter (de fumer…)","I gave up smoking."],
+  ["look after","s'occuper de"],
+  ["look for","chercher"],
+  ["look forward to","avoir hâte de","suivi de -ing : I look forward to seeing you."],
+  ["look up","chercher (dans un dictionnaire)"],
+  ["find out","découvrir, apprendre (une information)"],
+  ["run out of","manquer de, ne plus avoir de"],
+  ["get along with","bien s'entendre avec"],
+  ["put off","reporter, remettre à plus tard"],
+  ["turn down","refuser (une offre) ; baisser (le son)"],
+  ["turn up","arriver, se pointer ; monter (le son)"],
+  ["show up","arriver, se présenter"],
+  ["set up","créer, mettre en place"],
+  ["carry on","continuer"],
+  ["come up with","trouver (une idée)"],
+  ["deal with","s'occuper de, gérer"],
+  ["figure out","comprendre, trouver la solution"],
+  ["bring up","élever (un enfant) ; aborder (un sujet)"],
+  ["get over","se remettre de"],
+  ["call off","annuler"],
+  ["break down","tomber en panne ; s'effondrer"],
+  ["pick up","ramasser ; aller chercher (quelqu'un)"],
+  ["put up with","supporter, tolérer"],
+  ["work out","faire du sport ; résoudre ; bien se passer"],
+  ["end up","finir par"],
+  ["go through","traverser (une épreuve) ; examiner"],
+  ["make up","inventer ; se réconcilier"],
+  ["take over","prendre le contrôle, reprendre"],
+  ["point out","faire remarquer, souligner"],
+  ["catch up","rattraper (son retard)"],
+  ["drop out","abandonner (ses études)"],
+  ["fill in","remplir (un formulaire)","américain : fill out","fill out"],
+  ["hand in","rendre (un devoir), remettre"],
+  ["hold on","patienter (au téléphone)"],
+  ["keep up with","suivre le rythme de"],
+  ["let down","décevoir, laisser tomber"],
+  ["rule out","exclure, écarter"],
+  ["sort out","régler, arranger"],
+  ["stand out","se démarquer, ressortir"],
+  ["take up","commencer (une activité) ; prendre (de la place)"]
+ ]},
+ { id:"en-conversation", level:"B1", name:"Phrases pour converser", lead:"Faire répéter, donner son avis, être poli.", words:[
+  ["Could you repeat that, please?","Pourriez-vous répéter, s'il vous plaît ?"],
+  ["Could you speak more slowly?","Pourriez-vous parler plus lentement ?"],
+  ["What does it mean?","Qu'est-ce que ça veut dire ?"],
+  ["How do you say it in English?","Comment le dit-on en anglais ?"],
+  ["I'm not sure I follow you.","Je ne suis pas sûr(e) de vous suivre."],
+  ["Let me think about it.","Laissez-moi y réfléchir."],
+  ["That makes sense.","C'est logique, ça se tient."],
+  ["I see what you mean.","Je vois ce que vous voulez dire."],
+  ["I couldn't agree more.","Je suis tout à fait d'accord."],
+  ["I'm afraid I disagree.","Je crains de ne pas être d'accord."],
+  ["It depends.","Ça dépend."],
+  ["To be honest, …","Pour être honnête, …"],
+  ["If I'm not mistaken, …","Si je ne me trompe pas, …"],
+  ["Would you mind opening the window?","Ça vous dérangerait d'ouvrir la fenêtre ?","Would you mind + -ing"],
+  ["I'd rather stay at home.","Je préférerais rester à la maison."],
+  ["Sorry to interrupt, but…","Désolé(e) de vous interrompre, mais…"],
+  ["Let's get started.","Commençons."],
+  ["What do you think?","Qu'en pensez-vous ?"],
+  ["In my opinion, …","À mon avis, …"],
+  ["That's a good point.","C'est un bon argument."],
+  ["Fair enough.","C'est juste, d'accord."],
+  ["I was wondering if you could help me.","Je me demandais si vous pouviez m'aider.","formule polie très courante"],
+  ["No way!","Pas question ! ; Sans blague !"],
+  ["It's not a big deal.","Ce n'est pas grave."],
+  ["Go ahead.","Allez-y."]
+ ]},
+ { id:"en-liaison", level:"B2", name:"Mots de liaison", lead:"Pour argumenter et écrire comme un locuteur avancé.", words:[
+  ["however","cependant"],
+  ["therefore","par conséquent, donc"],
+  ["moreover","de plus"],
+  ["furthermore","en outre"],
+  ["nevertheless","néanmoins"],
+  ["although","bien que, même si","suivi d'un sujet et d'un verbe : although it was late…"],
+  ["even though","même si (insistance)"],
+  ["whereas","alors que, tandis que (opposition)"],
+  ["despite","malgré","suivi d'un nom ou de -ing : despite the rain"],
+  ["in spite of","malgré"],
+  ["in addition","en plus, de surcroît"],
+  ["as a result","en conséquence"],
+  ["consequently","par voie de conséquence"],
+  ["on the other hand","d'un autre côté, en revanche"],
+  ["on the contrary","au contraire"],
+  ["meanwhile","pendant ce temps"],
+  ["otherwise","sinon, autrement"],
+  ["unless","à moins que, sauf si"],
+  ["provided that","à condition que"],
+  ["as long as","tant que, du moment que"],
+  ["so that","pour que, afin que"],
+  ["in order to","afin de"],
+  ["thus","ainsi"],
+  ["first of all","tout d'abord"],
+  ["to sum up","pour résumer"],
+  ["in conclusion","en conclusion"],
+  ["that being said","cela dit"],
+  ["as far as I'm concerned","en ce qui me concerne"],
+  ["all in all","tout compte fait"],
+  ["indeed","en effet ; vraiment"],
+  ["regarding","concernant, au sujet de"],
+  ["whether","si (alternative)","I don't know whether he'll come."]
+ ]},
+ { id:"en-idiomes", level:"B2", name:"Expressions idiomatiques", lead:"Les images de la langue, et leur équivalent français.", words:[
+  ["It's raining cats and dogs.","Il pleut des cordes."],
+  ["to break the ice","briser la glace"],
+  ["a piece of cake","du gâteau, très facile"],
+  ["to hit the nail on the head","mettre le doigt dessus, viser juste"],
+  ["once in a blue moon","tous les trente-six du mois"],
+  ["under the weather","patraque, un peu malade"],
+  ["The ball is in your court.","La balle est dans ton camp."],
+  ["to cost an arm and a leg","coûter les yeux de la tête"],
+  ["to let the cat out of the bag","vendre la mèche"],
+  ["to spill the beans","vendre la mèche"],
+  ["to beat around the bush","tourner autour du pot"],
+  ["to call it a day","s'arrêter là pour aujourd'hui"],
+  ["to get the hang of it","prendre le coup de main"],
+  ["to be on the same page","être sur la même longueur d'onde"],
+  ["to be in hot water","être dans le pétrin"],
+  ["the last straw","la goutte d'eau qui fait déborder le vase"],
+  ["to sit on the fence","ne pas prendre parti"],
+  ["to cut corners","bâcler, rogner sur la qualité"],
+  ["to hit the sack","aller se coucher"],
+  ["to bite off more than you can chew","avoir les yeux plus gros que le ventre"],
+  ["a blessing in disguise","un mal pour un bien"],
+  ["It's not rocket science.","Ce n'est pas sorcier."],
+  ["to keep an eye on","garder un œil sur, surveiller"],
+  ["to pull someone's leg","faire marcher quelqu'un"],
+  ["when pigs fly","quand les poules auront des dents"],
+  ["to go the extra mile","faire un effort supplémentaire"],
+  ["to think outside the box","sortir des sentiers battus"],
+  ["Better late than never.","Mieux vaut tard que jamais."],
+  ["Actions speak louder than words.","Les actes valent mieux que les paroles."],
+  ["to kill two birds with one stone","faire d'une pierre deux coups"],
+  ["to be over the moon","être aux anges"]
+ ]},
+ { id:"en-avance", level:"C1", name:"Vocabulaire avancé", lead:"Les mots qui font la différence à l'écrit, en réunion, à l'examen.", words:[
+  ["to undermine","saper, fragiliser"],
+  ["to tackle","s'attaquer à (un problème)"],
+  ["to foster","favoriser, encourager"],
+  ["to enhance","améliorer, renforcer"],
+  ["to address","traiter, aborder (un problème)","aussi : s'adresser à"],
+  ["to acknowledge","reconnaître, admettre"],
+  ["to assess","évaluer"],
+  ["to convey","transmettre, exprimer"],
+  ["to emphasise","souligner, mettre l'accent sur","américain : emphasize","to emphasize"],
+  ["to entail","impliquer, entraîner"],
+  ["to hinder","entraver, freiner"],
+  ["to implement","mettre en œuvre"],
+  ["to outline","exposer dans les grandes lignes"],
+  ["to pursue","poursuivre (un but)"],
+  ["to thrive","prospérer, s'épanouir"],
+  ["to cope with","faire face à"],
+  ["to comply with","se conformer à, respecter"],
+  ["to endorse","soutenir, approuver"],
+  ["to leverage","tirer parti de"],
+  ["relevant","pertinent"],
+  ["reliable","fiable"],
+  ["thorough","minutieux, approfondi","se prononce /ˈθʌrə/"],
+  ["feasible","faisable, réalisable"],
+  ["sustainable","durable (écologique)"],
+  ["ubiquitous","omniprésent"],
+  ["unprecedented","sans précédent"],
+  ["compelling","convaincant, captivant"],
+  ["nuanced","nuancé"],
+  ["consistent","cohérent, constant","faux ami : « consistant » (copieux) se dit substantial"],
+  ["accurate","exact, précis"],
+  ["straightforward","simple, direct"],
+  ["cumbersome","encombrant, lourd"],
+  ["trade-off","compromis"],
+  ["insight","éclairage, compréhension fine"],
+  ["outcome","résultat, issue"],
+  ["drawback","inconvénient"],
+  ["breakthrough","percée, avancée décisive"],
+  ["bottleneck","goulot d'étranglement"],
+  ["hindsight","recul (après coup)","with hindsight : avec le recul"],
+  ["stakeholder","partie prenante"],
+  ["arguably","sans doute, on peut soutenir que"],
+  ["albeit","bien que, quoique","albeit slowly : quoique lentement"]
+ ]}
+];
+
+/* Phrases à reconstruire */
+const EN_SENTENCES = [
+ ["I have lived here since 2019.","J'habite ici depuis 2019."],
+ ["She has never been to London.","Elle n'est jamais allée à Londres."],
+ ["Do you know where the station is?","Savez-vous où est la gare ?"],
+ ["I am looking forward to meeting you.","J'ai hâte de vous rencontrer."],
+ ["If I had more time, I would travel more.","Si j'avais plus de temps, je voyagerais plus."],
+ ["The meeting has been postponed until Friday.","La réunion a été reportée à vendredi."],
+ ["He used to live in Paramaribo.","Il habitait à Paramaribo autrefois."],
+ ["I am not used to getting up early.","Je n'ai pas l'habitude de me lever tôt."],
+ ["What time does the train leave?","À quelle heure part le train ?"],
+ ["How long have you been learning English?","Depuis combien de temps apprends-tu l'anglais ?"],
+ ["She asked me where I lived.","Elle m'a demandé où j'habitais."],
+ ["We will call you as soon as we arrive.","Nous vous appellerons dès que nous arriverons."],
+ ["I wish I could speak Sranan fluently.","J'aimerais parler couramment le sranan."],
+ ["You should have told me earlier.","Tu aurais dû me le dire plus tôt."],
+ ["They must be at home by now.","Ils doivent être chez eux à l'heure qu'il est."],
+ ["The book that you lent me is great.","Le livre que tu m'as prêté est génial."],
+ ["I always drink coffee in the morning.","Je bois toujours du café le matin."],
+ ["It is the best film I have ever seen.","C'est le meilleur film que j'aie jamais vu."],
+ ["Could you tell me how much it costs?","Pourriez-vous me dire combien ça coûte ?"],
+ ["I have just finished my report.","Je viens de finir mon rapport."],
+ ["Not only is she clever, but she is also kind.","Non seulement elle est intelligente, mais en plus elle est gentille."],
+ ["Had I known, I would have come.","Si j'avais su, je serais venu(e)."],
+ ["There isn't much time left.","Il ne reste plus beaucoup de temps."],
+ ["He gave up smoking two years ago.","Il a arrêté de fumer il y a deux ans."],
+ ["Where were you born?","Où es-tu né(e) ?"],
+ ["What I need is a good night's sleep.","Ce dont j'ai besoin, c'est d'une bonne nuit de sommeil."],
+ ["She is taller than her brother.","Elle est plus grande que son frère."],
+ ["I'd rather you didn't tell anyone.","Je préférerais que tu ne le dises à personne."],
+ ["We have been waiting for an hour.","Nous attendons depuis une heure."],
+ ["It's high time we left.","Il est grand temps que nous partions."]
+];
+
+/* Choisir la bonne forme */
+const EN_MARKERS = [
+ ["I ___ here since 2019.","J'habite ici depuis 2019.","have lived",["have lived","live","am living","lived"]],
+ ["She ___ TV when I called.","Elle regardait la télé quand j'ai appelé.","was watching",["was watching","watched","has watched","is watching"]],
+ ["If it rains, we ___ at home.","S'il pleut, nous resterons à la maison.","will stay",["will stay","would stay","stayed","stay"]],
+ ["If I ___ rich, I would buy a house.","Si j'étais riche, j'achèterais une maison.","were",["were","am","would be","have been"]],
+ ["If I had known, I ___ you.","Si j'avais su, je t'aurais aidé(e).","would have helped",["would have helped","would help","had helped","will help"]],
+ ["The house ___ in 1950.","La maison a été construite en 1950.","was built",["was built","built","has built","is building"]],
+ ["I'm looking forward to ___ you.","J'ai hâte de te voir.","seeing",["seeing","see","to see","saw"]],
+ ["By the time we arrived, the film ___.","Quand nous sommes arrivés, le film avait déjà commencé.","had started",["had started","started","has started","starts"]],
+ ["I ___ go to the gym, but now I don't.","J'allais à la salle de sport avant, mais plus maintenant.","used to",["used to","am used to","use to","was used to"]],
+ ["You ___ smoke here. It's forbidden.","Tu ne dois pas fumer ici. C'est interdit.","mustn't",["mustn't","don't have to","needn't","shouldn't have"]],
+ ["He ___ be at home: the lights are on.","Il doit être chez lui : les lumières sont allumées.","must",["must","can't","should","has to"]],
+ ["I wish I ___ more time.","J'aimerais avoir plus de temps.","had",["had","have","will have","would have"]],
+ ["She said she ___ tired.","Elle a dit qu'elle était fatiguée.","was",["was","is","has been","will be"]],
+ ["There aren't ___ people here today.","Il n'y a pas beaucoup de monde ici aujourd'hui.","many",["many","much","a lot","few"]],
+ ["Can you give me some ___?","Peux-tu me donner des conseils ?","advice",["advice","advices","an advice","advise"]],
+ ["This is the man ___ car was stolen.","Voici l'homme dont la voiture a été volée.","whose",["whose","who","which","that"]],
+ ["We've been friends ___ ten years.","Nous sommes amis depuis dix ans.","for",["for","since","during","ago"]],
+ ["I met her two years ___.","Je l'ai rencontrée il y a deux ans.","ago",["ago","before","since","for"]],
+ ["Never ___ such a beautiful place.","Jamais je n'ai vu un endroit aussi beau.","have I seen",["have I seen","I have seen","I saw","did I saw"]],
+ ["It's time we ___ home.","Il est temps que nous rentrions.","went",["went","go","will go","have gone"]],
+ ["You're coming tonight, ___ you?","Tu viens ce soir, n'est-ce pas ?","aren't",["aren't","don't","isn't","won't"]],
+ ["I'd rather ___ at home tonight.","Je préférerais rester à la maison ce soir.","stay",["stay","to stay","staying","stayed"]],
+ ["The more you practise, the ___ you get.","Plus tu t'entraînes, meilleur tu deviens.","better",["better","best","more good","good"]],
+ ["I'll call you when I ___.","Je t'appellerai quand j'arriverai.","arrive",["arrive","will arrive","arrived","am arriving to"]]
+];
+
+/* Leçons */
+const EN_LESSONS = [
+ { id:"e1", level:"A1", title:"Prononcer l'anglais", key:"think · this · hello",
+   intro:"L'anglais ne se prononce pas comme il s'écrit. Six points font toute la différence pour un francophone. Touchez le haut-parleur pour écouter chaque exemple.",
+   sections:[
+    { h:"Le « th »", p:"Placez le bout de la langue entre les dents. Il est sourd dans <b>think</b>, sonore dans <b>this</b>. Ce n'est ni « s », ni « z », ni « f ».", ex:[["think","penser"],["three","trois"],["this","ceci"],["mother","mère"]]},
+    { h:"Le « h » se prononce", p:"Expirez, comme pour faire de la buée sur une vitre. Sans lui, <b>I hate it</b> (je déteste ça) devient <b>I ate it</b> (je l'ai mangé).", ex:[["hello","bonjour"],["house","maison"],["hungry","affamé"],["I hate it.","Je déteste ça."]]},
+    { h:"Voyelles courtes et longues", p:"La durée change le sens : <b>ship</b> (navire) / <b>sheep</b> (mouton), <b>live</b> (vivre) / <b>leave</b> (partir).", ex:[["ship","navire"],["sheep","mouton"],["live","vivre"],["leave","partir"]]},
+    { h:"L'accent tonique", p:"Chaque mot a une syllabe plus forte. Un mauvais accent rend le mot méconnaissable : <b>PHO</b>tograph, pho<b>TO</b>grapher, <b>COM</b>fortable.", ex:[["photograph","photographie"],["photographer","photographe"],["comfortable","confortable"],["vegetable","légume"]]},
+    { h:"La terminaison -ed", p:"Trois prononciations : « t » après un son sourd (<b>worked</b>), « d » après un son sonore (<b>played</b>), « id » seulement après t ou d (<b>wanted</b>). On ne dit jamais « work-ède ».", ex:[["worked","travaillé"],["played","joué"],["wanted","voulu"]]},
+    { h:"Les lettres muettes", ex:[["knife","couteau"],["write","écrire"],["listen","écouter"],["island","île"],["Wednesday","mercredi"]]}
+   ],
+   tip:"Le plus efficace : écouter, puis répéter à voix haute en exagérant. La vitesse lente se règle dans les Réglages.",
+   quiz:[
+    {q:"Pour prononcer « th », la langue se place :",o:["entre les dents","contre le palais","derrière les dents du bas"]},
+    {q:"Le « h » de « hello » :",o:["se prononce, en soufflant","est muet, comme en français","se prononce comme un « r »"]},
+    {q:"« worked » se prononce :",o:["en une syllabe, « workt »","en deux syllabes, « work-ède »","« work-id »"]},
+    {q:"Quelle lettre est muette dans « listen » ?",o:["le t","le l","le n"]},
+    {q:"« ship » et « sheep » se distinguent par :",o:["la longueur de la voyelle","le h","l'accent tonique"]}
+   ]},
+ { id:"e2", level:"A1", title:"Présent simple ou présent continu ?", key:"I work · I'm working",
+   intro:"Le français n'a qu'un présent ; l'anglais en a deux. Le <b>présent simple</b> exprime les habitudes et les vérités générales. Le <b>présent continu</b> (be + -ing) exprime ce qui se passe en ce moment, ou un projet déjà organisé.",
+   sections:[
+    { h:"Présent simple : habitudes, vérités", p:"N'oubliez pas le <b>-s</b> à la 3e personne : he works, she goes. Questions et négations avec <b>do / does</b>.", ex:[
+      ["I work in an office.","Je travaille dans un bureau."],
+      ["She speaks three languages.","Elle parle trois langues."],
+      ["Do you like coffee?","Tu aimes le café ?"],
+      ["He doesn't eat meat.","Il ne mange pas de viande."]]},
+    { h:"Présent continu : en ce moment", ex:[
+      ["I'm working right now.","Je suis en train de travailler."],
+      ["What are you doing?","Qu'est-ce que tu fais ?"],
+      ["It's raining.","Il pleut."],
+      ["We're meeting Anna tomorrow.","Nous voyons Anna demain (c'est prévu)."]]},
+    { h:"Les verbes d'état", p:"Certains verbes ne se mettent presque jamais au continu : <b>know, like, love, want, need, believe, understand, seem</b>.", ex:[
+      ["I know the answer.","Je connais la réponse."],
+      ["I need help.","J'ai besoin d'aide."]]}
+   ],
+   tip:"Repères : <b>always, usually, often, never, every day</b> → présent simple. <b>now, at the moment, right now</b> → présent continu.",
+   quiz:[
+    {q:"« Elle parle trois langues » :",o:["She speaks three languages.","She is speaking three languages.","She speak three languages."]},
+    {q:"« Qu'est-ce que tu fais (en ce moment) ? » :",o:["What are you doing?","What do you do?","What you are doing?"]},
+    {q:"« Je connais la réponse » :",o:["I know the answer.","I'm knowing the answer.","I am know the answer."]},
+    {q:"« Il ne mange pas de viande » :",o:["He doesn't eat meat.","He don't eat meat.","He isn't eat meat."]}
+   ]},
+ { id:"e3", level:"A2", title:"Le prétérit", key:"I went · I didn't go",
+   intro:"Le prétérit raconte une action <b>terminée</b>, à un moment précis du passé (yesterday, last year, in 2010, two days ago). Il se forme avec <b>-ed</b> pour les verbes réguliers ; les irréguliers sont à apprendre (thème « Verbes irréguliers »).",
+   sections:[
+    { h:"Affirmation", ex:[
+      ["I worked yesterday.","J'ai travaillé hier."],
+      ["We went to London last year.","Nous sommes allés à Londres l'an dernier."],
+      ["She bought a new car.","Elle a acheté une nouvelle voiture."]]},
+    { h:"Question et négation : did", p:"Avec <b>did</b>, le verbe revient à sa base : on ne dit jamais « did went ».", ex:[
+      ["Did you see the film?","Tu as vu le film ?"],
+      ["I didn't go out.","Je ne suis pas sorti(e)."],
+      ["Where did you meet her?","Où l'as-tu rencontrée ?"]]},
+    { h:"Was / were", ex:[
+      ["I was tired.","J'étais fatigué(e)."],
+      ["They were at home.","Ils étaient à la maison."]]}
+   ],
+   tip:"<b>ago</b> = « il y a » (dans le passé), placé après la durée : <span class='sr'>two years ago</span>.",
+   quiz:[
+    {q:"« Tu as vu le film ? » :",o:["Did you see the film?","Did you saw the film?","Have you saw the film?"]},
+    {q:"« Je ne suis pas sorti » :",o:["I didn't go out.","I didn't went out.","I not went out."]},
+    {q:"« il y a deux ans » :",o:["two years ago","since two years","there are two years"]},
+    {q:"Prétérit de « buy » :",o:["bought","buyed","brought"]}
+   ]},
+ { id:"e4", level:"B1", title:"Present perfect ou prétérit ?", key:"I have lived · I lived",
+   intro:"C'est LA difficulté des francophones, car « j'ai fait » se traduit tantôt par <b>I did</b>, tantôt par <b>I have done</b>. Le <b>prétérit</b> s'emploie pour un moment passé précis et terminé. Le <b>present perfect</b> (have + participe passé) s'emploie quand l'action a un lien avec le présent, sans date précise.",
+   sections:[
+    { h:"Prétérit : c'est daté, c'est fini", ex:[
+      ["I saw that film last week.","J'ai vu ce film la semaine dernière."],
+      ["She lived in Paris in 2015.","Elle habitait à Paris en 2015."]]},
+    { h:"Present perfect : bilan, expérience, résultat", ex:[
+      ["Have you ever been to Suriname?","Es-tu déjà allé(e) au Suriname ?"],
+      ["I have never tried it.","Je n'ai jamais essayé."],
+      ["I've lost my keys.","J'ai perdu mes clés (je ne les ai toujours pas)."],
+      ["She has just left.","Elle vient de partir."],
+      ["Have you finished yet?","Tu as déjà fini ?"]]},
+    { h:"« Depuis » : for et since", p:"Pour une action qui dure encore, le français dit « depuis » + présent ; l'anglais dit present perfect + <b>for</b> (une durée) ou <b>since</b> (un point de départ).", ex:[
+      ["I have lived here for ten years.","J'habite ici depuis dix ans."],
+      ["I have known her since 2019.","Je la connais depuis 2019."]]}
+   ],
+   tip:"Erreur classique : « I live here since 2019 » est faux. On dit <span class='sr'>I have lived here since 2019.</span>",
+   quiz:[
+    {q:"« J'habite ici depuis dix ans » :",o:["I have lived here for ten years.","I live here since ten years.","I lived here for ten years."]},
+    {q:"« J'ai vu ce film la semaine dernière » :",o:["I saw that film last week.","I have seen that film last week.","I have saw that film last week."]},
+    {q:"« Elle vient de partir » :",o:["She has just left.","She comes from leaving.","She just has leave."]},
+    {q:"« Je la connais depuis 2019 » :",o:["I have known her since 2019.","I know her since 2019.","I have known her for 2019."]},
+    {q:"Avec « yesterday », on emploie :",o:["le prétérit","le present perfect","les deux"]}
+   ]},
+ { id:"e5", level:"B1", title:"Le present perfect continu", key:"I've been waiting",
+   intro:"<b>have been + -ing</b> insiste sur la durée d'une action commencée dans le passé, qui continue encore ou vient de s'arrêter.",
+   sections:[
+    { h:"En phrases", ex:[
+      ["I've been waiting for an hour.","J'attends depuis une heure."],
+      ["How long have you been learning English?","Depuis combien de temps apprends-tu l'anglais ?"],
+      ["She's been working here since May.","Elle travaille ici depuis mai."],
+      ["You look tired. Have you been running?","Tu as l'air fatigué. Tu as couru ?"]]},
+    { h:"Simple ou continu ?", p:"Le continu insiste sur l'activité et sa durée ; le simple sur le résultat.", ex:[
+      ["I've been reading this book for a week.","Je lis ce livre depuis une semaine."],
+      ["I've read three chapters.","J'ai lu trois chapitres."]]}
+   ],
+   tip:"Avec les verbes d'état (know, like, want…), on garde le present perfect simple : <span class='sr'>I've known him for years.</span>",
+   quiz:[
+    {q:"« J'attends depuis une heure » :",o:["I've been waiting for an hour.","I'm waiting since an hour.","I waited for an hour."]},
+    {q:"« Depuis combien de temps apprends-tu l'anglais ? » :",o:["How long have you been learning English?","Since when do you learn English?","How long are you learning English?"]},
+    {q:"« Je le connais depuis des années » :",o:["I've known him for years.","I've been knowing him for years.","I know him since years."]}
+   ]},
+ { id:"e6", level:"B1", title:"Raconter au passé", key:"I was walking when…",
+   intro:"Pour raconter, on combine trois temps : le <b>prétérit</b> pour les événements, le <b>past continuous</b> (was/were + -ing) pour le décor, et le <b>past perfect</b> (had + participe) pour ce qui s'était passé avant.",
+   sections:[
+    { h:"Past continuous : le décor", ex:[
+      ["I was walking home when it started to rain.","Je rentrais à pied quand il s'est mis à pleuvoir."],
+      ["What were you doing at eight?","Que faisais-tu à huit heures ?"]]},
+    { h:"Past perfect : ce qui s'était passé avant", ex:[
+      ["When I arrived, the train had left.","Quand je suis arrivé(e), le train était parti."],
+      ["She had never seen snow before.","Elle n'avait jamais vu la neige auparavant."]]}
+   ],
+   tip:"Comparez : <span class='sr'>When I arrived, they left.</span> (ils sont partis à mon arrivée) et <span class='sr'>When I arrived, they had left.</span> (ils étaient déjà partis).",
+   quiz:[
+    {q:"« Je rentrais à pied quand il s'est mis à pleuvoir » :",o:["I was walking home when it started to rain.","I walked home when it was starting to rain.","I was walking home when it has started to rain."]},
+    {q:"« Quand je suis arrivé, le train était parti » :",o:["When I arrived, the train had left.","When I arrived, the train has left.","When I had arrived, the train left."]},
+    {q:"Le past perfect se forme avec :",o:["had + participe passé","was + -ing","have + participe passé"]}
+   ]},
+ { id:"e7", level:"B1", title:"Parler du futur", key:"I'll · I'm going to",
+   intro:"<b>will</b> : décision prise sur le moment, promesse, prédiction. <b>be going to</b> : intention, ou prédiction fondée sur un indice. <b>Présent continu</b> : rendez-vous organisé. <b>Présent simple</b> : horaires.",
+   sections:[
+    { h:"En phrases", ex:[
+      ["I'll help you.","Je vais t'aider (décision immédiate)."],
+      ["I'm going to study medicine.","Je vais faire des études de médecine (intention)."],
+      ["Look at the sky! It's going to rain.","Regarde le ciel ! Il va pleuvoir."],
+      ["I'm seeing the doctor on Monday.","Je vois le médecin lundi (rendez-vous)."],
+      ["The train leaves at six.","Le train part à six heures (horaire)."]]},
+    { h:"Après when, as soon as… : le présent", p:"Dans une subordonnée de temps, pas de will.", ex:[
+      ["I'll call you when I arrive.","Je t'appellerai quand j'arriverai."],
+      ["We'll start as soon as she gets here.","Nous commencerons dès qu'elle arrivera."]]}
+   ],
+   quiz:[
+    {q:"« Je t'appellerai quand j'arriverai » :",o:["I'll call you when I arrive.","I'll call you when I will arrive.","I call you when I'll arrive."]},
+    {q:"Le téléphone sonne. « J'y vais ! » :",o:["I'll get it!","I'm going to get it!","I get it!"]},
+    {q:"« Je vois le médecin lundi » (c'est organisé) :",o:["I'm seeing the doctor on Monday.","I see the doctor on Monday.","I will seeing the doctor on Monday."]}
+   ]},
+ { id:"e8", level:"B1", title:"Les modaux", key:"must · should · might",
+   intro:"Les modaux (can, could, may, might, must, should, would) ne prennent jamais de -s, sont suivis de la base verbale sans <b>to</b>, et forment leurs questions sans do.",
+   sections:[
+    { h:"Obligation et conseil", ex:[
+      ["You must wear a seatbelt.","Tu dois mettre ta ceinture."],
+      ["You don't have to come.","Tu n'es pas obligé(e) de venir."],
+      ["You mustn't smoke here.","Il est interdit de fumer ici."],
+      ["You should see a doctor.","Tu devrais voir un médecin."]]},
+    { h:"Possibilité et déduction", ex:[
+      ["It might rain later.","Il se peut qu'il pleuve plus tard."],
+      ["She must be tired.","Elle doit être fatiguée (j'en suis presque sûr)."],
+      ["That can't be true.","Ça ne peut pas être vrai."]]},
+    { h:"Au passé : modal + have + participe", ex:[
+      ["You should have told me.","Tu aurais dû me le dire."],
+      ["He must have forgotten.","Il a dû oublier."],
+      ["She can't have seen us.","Elle n'a pas pu nous voir."]]}
+   ],
+   tip:"Piège : <b>mustn't</b> = interdiction ; <b>don't have to</b> = absence d'obligation.",
+   quiz:[
+    {q:"« Tu n'es pas obligé de venir » :",o:["You don't have to come.","You mustn't come.","You must not to come."]},
+    {q:"« Tu aurais dû me le dire » :",o:["You should have told me.","You should told me.","You must have told me."]},
+    {q:"« Il a dû oublier » (déduction) :",o:["He must have forgotten.","He had to forget.","He should forget."]},
+    {q:"Quelle phrase est correcte ?",o:["She can swim.","She cans swim.","She can to swim."]}
+   ]},
+ { id:"e9", level:"B2", title:"Les conditionnels", key:"If I had known…",
+   intro:"Quatre structures à connaître par cœur. Retenez surtout : jamais de <b>would</b> juste après <b>if</b>.",
+   sections:[
+    { h:"Les quatre types", table:{ head:["Type","Structure","Exemple"], src:[2], rows:[
+      ["0 : vérité générale","if + présent, présent","If you heat ice, it melts."],
+      ["1 : réel, futur","if + présent, will","If it rains, I'll stay home."],
+      ["2 : imaginaire (présent)","if + prétérit, would","If I won the lottery, I'd travel."],
+      ["3 : imaginaire (passé)","if + past perfect, would have","If I had known, I would have come."]
+    ]}},
+    { h:"Conditionnels mixtes", ex:[
+      ["If I had studied harder, I would be a doctor now.","Si j'avais travaillé davantage, je serais médecin aujourd'hui."],
+      ["If I were you, I would accept.","À ta place, j'accepterais."]]},
+    { h:"Unless, as long as, provided that", ex:[
+      ["I won't go unless you come with me.","Je n'irai pas à moins que tu viennes avec moi."],
+      ["You can borrow it as long as you return it.","Tu peux l'emprunter du moment que tu le rends."]]}
+   ],
+   tip:"<span class='sr'>If I were you…</span> : dans un style soigné, on dit <b>were</b> à toutes les personnes.",
+   quiz:[
+    {q:"« Si j'avais su, je serais venu » :",o:["If I had known, I would have come.","If I would have known, I would come.","If I knew, I would have came."]},
+    {q:"« S'il pleut, je resterai à la maison » :",o:["If it rains, I'll stay home.","If it will rain, I'll stay home.","If it rained, I'll stay home."]},
+    {q:"« À ta place, j'accepterais » :",o:["If I were you, I would accept.","If I would be you, I accept.","At your place, I would accept."]},
+    {q:"« unless » veut dire :",o:["à moins que, sauf si","jusqu'à ce que","même si"]}
+   ]},
+ { id:"e10", level:"B1", title:"La voix passive", key:"It was built in 1890.",
+   intro:"<b>be</b> (au temps voulu) + participe passé. On l'emploie quand l'action compte plus que son auteur, très souvent à l'écrit. L'auteur est introduit par <b>by</b>.",
+   sections:[
+    { h:"En phrases", ex:[
+      ["English is spoken here.","Ici, on parle anglais."],
+      ["The bridge was built in 1890.","Le pont a été construit en 1890."],
+      ["The meeting has been cancelled.","La réunion a été annulée."],
+      ["The results will be announced tomorrow.","Les résultats seront annoncés demain."],
+      ["The book was written by a Surinamese author.","Le livre a été écrit par un auteur surinamien."]]},
+    { h:"Traduire le « on » français", p:"Le « on » se traduit très souvent par un passif.", ex:[
+      ["I was told to wait.","On m'a dit d'attendre."],
+      ["She is said to be very talented.","On dit qu'elle est très talentueuse."]]}
+   ],
+   quiz:[
+    {q:"« Le pont a été construit en 1890 » :",o:["The bridge was built in 1890.","The bridge has built in 1890.","The bridge was build in 1890."]},
+    {q:"« On m'a dit d'attendre » :",o:["I was told to wait.","One told me to wait.","I told to wait."]},
+    {q:"« La réunion a été annulée » :",o:["The meeting has been cancelled.","The meeting has cancelled.","The meeting is been cancelled."]}
+   ]},
+ { id:"e11", level:"B2", title:"Le discours indirect", key:"She said that…",
+   intro:"Pour rapporter des paroles, on recule souvent d'un temps (présent → prétérit, prétérit → past perfect, will → would) et on adapte les pronoms et les repères de temps.",
+   sections:[
+    { h:"Rapporter une affirmation", ex:[
+      ["She said she was tired.","Elle a dit qu'elle était fatiguée (« I'm tired »)."],
+      ["He told me he would call.","Il m'a dit qu'il appellerait (« I'll call »)."],
+      ["They said they had finished.","Ils ont dit qu'ils avaient fini (« We've finished »)."]]},
+    { h:"Rapporter une question : ordre affirmatif", p:"Dans une question rapportée, pas d'inversion et pas de do.", ex:[
+      ["She asked me where I lived.","Elle m'a demandé où j'habitais."],
+      ["He asked if I was ready.","Il m'a demandé si j'étais prêt(e)."]]},
+    { h:"Say ou tell ?", p:"<b>tell</b> est suivi de la personne : <i>tell me</i>. <b>say</b> ne l'est pas : <i>say that…</i>, <i>say something to me</i>.", ex:[
+      ["She told me the truth.","Elle m'a dit la vérité."],
+      ["She said goodbye.","Elle a dit au revoir."]]}
+   ],
+   quiz:[
+    {q:"« Elle m'a demandé où j'habitais » :",o:["She asked me where I lived.","She asked me where did I live.","She asked me where do I live."]},
+    {q:"« Il m'a dit qu'il appellerait » :",o:["He told me he would call.","He said me he would call.","He told he will call."]},
+    {q:"« Il m'a demandé si j'étais prêt » :",o:["He asked if I was ready.","He asked if was I ready.","He asked that I was ready."]}
+   ]},
+ { id:"e12", level:"B1", title:"Les propositions relatives", key:"the man who…",
+   intro:"<b>who</b> pour les personnes, <b>which</b> pour les choses, <b>that</b> pour les deux (dans les relatives essentielles), <b>whose</b> = dont (possession), <b>where</b> = où.",
+   sections:[
+    { h:"En phrases", ex:[
+      ["The woman who lives next door is a nurse.","La femme qui habite à côté est infirmière."],
+      ["The book that I bought is great.","Le livre que j'ai acheté est génial."],
+      ["That's the man whose car was stolen.","C'est l'homme dont la voiture a été volée."],
+      ["This is the house where I grew up.","C'est la maison où j'ai grandi."]]},
+    { h:"Avec ou sans virgules", p:"Entre virgules, la relative ajoute une information accessoire : on ne peut pas y employer <b>that</b>.", ex:[
+      ["My brother, who lives in Amsterdam, is a teacher.","Mon frère, qui vit à Amsterdam, est professeur."]]},
+    { h:"Le pronom peut disparaître", p:"Quand il est complément, on l'omet souvent, surtout à l'oral.", ex:[
+      ["The film we saw was boring.","Le film que nous avons vu était ennuyeux."]]}
+   ],
+   quiz:[
+    {q:"« C'est l'homme dont la voiture a été volée » :",o:["That's the man whose car was stolen.","That's the man who car was stolen.","That's the man which car was stolen."]},
+    {q:"« Mon frère, qui vit à Amsterdam, … » :",o:["My brother, who lives in Amsterdam, …","My brother, that lives in Amsterdam, …","My brother, which lives in Amsterdam, …"]},
+    {q:"« C'est la maison où j'ai grandi » :",o:["This is the house where I grew up.","This is the house which I grew up.","This is the house where I grow up."]}
+   ]},
+ { id:"e13", level:"B2", title:"Gérondif ou infinitif ?", key:"I enjoy reading.",
+   intro:"Après certains verbes, on met <b>-ing</b> ; après d'autres, <b>to</b> + verbe. Il faut les apprendre, et quelques verbes changent de sens selon la construction.",
+   sections:[
+    { h:"Verbes suivis de -ing", p:"enjoy, avoid, mind, finish, suggest, consider, keep, look forward to…", ex:[
+      ["I enjoy reading.","J'aime lire."],
+      ["Would you mind waiting?","Ça vous dérangerait d'attendre ?"],
+      ["I'm looking forward to seeing you.","J'ai hâte de te voir."]]},
+    { h:"Verbes suivis de to", p:"want, decide, hope, plan, refuse, agree, promise, manage, afford…", ex:[
+      ["I decided to leave.","J'ai décidé de partir."],
+      ["She managed to finish on time.","Elle a réussi à finir à temps."]]},
+    { h:"Le sens change", ex:[
+      ["I stopped smoking.","J'ai arrêté de fumer."],
+      ["I stopped to smoke.","Je me suis arrêté(e) pour fumer."],
+      ["Remember to call her.","Pense à l'appeler."],
+      ["I remember calling her.","Je me souviens de l'avoir appelée."]]},
+    { h:"Après une préposition : toujours -ing", ex:[
+      ["She left without saying goodbye.","Elle est partie sans dire au revoir."],
+      ["I'm interested in learning Sranan.","Ça m'intéresse d'apprendre le sranan."]]}
+   ],
+   quiz:[
+    {q:"« J'aime lire » :",o:["I enjoy reading.","I enjoy to read.","I enjoy read."]},
+    {q:"« J'ai arrêté de fumer » :",o:["I stopped smoking.","I stopped to smoke.","I stopped smoke."]},
+    {q:"« Elle est partie sans dire au revoir » :",o:["She left without saying goodbye.","She left without to say goodbye.","She left without say goodbye."]},
+    {q:"« J'ai décidé de partir » :",o:["I decided to leave.","I decided leaving.","I decided leave."]}
+   ]},
+ { id:"e14", level:"B1", title:"Les articles : a, the ou rien ?", key:"Life is beautiful.",
+   intro:"Contrairement au français, l'anglais n'emploie pas <b>the</b> pour parler en général.",
+   sections:[
+    { h:"Généralités : pas d'article", ex:[
+      ["Life is beautiful.","La vie est belle."],
+      ["I love music.","J'adore la musique."],
+      ["Dogs are loyal.","Les chiens sont fidèles."]]},
+    { h:"the : quelque chose de précis", ex:[
+      ["The music in this film is amazing.","La musique de ce film est incroyable."],
+      ["Can you close the door?","Peux-tu fermer la porte ?"]]},
+    { h:"a / an, et les métiers", p:"<b>an</b> devant un son voyelle : an hour, an apple (mais a university). Les métiers prennent l'article : <span class='sr'>She's a doctor.</span>", ex:[
+      ["She's a doctor.","Elle est médecin."],
+      ["It takes an hour.","Ça prend une heure."]]}
+   ],
+   tip:"Pas d'article non plus devant les langues, la plupart des pays, et <i>next / last</i> : <span class='sr'>I speak English.</span> <span class='sr'>See you next week.</span>",
+   quiz:[
+    {q:"« La vie est belle » :",o:["Life is beautiful.","The life is beautiful.","A life is beautiful."]},
+    {q:"« Elle est médecin » :",o:["She's a doctor.","She's doctor.","She's the doctor."]},
+    {q:"« Ça prend une heure » :",o:["It takes an hour.","It takes a hour.","It takes the hour."]},
+    {q:"« J'adore la musique » (en général) :",o:["I love music.","I love the music.","I love a music."]}
+   ]},
+ { id:"e15", level:"A2", title:"Dénombrables et indénombrables", key:"much · many · advice",
+   intro:"Certains noms ne se comptent pas en anglais, alors qu'ils se comptent en français : ils n'ont pas de pluriel et ne prennent pas <b>a</b>.",
+   sections:[
+    { h:"Les indénombrables pièges", ex:[
+      ["some advice","des conseils (a piece of advice = un conseil)"],
+      ["information","des informations"],
+      ["news","des nouvelles (the news is good)"],
+      ["furniture","des meubles"],
+      ["luggage","des bagages"],
+      ["homework","des devoirs"]]},
+    { h:"much / many, little / few", p:"<b>many</b> et <b>few</b> avec les dénombrables ; <b>much</b> et <b>little</b> avec les indénombrables ; <b>a lot of</b> avec les deux.", ex:[
+      ["How many people came?","Combien de personnes sont venues ?"],
+      ["How much time do we have?","Combien de temps avons-nous ?"],
+      ["There's little hope.","Il y a peu d'espoir."],
+      ["I have a few friends here.","J'ai quelques amis ici."]]}
+   ],
+   quiz:[
+    {q:"« Peux-tu me donner un conseil ? » :",o:["Can you give me some advice?","Can you give me an advice?","Can you give me some advices?"]},
+    {q:"« Combien de temps avons-nous ? » :",o:["How much time do we have?","How many time do we have?","How many times do we have?"]},
+    {q:"« Les nouvelles sont bonnes » :",o:["The news is good.","The news are good.","The new are good."]}
+   ]},
+ { id:"e16", level:"A2", title:"Comparer", key:"bigger · the most…",
+   intro:"Adjectif court : <b>-er</b> / <b>the -est</b>. Adjectif long : <b>more</b> / <b>the most</b>. Égalité : <b>as … as</b>.",
+   sections:[
+    { h:"En phrases", ex:[
+      ["She is taller than her brother.","Elle est plus grande que son frère."],
+      ["This is the cheapest option.","C'est l'option la moins chère."],
+      ["It's more expensive than I thought.","C'est plus cher que je ne pensais."],
+      ["He's as tall as me.","Il est aussi grand que moi."],
+      ["It's not as easy as it looks.","Ce n'est pas aussi facile que ça en a l'air."]]},
+    { h:"Les irréguliers", ex:[
+      ["good, better, the best","bon, meilleur, le meilleur"],
+      ["bad, worse, the worst","mauvais, pire, le pire"],
+      ["far, further, the furthest","loin, plus loin, le plus loin"]]},
+    { h:"Plus…, plus…", ex:[
+      ["The more you practise, the better you get.","Plus tu t'entraînes, meilleur tu deviens."]]}
+   ],
+   quiz:[
+    {q:"« plus cher que » :",o:["more expensive than","expensiver than","more expensive that"]},
+    {q:"« le pire » :",o:["the worst","the baddest","the most bad"]},
+    {q:"« aussi grand que moi » :",o:["as tall as me","so tall than me","as tall than me"]}
+   ]},
+ { id:"e17", level:"B2", title:"Used to, be used to, get used to", key:"I'm used to it.",
+   intro:"Trois expressions proches, trois sens différents.",
+   sections:[
+    { h:"En phrases", ex:[
+      ["I used to live in Paramaribo.","J'habitais à Paramaribo (autrefois, plus maintenant)."],
+      ["Did you use to play football?","Tu jouais au foot, avant ?"],
+      ["I'm used to getting up early.","J'ai l'habitude de me lever tôt."],
+      ["You'll get used to it.","Tu t'y habitueras."]]}
+   ],
+   tip:"Après <b>be used to</b> et <b>get used to</b>, le verbe prend <b>-ing</b> : « to » y est une préposition.",
+   quiz:[
+    {q:"« J'habitais à Paramaribo (avant) » :",o:["I used to live in Paramaribo.","I'm used to live in Paramaribo.","I was used to living in Paramaribo."]},
+    {q:"« J'ai l'habitude de me lever tôt » :",o:["I'm used to getting up early.","I used to get up early.","I'm used to get up early."]},
+    {q:"« Tu t'y habitueras » :",o:["You'll get used to it.","You'll used to it.","You'll be use to it."]}
+   ]},
+ { id:"e18", level:"B2", title:"Souhaits et regrets", key:"I wish I had…",
+   intro:"<b>wish</b> et <b>if only</b> sont suivis d'un temps du passé : prétérit pour un regret présent, past perfect pour un regret passé, <b>would</b> pour un agacement envers quelqu'un.",
+   sections:[
+    { h:"wish, if only", ex:[
+      ["I wish I had more time.","J'aimerais avoir plus de temps."],
+      ["I wish I had listened to you.","Si seulement je t'avais écouté(e)."],
+      ["If only it would stop raining!","Si seulement il pouvait arrêter de pleuvoir !"],
+      ["I wish you wouldn't interrupt me.","J'aimerais que tu arrêtes de m'interrompre."]]},
+    { h:"I'd rather, it's time", ex:[
+      ["I'd rather stay here.","Je préférerais rester ici."],
+      ["I'd rather you didn't tell her.","Je préférerais que tu ne lui dises pas."],
+      ["It's time we left.","Il est temps que nous partions."]]}
+   ],
+   quiz:[
+    {q:"« J'aimerais avoir plus de temps » :",o:["I wish I had more time.","I wish I have more time.","I wish I would have more time."]},
+    {q:"« Si seulement je t'avais écouté » :",o:["I wish I had listened to you.","I wish I listened you.","I wish I would listen to you."]},
+    {q:"« Je préférerais que tu ne lui dises pas » :",o:["I'd rather you didn't tell her.","I'd rather you don't told her.","I'd rather you not to tell her."]}
+   ]},
+ { id:"e19", level:"B2", title:"Question tags et réponses courtes", key:"…, isn't it?",
+   intro:"Le « n'est-ce pas ? » anglais reprend l'auxiliaire de la phrase : affirmation → tag négatif, négation → tag positif.",
+   sections:[
+    { h:"Les tags", ex:[
+      ["It's cold, isn't it?","Il fait froid, n'est-ce pas ?"],
+      ["You live here, don't you?","Tu habites ici, n'est-ce pas ?"],
+      ["She can't swim, can she?","Elle ne sait pas nager, si ?"],
+      ["They've left, haven't they?","Ils sont partis, non ?"],
+      ["Let's go, shall we?","On y va ?"]]},
+    { h:"Les réponses courtes", p:"On répond rarement par yes ou no seul : on reprend l'auxiliaire.", ex:[
+      ["Do you like it? Yes, I do.","Ça te plaît ? Oui."],
+      ["Have you finished? No, I haven't.","Tu as fini ? Non."]]}
+   ],
+   tip:"Exception à connaître : <span class='sr'>I'm right, aren't I?</span>",
+   quiz:[
+    {q:"« Tu habites ici, n'est-ce pas ? » :",o:["You live here, don't you?","You live here, isn't it?","You live here, doesn't you?"]},
+    {q:"« Il fait froid, n'est-ce pas ? » :",o:["It's cold, isn't it?","It's cold, is it?","It's cold, doesn't it?"]},
+    {q:"« J'ai raison, non ? » :",o:["I'm right, aren't I?","I'm right, amn't I?","I'm right, isn't it?"]}
+   ]},
+ { id:"e20", level:"C1", title:"Inversion et mise en relief", key:"Never have I…",
+   intro:"Pour un anglais soutenu et percutant : après un adverbe négatif placé en tête, on inverse sujet et auxiliaire. Pour insister, on emploie les phrases clivées.",
+   sections:[
+    { h:"L'inversion", ex:[
+      ["Never have I seen such a mess.","Jamais je n'ai vu un tel désordre."],
+      ["Not only did she win, but she also broke the record.","Non seulement elle a gagné, mais elle a aussi battu le record."],
+      ["No sooner had I arrived than it started to rain.","À peine étais-je arrivé(e) qu'il s'est mis à pleuvoir."],
+      ["Rarely do we get such an opportunity.","Il est rare qu'on ait une telle occasion."],
+      ["Had I known, I would have stayed.","Si j'avais su, je serais resté(e)."],
+      ["Should you need help, call me.","Si vous avez besoin d'aide, appelez-moi."]]},
+    { h:"La mise en relief", ex:[
+      ["What I need is a holiday.","Ce dont j'ai besoin, ce sont des vacances."],
+      ["It was Anna who told me.","C'est Anna qui me l'a dit."],
+      ["The thing is, I don't have time.","Le problème, c'est que je n'ai pas le temps."]]}
+   ],
+   tip:"À l'oral courant, ces tournures sonnent soutenues : elles brillent surtout à l'écrit, en entretien et en présentation.",
+   quiz:[
+    {q:"« Jamais je n'ai vu un tel désordre » :",o:["Never have I seen such a mess.","Never I have seen such a mess.","Never did I have seen such a mess."]},
+    {q:"« À peine étais-je arrivé qu'il s'est mis à pleuvoir » :",o:["No sooner had I arrived than it started to rain.","No sooner I had arrived than it started to rain.","No sooner had I arrived when it started to rain."]},
+    {q:"« Si vous avez besoin d'aide, appelez-moi » (soutenu) :",o:["Should you need help, call me.","Would you need help, call me.","Should you needed help, call me."]},
+    {q:"« C'est Anna qui me l'a dit » :",o:["It was Anna who told me.","It's Anna which told me.","This is Anna who told me."]}
+   ]},
+ { id:"e21", level:"A2", title:"Prépositions de temps et de lieu", key:"in · on · at",
+   intro:"<b>at</b> pour un point précis, <b>on</b> pour les jours et les dates, <b>in</b> pour les mois, les années, les saisons et les parties de la journée.",
+   sections:[
+    { h:"in, on, at", table:{ head:["","Temps","Lieu"], src:[0,1,2], rows:[
+      ["at","at six o'clock, at night","at home, at work, at the station"],
+      ["on","on Monday, on 1 July, on my birthday","on the table, on the wall, on the bus"],
+      ["in","in July, in 2026, in the morning, in summer","in Paris, in the kitchen, in a car"]
+    ]}},
+    { h:"for, during, while", ex:[
+      ["I lived there for two years.","J'ai habité là-bas pendant deux ans."],
+      ["He slept during the film.","Il a dormi pendant le film."],
+      ["She called while I was cooking.","Elle a appelé pendant que je cuisinais."]]}
+   ],
+   tip:"<b>in the morning</b>, mais <b>on Monday morning</b> : dès qu'un jour est précisé, on passe à « on ».",
+   quiz:[
+    {q:"« lundi » :",o:["on Monday","in Monday","at Monday"]},
+    {q:"« en juillet » :",o:["in July","on July","at July"]},
+    {q:"« à la maison » :",o:["at home","in home","on home"]},
+    {q:"« pendant que je cuisinais » :",o:["while I was cooking","during I was cooking","for I was cooking"]}
+   ]}
+];
+
+const EN_DIALOGUES = [
+ { id:"ed1", level:"A2", title:"À l'aéroport", sr:"At the airport", lead:"Daisy enregistre sa valise pour Paramaribo.", lines:[
+  ["Agent","Good morning. Can I see your passport, please?","Bonjour. Puis-je voir votre passeport, s'il vous plaît ?"],
+  ["Daisy","Here you are.","Voici."],
+  ["Agent","Are you checking in any bags today?","Vous enregistrez des bagages aujourd'hui ?"],
+  ["Daisy","Just this suitcase. Could I have a window seat?","Seulement cette valise. Pourrais-je avoir une place côté hublot ?"],
+  ["Agent","Let me check. Yes, 24A. Boarding starts at a quarter past ten, at gate 12.","Je vérifie. Oui, la 24A. L'embarquement commence à dix heures et quart, porte 12."],
+  ["Daisy","Is the flight on time?","Le vol est-il à l'heure ?"],
+  ["Agent","It's delayed by about twenty minutes, I'm afraid.","Il a environ vingt minutes de retard, malheureusement."],
+  ["Daisy","No problem. Thank you!","Pas de problème. Merci !"],
+  ["Agent","Have a nice flight.","Bon vol."]
+ ]},
+ { id:"ed2", level:"A2", title:"Réserver une table", sr:"Booking a table", lead:"Daisy appelle un restaurant pour samedi soir.", lines:[
+  ["Waiter","Good evening, La Palma restaurant. How can I help you?","Bonsoir, restaurant La Palma. Que puis-je pour vous ?"],
+  ["Daisy","Hi, I'd like to book a table for four, please.","Bonjour, je voudrais réserver une table pour quatre, s'il vous plaît."],
+  ["Waiter","Certainly. For which day?","Bien sûr. Pour quel jour ?"],
+  ["Daisy","This Saturday, at eight o'clock.","Ce samedi, à vingt heures."],
+  ["Waiter","Let me see. I'm afraid we're fully booked at eight. Would half past eight suit you?","Voyons. Je suis désolé, nous sommes complets à vingt heures. Vingt heures trente vous conviendrait-il ?"],
+  ["Daisy","Yes, that's fine.","Oui, très bien."],
+  ["Waiter","Could I have your name, please?","Puis-je avoir votre nom, s'il vous plaît ?"],
+  ["Daisy","It's Daisy. D, A, I, S, Y.","Daisy. D, A, I, S, Y."],
+  ["Waiter","Perfect. See you on Saturday!","Parfait. À samedi !"]
+ ]},
+ { id:"ed3", level:"B1", title:"Petite conversation au bureau", sr:"Small talk", lead:"Lundi matin, à la machine à café.", lines:[
+  ["Tom","Morning, Daisy! Did you have a good weekend?","Bonjour Daisy ! Tu as passé un bon week-end ?"],
+  ["Daisy","Yes, thanks! I went to a family party. My aunt made pom, a Surinamese dish.","Oui, merci ! Je suis allée à une fête de famille. Ma tante a fait du pom, un plat surinamien."],
+  ["Tom","Sounds delicious. I've never tried Surinamese food.","Ça a l'air délicieux. Je n'ai jamais goûté la cuisine surinamienne."],
+  ["Daisy","You should! I'll bring you some next time.","Tu devrais ! Je t'en apporterai la prochaine fois."],
+  ["Tom","That would be great. By the way, are you coming to the meeting at ten?","Ce serait super. Au fait, tu viens à la réunion de dix heures ?"],
+  ["Daisy","Yes, I'll be there. I just need to grab a coffee first.","Oui, j'y serai. Je dois juste prendre un café avant."],
+  ["Tom","Good idea. See you there!","Bonne idée. À tout à l'heure !"]
+ ]},
+ { id:"ed4", level:"B1", title:"Chez le médecin", sr:"At the doctor's", lead:"Daisy a mal à la gorge depuis lundi.", lines:[
+  ["Doctor","Hello. What seems to be the problem?","Bonjour. Qu'est-ce qui ne va pas ?"],
+  ["Daisy","I've had a sore throat and a headache since Monday.","J'ai mal à la gorge et à la tête depuis lundi."],
+  ["Doctor","Have you had a temperature?","Avez-vous eu de la fièvre ?"],
+  ["Daisy","Yes, a slight one, mostly at night.","Oui, un peu, surtout la nuit."],
+  ["Doctor","Let me have a look. It's a throat infection. I'll prescribe you some medicine.","Laissez-moi regarder. C'est une infection de la gorge. Je vais vous prescrire un médicament."],
+  ["Daisy","How often should I take it?","Combien de fois dois-je le prendre ?"],
+  ["Doctor","Three times a day, after meals. You should feel better in a few days.","Trois fois par jour, après les repas. Vous devriez aller mieux dans quelques jours."],
+  ["Daisy","Thank you, doctor.","Merci, docteur."]
+ ]},
+ { id:"ed5", level:"B2", title:"Entretien d'embauche", sr:"Job interview", lead:"Daisy passe un entretien dans une entreprise internationale.", lines:[
+  ["Recruiter","Thanks for coming in. Could you tell me a bit about yourself?","Merci d'être venue. Pourriez-vous me parler un peu de vous ?"],
+  ["Daisy","Of course. I've been working in customer service for five years, and I've recently been managing a small team.","Bien sûr. Je travaille dans le service client depuis cinq ans, et depuis peu, je manage une petite équipe."],
+  ["Recruiter","What would you say is your greatest strength?","Quelle serait, selon vous, votre plus grande qualité ?"],
+  ["Daisy","I'd say I'm good at staying calm under pressure. Last year, our system broke down during a busy period, and I managed to keep our customers informed.","Je dirais que je sais garder mon calme sous pression. L'an dernier, notre système est tombé en panne en pleine période chargée, et j'ai réussi à tenir nos clients informés."],
+  ["Recruiter","And a weakness?","Et un point faible ?"],
+  ["Daisy","I used to find it hard to delegate, but I've been working on it.","J'avais du mal à déléguer, mais je travaille dessus."],
+  ["Recruiter","Why do you want to join our company?","Pourquoi voulez-vous rejoindre notre entreprise ?"],
+  ["Daisy","Because your values match mine, and I'm looking forward to working in an international environment.","Parce que vos valeurs correspondent aux miennes, et que j'ai hâte de travailler dans un environnement international."],
+  ["Recruiter","Great. We'll get back to you by Friday.","Très bien. Nous reviendrons vers vous d'ici vendredi."]
+ ]},
+ { id:"ed6", level:"B2", title:"En réunion : être en désaccord poliment", sr:"Disagreeing politely", lead:"Daisy n'est pas d'accord avec la date de lancement proposée.", lines:[
+  ["Manager","I think we should launch the new app in January.","Je pense que nous devrions lancer la nouvelle appli en janvier."],
+  ["Daisy","I see your point, but I'm not sure we'll be ready by then.","Je comprends votre point de vue, mais je ne suis pas sûre que nous serons prêts d'ici là."],
+  ["Manager","What makes you say that?","Qu'est-ce qui vous fait dire ça ?"],
+  ["Daisy","Well, the testing phase hasn't started yet, and we still need to fix several bugs.","Eh bien, la phase de test n'a pas encore commencé, et nous devons encore corriger plusieurs bugs."],
+  ["Manager","Fair enough. What would you suggest?","C'est juste. Que proposeriez-vous ?"],
+  ["Daisy","How about launching a beta version in January and the full version in March?","Et si on lançait une version bêta en janvier et la version complète en mars ?"],
+  ["Manager","That sounds like a reasonable compromise. Let's go with that.","Ça me semble un compromis raisonnable. Partons là-dessus."]
+ ]}
+];
+
+const EN_READING = { title:"Suriname", fr:"Le Suriname, en anglais", level:"B2", lines:[
+ ["Suriname is a small country on the north-east coast of South America.","Le Suriname est un petit pays de la côte nord-est de l'Amérique du Sud."],
+ ["Although Dutch is the official language, most people also speak Sranan Tongo in everyday life.","Bien que le néerlandais soit la langue officielle, la plupart des gens parlent aussi le sranan tongo au quotidien."],
+ ["More than ninety per cent of the country is covered by rainforest.","Plus de quatre-vingt-dix pour cent du pays est couvert de forêt tropicale."],
+ ["Its capital, Paramaribo, has a historic centre that has been a UNESCO World Heritage Site since 2002.","Sa capitale, Paramaribo, possède un centre historique inscrit au patrimoine mondial de l'UNESCO depuis 2002."],
+ ["The population, roughly 600,000 people, is one of the most diverse in the world.","Sa population, environ 600 000 habitants, est l'une des plus diverses au monde."],
+ ["Families of African, Indian, Javanese, Chinese, Indigenous and European origin have lived side by side for generations.","Des familles d'origine africaine, indienne, javanaise, chinoise, autochtone et européenne y vivent côte à côte depuis des générations."],
+ ["Every year on 1 July, people celebrate Keti Koti to remember the abolition of slavery.","Chaque année, le 1er juillet, on célèbre Keti Koti pour commémorer l'abolition de l'esclavage."],
+ ["It is this diversity that has made Sranan Tongo the language everyone shares.","C'est cette diversité qui a fait du sranan tongo la langue que tout le monde partage."]
+]};
+
+/* Test de niveau : 5 questions par niveau, de A2 à C1 */
+const EN_LEVELTEST = [
+ {lvl:"A2", q:"She ___ to work by bus every day.", o:["goes","go","is go","going"]},
+ {lvl:"A2", q:"We ___ to London last summer.", o:["went","have gone","go","were go"]},
+ {lvl:"A2", q:"How ___ apples do you need?", o:["many","much","lot","more"]},
+ {lvl:"A2", q:"This is ___ book I've ever read.", o:["the best","the better","best","the most good"]},
+ {lvl:"A2", q:"___ you like a cup of tea?", o:["Would","Do","Are","Will"]},
+ {lvl:"B1", q:"I ___ here since 2019.", o:["have lived","live","am living","lived"]},
+ {lvl:"B1", q:"If it rains tomorrow, we ___ at home.", o:["will stay","would stay","stay will","stayed"]},
+ {lvl:"B1", q:"The bridge ___ in 1890.", o:["was built","built","has built","is building"]},
+ {lvl:"B1", q:"She asked me where ___.", o:["I lived","did I live","do I live","I do live"]},
+ {lvl:"B1", q:"I'm looking forward to ___ you.", o:["seeing","see","to see","saw"]},
+ {lvl:"B2", q:"If I ___ about the meeting, I would have come.", o:["had known","knew","would know","have known"]},
+ {lvl:"B2", q:"You ___ have seen him yesterday: he was in Paris.", o:["can't","mustn't","shouldn't","needn't"]},
+ {lvl:"B2", q:"By the time we arrived, the film ___.", o:["had already started","already started","has already started","was already start"]},
+ {lvl:"B2", q:"I wish I ___ more time to travel.", o:["had","have","will have","would had"]},
+ {lvl:"B2", q:"He denied ___ the window.", o:["breaking","to break","break","that break"]},
+ {lvl:"C1", q:"Not only ___ late, but he also forgot the documents.", o:["was he","he was","he is","did he was"]},
+ {lvl:"C1", q:"___ had I sat down than the phone rang.", o:["No sooner","Hardly","As soon as","Barely"]},
+ {lvl:"C1", q:"It's high time we ___ a decision.", o:["made","make","will make","have made"]},
+ {lvl:"C1", q:"Rarely ___ such a talented student.", o:["have I met","I have met","I met","did I met"]},
+ {lvl:"C1", q:"The new policy could seriously ___ public trust.", o:["undermine","underline","understate","undergo"]}
+];
+
+/* Le sranan, passerelle vers l'anglais */
+const SR_EN_BRIDGE = [
+ ["waka","walk","marcher"],["taki","talk","parler"],["dagu","dog","chien"],["fisi","fish","poisson"],["bigi","big","grand"],
+ ["tide","today","aujourd'hui"],["tamara","tomorrow","demain"],["esde","yesterday","hier"],["sribi","sleep","dormir"],["dringi","drink","boire"],
+ ["wroko","work","travailler"],["leri","learn","apprendre"],["skoro","school","école"],["oso","house","maison"],["watra","water","eau"],
+ ["ede","head","tête"],["anu","hand","main"],["futu","foot","pied"],["son","sun","soleil"],["stari","star","étoile"],
+ ["doro","door","porte"],["tafra","table","table"],["kon","come","venir"],["luku","look","regarder"],["yere","hear","entendre"],
+ ["frede","afraid","avoir peur"],["moni","money","argent"],["dei","day","jour"],["neti","night","nuit"],["weti","white","blanc"],
+ ["blaka","black","noir"],["redi","red","rouge"],["aksi","ask","demander"],["lobi","love","aimer"],["sisa","sister","sœur"],
+ ["brada","brother","frère"],["mati","mate","ami"],["liba","river","rivière"],["busi","bush","brousse"]
+];
+
+/* Royaume-Uni / États-Unis */
+const EN_UKUS = [
+ ["flat","apartment","appartement"],["lift","elevator","ascenseur"],["holiday","vacation","vacances"],["biscuit","cookie","biscuit"],
+ ["autumn","fall","automne"],["rubbish","trash, garbage","ordures"],["queue","line","file d'attente"],["mobile phone","cell phone","portable"],
+ ["petrol","gas","essence"],["trousers","pants","pantalon"],["chips","fries","frites"],["crisps","chips","chips"],
+ ["underground","subway","métro"],["motorway","highway","autoroute"],["football","soccer","football"],
+ ["colour","color","couleur"],["centre","center","centre"],["travelling","traveling","voyage"]
+];
+
+/* =========================================================================
    APPLICATION
    ========================================================================= */
 (() => {
@@ -1472,7 +2603,7 @@ const PROVERBS = [
 const $ = (s, r = document) => r.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const norm = s => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
-  .replace(/[?!.,;:«»"“”'’…()\[\]\-–—/]/g, " ").replace(/\s+/g, " ").trim();
+  .replace(/['’]/g, "").replace(/[?!.,;:«»"“”…()\[\]\-–—/]/g, " ").replace(/\s+/g, " ").trim();
 const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 const pick = a => a[Math.floor(Math.random() * a.length)];
 const DAY = 86400000;
@@ -1519,28 +2650,58 @@ function pronSpeak(s) {
   return pron(t) + (/\?$/.test(t) ? " ?" : /!$/.test(t) ? " !" : ".");
 }
 
-/* ---------- Vocabulaire ---------- */
-const VOCAB = [], BYID = {}, FR2SR = new Map();
-THEMES.forEach((t, ti) => t.words.forEach(([sr, fr, note], wi) => {
-  const v = {id: t.id + ":" + sr, sr, fr, note: note || "", theme: t.id, order: ti * 1000 + wi};
-  VOCAB.push(v); BYID[v.id] = v;
-  const k = norm(fr); if (!FR2SR.has(k)) FR2SR.set(k, []); FR2SR.get(k).push(sr);
-}));
-const THEME = Object.fromEntries(THEMES.map(t => [t.id, t]));
-const LESSON = Object.fromEntries(LESSONS.map(l => [l.id, l]));
-const DIALOGUE = Object.fromEntries(DIALOGUES.map(d => [d.id, d]));
+/* ---------- Les cours : sranan tongo et anglais ---------- */
+const COURSES = {
+  sr: {id:"sr", label:"Sranan tongo", switchLabel:"Sranan", name:"sranan", the:"le sranan", inLang:"en sranan", langAttr:"srn", speech:"fr", pron:true,
+       themes:THEMES, sentences:SENTENCES, markers:MARKERS, lessons:LESSONS, dialogues:DIALOGUES, reading:READING, readingId:"lecture",
+       fillers:["e","ben","o","no","kaba","fu","na","den"], defaultThemes:["salut","mots","famille"], skipWotd:"nombres",
+       hello:["Gudu mamanten!","Gudu bakadina!","Gudu neti!"], wellDone:"Bun wroko!", praise:["Bravo !","Bun!","Exact !","Yu koni!"],
+       markerLabel:"Choisissez la bonne marque de temps", vocabEyebrow:"Wortu", dlgEyebrow:"Tori", talkEyebrow:"Kon taki", tutor:"Leriman", tutorLabel:"SRANAN",
+       placeholder:"Odi! Mi nen…", dicoPlaceholder:"ex. : maison, nyan, merci…", sample:"Fa waka? Mi de, tangi."},
+  en: {id:"en", label:"English", switchLabel:"English", name:"anglais", the:"l'anglais", inLang:"en anglais", langAttr:"en", speech:"en", pron:false,
+       themes:EN_THEMES, sentences:EN_SENTENCES, markers:EN_MARKERS, lessons:EN_LESSONS, dialogues:EN_DIALOGUES, reading:EN_READING, readingId:"en-lecture",
+       fillers:["do","does","did","have","has","will","would","to","the","a"], defaultThemes:["en-base","en-quotidien","en-irreguliers"], skipWotd:"en-temps",
+       hello:["Good morning!","Good afternoon!","Good evening!"], wellDone:"Well done!", praise:["Bravo !","Well done!","Exact !","Spot on!"],
+       markerLabel:"Choisissez la bonne forme", vocabEyebrow:"Vocabulary", dlgEyebrow:"Dialogues", talkEyebrow:"Let's talk", tutor:"Coach", tutorLabel:"ENGLISH",
+       placeholder:"Hi! My name is…", dicoPlaceholder:"ex. : maison, actually, faire…", sample:"How are you? I'm fine, thanks."}
+};
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 
-/* Phrases d'exemple, pour montrer un mot en contexte */
-const EXAMPLES = [];
-SENTENCES.forEach(([s, f]) => EXAMPLES.push([s, f]));
-LESSONS.forEach(l => l.sections.forEach(sec => (sec.ex || []).forEach(([s, f]) => { if (/\s/.test(s.trim()) && /[.!?]$/.test(s.trim())) EXAMPLES.push([s, f]); })));
-DIALOGUES.forEach(d => d.lines.forEach(([, s, f]) => EXAMPLES.push([s, f])));
-READING.lines.forEach(([s, f]) => EXAMPLES.push([s, f]));
+/* ---------- Vocabulaire ---------- */
+const VOCAB = [], BYID = {}, FR2SR = new Map(), COURSE_VOCAB = {sr: [], en: []};
+const THEME = {}, LESSON = {}, DIALOGUE = {};
+for (const cid of Object.keys(COURSES)) {
+  const c = COURSES[cid];
+  c.themes.forEach((t, ti) => {
+    t.course = cid; THEME[t.id] = t;
+    t.words.forEach(([sr, fr, note, alts], wi) => {
+      const v = {id: t.id + ":" + sr, sr, fr, note: note || "", theme: t.id, course: cid, order: ti * 1000 + wi};
+      VOCAB.push(v); BYID[v.id] = v; COURSE_VOCAB[cid].push(v);
+      const k = cid + "|" + norm(fr); if (!FR2SR.has(k)) FR2SR.set(k, []);
+      FR2SR.get(k).push(sr); if (alts) alts.split("|").forEach(a => FR2SR.get(k).push(a));
+    });
+  });
+  c.lessons.forEach(l => { l.course = cid; LESSON[l.id] = l; });
+  c.dialogues.forEach(d => { d.course = cid; DIALOGUE[d.id] = d; });
+}
+let S; // la progression, chargée plus bas
+const course = () => COURSES[(S && S.course) || "sr"] || COURSES.sr;
+const courseVocab = (cid) => COURSE_VOCAB[cid || course().id];
+
+/* Phrases d'exemple, pour montrer un mot en contexte (par cours) */
+const EXAMPLES = {sr: [], en: []};
+for (const cid of Object.keys(COURSES)) {
+  const c = COURSES[cid], E = EXAMPLES[cid];
+  c.sentences.forEach(([s, f]) => E.push([s, f]));
+  c.lessons.forEach(l => l.sections.forEach(sec => (sec.ex || []).forEach(([s, f]) => { if (/\s/.test(s.trim()) && /[.!?]$/.test(s.trim())) E.push([s, f]); })));
+  c.dialogues.forEach(d => d.lines.forEach(([, s, f]) => E.push([s, f])));
+  c.reading.lines.forEach(([s, f]) => E.push([s, f]));
+}
 function exampleFor(v) {
   const k = norm(v.sr);
   if (!k || k.split(" ").length > 3 || /[.!?]$/.test(v.sr.trim())) return null;
   const key = " " + k + " ";
-  const hits = EXAMPLES.filter(([s]) => (" " + norm(s) + " ").includes(key) && norm(s) !== k);
+  const hits = EXAMPLES[v.course].filter(([s]) => (" " + norm(s) + " ").includes(key) && norm(s) !== k);
   if (!hits.length) return null;
   hits.sort((a, b) => a[0].length - b[0].length);
   return hits[0];
@@ -1548,13 +2709,14 @@ function exampleFor(v) {
 
 /* ---------- Progression (navigateur + compte Claude si disponible) ---------- */
 const LS_KEY = "leri-sranantongo:v1";
-function fresh() { return {v:1, epoch:0, updatedAt:0, xp:0, goal:50, newPer:10, dir:"sr", slow:false, autoplay:false, cards:{}, lessons:{}, dialogues:{}, days:{}, seances:{}}; }
+function fresh() { return {v:1, epoch:0, updatedAt:0, xp:0, goal:50, newPer:10, dir:"sr", slow:false, autoplay:false, course:"sr", enLevel:"", cards:{}, lessons:{}, dialogues:{}, days:{}, seances:{}}; }
 /* Toute progression chargée (navigateur, compte, code de sauvegarde) est vérifiée champ par champ :
    seuls les champs connus, avec des nombres valides, sont gardés. */
 const own = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 const num = (x, d = 0) => (typeof x === "number" && isFinite(x)) ? x : d;
 const plainObj = o => (o && typeof o === "object" && !Array.isArray(o)) ? o : {};
 const DATE_KEY = /^\d{4}-\d{2}-\d{2}$/;
+const SEANCE_KEY = /^(en:)?\d{4}-\d{2}-\d{2}$/;
 function normalizeState(x) {
   const f = fresh();
   if (!x || typeof x !== "object" || Array.isArray(x)) return f;
@@ -1563,6 +2725,8 @@ function normalizeState(x) {
   f.newPer = [0, 5, 10, 20].includes(x.newPer) ? x.newPer : 10;
   f.dir = ["sr", "fr", "mix"].includes(x.dir) ? x.dir : "sr";
   f.slow = x.slow === true; f.autoplay = x.autoplay === true;
+  f.course = ["sr", "en"].includes(x.course) ? x.course : "sr";
+  f.enLevel = ["A1", "A2", "B1", "B2", "C1"].includes(x.enLevel) ? x.enLevel : "";
   for (const [k, c] of Object.entries(plainObj(x.cards))) {
     if (!own(BYID, k) || !c || typeof c !== "object") continue;
     f.cards[k] = {b: Math.min(5, Math.max(0, Math.round(num(c.b)))), d: num(c.d), l: num(c.l), r: Math.max(0, Math.round(num(c.r))), w: Math.max(0, Math.round(num(c.w)))};
@@ -1571,9 +2735,9 @@ function normalizeState(x) {
     if (!own(LESSON, k) || !l || typeof l !== "object") continue;
     f.lessons[k] = {score: Math.max(0, Math.round(num(l.score))), total: Math.max(0, Math.round(num(l.total))), at: num(l.at)};
   }
-  for (const k of Object.keys(plainObj(x.dialogues))) if (own(DIALOGUE, k) || k === "lecture") f.dialogues[k] = true;
+  for (const k of Object.keys(plainObj(x.dialogues))) if (own(DIALOGUE, k) || k === "lecture" || k === "en-lecture") f.dialogues[k] = true;
   for (const [k, v] of Object.entries(plainObj(x.days))) if (DATE_KEY.test(k)) f.days[k] = Math.max(0, Math.round(num(v)));
-  for (const [k, v] of Object.entries(plainObj(x.seances))) if (DATE_KEY.test(k)) f.seances[k] = Math.max(0, Math.round(num(v)));
+  for (const [k, v] of Object.entries(plainObj(x.seances))) if (SEANCE_KEY.test(k)) f.seances[k] = Math.max(0, Math.round(num(v)));
   return f;
 }
 
@@ -1590,7 +2754,7 @@ function readBackup(text) {
 }
 function loadLocal() { try { const s = localStorage.getItem(LS_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
 function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) {} }
-let S = normalizeState(loadLocal());
+S = normalizeState(loadLocal());
 
 function merge(a, b) {
   a = normalizeState(a); b = normalizeState(b);
@@ -1601,6 +2765,7 @@ function merge(a, b) {
   m.updatedAt = Math.max(a.updatedAt || 0, b.updatedAt || 0);
   m.xp = Math.max(a.xp || 0, b.xp || 0);
   m.goal = newer.goal; m.newPer = newer.newPer; m.dir = newer.dir; m.slow = !!newer.slow; m.autoplay = !!newer.autoplay;
+  m.course = newer.course; m.enLevel = newer.enLevel || a.enLevel || b.enLevel;
   for (const k of new Set([...Object.keys(a.cards), ...Object.keys(b.cards)])) {
     const x = a.cards[k], y = b.cards[k];
     m.cards[k] = !x ? y : !y ? x : ((y.l || 0) > (x.l || 0) ? y : x);
@@ -1625,7 +2790,7 @@ function save() {
   S.updatedAt = Date.now();
   const cutoff = ymd(new Date(Date.now() - 400 * DAY));
   for (const k of Object.keys(S.days)) if (k < cutoff) delete S.days[k];
-  for (const k of Object.keys(S.seances)) if (k < cutoff) delete S.seances[k];
+  for (const k of Object.keys(S.seances)) if (k.replace(/^en:/, "") < cutoff) delete S.seances[k];
   saveLocal();
   clearTimeout(sync.timer); sync.timer = setTimeout(pushRemote, 1200);
 }
@@ -1671,15 +2836,18 @@ async function initRemote() {
    Il n'existe pas de voix de synthèse pour le sranan : on fait lire la prononciation
    approchée par une voix française — voix Claude si la page y a accès, sinon la voix
    française du navigateur. */
-const SOUND = {tts: null, voice: null, off: false, reading: false, token: 0};
+const SOUND = {tts: null, voices: {}, off: false, reading: false, token: 0};
 const VOICES = ["buttery", "airy", "glassy", "rounded"];
 const PITCHES = [1, 1.25, 0.85, 1.12];
 const ICON_SPEAK = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9.5v5h3.6l4.6 3.9V5.6L7.6 9.5z" fill="currentColor"/><path d="M15.6 9.2a4 4 0 0 1 0 5.6M18.2 6.6a7.6 7.6 0 0 1 0 10.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
-const soundOn = () => !SOUND.off && !!(SOUND.tts || SOUND.voice);
+const soundOn = () => !SOUND.off && !!(SOUND.tts || SOUND.voices[course().speech]);
 function refreshSoundFlag() { document.documentElement.classList.toggle("has-sound", soundOn()); }
 function pickVoice() {
-  try { const vs = window.speechSynthesis.getVoices(); SOUND.voice = vs.find(v => /^fr[-_]FR/i.test(v.lang)) || vs.find(v => /^fr/i.test(v.lang)) || null; }
-  catch (e) { SOUND.voice = null; }
+  try {
+    const vs = window.speechSynthesis.getVoices();
+    SOUND.voices.fr = vs.find(v => /^fr[-_]FR/i.test(v.lang)) || vs.find(v => /^fr/i.test(v.lang)) || null;
+    SOUND.voices.en = vs.find(v => /^en[-_]GB/i.test(v.lang)) || vs.find(v => /^en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  } catch (e) { SOUND.voices = {}; }
   refreshSoundFlag();
 }
 if ("speechSynthesis" in window) { pickVoice(); try { window.speechSynthesis.addEventListener("voiceschanged", pickVoice); } catch (e) {} }
@@ -1709,8 +2877,8 @@ function speak(lines, btn, reading = false) {
   const tok = ++SOUND.token;
   markPlaying(btn); SOUND.reading = reading; updateSayAll();
   if (SOUND.tts) {
-    const payload = lines.map(l => { const o = {text: l.text, language: "fr"}; if (l.voice) o.voice = l.voice; if (l.id) o.id = l.id; return o; });
-    SOUND.tts.speak(payload, {rate: S.slow ? 0.75 : 0.95, language: "fr"}).catch(e => {
+    const payload = lines.map(l => { const o = {text: l.text, language: l.lang || "fr"}; if (l.voice) o.voice = l.voice; if (l.id) o.id = l.id; return o; });
+    SOUND.tts.speak(payload, {rate: S.slow ? 0.75 : 0.95}).catch(e => {
       if (e && (e.code === "not_granted" || e.code === "unavailable")) { SOUND.off = true; refreshSoundFlag(); }
       if (e && e.code === "stopped" && e.reason === "replaced") return;
       if (tok === SOUND.token) soundIdle();
@@ -1721,7 +2889,9 @@ function speak(lines, btn, reading = false) {
     const synth = window.speechSynthesis; synth.cancel();
     lines.forEach((l, i) => {
       const u = new SpeechSynthesisUtterance(l.text);
-      u.voice = SOUND.voice; u.lang = SOUND.voice.lang; u.rate = S.slow ? 0.7 : 0.9; u.pitch = l.pitch || 1;
+      const vo = SOUND.voices[l.lang || "fr"];
+      if (vo) { u.voice = vo; u.lang = vo.lang; } else u.lang = l.lang || "fr";
+      u.rate = S.slow ? 0.7 : 0.9; u.pitch = l.pitch || 1;
       u.onstart = () => { if (tok === SOUND.token) highlightLine(l.id || null); };
       if (i === lines.length - 1) u.onend = u.onerror = () => { if (tok === SOUND.token) soundIdle(); };
       synth.speak(u);
@@ -1749,14 +2919,17 @@ const sayBtn = (text, auto = false) => `<button class="say" type="button" data-a
 function autoSay() {
   if (!S.autoplay || !soundOn()) return;
   const b = document.querySelector(".flash [data-auto]");
-  if (b) speak([{text: pronSpeak(b.dataset.t)}], b);
+  if (b) speakFor(b.dataset.t, b);
 }
+/* Le texte lu : prononciation approchée (voix française) pour le sranan, le texte lui-même (voix anglaise) pour l'anglais */
+const speechText = t => course().pron ? pronSpeak(t) : String(t);
+function speakFor(t, btn) { speak([{text: speechText(t), lang: course().speech}], btn); }
 
 /* ---------- Cartes & révision espacée (boîtes de Leitner) ---------- */
 const INTERVALS = [0, 1, 3, 7, 16, 35]; // en jours, par boîte
 const card = id => S.cards[id] || null;
 const isDue = c => !!c && (c.b === 0 || c.d <= Date.now());
-const dueList = (theme) => VOCAB.filter(v => (!theme || v.theme === theme) && isDue(card(v.id)));
+const dueList = (theme) => (theme ? VOCAB.filter(v => v.theme === theme) : courseVocab()).filter(v => isDue(card(v.id)));
 function addXP(n) { S.xp += n; const k = ymd(); S.days[k] = (S.days[k] || 0) + n; }
 function grade(id, g, xp = true) {
   const now = Date.now();
@@ -1768,7 +2941,7 @@ function grade(id, g, xp = true) {
   S.cards[id] = c;
 }
 function themeStats(tid) {
-  const words = VOCAB.filter(v => !tid || v.theme === tid);
+  const words = tid ? VOCAB.filter(v => v.theme === tid) : courseVocab();
   let seen = 0, mastered = 0, due = 0;
   for (const v of words) { const c = card(v.id); if (c) { seen++; if (c.b >= 4) mastered++; if (isDue(c)) due++; } }
   return {total: words.length, seen, mastered, due};
@@ -1787,8 +2960,9 @@ function dots(id) {
 }
 
 /* ---------- Petits composants ---------- */
-const srSpan = s => '<span class="sr">' + esc(s) + "</span>";
-const pronSpan = s => '<span class="pron">≈ ' + esc(pron(s)) + "</span>";
+const srSpan = s => '<span class="sr" lang="' + course().langAttr + '">' + esc(s) + "</span>";
+const pronSpan = s => course().pron ? '<span class="pron">≈ ' + esc(pron(s)) + "</span>" : "";
+const lvlPill = l => '<span class="pill lvl" title="Niveau européen">' + esc(l) + "</span>";
 const srSay = s => '<span class="srw">' + srSpan(s) + sayBtn(s) + "</span>";
 function exList(rows) {
   return '<ul class="ex">' + rows.map(([s, f]) => '<li><span class="s">' + srSay(s) + pronSpan(s) + '</span><span class="fr">' + esc(f) + "</span></li>").join("") + "</ul>";
@@ -1823,6 +2997,7 @@ function navSection(h) {
   if (h.startsWith("lecon-")) return "lecons";
   if (h.startsWith("theme-")) return "vocab";
   if (h.startsWith("dialogue-")) return "dialogues";
+  if (h === "niveau") return "lecons";
   return h;
 }
 function renderNav(h) {
@@ -1835,15 +3010,34 @@ function renderNav(h) {
     `<button type="button" data-act="sheet" aria-expanded="${SHEET}" aria-controls="sheet"${MORE.some(m => m[0] === cur) ? ' class="on"' : ""}>${ICON.more}<span>Plus</span></button>`;
   $("#sheet-panel").innerHTML = MORE.map(([id, label]) => `<a href="#${id}"${cur$(id)}>${esc(label)}</a>`).join("");
   $("#sheet").hidden = !SHEET;
+  $("#course-switch").innerHTML = Object.values(COURSES).map(c => `<button type="button" data-act="course" data-v="${c.id}" aria-pressed="${S.course === c.id}">${esc(c.switchLabel)}</button>`).join("");
+  $("#brand-sub").textContent = course().label;
 }
 function setSheet(open) { SHEET = open; $("#sheet").hidden = !open; const b = $('#tabbar [data-act="sheet"]'); if (b) b.setAttribute("aria-expanded", String(open)); if (open) { const a = $("#sheet-panel a"); if (a) a.focus({preventScroll: true}); } }
 
 /* ---------- Accueil ---------- */
 function greeting() {
   const h = new Date().getHours();
-  return h < 12 ? ["Gudu mamanten!","Bonjour !"] : h < 18 ? ["Gudu bakadina!","Bon après-midi !"] : ["Gudu neti!","Bonsoir !"];
+  const g = course().hello;
+  return h < 12 ? [g[0], "Bonjour !"] : h < 18 ? [g[1], "Bon après-midi !"] : [g[2], "Bonsoir !"];
 }
-function nextLesson() { return LESSONS.find(l => !S.lessons[l.id]) || null; }
+function nextLesson() {
+  const list = course().lessons;
+  if (S.course === "en" && S.enLevel) {
+    const i0 = list.findIndex(l => l.id === LEVEL_START[S.enLevel]);
+    const n = list.slice(Math.max(0, i0)).find(l => !S.lessons[l.id]);
+    if (n) return n;
+  }
+  return list.find(l => !S.lessons[l.id]) || null;
+}
+const doneLessons = () => course().lessons.filter(l => S.lessons[l.id]).length;
+const seanceKey = () => (S.course === "en" ? "en:" : "") + ymd();
+/* Ordre des nouveaux mots : en anglais, on commence au niveau de l'apprenant */
+function freshRank(v) {
+  if (v.course !== "en" || !S.enLevel) return v.order;
+  const LV = ["A1", "A2", "B1", "B2", "C1"], rank = LV.indexOf(THEME[v.theme].level), target = LV.indexOf(S.enLevel) - 1;
+  return (rank >= target ? 0 : 1) * 1e6 + v.order;
+}
 function celebration() {
   const now = new Date(); now.setHours(0, 0, 0, 0);
   const evs = [
@@ -1860,13 +3054,13 @@ function celebration() {
   return best;
 }
 function wordOfDay() {
-  const pool = VOCAB.filter(v => v.theme !== "nombres");
+  const pool = courseVocab().filter(v => v.theme !== course().skipWotd);
   const n = Math.floor(new Date(ymd() + "T12:00:00").getTime() / DAY);
   return pool[((n * 7919) % pool.length + pool.length) % pool.length];
 }
 function seancePlan() {
   const due = Math.min(15, dueList().length);
-  const unseen = VOCAB.filter(v => !card(v.id)).length;
+  const unseen = courseVocab().filter(v => !card(v.id)).length;
   const nNew = S.newPer === 0 ? 0 : Math.min(S.newPer, 8, unseen);
   return {due, nNew};
 }
@@ -1874,17 +3068,17 @@ function seancePlan() {
 function vHome() {
   const [gs, gf] = greeting();
   const st = themeStats(), todayXP = S.days[ymd()] || 0, nl = nextLesson();
-  const w = wordOfDay(), cel = celebration(), plan = seancePlan(), doneToday = S.seances[ymd()] || 0;
+  const w = wordOfDay(), cel = S.course === "sr" ? celebration() : null, plan = seancePlan(), doneToday = S.seances[seanceKey()] || 0;
   return `
   <div class="stack-lg fade">
     <section class="hero">
       <div class="hero-text">
         <p class="eyebrow">${esc(gf)}</p>
         <h1><span class="sr">${esc(gs)}</span></h1>
-        <p class="lead">${doneToday ? "Séance du jour terminée. Revenez demain, ou continuez si le cœur vous en dit." : `Votre séance du jour vous attend : ${plan.due ? plural(plan.due, "carte à revoir", "cartes à revoir") + ", " : ""}${plan.nNew ? plural(plan.nNew, "nouveau mot", "nouveaux mots") + " et " : ""}un court exercice. <span class="sr">Pikinso pikinso.</span>`}</p>
+        <p class="lead">${doneToday ? "Séance du jour terminée. Revenez demain, ou continuez si le cœur vous en dit." : `Votre séance du jour vous attend : ${plan.due ? plural(plan.due, "carte à revoir", "cartes à revoir") + ", " : ""}${plan.nNew ? plural(plan.nNew, "nouveau mot", "nouveaux mots") + " et " : ""}un court exercice. ${S.course === "sr" ? srSpan("Pikinso pikinso.") : "Un peu chaque jour : c'est ainsi qu'on atteint le C1."}`}</p>
         <div class="row">
           <a class="btn" href="#seance">${doneToday ? "Encore une séance" : "Commencer la séance du jour"}</a>
-          ${nl ? `<a class="btn ghost" href="#lecon-${nl.id}">Leçon ${LESSONS.indexOf(nl) + 1} : ${esc(nl.title)}</a>` : `<a class="btn ghost" href="#exercices">Faire des exercices</a>`}
+          ${nl ? `<a class="btn ghost" href="#lecon-${nl.id}">Leçon ${course().lessons.indexOf(nl) + 1} : ${esc(nl.title)}</a>` : `<a class="btn ghost" href="#exercices">Faire des exercices</a>`}
         </div>
       </div>
       <div class="cloth" aria-hidden="true"></div>
@@ -1900,8 +3094,10 @@ function vHome() {
       <div class="stat"><b>${streak()}</b><span>${streak() > 1 ? "jours de suite" : "jour de suite"}</span></div>
       <div class="stat"><b>${todayXP}<small class="muted" style="font-size:1rem"> / ${S.goal}</small></b><span>points aujourd'hui</span></div>
       <div class="stat"><b>${st.mastered}</b><span>mots maîtrisés sur ${st.total}</span></div>
-      <div class="stat"><b>${Object.keys(S.lessons).length}<small class="muted" style="font-size:1rem"> / ${LESSONS.length}</small></b><span>leçons terminées</span></div>
+      <div class="stat"><b>${doneLessons()}<small class="muted" style="font-size:1rem"> / ${course().lessons.length}</small></b><span>leçons terminées</span></div>
     </section>
+
+    ${S.course === "en" ? levelCard() : ""}
 
     <section class="grid2">
       <article class="panel stack wotd">
@@ -1914,7 +3110,7 @@ function vHome() {
       </article>
       <article class="panel stack">
         <p class="eyebrow">Objectif du jour</p>
-        <p style="font-size:1.15rem;font-weight:600">${todayXP >= S.goal ? "Objectif atteint. Bun wroko!" : "Encore " + (S.goal - todayXP) + " points pour aujourd'hui."}</p>
+        <p style="font-size:1.15rem;font-weight:600">${todayXP >= S.goal ? "Objectif atteint. " + course().wellDone : "Encore " + (S.goal - todayXP) + " points pour aujourd'hui."}</p>
         ${bar(todayXP / S.goal * 100, "gold")}
         <p class="small muted">Une carte révisée rapporte jusqu'à 5 points, une bonne réponse en exercice 10, une leçon terminée 20 à 45. <a href="#reglages">Changer l'objectif</a></p>
       </article>
@@ -1926,16 +3122,16 @@ function vHome() {
     </section>` : ""}
 
     <section class="stack">
-      <div class="spread"><h2>Votre vocabulaire</h2><a href="#vocab" class="small">Les ${THEMES.length} thèmes</a></div>
+      <div class="spread"><h2>Votre vocabulaire</h2><a href="#vocab" class="small">Les ${course().themes.length} thèmes</a></div>
       <div class="grid3">
-        ${THEMES.slice(0, 6).map(t => themeCard(t, themeStats(t.id))).join("")}
+        ${course().themes.slice(0, 6).map(t => themeCard(t, themeStats(t.id))).join("")}
       </div>
     </section>
   </div>`;
 }
 function themeCard(t, s) {
   return `<a class="theme-card" href="#theme-${t.id}">
-    <div class="spread"><h3>${esc(t.name)}</h3>${s.due ? `<span class="pill warn">${s.due} à revoir</span>` : s.seen === 0 ? `<span class="pill new">Nouveau</span>` : ""}</div>
+    <div class="spread"><h3>${esc(t.name)}</h3><span class="row" style="gap:6px">${t.level ? lvlPill(t.level) : ""}${s.due ? `<span class="pill warn">${s.due} à revoir</span>` : s.seen === 0 ? `<span class="pill new">Nouveau</span>` : ""}</span></div>
     <p class="small muted">${esc(t.lead)}</p>
     ${bar(s.mastered / s.total * 100)}
     <p class="small muted">${s.mastered} maîtrisés · ${s.seen - s.mastered} en cours · ${s.total} mots</p>
@@ -1946,12 +3142,15 @@ function themeCard(t, s) {
 function vLessons() {
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow">Grammaire</p><h1>Leçons</h1>
-      <p class="muted prose">${LESSONS.length} leçons courtes, à suivre dans l'ordre. Chacune se termine par un petit test. La grammaire du sranan est bien plus simple que celle du français : pas de conjugaison, pas de genre, pas d'accord.</p></header>
+      <p class="muted prose">${S.course === "en"
+        ? course().lessons.length + " leçons du niveau A1 au C1, pensées pour les francophones. Suivez-les dans l'ordre, ou commencez à la leçon conseillée par le test de niveau. Chacune se termine par un petit test."
+        : course().lessons.length + " leçons courtes, à suivre dans l'ordre. Chacune se termine par un petit test. La grammaire du sranan est bien plus simple que celle du français : pas de conjugaison, pas de genre, pas d'accord."}</p></header>
+    ${S.course === "en" ? levelCard() : ""}
     <div class="list">
-      ${LESSONS.map((l, i) => {
+      ${course().lessons.map((l, i) => {
         const r = S.lessons[l.id];
         return `<a class="lrow" href="#lecon-${l.id}">
-          <div class="stack" style="gap:2px"><span class="lnum">Leçon ${i + 1}</span><b style="font-size:1.08rem">${esc(l.title)}</b><span class="sr small">${esc(l.key)}</span></div>
+          <div class="stack" style="gap:2px"><span class="lnum">Leçon ${i + 1}${l.level ? " · " + l.level : ""}</span><b style="font-size:1.08rem">${esc(l.title)}</b><span class="sr small">${esc(l.key)}</span></div>
           ${r ? `<span class="pill ok">${r.score}/${r.total}</span>` : `<span class="pill">À faire</span>`}
         </a>`;
       }).join("")}
@@ -1962,7 +3161,7 @@ function vLessons() {
 let LQ = null; // test de leçon en cours
 function vLesson(id) {
   const l = LESSON[id]; if (!l) return vLessons();
-  const i = LESSONS.indexOf(l), prev = LESSONS[i - 1], next = LESSONS[i + 1];
+  const list = COURSES[l.course].lessons, i = list.indexOf(l), prev = list[i - 1], next = list[i + 1];
   if (!LQ || LQ.id !== id) LQ = {id, i: 0, picked: null, correct: 0, done: false, orders: l.quiz.map(q => shuffle(q.o.map((_, k) => k)))};
   const body = l.sections.map(s => `<section class="stack">
       <h3>${esc(s.h)}</h3>
@@ -1972,7 +3171,7 @@ function vLesson(id) {
     </section>`).join("");
   return `<article class="stack-lg fade lesson-body">
     <header class="stack" style="gap:8px">
-      <p class="eyebrow"><a href="#lecons">Leçons</a> · ${i + 1} sur ${LESSONS.length}</p>
+      <p class="eyebrow"><a href="#lecons">Leçons</a> · ${i + 1} sur ${list.length}${l.level ? " · niveau " + l.level : ""}</p>
       <h1>${esc(l.title)}</h1>
       <p class="prose" style="font-size:1.08rem">${l.intro}</p>
     </header>
@@ -1988,9 +3187,9 @@ function vLesson(id) {
 function lessonQuizHTML(l) {
   const q = LQ;
   if (q.done) {
-    const nxt = LESSONS[LESSONS.indexOf(l) + 1];
+    const L2 = COURSES[l.course].lessons, nxt = L2[L2.indexOf(l) + 1];
     return `<p class="eyebrow">Testez-vous</p>
-      <h2>${q.correct === l.quiz.length ? "Parfait ! " + srSpan("Bun wroko!") : q.correct + " bonne" + (q.correct > 1 ? "s" : "") + " réponse" + (q.correct > 1 ? "s" : "") + " sur " + l.quiz.length}</h2>
+      <h2>${q.correct === l.quiz.length ? "Parfait ! " + srSpan(course().wellDone) : q.correct + " bonne" + (q.correct > 1 ? "s" : "") + " réponse" + (q.correct > 1 ? "s" : "") + " sur " + l.quiz.length}</h2>
       <p class="muted">${S.lessons[l.id] ? "Leçon enregistrée comme terminée." : ""} Vous pouvez refaire le test quand vous voulez.</p>
       <div class="row"><button class="btn ghost" type="button" data-act="ls-retry">Refaire le test</button>
       ${nxt ? `<a class="btn" href="#lecon-${nxt.id}">Leçon suivante</a>` : `<a class="btn" href="#exercices">Exercices</a>`}</div>`;
@@ -2012,9 +3211,9 @@ function lessonQuizHTML(l) {
 /* ---------- Vocabulaire ---------- */
 function vVocab() {
   return `<div class="stack-lg fade">
-    <header class="stack" style="gap:8px"><p class="eyebrow">Wortu</p><h1>Vocabulaire</h1>
-      <p class="muted prose">${VOCAB.length} mots et expressions, rangés en ${THEMES.length} thèmes. Ouvrez un thème pour voir et écouter la liste, puis révisez-le en cartes ou en exercices.</p></header>
-    <div class="grid3">${THEMES.map(t => themeCard(t, themeStats(t.id))).join("")}</div>
+    <header class="stack" style="gap:8px"><p class="eyebrow">${course().vocabEyebrow}</p><h1>Vocabulaire</h1>
+      <p class="muted prose">${courseVocab().length} mots et expressions, rangés en ${course().themes.length} thèmes. Ouvrez un thème pour voir et écouter la liste, puis révisez-le en cartes ou en exercices.</p></header>
+    <div class="grid3">${course().themes.map(t => themeCard(t, themeStats(t.id))).join("")}</div>
   </div>`;
 }
 function wordRow(v, extra = "") {
@@ -2025,7 +3224,7 @@ function vTheme(id) {
   const t = THEME[id]; if (!t) return vVocab();
   const s = themeStats(id);
   return `<div class="stack-lg fade">
-    <header class="stack" style="gap:8px"><p class="eyebrow"><a href="#vocab">Vocabulaire</a></p><h1>${esc(t.name)}</h1>
+    <header class="stack" style="gap:8px"><p class="eyebrow"><a href="#vocab">Vocabulaire</a>${t.level ? " · niveau " + t.level : ""}</p><h1>${esc(t.name)}</h1>
       <p class="muted">${esc(t.lead)}</p>
       <div style="max-width:420px">${bar(s.mastered / s.total * 100)}</div>
       <p class="small muted">${s.mastered} maîtrisés · ${s.seen - s.mastered} en cours · ${s.total - s.seen} jamais vus</p>
@@ -2040,9 +3239,9 @@ function vTheme(id) {
 let RV = null;
 function makeRV(ids, newIds = new Set()) { return {ids: ids.slice(), i: 0, revealed: false, newIds, stats: {good: 0, hard: 0, again: 0}, requeued: new Set(), dirs: {}}; }
 function startReview(theme) {
-  const pool = VOCAB.filter(v => !theme || v.theme === theme);
+  const pool = theme ? VOCAB.filter(v => v.theme === theme) : courseVocab();
   const due = shuffle(pool.filter(v => isDue(card(v.id)))).slice(0, 40).map(v => v.id);
-  const fresh = pool.filter(v => !card(v.id)).sort((a, b) => a.order - b.order).slice(0, S.newPer).map(v => v.id);
+  const fresh = pool.filter(v => !card(v.id)).sort((a, b) => freshRank(a) - freshRank(b)).slice(0, S.newPer).map(v => v.id);
   const ids = [], newIds = new Set(fresh), d = due.slice(), f = fresh.slice();
   while (d.length || f.length) { if (d.length) ids.push(d.shift()); if (d.length) ids.push(d.shift()); if (f.length) ids.push(f.shift()); }
   RV = makeRV(ids, newIds);
@@ -2087,7 +3286,7 @@ function vReview() {
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow">Révision espacée</p><h1>Réviser</h1>
       <p class="muted prose">Chaque mot revient juste avant que vous ne l'oubliiez : le lendemain, puis après 3 jours, une semaine, deux semaines, un mois. Un mot oublié repart au début.</p></header>
-    ${res ? `<section class="panel stack"><h2>Séance terminée. ${srSpan("Bun wroko!")}</h2>
+    ${res ? `<section class="panel stack"><h2>Séance terminée. ${srSpan(course().wellDone)}</h2>
       <p>${res.good} « je savais » · ${res.hard} « difficile » · ${res.again} « à revoir »</p></section>` : ""}
     <section class="stats">
       <div class="stat"><b>${s.due}</b><span>cartes à revoir</span></div>
@@ -2098,7 +3297,7 @@ function vReview() {
     <section class="panel stack">
       <div class="stack" style="gap:8px"><p class="eyebrow">Sens des cartes</p>
         <div class="seg" role="group" aria-label="Sens des cartes">
-          ${[["sr","Sranan → français"],["fr","Français → sranan"],["mix","Mélangé"]].map(([k, l]) => `<button type="button" data-act="set-dir" data-v="${k}" aria-pressed="${S.dir === k}">${l}</button>`).join("")}
+          ${[["sr", cap(course().name) + " → français"],["fr","Français → " + course().name],["mix","Mélangé"]].map(([k, l]) => `<button type="button" data-act="set-dir" data-v="${k}" aria-pressed="${S.dir === k}">${l}</button>`).join("")}
         </div></div>
       <div class="stack" style="gap:8px"><p class="eyebrow">Nouveaux mots par séance</p>
         <div class="seg" role="group" aria-label="Nouveaux mots par séance">
@@ -2115,13 +3314,13 @@ function vReview() {
 /* ---------- Exercices ---------- */
 let QZ = null, QSEL = null;
 function defaultSel() {
-  const started = THEMES.filter(t => themeStats(t.id).seen > 0).map(t => t.id);
-  return new Set(started.length ? started : ["salut", "mots", "famille"]);
+  const started = course().themes.filter(t => themeStats(t.id).seen > 0).map(t => t.id);
+  return new Set(started.length ? started : course().defaultThemes);
 }
 function distractors(v, field, n) {
   const ok = x => x.id !== v.id && norm(x.fr) !== norm(v.fr) && norm(x.sr) !== norm(v.sr);
   let pool = shuffle(VOCAB.filter(x => x.theme === v.theme && ok(x)));
-  if (pool.length < n) pool = pool.concat(shuffle(VOCAB.filter(x => x.theme !== v.theme && ok(x))));
+  if (pool.length < n) pool = pool.concat(shuffle(VOCAB.filter(x => x.course === v.course && x.theme !== v.theme && ok(x))));
   const out = [], seen = new Set([norm(v[field])]);
   for (const x of pool) { const k = norm(x[field]); if (!seen.has(k)) { seen.add(k); out.push(x[field]); } if (out.length >= n) break; }
   return out;
@@ -2143,12 +3342,12 @@ function buildQuiz(words, n = 10, focus = false) {
       : (r < .3 ? "mc-sr" : r < .55 ? "mc-fr" : r < .72 ? "type" : r < .87 ? "order" : "marker");
     if ((type === "mc-sr" || type === "mc-fr" || type === "type") && wi >= list.length) type = Math.random() < .5 ? "order" : "marker";
     if (type === "order") {
-      const [sr, fr] = pick(SENTENCES);
+      const [sr, fr] = pick(course().sentences);
       const toks = sr.replace(/[?!.]$/, "").replace(/,/g, "").split(" ");
-      const extra = shuffle(["e","ben","o","no","kaba","fu","na","den"].filter(x => !toks.map(t => t.toLowerCase()).includes(x)))[0];
+      const extra = shuffle(course().fillers.filter(x => !toks.map(t => t.toLowerCase()).includes(x)))[0];
       qs.push({type, sr, fr, pool: shuffle(toks.concat(extra)), answer: norm(toks.join(" "))});
     } else if (type === "marker") {
-      const [sr, fr, ans, opts] = pick(MARKERS);
+      const [sr, fr, ans, opts] = pick(course().markers);
       qs.push({type, sr, fr, answer: ans, options: shuffle(opts)});
     } else {
       const v = list[wi++];
@@ -2166,15 +3365,15 @@ function quizQuestionHTML(qz, head) {
   if (q.type === "mc-sr" || q.type === "mc-fr" || q.type === "marker") {
     let top;
     if (q.type === "mc-sr") top = `<p class="eyebrow">Que veut dire…</p><div class="qprompt sr">${esc(q.v.sr)}</div><div class="row">${pronSpan(q.v.sr)}${sayBtn(q.v.sr)}</div>`;
-    else if (q.type === "mc-fr") top = `<p class="eyebrow">Comment dit-on en sranan…</p><div class="qprompt">${esc(q.v.fr)}</div>`;
-    else top = `<p class="eyebrow">Choisissez la bonne marque de temps</p><div class="qprompt sr">${esc(q.sr).replace("___", '<span style="color:var(--gold)">___</span>')}</div><p class="muted">${esc(q.fr)}</p>`;
+    else if (q.type === "mc-fr") top = `<p class="eyebrow">Comment dit-on ${course().inLang}…</p><div class="qprompt">${esc(q.v.fr)}</div>`;
+    else top = `<p class="eyebrow">${course().markerLabel}</p><div class="qprompt sr">${esc(q.sr).replace("___", '<span style="color:var(--gold)">___</span>')}</div><p class="muted">${esc(q.fr)}</p>`;
     const srOpts = q.type !== "mc-sr";
     body = top + `<div class="opts">${q.options.map((o, n) => {
       const cls = answered ? (o === q.answer ? "ok" : n === qz.picked ? "bad" : "") : "";
       return `<button class="opt ${srOpts ? "sr-opt" : ""} ${cls}" type="button" data-act="qz-opt" data-n="${n}" ${answered ? "disabled" : ""}><kbd>${n + 1}</kbd><span>${esc(o)}</span></button>`;
     }).join("")}</div>`;
   } else if (q.type === "type") {
-    body = `<p class="eyebrow">Écrivez en sranan</p><div class="qprompt">${esc(q.v.fr)}</div>
+    body = `<p class="eyebrow">Écrivez ${course().inLang}</p><div class="qprompt">${esc(q.v.fr)}</div>
       <label class="small muted" for="qz-input">Votre réponse (les accents et majuscules ne comptent pas)</label>
       <input class="tin" id="qz-input" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(qz.typed)}" ${answered ? "disabled" : ""} placeholder="…">
       ${answered ? "" : `<div class="row"><button class="btn" type="button" data-act="qz-check">Vérifier</button><button class="btn ghost" type="button" data-act="qz-skip">Je ne sais pas</button></div>`}`;
@@ -2194,7 +3393,7 @@ function quizQuestionHTML(qz, head) {
     else if (q.type === "mc-fr" || q.type === "type") right = `${esc(q.v.fr)} = <span class="srw">${srSpan(q.v.sr)}${sayBtn(q.v.sr)}</span> ${pronSpan(q.v.sr)}`;
     else if (q.type === "order") right = `<span class="srw">${srSpan(q.sr)}${sayBtn(q.sr)}</span>`;
     else { const full = q.sr.replace("___", q.answer); right = `<span class="srw">${srSpan(full)}${sayBtn(full)}</span>`; }
-    fb = `<div class="feedback ${r.ok ? "ok" : "bad"}" role="status"><b>${r.ok ? (r.almost ? "Presque ! Petite faute d'orthographe." : pick(["Bravo !", "Bun!", "Exact !", "Yu koni!"])) : "Pas tout à fait."}</b>
+    fb = `<div class="feedback ${r.ok ? "ok" : "bad"}" role="status"><b>${r.ok ? (r.almost ? "Presque ! Petite faute d'orthographe." : pick(course().praise)) : "Pas tout à fait."}</b>
       <span>${right}</span>${q.v && q.v.note ? `<span class="muted small">${esc(q.v.note)}</span>` : ""}</div>
       <div><button class="btn" type="button" data-act="qz-next" id="qz-next">${qz.i + 1 < qz.qs.length ? "Continuer" : "Voir le résultat"}</button></div>`;
   }
@@ -2209,7 +3408,7 @@ function vQuiz() {
       <section class="panel stack">
         <div class="spread"><p class="eyebrow">Thèmes à travailler</p>
           <div class="row"><button class="btn ghost sm" type="button" data-act="qz-all">Tout</button><button class="btn ghost sm" type="button" data-act="qz-none">Aucun</button></div></div>
-        <div class="row">${THEMES.map(t => `<button class="chip" type="button" data-act="qz-chip" data-theme="${t.id}" aria-pressed="${QSEL.has(t.id)}">${esc(t.name)}</button>`).join("")}</div>
+        <div class="row">${course().themes.map(t => `<button class="chip" type="button" data-act="qz-chip" data-theme="${t.id}" aria-pressed="${QSEL.has(t.id)}">${esc(t.name)}</button>`).join("")}</div>
         <div><button class="btn" type="button" data-act="qz-start" ${QSEL.size ? "" : "disabled"}>Commencer les exercices</button></div>
       </section>
     </div>`;
@@ -2227,13 +3426,24 @@ function vQuiz() {
   return quizQuestionHTML(QZ, progressHead(QZ.i, QZ.qs.length, "qz-setup", "Arrêter"));
 }
 function quizVerdict(pct) {
-  return pct === 100 ? "Sans faute ! " + srSpan("Yu koni!") : pct >= 70 ? "Très bien. Continuez comme ça." : pct >= 40 ? "C'est un bon début. Les mots ratés reviendront dans vos révisions." : "Pas de panique : revoyez les cartes du thème, puis réessayez.";
+  return pct === 100 ? "Sans faute ! " + srSpan(course().praise[3]) : pct >= 70 ? "Très bien. Continuez comme ça." : pct >= 40 ? "C'est un bon début. Les mots ratés reviendront dans vos révisions." : "Pas de panique : revoyez les cartes du thème, puis réessayez.";
+}
+/* Réponses écrites : en anglais, « I'm » = « I am », et « to » devant un verbe est facultatif */
+function expandEn(s) {
+  return String(s).toLowerCase().replace(/won['’]t/g, "will not").replace(/can['’]t/g, "cannot").replace(/n['’]t\b/g, " not")
+    .replace(/\b(it|that|what|there|here|where|who|he|she)['’]s\b/g, "$1 is").replace(/['’]m\b/g, " am").replace(/['’]re\b/g, " are").replace(/['’]ll\b/g, " will").replace(/['’]ve\b/g, " have").replace(/['’]d\b/g, " would");
+}
+function answerForms(s, en) {
+  const forms = [norm(s)];
+  if (en) { forms.push(norm(expandEn(s))); for (const x of forms.slice()) if (x.startsWith("to ")) forms.push(x.slice(3)); }
+  return [...new Set(forms)].filter(Boolean);
 }
 function checkTyped(v, input) {
-  const a = norm(input); if (!a) return {ok: false};
-  const accepted = FR2SR.get(norm(v.fr)) || [v.sr];
-  for (const s of accepted) if (norm(s) === a) return {ok: true};
-  for (const s of accepted) { const t = norm(s); if (t.length >= 4 && lev(t, a) <= 1) return {ok: true, almost: true}; }
+  const en = v.course === "en";
+  const tries = answerForms(input, en); if (!tries.length) return {ok: false};
+  const accepted = (FR2SR.get(v.course + "|" + norm(v.fr)) || [v.sr]).flatMap(s => answerForms(s, en));
+  if (tries.some(a => accepted.includes(a))) return {ok: true};
+  for (const t of accepted) for (const a of tries) { const tol = t.length >= 12 ? 2 : 1; if (t.length >= 4 && lev(t, a) <= tol) return {ok: true, almost: true}; }
   return {ok: false};
 }
 function quizAnswer(qz, ok, almost) {
@@ -2254,8 +3464,8 @@ function quizAnswer(qz, ok, almost) {
 let SE = null;
 function startSeance() {
   const plan = seancePlan();
-  const due = shuffle(VOCAB.filter(v => isDue(card(v.id)))).slice(0, plan.due).map(v => v.id);
-  const fresh = VOCAB.filter(v => !card(v.id)).sort((a, b) => a.order - b.order).slice(0, plan.nNew).map(v => v.id);
+  const due = shuffle(courseVocab().filter(v => isDue(card(v.id)))).slice(0, plan.due).map(v => v.id);
+  const fresh = courseVocab().filter(v => !card(v.id)).sort((a, b) => freshRank(a) - freshRank(b)).slice(0, plan.nNew).map(v => v.id);
   SE = {xp0: S.xp, rv: makeRV(due), learn: {ids: fresh, i: 0}, qz: null, steps: [], phase: ""};
   SE.steps = [due.length ? "review" : "", fresh.length ? "learn" : "", "quiz"].filter(Boolean);
   SE.phase = SE.steps[0];
@@ -2263,15 +3473,15 @@ function startSeance() {
 }
 function seanceQuiz() {
   let ids = [...new Set([...SE.learn.ids, ...SE.rv.ids])];
-  if (ids.length < 6) ids = [...new Set(ids.concat(shuffle(VOCAB.filter(v => card(v.id))).slice(0, 8).map(v => v.id)))];
-  if (ids.length < 6) ids = [...new Set(ids.concat(VOCAB.slice(0, 10).map(v => v.id)))];
+  if (ids.length < 6) ids = [...new Set(ids.concat(shuffle(courseVocab().filter(v => card(v.id))).slice(0, 8).map(v => v.id)))];
+  if (ids.length < 6) ids = [...new Set(ids.concat(courseVocab().slice(0, 10).map(v => v.id)))];
   return buildQuiz(ids.map(id => BYID[id]), 8, true);
 }
 function seanceAdvance() {
   const i = SE.steps.indexOf(SE.phase);
   SE.phase = SE.steps[i + 1] || "done";
   if (SE.phase === "quiz") SE.qz = seanceQuiz();
-  if (SE.phase === "done") { const k = ymd(); S.seances[k] = (S.seances[k] || 0) + 1; save(); }
+  if (SE.phase === "done") { const k = seanceKey(); S.seances[k] = (S.seances[k] || 0) + 1; save(); }
 }
 function seanceSteps() {
   const labels = {review: "Révision", learn: "Nouveaux mots", quiz: "Exercice"};
@@ -2281,7 +3491,7 @@ function seanceSteps() {
 }
 function vSeance() {
   if (!SE) {
-    const plan = seancePlan(), doneToday = S.seances[ymd()] || 0;
+    const plan = seancePlan(), doneToday = S.seances[seanceKey()] || 0;
     return `<div class="stack-lg fade">
       <header class="stack" style="gap:8px"><p class="eyebrow">Environ 10 minutes</p><h1>Séance du jour</h1>
         <p class="muted prose">Trois étapes enchaînées : vous révisez les mots qui en ont besoin, vous découvrez quelques mots nouveaux, puis un court exercice les fixe dans votre mémoire.</p></header>
@@ -2316,7 +3526,7 @@ function vSeance() {
   return `<div class="qwrap fade">
     ${seanceSteps()}
     <p class="eyebrow">Séance terminée</p>
-    <h1>${srSpan("Bun wroko!")}</h1>
+    <h1>${srSpan(course().wellDone)}</h1>
     <section class="stats" style="grid-template-columns:repeat(3,minmax(0,1fr))">
       <div class="stat"><b>+${gained}</b><span>points</span></div>
       <div class="stat"><b>${streak()}</b><span>${streak() > 1 ? "jours de suite" : "jour de suite"}</span></div>
@@ -2324,7 +3534,7 @@ function vSeance() {
     </section>
     <p>${SE.rv.ids.length ? `Révision : ${r.good} « je savais », ${r.hard} « difficile », ${r.again} « à revoir ». ` : ""}${SE.learn.ids.length ? plural(SE.learn.ids.length, "nouveau mot découvert", "nouveaux mots découverts") + ". " : ""}${quizVerdict(pct)}</p>
     <div class="row">
-      ${nl ? `<a class="btn" href="#lecon-${nl.id}">Leçon ${LESSONS.indexOf(nl) + 1} : ${esc(nl.title)}</a>` : `<a class="btn" href="#dialogues">Lire un dialogue</a>`}
+      ${nl ? `<a class="btn" href="#lecon-${nl.id}">Leçon ${course().lessons.indexOf(nl) + 1} : ${esc(nl.title)}</a>` : `<a class="btn" href="#dialogues">Lire un dialogue</a>`}
       <a class="btn ghost" href="#accueil">Retour à l'accueil</a>
     </div>
   </div>`;
@@ -2333,18 +3543,19 @@ function vSeance() {
 /* ---------- Dialogues ---------- */
 let DLG = {tr: false, hide: false, shown: new Set()};
 function dialogueData(id) {
-  if (id === "lecture") return {id, title: READING.fr, sr: READING.title, lead: "Lisez chaque phrase à voix haute avant de regarder la traduction.", lines: READING.lines.map(([s, f]) => ["", s, f]), reading: true};
-  return DIALOGUE[id] || null;
+  const rc = id === "lecture" ? COURSES.sr : id === "en-lecture" ? COURSES.en : null;
+  if (rc) return {id, title: rc.reading.fr, sr: rc.reading.title, level: rc.reading.level, lead: "Lisez chaque phrase à voix haute avant de regarder la traduction.", lines: rc.reading.lines.map(([s, f]) => ["", s, f]), reading: true};
+  return own(DIALOGUE, id) ? DIALOGUE[id] : null;
 }
 function vDialogues() {
   return `<div class="stack-lg fade">
-    <header class="stack" style="gap:8px"><p class="eyebrow">Tori</p><h1>Dialogues</h1>
-      <p class="muted prose">Des scènes de la vie de tous les jours, du marché à Keti Koti. Écoutez, lisez à voix haute, puis cachez le sranan pour vous tester.</p></header>
+    <header class="stack" style="gap:8px"><p class="eyebrow">${course().dlgEyebrow}</p><h1>Dialogues</h1>
+      <p class="muted prose">Des scènes de la vie de tous les jours. Écoutez, lisez à voix haute, puis cachez ${course().the} pour vous tester.</p></header>
     <div class="list">
-      ${DIALOGUES.map(d => `<a class="lrow" href="#dialogue-${d.id}"><div class="stack" style="gap:2px"><b style="font-size:1.08rem">${esc(d.title)}</b><span class="sr small">${esc(d.sr)}</span><span class="small muted">${esc(d.lead)}</span></div>
+      ${course().dialogues.map(d => `<a class="lrow" href="#dialogue-${d.id}"><div class="stack" style="gap:2px"><b style="font-size:1.08rem">${esc(d.title)}</b><span class="sr small">${esc(d.sr)}</span><span class="small muted">${d.level ? "Niveau " + d.level + " · " : ""}${esc(d.lead)}</span></div>
         ${S.dialogues[d.id] ? '<span class="pill ok">Lu</span>' : '<span class="pill">À lire</span>'}</a>`).join("")}
-      <a class="lrow" href="#dialogue-lecture"><div class="stack" style="gap:2px"><b style="font-size:1.08rem">Texte à lire : ${esc(READING.fr)}</b><span class="sr small">${esc(READING.title)}</span><span class="small muted">Un petit texte suivi, phrase par phrase.</span></div>
-        ${S.dialogues.lecture ? '<span class="pill ok">Lu</span>' : '<span class="pill">À lire</span>'}</a>
+      <a class="lrow" href="#dialogue-${course().readingId}"><div class="stack" style="gap:2px"><b style="font-size:1.08rem">Texte à lire : ${esc(course().reading.fr)}</b><span class="sr small">${esc(course().reading.title)}</span><span class="small muted">${course().reading.level ? "Niveau " + course().reading.level + " · " : ""}Un petit texte suivi, phrase par phrase.</span></div>
+        ${S.dialogues[course().readingId] ? '<span class="pill ok">Lu</span>' : '<span class="pill">À lire</span>'}</a>
     </div>
   </div>`;
 }
@@ -2358,7 +3569,7 @@ function vDialogue(id) {
     const side = speakers.indexOf(l[0]) % 2 ? "b" : "a";
     return `<div class="line ${d.reading ? "a" : side}" id="dl-${i}">${d.reading ? '<span class="who">' + (i + 1) + "</span>" : '<span class="who">' + esc(l[0]) + "</span>"}
       <button class="bubble" type="button" data-act="dl-line" data-i="${i}" aria-label="${showSr ? "Afficher ou masquer la traduction" : "Afficher le sranan"}">
-        ${showSr ? srSpan(l[1]) + pronSpan(l[1]) : `<span class="fr" style="color:var(--fg);font-weight:600">${esc(l[2])}</span><span class="hid">Touchez pour voir le sranan</span>`}
+        ${showSr ? srSpan(l[1]) + pronSpan(l[1]) : `<span class="fr" style="color:var(--fg);font-weight:600">${esc(l[2])}</span><span class="hid">Touchez pour voir ${course().the}</span>`}
         ${showSr && showFr ? `<span class="fr">${esc(l[2])}</span>` : ""}
       </button>${showSr ? sayBtn(l[1]) : "<span></span>"}</div>`;
   }).join("");
@@ -2367,7 +3578,7 @@ function vDialogue(id) {
       <div class="row">
         <button class="btn sm say-all" type="button" id="say-all" data-act="say-all">${ICON_SPEAK} Écouter tout</button>
         <button class="chip" type="button" data-act="dl-tr" aria-pressed="${DLG.tr}">Afficher toutes les traductions</button>
-        <button class="chip" type="button" data-act="dl-hide" aria-pressed="${DLG.hide}">Cacher le sranan (mode test)</button>
+        <button class="chip" type="button" data-act="dl-hide" aria-pressed="${DLG.hide}">Cacher ${course().the} (mode test)</button>
       </div></header>
     <div class="dlg">${lines}</div>
     <div class="row">${S.dialogues[id] ? '<span class="pill ok">Déjà lu · +10 points reçus</span>' : `<button class="btn" type="button" data-act="dl-done" data-id="${id}">J'ai lu ce texte (+10 points)</button>`}
@@ -2379,7 +3590,7 @@ function vDialogue(id) {
 let DQ = "";
 function dicoResults(q) {
   const k = norm(q);
-  let list = VOCAB.slice();
+  let list = courseVocab().slice();
   if (k) {
     list = list.filter(v => norm(v.sr).includes(k) || norm(v.fr).includes(k));
     const rank = v => {
@@ -2401,9 +3612,9 @@ function dicoResults(q) {
 }
 function vDico() {
   return `<div class="stack-lg fade">
-    <header class="stack" style="gap:8px"><p class="eyebrow">Sranan ⇄ français</p><h1>Dictionnaire</h1></header>
-    <div class="search"><label class="small muted" for="dico-q">Cherchez un mot en sranan ou en français</label>
-      <input id="dico-q" type="search" autocomplete="off" spellcheck="false" placeholder="ex. : maison, nyan, merci…" value="${esc(DQ)}"></div>
+    <header class="stack" style="gap:8px"><p class="eyebrow">${cap(course().name)} ⇄ français</p><h1>Dictionnaire</h1></header>
+    <div class="search"><label class="small muted" for="dico-q">Cherchez un mot ${course().inLang} ou en français</label>
+      <input id="dico-q" type="search" autocomplete="off" spellcheck="false" placeholder="${course().dicoPlaceholder}" value="${esc(DQ)}"></div>
     <div id="dico-res">${dicoResults(DQ)}</div>
   </div>`;
 }
@@ -2419,7 +3630,30 @@ const SCENARIOS = [
 ];
 let SAMPLE; // undefined = en attente, null = indisponible
 const TALK = {scn: "libre", turns: [], busy: false, ctl: null, err: "", partial: "", off: ""};
-function talkRules() {
+const EN_SCENARIOS = [
+  ["libre","Conversation libre","Conversation libre et naturelle sur la vie, les projets et les centres d'intérêt de l'apprenant."],
+  ["entretien","Entretien d'embauche","Tu es recruteur dans une entreprise internationale et tu fais passer un entretien d'embauche à l'apprenant. Pose une question à la fois, comme dans un vrai entretien."],
+  ["bureau","Small talk au bureau","Tu es un collègue britannique sympathique. Vous discutez à la machine à café : week-end, projets, sujets légers."],
+  ["debat","Donner son avis","Tu proposes un sujet de débat simple (télétravail, réseaux sociaux, voyages…) et tu pousses l'apprenant à argumenter, nuancer et employer des mots de liaison."],
+  ["telephone","Au téléphone","Tu joues un employé de service client au téléphone. L'apprenant appelle pour un problème (commande, réservation, facture) : sois réaliste et poli."],
+  ["texte","Corriger mon texte","L'apprenant t'envoie un texte écrit (e-mail, paragraphe, lettre de motivation). Dans ENGLISH, donne la version corrigée et améliorée en entier ; dans FRANÇAIS, résume le texte en une phrase ; dans CONSEIL, liste les corrections les plus importantes et explique-les en français. Si l'apprenant n'a pas encore envoyé de texte, demande-le-lui."]
+];
+COURSES.sr.scenarios = SCENARIOS;
+COURSES.en.scenarios = EN_SCENARIOS;
+function talkRules() { return S.course === "en" ? enRules() : srRules(); }
+function enRules() {
+  const scn = EN_SCENARIOS.find(s => s[0] === TALK.scn) || EN_SCENARIOS[0];
+  return `Tu es « Coach », un professeur d'anglais exigeant et bienveillant. L'apprenant est francophone, d'origine surinamienne, et vise un très bon niveau d'anglais : B2, puis C1. Niveau estimé : ${S.enLevel || "inconnu (adapte-toi à ses messages)"}.
+Règles :
+- Réponds en anglais naturel et idiomatique (anglais britannique de préférence), adapté à son niveau et un peu au-dessus, pour le faire progresser.
+- Deux à quatre phrases par réponse, qui font avancer la conversation, souvent avec une question.
+- Réponds TOUJOURS dans ce format exact, chaque étiquette au début d'une ligne, sans Markdown :
+ENGLISH: (ta réplique en anglais)
+FRANÇAIS: (sa traduction)
+CONSEIL: (corrige toutes les erreurs de l'apprenant — grammaire, vocabulaire, faux amis, tournures peu naturelles — en donnant la version correcte, et explique brièvement en français ; propose si utile une formulation plus idiomatique ou plus soutenue ; s'il a écrit en français, montre comment le dire en anglais ; si tout est juste, félicite-le en quelques mots et propose une expression de niveau avancé)
+Scénario : ${scn[2]}`;
+}
+function srRules() {
   const scn = SCENARIOS.find(s => s[0] === TALK.scn) || SCENARIOS[0];
   const known = themeStats();
   return `Tu es « Leriman », un tuteur de sranan tongo chaleureux et patient. L'apprenant est francophone, d'origine surinamienne, et réapprend la langue de sa famille. Niveau : débutant (${known.seen} mots vus sur ${known.total} dans son appli).
@@ -2438,7 +3672,8 @@ function parseReply(t) {
     const re = new RegExp(label + "\\s*:\\s*([\\s\\S]*?)(?=\\n\\s*(?:" + next + ")\\s*:|$)", "i");
     const m = t.match(re); return m ? m[1].trim() : "";
   };
-  const sr = get("SRANAN", "FRAN[ÇC]AIS|CONSEIL"), fr = get("FRAN[ÇC]AIS", "CONSEIL|SRANAN"), tip = get("CONSEIL", "SRANAN|FRAN[ÇC]AIS");
+  const L = course().tutorLabel;
+  const sr = get(L, "FRAN[ÇC]AIS|CONSEIL"), fr = get("FRAN[ÇC]AIS", "CONSEIL|" + L), tip = get("CONSEIL", L + "|FRAN[ÇC]AIS");
   return (sr || fr || tip) ? {sr, fr, tip} : null;
 }
 function msgHTML(role, text, done = true) {
@@ -2449,31 +3684,35 @@ function msgHTML(role, text, done = true) {
 }
 function talkLogHTML() {
   let h = TALK.turns.filter(t => !t.hidden).map(t => msgHTML(t.role, t.content)).join("");
-  if (TALK.busy) h += TALK.partial ? msgHTML("assistant", TALK.partial, false) : `<div class="msg ai"><span class="typing">Leriman réfléchit…</span></div>`;
+  if (TALK.busy) h += TALK.partial ? msgHTML("assistant", TALK.partial, false) : `<div class="msg ai"><span class="typing">${course().tutor} réfléchit…</span></div>`;
   if (TALK.err) h += `<p class="feedback bad" role="status">${esc(TALK.err)}</p>`;
   if (!h) h = `<div class="empty stack" style="align-items:center">
-    <p>Choisissez une situation, puis écrivez votre premier message — en sranan si vous osez, en français sinon. Leriman répond en sranan, traduit, et corrige vos phrases.</p>
-    ${SAMPLE ? '<button class="btn ghost sm" type="button" data-act="talk-start">Laisser Leriman commencer</button>' : ""}</div>`;
+    <p>${S.course === "en"
+      ? "Choisissez une situation, puis écrivez votre premier message en anglais. Coach vous répond, traduit, et corrige chaque erreur en l'expliquant en français."
+      : "Choisissez une situation, puis écrivez votre premier message — en sranan si vous osez, en français sinon. Leriman répond en sranan, traduit, et corrige vos phrases."}</p>
+    ${SAMPLE ? `<button class="btn ghost sm" type="button" data-act="talk-start">Laisser ${course().tutor} commencer</button>` : ""}</div>`;
   return h;
 }
 function vTalk() {
   if (SAMPLE === null || TALK.off) {
     return `<div class="stack-lg fade">
-      <header class="stack" style="gap:8px"><p class="eyebrow">Kon taki</p><h1>Parler</h1></header>
+      <header class="stack" style="gap:8px"><p class="eyebrow">${course().talkEyebrow}</p><h1>Parler</h1></header>
       <div class="panel stack"><h3>La conversation n'est pas disponible ici</h3>
-        <p class="muted prose">${esc(TALK.off || "La conversation avec Claude fonctionne quand Leri Sranantongo est ouvert sur claude.ai, avec un compte connecté. Le reste de l'application marche partout.")}</p>
-        <p class="prose">En attendant, le meilleur partenaire de conversation reste votre famille : demandez à vos proches de vous parler en sranan, même si vous répondez en français au début.</p>
+        <p class="muted prose">${esc(TALK.off || "La conversation avec Claude fonctionne quand Leri est ouvert sur claude.ai, avec un compte connecté. Le reste de l'application marche partout.")}</p>
+        <p class="prose">${S.course === "en" ? "En attendant, lisez les dialogues à voix haute et répétez après la voix anglaise." : "En attendant, le meilleur partenaire de conversation reste votre famille : demandez à vos proches de vous parler en sranan, même si vous répondez en français au début."}</p>
         <div class="row"><a class="btn" href="#dialogues">Lire les dialogues</a></div></div>
     </div>`;
   }
   return `<div class="stack-lg fade">
-    <header class="stack" style="gap:8px"><p class="eyebrow">Kon taki</p><h1>Parler avec Leriman</h1>
-      <p class="muted prose">Un partenaire de conversation (Claude) qui vous répond en sranan simple, vous traduit et corrige vos phrases. Il connaît le sranan, mais moins bien que vos aînés : en cas de doute, vérifiez avec eux.</p></header>
-    <div class="row" role="group" aria-label="Situation">${SCENARIOS.map(s => `<button class="chip" type="button" data-act="talk-scn" data-v="${s[0]}" aria-pressed="${TALK.scn === s[0]}">${esc(s[1])}</button>`).join("")}</div>
+    <header class="stack" style="gap:8px"><p class="eyebrow">${course().talkEyebrow}</p><h1>Parler avec ${course().tutor}</h1>
+      <p class="muted prose">${S.course === "en"
+        ? "Un coach d'anglais (Claude) qui vous répond en anglais naturel, traduit, et corrige chacune de vos erreurs. Entraînez-vous aux entretiens, aux débats, au téléphone, ou faites corriger vos textes."
+        : "Un partenaire de conversation (Claude) qui vous répond en sranan simple, vous traduit et corrige vos phrases. Il connaît le sranan, mais moins bien que vos aînés : en cas de doute, vérifiez avec eux."}</p></header>
+    <div class="row" role="group" aria-label="Situation">${course().scenarios.map(s => `<button class="chip" type="button" data-act="talk-scn" data-v="${s[0]}" aria-pressed="${TALK.scn === s[0]}">${esc(s[1])}</button>`).join("")}</div>
     <section class="talk-log" id="talk-log" aria-live="polite">${talkLogHTML()}</section>
     <div class="stack" style="gap:8px">
       <div class="composer">
-        <textarea id="talk-in" rows="2" aria-label="Votre message" placeholder="Odi! Mi nen…" ${SAMPLE === undefined ? "disabled" : ""}></textarea>
+        <textarea id="talk-in" rows="2" aria-label="Votre message" placeholder="${course().placeholder}" ${SAMPLE === undefined ? "disabled" : ""}></textarea>
         <button class="btn" type="button" data-act="talk-send" id="talk-send" ${TALK.busy || SAMPLE === undefined ? "hidden" : ""}>Envoyer</button>
         <button class="btn ghost" type="button" data-act="talk-stop" id="talk-stop" ${TALK.busy ? "" : "hidden"}>Arrêter</button>
       </div>
@@ -2533,6 +3772,7 @@ async function initSample() {
 
 /* ---------- Culture ---------- */
 function vCulture() {
+  if (S.course === "en") return vCultureEn();
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow">Kulturu</p><h1>Culture & proverbes</h1>
       <p class="muted prose">Une langue, c'est aussi une histoire, des fêtes et des façons de dire le monde.</p></header>
@@ -2583,17 +3823,149 @@ function vCulture() {
   </div>`;
 }
 
+/* ---------- Changer de langue ---------- */
+function routeCourse(h) {
+  if (h.startsWith("lecon-") && own(LESSON, h.slice(6))) return LESSON[h.slice(6)].course;
+  if (h.startsWith("theme-") && own(THEME, h.slice(6))) return THEME[h.slice(6)].course;
+  if (h === "dialogue-lecture") return "sr";
+  if (h === "dialogue-en-lecture") return "en";
+  if (h.startsWith("dialogue-") && own(DIALOGUE, h.slice(9))) return DIALOGUE[h.slice(9)].course;
+  if (h === "niveau") return "en";
+  return null;
+}
+function setCourse(id) {
+  if (!own(COURSES, id)) return;
+  S.course = id;
+  RV = null; QZ = null; SE = null; LQ = null; LT = null; QSEL = null; DQ = "";
+  if (TALK.ctl) TALK.ctl.abort();
+  TALK.turns = []; TALK.err = ""; TALK.scn = "libre";
+  DLG = {tr: false, hide: false, shown: new Set()};
+  stopSound(); save(); refreshSoundFlag();
+}
+
+/* ---------- Test de niveau (anglais) ---------- */
+let LT = null;
+const LEVEL_TEXT = {A1: "débutant", A2: "élémentaire", B1: "intermédiaire", B2: "intermédiaire avancé", C1: "avancé"};
+const LEVEL_START = {A1: "e1", A2: "e3", B1: "e4", B2: "e9", C1: "e18"};
+function levelResult(ans) {
+  const ok = {};
+  EN_LEVELTEST.forEach((q, i) => { if (ans[i] === 0) ok[q.lvl] = (ok[q.lvl] || 0) + 1; });
+  let level = "A1";
+  for (const l of ["A2", "B1", "B2", "C1"]) { if ((ok[l] || 0) >= 3) level = l; else break; }
+  return {level, ok};
+}
+function levelCard() {
+  if (S.enLevel) {
+    const start = LESSON[LEVEL_START[S.enLevel]];
+    return `<section class="panel spread">
+      <div class="stack" style="gap:4px"><p class="eyebrow">Votre niveau d'anglais</p><h3>${esc(S.enLevel)} · ${esc(LEVEL_TEXT[S.enLevel])}</h3>
+        <p class="muted small">Objectif : C1. Leçon conseillée : ${esc(start.title)}.</p></div>
+      <div class="row"><a class="btn sm" href="#lecon-${start.id}">Leçon conseillée</a><a class="btn ghost sm" href="#niveau">Refaire le test</a></div>
+    </section>`;
+  }
+  return `<section class="panel spread" style="border-color:var(--green)">
+    <div class="stack" style="gap:4px"><p class="eyebrow">Par où commencer ?</p><h3>Faites le test de niveau</h3>
+      <p class="muted small">20 questions, environ 5 minutes, pour savoir où vous en êtes, de A1 à C1.</p></div>
+    <a class="btn" href="#niveau">Tester mon niveau</a>
+  </section>`;
+}
+function vLevel() {
+  const N = EN_LEVELTEST.length;
+  if (!LT) {
+    return `<div class="stack-lg fade">
+      <header class="stack" style="gap:8px"><p class="eyebrow">Anglais · de A1 à C1</p><h1>Test de niveau</h1>
+        <p class="muted prose">${N} questions de grammaire et de vocabulaire, de plus en plus difficiles. Comptez 5 minutes. Le résultat situe votre niveau sur l'échelle européenne (A1 à C1) et vous indique la leçon par laquelle commencer.</p></header>
+      ${S.enLevel ? `<p><span class="pill ok">Dernier résultat : ${esc(S.enLevel)}</span></p>` : ""}
+      <div><button class="btn" type="button" data-act="lt-start">Commencer le test</button></div>
+    </div>`;
+  }
+  if (LT.i < N) {
+    const q = EN_LEVELTEST[LT.i], order = LT.orders[LT.i];
+    return `<div class="qwrap fade">
+      ${progressHead(LT.i, N, "lt-quit", "Arrêter")}
+      <p class="eyebrow">Complétez la phrase</p>
+      <div class="qprompt sr" lang="en">${esc(q.q).replace("___", '<span style="color:var(--gold)">___</span>')}</div>
+      <div class="opts">${order.map((k, n) => `<button class="opt sr-opt" type="button" data-act="lt-opt" data-k="${k}"><kbd>${n + 1}</kbd><span lang="en">${esc(q.o[k])}</span></button>`).join("")}
+        <button class="opt" type="button" data-act="lt-opt" data-k="-1"><kbd>5</kbd><span>Je ne sais pas</span></button></div>
+      <p class="small muted">Pas de correction pendant le test : répondez spontanément.</p>
+    </div>`;
+  }
+  const r = levelResult(LT.answers), start = LESSON[LEVEL_START[r.level]];
+  return `<div class="qwrap fade">
+    <p class="eyebrow">Résultat du test</p>
+    <h1>Niveau ${esc(r.level)}</h1>
+    <p style="font-size:1.1rem">Niveau ${esc(LEVEL_TEXT[r.level])}. ${r.level === "C1" ? "Excellent : travaillez maintenant le vocabulaire avancé, les expressions idiomatiques et l'écrit avec Coach." : "Objectif : C1. Votre parcours conseillé commence à la leçon « " + esc(start.title) + " »."}</p>
+    <div class="stack" style="gap:10px">${["A2", "B1", "B2", "C1"].map(l => `<div class="stack" style="gap:4px"><div class="spread small"><b>${l}</b><span class="muted">${r.ok[l] || 0} / 5</span></div>${bar((r.ok[l] || 0) / 5 * 100)}</div>`).join("")}</div>
+    <div class="row"><a class="btn" href="#lecon-${start.id}">Commencer : ${esc(start.title)}</a><a class="btn ghost" href="#seance">Séance du jour</a><button class="btn ghost" type="button" data-act="lt-start">Refaire le test</button></div>
+  </div>`;
+}
+
+/* ---------- Culture : anglais ---------- */
+function vCultureEn() {
+  const en = s => `<span class="sr" lang="en">${esc(s)}</span>`;
+  return `<div class="stack-lg fade">
+    <header class="stack" style="gap:8px"><p class="eyebrow">Culture</p><h1>L'anglais et vous</h1>
+      <p class="muted prose">Ce que vous savez déjà grâce au sranan, les différences entre Royaume-Uni et États-Unis, et comment viser le C1.</p></header>
+
+    <section class="stack">
+      <h2>Le sranan vous a déjà appris de l'anglais</h2>
+      <p class="prose">Le sranan est né au XVIIᵉ siècle de l'anglais des colons et des marins, transformé par les langues africaines, puis enrichi de néerlandais et de portugais. Des centaines de mots courants en viennent : vous avez une longueur d'avance.</p>
+      <div class="tbl"><table><thead><tr><th>Sranan</th><th>Anglais</th><th>Français</th></tr></thead><tbody>
+        ${SR_EN_BRIDGE.map(([s, e, f]) => `<tr><td class="sr" lang="srn">${esc(s)}</td><td class="sr" lang="en">${esc(e)}</td><td>${esc(f)}</td></tr>`).join("")}
+      </tbody></table></div>
+    </section>
+
+    <section class="stack">
+      <h2>Royaume-Uni ou États-Unis ?</h2>
+      <p class="prose">Les deux sont corrects : choisissez-en un et restez cohérent, surtout à l'écrit. Cette application suit plutôt l'anglais britannique et signale les variantes américaines.</p>
+      <div class="tbl"><table><thead><tr><th>Royaume-Uni</th><th>États-Unis</th><th>Français</th></tr></thead><tbody>
+        ${EN_UKUS.map(([u, a, f]) => `<tr><td class="sr" lang="en-GB">${esc(u)}</td><td class="sr" lang="en-US">${esc(a)}</td><td>${esc(f)}</td></tr>`).join("")}
+      </tbody></table></div>
+      <p class="note prose">Attention : ${en("pants")} veut dire « pantalon » aux États-Unis, mais « slip » au Royaume-Uni.</p>
+    </section>
+
+    <section class="stack">
+      <h2>La politesse à l'anglaise</h2>
+      <ul class="prose" style="padding-left:1.2em;margin:0">
+        <li>On adoucit les demandes : ${en("Could you…?")}, ${en("Would you mind…?")}, ${en("I was wondering if…")}</li>
+        <li>On dit souvent ${en("sorry")}, même quand ce n'est pas sa faute.</li>
+        <li>À ${en("How are you?")}, on répond court et positif : ${en("Fine, thanks. And you?")}</li>
+        <li>Au Royaume-Uni, ${en("not bad")} veut souvent dire « plutôt bien ».</li>
+      </ul>
+    </section>
+
+    <section class="stack">
+      <h2>Viser un très bon niveau</h2>
+      <ol class="prose" style="padding-left:1.2em;margin:0">
+        <li><b>20 minutes par jour</b> : la séance du jour, puis une leçon ou un dialogue.</li>
+        <li><b>Films et séries en version originale</b>, avec les sous-titres en anglais, pas en français.</li>
+        <li><b>Lisez à voix haute</b> et imitez l'intonation : touchez le haut-parleur, puis répétez.</li>
+        <li><b>Écrivez chaque semaine</b> un court texte et faites-le corriger dans Parler, situation « Corriger mon texte ».</li>
+        <li><b>Apprenez les mots avec leurs voisins</b> (collocations) : ${en("make a decision")}, ${en("take a break")}.</li>
+        <li><b>Fixez-vous un examen</b> comme objectif : Cambridge B2 First ou C1 Advanced, IELTS, TOEIC.</li>
+      </ol>
+    </section>
+
+    <section class="stack">
+      <h2>Et le patois jamaïcain ?</h2>
+      <p class="prose">Comme le sranan, le patois jamaïcain est un créole à base anglaise. Avec le sranan et l'anglais, vous aurez les deux clés pour le comprendre : il pourra être ajouté à l'application ensuite.</p>
+    </section>
+  </div>`;
+}
+
 /* ---------- Réglages ---------- */
 let RESET_ASK = false;
 function vSettings() {
   const where = sync.state === "synced" || sync.state === "connecting" || sync.state === "slow"
     ? "Votre progression est enregistrée dans votre compte Claude — privée, personne d'autre ne la voit — et sur cet appareil. Vous la retrouvez sur votre téléphone comme sur votre ordinateur."
     : sync.state === "error" ? "La synchronisation avec votre compte ne répond pas pour l'instant. Votre progression est enregistrée sur cet appareil et sera envoyée dès que possible."
-    : "Votre progression est enregistrée dans ce navigateur, sur cet appareil. Pour la retrouver sur tous vos appareils, ouvrez Leri Sranantongo depuis claude.ai.";
+    : "Votre progression est enregistrée dans ce navigateur, sur cet appareil. Pour la retrouver sur tous vos appareils, ouvrez Leri depuis claude.ai.";
   return `<div class="stack-lg fade">
     <header class="stack" style="gap:8px"><p class="eyebrow"><a href="#accueil">Accueil</a></p><h1>Réglages</h1></header>
     <section class="panel stack"><h3>Le son</h3>
-      <p class="muted prose">Il n'existe pas encore de voix de synthèse pour le sranan. Le bouton haut-parleur fait lire la <b>prononciation approchée</b> (≈ …) par une voix française : c'est proche, mais l'accent et la mélodie des phrases restent à apprendre auprès de vos proches.</p>
+      <p class="muted prose">${S.course === "en"
+        ? "En anglais, le bouton haut-parleur fait lire chaque mot et chaque phrase par une vraie voix anglaise : écoutez, puis répétez à voix haute."
+        : "Il n'existe pas encore de voix de synthèse pour le sranan. Le bouton haut-parleur fait lire la <b>prononciation approchée</b> (≈ …) par une voix française : c'est proche, mais l'accent et la mélodie des phrases restent à apprendre auprès de vos proches."}</p>
       ${soundOn() ? `
         <div class="stack" style="gap:8px"><p class="eyebrow">Vitesse</p>
           <div class="seg" role="group" aria-label="Vitesse de lecture">
@@ -2601,11 +3973,11 @@ function vSettings() {
             <button type="button" data-act="set-slow" data-v="1" aria-pressed="${!!S.slow}">Lente</button>
           </div></div>
         <div class="row"><button class="chip" type="button" data-act="set-auto" aria-pressed="${!!S.autoplay}">Lire les cartes automatiquement</button></div>
-        <div class="row"><span class="srw">${srSpan("Fa waka? Mi de, tangi.")}${sayBtn("Fa waka? Mi de, tangi.")}</span><span class="small muted">Touchez pour essayer.</span></div>`
-      : `<p class="note prose">Le son n'est pas disponible sur cet appareil ou dans ce navigateur (aucune voix française n'est installée, ou la lecture à voix haute a été désactivée pour cette page dans le menu Permissions).</p>`}
+        <div class="row"><span class="srw">${srSpan(course().sample)}${sayBtn(course().sample)}</span><span class="small muted">Touchez pour essayer.</span></div>`
+      : `<p class="note prose">Le son n'est pas disponible sur cet appareil ou dans ce navigateur (aucune voix n'est installée pour cette langue, ou la lecture à voix haute a été désactivée pour cette page dans le menu Permissions).</p>`}
     </section>
     <section class="panel stack"><h3>Sur mon téléphone</h3>
-      <p class="muted prose">Ajoutez Leri Sranantongo à l'écran d'accueil : une icône l'ouvre comme une application, gratuitement, sans passer par un magasin d'applications.</p>
+      <p class="muted prose">Ajoutez Leri à l'écran d'accueil : une icône l'ouvre comme une application, gratuitement, sans passer par un magasin d'applications.</p>
       <ul class="prose" style="padding-left:1.2em;margin:0">
         <li><b>iPhone :</b> ouvrez cette page dans Safari, touchez le bouton Partager (le carré avec une flèche vers le haut), puis « Sur l'écran d'accueil ».</li>
         <li><b>Android :</b> ouvrez cette page dans Chrome, touchez ⋮ en haut à droite, puis « Ajouter à l'écran d'accueil » ou « Installer l'application ».</li>
@@ -2638,6 +4010,7 @@ const curRV = () => currentRoute() === "seance" && SE ? SE.rv : RV;
 const curQZ = () => currentRoute() === "seance" && SE ? SE.qz : QZ;
 function render() {
   const h = currentRoute();
+  const rc = routeCourse(h); if (rc && rc !== S.course) setCourse(rc);
   let html;
   if (h === "accueil") html = vHome();
   else if (h === "seance") html = vSeance();
@@ -2653,6 +4026,7 @@ function render() {
   else if (h === "parler") html = vTalk();
   else if (h === "culture") html = vCulture();
   else if (h === "reglages") html = vSettings();
+  else if (h === "niveau") html = vLevel();
   else html = vHome();
   $("#view").innerHTML = html;
   renderNav(h);
@@ -2663,7 +4037,7 @@ function render() {
 }
 function inSession() {
   const h = currentRoute();
-  return (h === "reviser" && RV && RV.i < RV.ids.length) || (h === "seance" && SE) || (h === "exercices" && QZ) || h.startsWith("lecon-") || h === "parler" || h === "dico" || h.startsWith("dialogue-");
+  return (h === "reviser" && RV && RV.i < RV.ids.length) || (h === "seance" && SE) || (h === "exercices" && QZ) || h.startsWith("lecon-") || h === "parler" || h === "dico" || h.startsWith("dialogue-") || h === "niveau";
 }
 function softRender() { if (inSession()) renderNav(currentRoute()); else render(); }
 window.addEventListener("hashchange", () => {
@@ -2685,12 +4059,12 @@ const ACT = {
   "go-settings": () => { location.hash = "reglages"; },
   "sheet": () => setSheet(!SHEET),
   "sheet-close": () => setSheet(false),
-  "say": el => { if (el.classList.contains("playing")) { stopSound(); return; } speak([{text: pronSpeak(el.dataset.t)}], el); },
+  "say": el => { if (el.classList.contains("playing")) { stopSound(); return; } speakFor(el.dataset.t, el); },
   "say-all": el => {
     if (SOUND.reading) { stopSound(); return; }
     const d = dialogueData(currentRoute().slice(9)); if (!d) return;
     const speakers = [...new Set(d.lines.map(l => l[0]))];
-    speak(d.lines.map((l, i) => { const k = speakers.indexOf(l[0]); return {text: pronSpeak(l[1]), voice: VOICES[k % VOICES.length], pitch: PITCHES[k % PITCHES.length], id: "dl-" + i}; }), el, true);
+    speak(d.lines.map((l, i) => { const k = speakers.indexOf(l[0]); return {text: speechText(l[1]), lang: course().speech, voice: VOICES[k % VOICES.length], pitch: PITCHES[k % PITCHES.length], id: "dl-" + i}; }), el, true);
   },
   "rv-start": el => { startReview(el.dataset.theme); if (!RV.ids.length) RV = null; if (currentRoute() !== "reviser") location.hash = "reviser"; else { render(); autoSay(); } },
   "rv-reveal": () => { const rv = curRV(); rv.revealed = true; render(); autoSay(); },
@@ -2791,6 +4165,19 @@ const ACT = {
     msg.textContent = "Progression restaurée : " + Object.keys(imported.cards).length + " mots, " + Object.keys(imported.lessons).length + " leçons.";
     renderNav(currentRoute());
   },
+  "course": el => {
+    if (el.dataset.v === S.course) return;
+    setCourse(el.dataset.v);
+    if (routeCourse(currentRoute())) location.hash = "accueil"; else { render(); window.scrollTo(0, 0); }
+  },
+  "lt-start": () => { LT = {i: 0, answers: [], orders: EN_LEVELTEST.map(q => shuffle(q.o.map((_, k) => k)))}; render(); window.scrollTo(0, 0); },
+  "lt-quit": () => { LT = null; render(); },
+  "lt-opt": el => {
+    if (!LT || LT.i >= EN_LEVELTEST.length) return;
+    LT.answers[LT.i] = +el.dataset.k; LT.i++;
+    if (LT.i >= EN_LEVELTEST.length) { S.enLevel = levelResult(LT.answers).level; addXP(20); save(); }
+    render(); window.scrollTo(0, 0);
+  },
   "reset-ask": () => { RESET_ASK = true; render(); },
   "reset-no": () => { RESET_ASK = false; render(); },
   "reset-yes": () => { const goal = S.goal; S = fresh(); S.epoch = Date.now(); S.goal = goal; RESET_ASK = false; RV = null; QZ = null; LQ = null; SE = null; save(); render(); }
@@ -2823,6 +4210,9 @@ document.addEventListener("keydown", e => {
     const q = qz.qs[qz.i];
     if (!qz.result && q.options && /^[1-4]$/.test(e.key) && +e.key <= q.options.length) { e.preventDefault(); ACT["qz-opt"]({dataset: {n: +e.key - 1}}); }
     else if (qz.result && e.key === "Enter") { e.preventDefault(); ACT["qz-next"](); }
+  } else if (h === "niveau" && LT && LT.i < EN_LEVELTEST.length && /^[1-5]$/.test(e.key)) {
+    e.preventDefault();
+    ACT["lt-opt"]({dataset: {k: e.key === "5" ? -1 : LT.orders[LT.i][+e.key - 1]}});
   } else if (h.startsWith("lecon-") && LQ && !LQ.done && LQ.picked === null && /^[1-3]$/.test(e.key)) {
     const k = LQ.orders[LQ.i][+e.key - 1];
     if (k !== undefined) { e.preventDefault(); ACT["ls-opt"]({dataset: {k}}); }

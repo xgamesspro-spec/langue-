@@ -1,23 +1,37 @@
-# Leri Sranantongo
+# Leri
 
-Une application web pour apprendre et réviser le **sranan tongo** depuis le français.
+Une application web pour apprendre et réviser le **sranan tongo** et l'**anglais** depuis le français. Un sélecteur « Sranan | English » en haut de l'écran passe d'une langue à l'autre : chacune a ses leçons, son vocabulaire, ses révisions et sa séance du jour ; la série de jours et les points sont communs.
 
 **Version en ligne :** https://claude.ai/artifact/LEDTnTSRQGkrajqxBHj954
 (il faut être connecté à son compte claude.ai)
 
-## Ce qu'elle contient
+## Pour les deux langues
 
 - **Séance du jour** (environ 10 minutes) : un seul bouton enchaîne la révision des mots qui en ont besoin, la découverte de quelques mots nouveaux (avec un exemple en contexte) et un court exercice.
-- **17 leçons de grammaire**, chacune avec un petit test : prononciation, pronoms, « être » (de / na), les marques de temps (e, ben, o, kaba), la négation, les questions, le pluriel, la possession, les prépositions, les verbes en série, les nombres, les conjonctions, l'impératif et la politesse, la comparaison, « srefi ».
-- **468 mots et expressions** en 19 thèmes (salutations, famille, corps, cuisine surinamaise, maison, nature, animaux, verbes, adjectifs, couleurs, nombres, jours, questions, phrases utiles, santé et émotions, se déplacer, faire ses courses, expressions du cœur). Chaque mot est suivi d'une prononciation approchée écrite pour un francophone.
-- **Le son** : un bouton haut-parleur sur chaque mot et chaque phrase, et « Écouter tout » sur les dialogues (une voix par personnage). Il n'existe pas de voix de synthèse pour le sranan : c'est la prononciation approchée qui est lue par une voix française (voix Claude sur claude.ai, sinon celle du navigateur). Vitesse lente et lecture automatique des cartes dans les Réglages.
 - **Révision espacée** (méthode Leitner) : chaque mot revient le lendemain, puis après 3 jours, 7 jours, 16 jours, 35 jours. Un mot oublié repart au début.
-- **Exercices** : choisir la traduction, écrire en sranan, remettre une phrase dans l'ordre, choisir la bonne marque de temps.
-- **8 dialogues** (marché, famille, chemin, téléphone, médecin, bus, Keti Koti…) et un texte à lire, avec un mode test qui cache le sranan.
-- **Dictionnaire** sranan ⇄ français.
-- **Parler** : conversation avec Claude, qui répond en sranan simple, traduit et corrige vos phrases (6 situations). Ne fonctionne que dans la version claude.ai.
+- **Exercices** : choisir la traduction, écrire le mot, remettre une phrase dans l'ordre, choisir la bonne forme.
+- **Le son** : un bouton haut-parleur sur chaque mot et chaque phrase, et « Écouter tout » sur les dialogues (une voix par personnage). Vitesse lente et lecture automatique des cartes dans les Réglages.
+- **Parler** : conversation avec Claude, qui répond, traduit et corrige vos phrases. Ne fonctionne que dans la version claude.ai.
+- **Dictionnaire**, série de jours, objectif quotidien, mot du jour, sauvegarde de la progression. Sur téléphone, une barre de navigation en bas de l'écran.
+
+## Sranan tongo
+
+- **17 leçons de grammaire**, chacune avec un petit test : prononciation, pronoms, « être » (de / na), les marques de temps (e, ben, o, kaba), la négation, les questions, le pluriel, la possession, les prépositions, les verbes en série, les nombres, les conjonctions, l'impératif et la politesse, la comparaison, « srefi ».
+- **468 mots et expressions** en 19 thèmes, chacun suivi d'une prononciation approchée écrite pour un francophone. Il n'existe pas de voix de synthèse pour le sranan : c'est cette prononciation approchée qui est lue par une voix française.
+- **8 dialogues** (marché, famille, chemin, téléphone, médecin, bus, Keti Koti…) et un texte à lire.
 - **Culture** : histoire de la langue, Keti Koti, Srefidensi, l'hymne de Trefossa, des proverbes (odo).
-- Série de jours, objectif quotidien, mot du jour. Sur téléphone, une barre de navigation en bas de l'écran.
+
+## Anglais, du niveau A1 au C1
+
+- **Test de niveau** : 20 questions, de A2 à C1, qui situent votre niveau et indiquent la leçon par laquelle commencer. Les nouveaux mots des séances partent ensuite de votre niveau.
+- **21 leçons de grammaire** pensées pour les francophones : prononciation, présent simple et continu, prétérit, present perfect (et « depuis »), récit au passé, futur, modaux, conditionnels, passif, discours indirect, relatives, gérondif ou infinitif, articles, indénombrables, comparatifs, used to, wish, question tags, inversion et mise en relief, prépositions.
+- **480 mots et expressions** en 14 thèmes, avec leur niveau : essentiels, dates et heure, vie quotidienne, voyage, 76 verbes irréguliers, émotions, travail et e-mails, collocations, faux amis, verbes à particule, phrases pour converser, mots de liaison, expressions idiomatiques, vocabulaire avancé (C1).
+- **Une vraie voix anglaise** pour chaque mot et chaque phrase.
+- **6 dialogues** (aéroport, restaurant, bureau, médecin, entretien d'embauche, réunion) et un texte sur le Suriname, en anglais.
+- **Coach** (Claude) : conversation libre, entretien d'embauche, small talk, débat, téléphone, et correction de vos textes.
+- **Culture** : les mots anglais cachés dans le sranan, Royaume-Uni et États-Unis, la politesse, comment viser le C1.
+
+Le patois jamaïcain pourra être ajouté ensuite, sur le même modèle.
 
 ## Sur mon téléphone, gratuitement
 
@@ -73,7 +87,7 @@ Ce qui est en place :
 - **Aucune donnée personnelle dans le dépôt** : pas d'adresse e-mail, pas de mot de passe, pas de clé. Les modifications sont signées « Claude ».
 - **Version en ligne (GitHub Pages)** : servie uniquement en HTTPS, sans aucune requête vers un autre site (les polices sont hébergées avec le site, Google ne voit pas vos visites). Une politique de sécurité stricte (CSP) n'autorise que les deux scripts de l'application, identifiés par leur empreinte : un script ajouté par quelqu'un d'autre ne s'exécuterait pas. Aucune information de provenance n'est envoyée quand on suit un lien.
 - **Progression** : elle reste sur le téléphone (version en ligne) ou dans un espace privé de votre compte claude.ai. Toute progression chargée, y compris un code de sauvegarde collé, est vérifiée champ par champ : un code abîmé ou piégé est ignoré.
-- **Sauvegarde** : Réglages → « Copier mon code de sauvegarde ». Gardez ce code dans vos notes ; « Restaurer » le recharge, sur n'importe quel appareil et dans les deux versions.
+- **Sauvegarde** : Réglages → « Copier mon code de sauvegarde ». Gardez ce code dans vos notes ; « Restaurer » le recharge, sur n'importe quel appareil et dans les deux versions. Il contient la progression des deux langues.
 
 Ce que vous seul pouvez faire, dans les réglages de GitHub :
 
