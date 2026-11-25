@@ -1,7 +1,7 @@
 {
-  "name": "Leri Sranantongo",
-  "short_name": "Leri Sranan",
-  "description": "Apprendre et réviser le sranan tongo depuis le français.",
+  "name": "Leri",
+  "short_name": "Leri",
+  "description": "Apprendre et réviser le sranan tongo et l'anglais depuis le français.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
